@@ -1,4 +1,5 @@
 package com.knitting.jamacoi;
+// junk commit test 2 svn
 /**
  * This is a utility class that is useful in several situations where
  * each instance contains three fields: row, col and an f-value.
