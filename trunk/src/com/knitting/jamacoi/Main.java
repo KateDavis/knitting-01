@@ -1,4 +1,5 @@
 package com.knitting.jamacoi;
+// junk comment to test svn
 import  java.io.*;
 
 import com.thoughtworks.xstream.XStream;
