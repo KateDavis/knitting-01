@@ -1,5 +1,5 @@
 package com.knitting.jamacoi;
-import  java.util.*;
+import java.util.TreeMap;
 public class F_Distribution_Table_at_01_00_Percent 
 {
 	private       TreeMap<Integer,TreeMap<Integer,Double>>    t = new 
@@ -38,7 +38,8 @@ t.put(     60 , row_60_degree());
 t.put(    120 , row_120_degree());
 t.put(9999999 , row_MAX_degree());
 } 
-public  TreeMap<Integer, TreeMap<Integer, Double>> get_data(){return  t;}
+public  TreeMap<Integer, TreeMap<Integer, Double>> get_data(){return  t       ;}
+public  int                                        size    (){return  t.size();}
 
 private TreeMap<Integer, Double> row_01_degree() 
 {
