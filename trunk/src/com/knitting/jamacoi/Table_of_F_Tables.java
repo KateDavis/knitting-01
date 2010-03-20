@@ -1,5 +1,8 @@
 package com.knitting.jamacoi;
-import  java.util.*;
+import java.util.Map;
+import java.util.Set;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 
 /**
@@ -95,7 +98,7 @@ public class Table_of_F_Tables
 	 * explained by the independent variables. 
 	 * 
 	 * @param col is the degrees of freedom associated with the regression's
-	 * sum-of-squared errors NOT explaind by the independent variables.
+	 * sum-of-squared errors NOT explained by the independent variables.
 	 * 
 	 * @return Result_Tree
 	 */       
