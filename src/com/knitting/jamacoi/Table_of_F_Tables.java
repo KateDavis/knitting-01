@@ -31,8 +31,8 @@ import java.util.TreeMap;
  * In addition to having a constant level of significance, each
  * F-table has a set of degrees-of-freedom pairs.  Each pair has
  * a specific value for its F-value.  The set of degrees-of-freedom
- * describe the degrees-of-freedom for the independent variable and the
- * degrees-of-fredom for the independent variables. Different F-Tables do not
+ * describe the degrees-of-freedom for the dependent variables and the
+ * degrees-of-freedom for the independent variables. Different F-Tables do not
  * have to have the same set of pairs of degrees-of-freedom.  The specifics
  * of this class and its associated F_Distribition_Table Class management
  * this variability.
