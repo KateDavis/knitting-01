@@ -435,8 +435,10 @@ public void   report_Significant_Analysis()
           System.out.println ( "Exception was caught:");
          }  
    Report_Significant_Analysis rsa = new
-   Report_Significant_Analysis     ( r
-		                           , Rpt_Detail
+   Report_Significant_Analysis     ( Rpt_Detail
+		                           , r.get_R_d_of_freedom()
+		                           , r.get_X_d_of_freedom()
+		                           , r.get_F_value()
 		                           ) ;
                                rsa . get();
 }

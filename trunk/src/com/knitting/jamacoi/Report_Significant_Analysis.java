@@ -4,15 +4,22 @@ import java.io.FileWriter;
 import java.util.Formatter;
 
 public class    Report_Significant_Analysis {
-	   private  Regression  r;
 	   private  FileWriter  Rpt_Detail;
+	   private  int         R_d_of_freedom;
+	   private  int         X_d_of_freedom;
+	   private  double      f_value;
+	
 
-public Report_Significant_Analysis( Regression  r
-		                          , FileWriter  Rpt_Detail
+public Report_Significant_Analysis( FileWriter  Rpt_Detail
+		                          , int         R_d_of_freedom
+		                          , int         X_d_of_freedom
+		                          , double      f_value
 		                          ) 
        {
-	   this.r           = r;
-	   this.Rpt_Detail  = Rpt_Detail;
+	   this.Rpt_Detail     = Rpt_Detail;
+	   this.R_d_of_freedom = R_d_of_freedom;
+	   this.X_d_of_freedom = X_d_of_freedom;
+	   this.f_value        = f_value;
 	   }
 	
 public void   get() 
@@ -30,15 +37,15 @@ public void   get()
 
          Table_of_F_Tables  fdt = new Table_of_F_Tables();
 
-         Result_Tree rt = fdt.build_Result_Tree( r.get_R_d_of_freedom()
-                                               , r.get_X_d_of_freedom()
-                                               );
+         Result_Tree rt = fdt.build_Result_Tree( R_d_of_freedom
+                                               , X_d_of_freedom
+                                               ) ;
          
-                     rt.compare_reg_with_data  ( Rpt_Detail
-                                               , r.get_R_d_of_freedom()
-                                               , r.get_X_d_of_freedom()
-                                               , r.get_F_value()
-                                               );  
+                     rt . compare_reg_with_data( Rpt_Detail
+                                               , R_d_of_freedom
+                                               , X_d_of_freedom
+                                               , f_value
+                                               ) ;  
         } 
   catch (Exception e)
         { 
