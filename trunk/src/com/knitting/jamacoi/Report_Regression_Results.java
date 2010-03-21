@@ -1,6 +1,7 @@
 package com.knitting.jamacoi;
-import  java.util.*;
-import  java.io.*;
+import java.io.FileWriter;
+import java.util.ArrayList;
+import java.util.Formatter;
 
 /**
  * This class implements usable and more meaningful reports that the 
@@ -432,7 +433,12 @@ public void   report_Significant_Analysis()
    catch (Exception e)
          { 
           System.out.println ( "Exception was caught:");
-         }                                 
+         }  
+   Report_Significant_Analysis rsa = new
+   Report_Significant_Analysis     ( r
+		                           , Rpt_Detail
+		                           ) ;
+                               rsa . get();
 }
 public  void   report_Covariance_Matrix()
     throws not_estimated
