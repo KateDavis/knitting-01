@@ -140,7 +140,7 @@ public class Table_of_F_Tables
 	                                  )
 {   
 SortedMap<Integer, 
-  TreeMap<Integer,Double>>  sorted_rows  = table           .headMap(row + 1 );
+TreeMap  <Integer, Double>> sorted_rows  = table           .headMap(row + 1 );
 Integer                     row_key      = sorted_rows     .lastKey(        );
 TreeMap  <Integer, Double>  selected_row = table           .get    (row_key );
 SortedMap<Integer, Double>  sorted_cols  = selected_row    .headMap(col + 1 );
