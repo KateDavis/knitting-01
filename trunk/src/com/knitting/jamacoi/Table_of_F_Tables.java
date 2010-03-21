@@ -13,7 +13,7 @@ import java.util.TreeMap;
  * <br>
  * The construction of a table-of-tables of F-values permits searching
  * for a specific set of degrees-of-freedom pairs to determine if a
- * particular regression result has risen above random change in
+ * particular regression result has risen above random chance in
  * explaining the dependent variables.
  * <br>
  * This class also implements two other critical functions:
