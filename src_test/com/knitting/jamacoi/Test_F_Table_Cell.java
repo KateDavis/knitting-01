@@ -11,15 +11,15 @@ public class Test_F_Table_Cell {
 	
 	final int     row     = 1;
 	final int     col     = 2;
-	final double  F_Value = 3.14;
+	final double  f_value = 3.14;
 	
 	@Before
 	public void setUp() {
 	
-	  cell = new F_Table_Cell   ( row
-                                , col  
-                                , F_Value
-                                );	
+	  cell = new F_Table_Cell    ( row
+                                 , col  
+                                 , f_value
+                                 );	
 	}
 
 	@After
@@ -28,19 +28,18 @@ public class Test_F_Table_Cell {
 	}
 
 	@Test
-	public void  test_Get_Row()    {
-	       final Integer I_row     = row;
-		   assertEquals( I_row     , cell.get_Row() );
+	public void  test_Get_Row()  {
+	       final Integer Row     = row;
+		   assertEquals( Row     , cell.get_Row() );
 	}
 	@Test
-	public void  test_Get_Col()    {
-		   final Integer I_col     = col;
-		   assertEquals( I_col     , cell.get_Col() );
+	public void  test_Get_Col()  {
+		   final Integer Col     = col;
+		   assertEquals( Col     , cell.get_Col() );
 	}
 	@Test
-	public void  test_Get_F()      {
-		   final Double  D_F_Value = F_Value;
-		   assertEquals( D_F_Value , cell.get_F()  );
+	public void  test_Get_F()    {
+		   final Double  F_value = f_value;
+		   assertEquals( F_value , cell.get_F()   );
 	}
-
 }
