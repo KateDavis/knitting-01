@@ -23,6 +23,7 @@ static private FileWriter  Rpt       ;
     	   Rpt  = new FileWriter       ( file_name
                                        , concatentate_false
                                        );
+    	   Rpt  . close();
 		}
 
 	@Before
