@@ -5,19 +5,31 @@ import java.io.IOException;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class   Test_Report_Significant_Analysis {
-	   private boolean     concatentate = true;
+static private boolean     concatentate_true    = true ;	
+static private boolean     concatentate_false   = false;	
+static private String      file_name            = "C:/Temp"	
+	                                            + "/"
+	                                            + "Test_Report_Significant_Analysis.txt";
+static private FileWriter  Rpt       ;
 	   private FileWriter  Rpt_Detail;
+	   
+    @BeforeClass
+    public static void setUpBeforeClass() 
+           throws Exception            {
+    	   Rpt  = new FileWriter       ( file_name
+                                       , concatentate_false
+                                       );
+		}
 
 	@Before
 	public void   setUp     () 
 	       throws Exception {
-		   Rpt_Detail  = new FileWriter( "C:/Temp"
-                                       + "/"
-                                       + "Test_Report_Significant_Analysis.txt"
-                                       , concatentate
+		   Rpt_Detail  = new FileWriter( file_name
+                                       , concatentate_true
                                        );
 	}
 
