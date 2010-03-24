@@ -1,7 +1,10 @@
 package com.knitting.jamacoi;
 
+import static org.junit.Assert.assertNotNull;
+
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 
 import org.junit.After;
 import org.junit.Before;
@@ -12,7 +15,7 @@ public class   Test_400_Report_Significant_Analysis {
 static private boolean     concatentate_true    = true ;	
 static private boolean     concatentate_false   = false;
 
-static private String      file_name_expected   = "C:/Temp/expected";
+static private String      file_name_expected   = "expected/";
 
 static private String      file_name_actual     = "C:/Temp/actual"	
 	                                            + "/"
@@ -72,5 +75,22 @@ static private FileWriter  Rpt       ;
 			      // TODO Auto-generated catch block
 			      e.printStackTrace();
 		         };
+	}
+	
+	
+	@Test
+	public void testScottWillChangeMethodName() throws Exception {
+		String filename = file_name_expected + "expected_file01.txt";
+		InputStream stream = this.getClass().getResourceAsStream(filename);
+		assertNotNull(stream);
+		
+		StringBuilder sb = new StringBuilder();
+		byte[] bytes = new byte[4096];
+		int len;
+		while ((len = stream.read(bytes)) > 0) {
+			sb.append(new String(bytes, 0, len));
+		}
+		System.out.println(sb);
+		
 	}
 }
