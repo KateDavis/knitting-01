@@ -1,0 +1,8 @@
+
+
+4) Significant Analysis Report  =(New Class/method)====
+    F_Table = >01.00%<  row = >3.0000E+00<  cols = >1.0000E+01<  f => 2.72000E+01<
+    NOT Significant  <  row = >3.0000E+00<  cols = >1.0000E+01<  f => 2.50000E+00<
+
+    F_Table = >05.00%<  row = >3.0000E+00<  cols = >1.0000E+01<  f => 8.79000E+00<
+    NOT Significant  <  row = >3.0000E+00<  cols = >1.0000E+01<  f => 2.50000E+00<
