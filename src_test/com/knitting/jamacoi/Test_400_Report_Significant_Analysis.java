@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Scanner;
 
 import org.junit.After;
 import org.junit.Before;
@@ -14,12 +15,14 @@ import org.junit.Test;
 public class   Test_400_Report_Significant_Analysis {
 static private boolean     concatentate_true    = true ;	
 static private boolean     concatentate_false   = false;
+static private String      test_name            = "Test_400_not_significant.txt";
 
-static private String      file_name_expected   = "expected/";
+static private String      file_name_expected   = "expected/"
+	                                            +  test_name;
 
 static private String      file_name_actual     = "C:/Temp/actual"	
 	                                            + "/"
-	                                            + "Test_400_not_significant.txt";
+	                                            + test_name;
 static private FileWriter  Rpt       ;
 	   private FileWriter  Rpt_Detail;
 	   
@@ -80,17 +83,17 @@ static private FileWriter  Rpt       ;
 	
 	@Test
 	public void testScottWillChangeMethodName() throws Exception {
-		String filename = file_name_expected + "expected_file01.txt";
-		InputStream stream = this.getClass().getResourceAsStream(filename);
+	
+		InputStream   stream   = this.getClass()
+		                             .getResourceAsStream(file_name_expected);
 		assertNotNull(stream);
 		
-		StringBuilder sb = new StringBuilder();
-		byte[] bytes = new byte[4096];
-		int len;
-		while ((len = stream.read(bytes)) > 0) {
-			sb.append(new String(bytes, 0, len));
-		}
-		System.out.println(sb);
-		
+		Scanner               scanner = new Scanner( stream );
+		while (               scanner . hasNextLine()
+			  )
+		      { String line = scanner . nextLine();
+		        System.out.println(line);
+		      }
+		stream.close();	
 	}
 }
