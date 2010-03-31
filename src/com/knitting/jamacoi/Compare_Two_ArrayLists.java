@@ -25,7 +25,7 @@ return  Math.min( expected . size()
 		        , actual   . size()
 		        ) ;	
 }
-private ArrayList<String> find_First_Difference(){
+public  ArrayList<String> find_First_Difference(){
 	    ArrayList<String> difference_entries = new ArrayList<String>();
 	    int                      ix          =     0;
 	    while   ( (              ix   < get_Min()      )
