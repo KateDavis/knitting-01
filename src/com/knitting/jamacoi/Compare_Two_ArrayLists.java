@@ -76,36 +76,36 @@ private void   get_extra_line        ( int                ix
 	    difference_entries.add( get_row_extra   (ix) );
 }
 private String get_row_expected ( int ix ){
-        String e = "row "
-                 +  ix
-                 + ": expected =>"
-                 +    expected.get(ix)
-                 + "<";
-return         e;
+return         (  "row "
+               +  ix
+               +  ": expected =>"
+               +     expected.get(ix)
+               +  "<"
+               )  ;
 }
 private String get_row_actual   ( int ix ){
-        String a = "row "
-                 +  ix
-                 + ": actual   =>"
-                 +    actual.get(ix)
-                 + "<";
-return         a;
+return         (  "row "
+               +  ix
+               +  ": actual   =>"
+               +     actual  .get(ix)
+               +  "<"
+               )  ;
 }
 private String get_row_missing  ( int ix ){
-        String a = "row "
-                 +  ix
-                 + ": actual   =>"
-                 + "Error: there is no corresponding line here"
-                 + "<";
-return         a;
+return         (  "row "
+               +  ix
+               +  ": actual   =>"
+               +  "Error: there is no corresponding line here"
+               +  "<"
+               )  ;
 }
 private String get_row_extra    ( int ix ){
-        String a = "row "
-                 +  ix
-                 + ": actual   =>"
-                 + "Error: this is an extra line that should not be here"
-                 + "<";
-return         a;
+return         (  "row "
+               +  ix
+               +  ": actual   =>"
+               +  "Error: this is an extra line that should not be here"
+               +  "<"
+               )  ;
 }
 
 }
