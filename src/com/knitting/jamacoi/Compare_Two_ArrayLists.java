@@ -27,32 +27,28 @@ return  Math.min( expected . size()
 }
 private ArrayList<String> find_First_Difference(){
 	    ArrayList<String> difference_entries = new ArrayList<String>();
-	    int                    ix            =     0;
-	    while ( (              ix   < get_Min()      )
-	    		&&
-	    		( expected.get(ix) == actual.get(ix) )
-	    	  )  
-	          {
-	    	                 ++ix;
-	          }
-	    if    ( ix < get_Min() )
-	          {
-	    	    get_non_matching_lines( ix
-	    	    		              , difference_entries
-	    	    		              );
-	          }
-	    if    ( get_Min() < expected.size() )
-              {
-                get_unmatched_line    ( ix
-                		              , difference_entries
-                		              );
-              }
-	    if    ( get_Min() < actual  .size() )
-              {
-                get_extra_line        ( ix
-                		              , difference_entries
-                		              );
-              }
+	    int                      ix          =     0;
+	    while   ( (              ix   < get_Min()      )
+	    		  &&
+	    		  ( expected.get(ix) == actual.get(ix) )
+	    	    )  
+	            {
+	    	                   ++ix;
+	            }
+	    if      ( ix        < get_Min()       )
+	            {
+	    	      get_non_matching_lines( ix, difference_entries );
+	            }
+	    else if ( get_Min() < expected.size() )
+                {
+                  get_unmatched_line    ( ix, difference_entries );
+                }
+	    else if ( get_Min() < actual  .size() )
+                {
+                  get_extra_line        ( ix, difference_entries );
+                }
+	    else    { // the ArrayLists are equal
+	            }
 	    
 return  difference_entries;	
 }
