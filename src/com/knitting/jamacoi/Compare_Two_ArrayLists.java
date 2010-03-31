@@ -1,6 +1,7 @@
 package com.knitting.jamacoi;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public  class   Compare_Two_ArrayLists {
         private                 ArrayList<String> expected;
@@ -102,6 +103,14 @@ return         (  "row "
                +  "Error: this is an extra line that should not be here"
                +  "<"
                )  ;
+}
+public  void   print_ArrayList( ArrayList<String> list){
+	    Iterator<String> iter = list.iterator();
+	    
+	    while ( iter.hasNext() )
+	          {
+	    	    System.out.println( iter.next() );
+	          }
 }
 
 }
