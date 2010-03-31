@@ -1,7 +1,5 @@
 package com.knitting.jamacoi;
 
-import static org.junit.Assert.fail;
-
 import java.util.ArrayList;
 
 import org.junit.After;
@@ -37,7 +35,7 @@ public         ArrayList<String>      a_empty    ;
            a_different  . add( line_02_e );
 		   
 		   a_missing    = new ArrayList<String>();
-           a_missing    . add( line_01_a );
+           a_missing    . add( line_01_e );
                              
 		   a_extra      = new ArrayList<String>();
            a_extra      . add( line_01_e );
@@ -55,12 +53,51 @@ public         ArrayList<String>      a_empty    ;
 	public void testGet_Min() {
 		c       = new Compare_Two_ArrayLists ( e, a_eq );
 		
-		assert (e.size() == c.get_Min() );
+		assert (e    . size() == c.get_Min() );
+		assert (a_eq . size() == c.get_Min() );
 	}
 
 	@Test
-	public void testFind_First_Difference() {
-		fail("Not yet implemented");
+	public void test_01_Find_First_Difference() {
+		              c = new Compare_Two_ArrayLists ( e, a_eq );
+    ArrayList<String> d = c.find_First_Difference();
+    assert           (d.size() == 0 );
+	}
+	
+	@Test
+	public void test_02_Find_First_Difference() {
+		              c = new Compare_Two_ArrayLists ( e, a_different );
+    ArrayList<String> d = c.find_First_Difference();
+    assert           (d.size()  > 0 );
+                      c.print_ArrayList(d);
+                      System.out.println( " " );
+	}
+	
+	@Test
+	public void test_03_Find_First_Difference() {
+		              c = new Compare_Two_ArrayLists ( e, a_missing   );
+    ArrayList<String> d = c.find_First_Difference();
+    assert           (d.size()  > 0 );
+                      c.print_ArrayList(d);
+                      System.out.println( " " );
+	}
+	
+	@Test
+	public void test_04_Find_First_Difference() {
+		              c = new Compare_Two_ArrayLists ( e, a_extra    );
+    ArrayList<String> d = c.find_First_Difference();
+    assert           (d.size()  > 0 );
+                      c.print_ArrayList(d);
+                      System.out.println( " " );
+	}
+	
+	@Test
+	public void test_05_Find_First_Difference() {
+		              c = new Compare_Two_ArrayLists ( e, a_empty    );
+    ArrayList<String> d = c.find_First_Difference();
+    assert           (d.size()  > 0 );
+                      c.print_ArrayList(d);
+                      System.out.println( " " );
 	}
 
 }
