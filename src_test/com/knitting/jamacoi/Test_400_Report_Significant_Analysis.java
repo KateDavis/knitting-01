@@ -20,11 +20,15 @@ static private String      test_name            = "Test_400_not_significant.txt"
 static private String      file_name_expected   = "expected/"
 	                                            +  test_name;
 
+static private String      file_name_actual_2   = "actual/"
+                                                +  test_name;
+
 static private String      file_name_actual     = "C:/Temp/actual"	
 	                                            + "/"
 	                                            + test_name;
 static private FileWriter  Rpt       ;
 	   private FileWriter  Rpt_Detail;
+	   private FileWriter  Rpt_Detail_2;
 	   
     @BeforeClass
     public static void setUpBeforeClass() 
@@ -82,10 +86,25 @@ static private FileWriter  Rpt       ;
 	
 	
 	@Test
-	public void test_400_01_expected_exists() throws Exception {
+	public void test_400_01_exists_expected() throws Exception {
 	
 		InputStream   stream   = this.getClass()
 		                             .getResourceAsStream(file_name_expected);
+		assertNotNull(stream);
+		
+		Scanner               scanner = new Scanner( stream );
+		while (               scanner . hasNextLine()
+			  )
+		      { String line = scanner . nextLine();
+		        System.out.println(line);
+		      }
+		stream.close();	
+	}
+	@Test
+	public void test_400_02_exists_actual_2() throws Exception {
+	
+		InputStream   stream   = this.getClass()
+		                             .getResourceAsStream(file_name_actual_2);
 		assertNotNull(stream);
 		
 		Scanner               scanner = new Scanner( stream );
