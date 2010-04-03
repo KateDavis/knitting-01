@@ -6,6 +6,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * A basic implementation of DataSeries.  Clients should not use this class directly, but should go through DataSet
+ * to get a DataSeries.
+ * 
+ * @see DataSet
+ * @see DataSeries
+ *
+ */
 public class DefaultDataSeries implements DataSeries {
 
 	private final DataSet dataSet;
