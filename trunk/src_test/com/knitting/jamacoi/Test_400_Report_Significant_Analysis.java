@@ -82,7 +82,7 @@ static private FileWriter  Rpt       ;
 	
 	
 	@Test
-	public void testScottWillChangeMethodName() throws Exception {
+	public void test_400_01_expected_exists() throws Exception {
 	
 		InputStream   stream   = this.getClass()
 		                             .getResourceAsStream(file_name_expected);
