@@ -59,7 +59,7 @@ public         ArrayList<String>      a_empty    ;
 
 	@Test
 	public void test_01_Find_First_Difference() {
-		              c = new Compare_Two_ArrayLists ( e, a_eq );
+		              c = new Compare_Two_ArrayLists ( e, a_eq        );
     ArrayList<String> d = c.find_First_Difference();
     assert           (d.size() == 0 );
 	}
