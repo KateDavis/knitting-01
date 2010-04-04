@@ -7,7 +7,7 @@ public  class   Compare_Two_ArrayLists {
         private                 ArrayList<String> expected;
         private                 ArrayList<String> actual;
        
-private Compare_Two_ArrayLists(){};  // to prevent this use.
+private Compare_Two_ArrayLists(){}; // to prevent this use.
 public  Compare_Two_ArrayLists( ArrayList<String> expected
 		                      , ArrayList<String> actual
 		                      ) {
@@ -15,7 +15,8 @@ public  Compare_Two_ArrayLists( ArrayList<String> expected
 	    this.actual           =                   actual;
 }
 public  boolean are_Equal(){
-	    return  false;
+        ArrayList<String> difference_report = report_First_Difference();
+        return          ( difference_report . size() == 0 );
 }
 public  ArrayList<String> report_First_Difference(){
         ArrayList<String> difference_report  = new ArrayList<String>();
