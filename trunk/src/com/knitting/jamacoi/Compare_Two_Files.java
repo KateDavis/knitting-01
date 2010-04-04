@@ -31,8 +31,12 @@ private boolean exists_File    ( String                    File_Name ){
 public  boolean equal_Files(){
         ArrayList    <String> expected = load_List( File_Name_Expect_Contents );
         ArrayList    <String> actual   = load_List( File_Name_Actual_Contents );
+        
+        Compare_Two_ArrayLists diff    = new Compare_Two_ArrayLists ( expected
+                                                                    , actual
+                                                                    );
 
-        return false;
+        return diff.are_Equal();
 }
 private ArrayList<String>     load_List ( String                   File_Name){
 	    ArrayList<String>          list = new ArrayList<String>();
