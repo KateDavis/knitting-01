@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public  class   Compare_Two_Files {
@@ -51,7 +52,13 @@ public  boolean equal_Files(){
             }
         else
             {
-        	  create_diff_file( diff );
+        	  try   {
+				     create_diff_file( diff.find_First_Difference() );
+			        }
+        	  catch (IOException e) 
+        	        {
+			    	 e.printStackTrace();
+			        }
             }
         return d;
 }
@@ -94,6 +101,11 @@ protected void create_diff_file( ArrayList<String> diff)
 	      delete_diff_file();
 try      {	      
 	      FileWriter d = new FileWriter( File_Name_Contents_Difference);
+	      Iterator<String> iter = diff.iterator();
+	      while ( iter.hasNext() )
+	            {
+	    	      d.write( iter.next() );
+	            }
          }
 catch    (IOException e)
          { throw      e;
