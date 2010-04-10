@@ -1,5 +1,7 @@
 package com.knitting.jamacoi;
 
+import static org.junit.Assert.assertTrue;
+
 import java.io.File;
 import java.net.URL;
 
@@ -80,6 +82,8 @@ static String  File_Separator  = File.pathSeparator;
 			                        +  c.get_Dir_Actaul()
 			                        + "<"
 			                        ) ;
+		assertTrue ( c.exists_Expected() );
+		assertTrue ( c.exists_Actual  () );
 		
 	}
 
