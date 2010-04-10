@@ -21,7 +21,7 @@ static String  File_Separator  = File.pathSeparator;
        String  Dir__Difference_Full;
 
 	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
+	public static void setUpBeforeClass  () throws Exception {
 	}
 
 	@AfterClass
@@ -30,17 +30,17 @@ static String  File_Separator  = File.pathSeparator;
 
 	@Before
 	public void setUp() throws Exception {
-           URL  actual          = this     . getClass()
-                                           . getResource(Dir__Actual    );
-           Dir__Actual_Full     = actual   . getPath(); 
+           URL  actual          = this       . getClass()
+                                             . getResource(Dir__Actual    );
+           Dir__Actual_Full     = actual     . getPath(); 
            
-           URL  expected        = this     . getClass()
-                                           . getResource(Dir__Expected  );
-           Dir__Expected_Full   = expected . getPath();
+           URL  expected        = this       . getClass()
+                                             . getResource(Dir__Expected  );
+           Dir__Expected_Full   = expected   . getPath();
            
-           URL  difference      = this     . getClass()
-                                           . getResource(Dir__Difference);
-           Dir__Difference_Full = expected . getPath();  
+           URL  difference      = this       . getClass()
+                                             . getResource(Dir__Difference);
+           Dir__Difference_Full = difference . getPath();  
 	}
 
 	@After
@@ -48,36 +48,38 @@ static String  File_Separator  = File.pathSeparator;
 	}
 
 	@Test
-	public void testGet_Dir_Actaul() {
-		System.out.println( "Dir__Actual_Full ..... = >"
-				          +  Dir__Actual_Full
-				          + "<"
-				          ) ;
+	public void testGet_Dir_Actaul(){
+		System.out.println          ( "Dir__Actual_Full ..... = >"
+				                    +  Dir__Actual_Full
+				                    + "<"
+				                    ) ;
 		
-		System.out.println( "Dir__Expected_Full ... = >"
-                          +  Dir__Expected_Full
-                          + "<"
-                          ) ;
-		String Full_File_Actual     = Dir__Actual_Full
-		                            + File.pathSeparator
-		                            + File_Name;
+		System.out.println          ( "Dir__Expected_Full ... = >"
+                                    +  Dir__Expected_Full
+                                    + "<"
+                                    ) ;
 		
-		String Full_File_Expected   = Dir__Expected_Full
-                                    + File.pathSeparator
-                                    + File_Name;
+		String Full_File_Actual     =  Dir__Actual_Full
+		                            +  File.pathSeparator
+		                            +  File_Name;
 		
-		String Full_File_Difference = Dir__Difference_Full
-                                    + File.pathSeparator
-                                    + File_Name;
+		String Full_File_Expected   =  Dir__Expected_Full
+                                    +  File.pathSeparator
+                                    +  File_Name;
 		
-		Compare_Two_Files c         = new Compare_Two_Files( Full_File_Expected
-				                                           , Full_File_Actual
-				                                           , Full_File_Difference
-				                                           ) ;
-		System.out.println( "Dir__Actual_Full for c = >"
-			              +  c.get_Dir_Actaul()
-			              + "<"
-			              ) ;
+		String Full_File_Difference =  Dir__Difference_Full
+                                    +  File.pathSeparator
+                                    +  File_Name;
+		
+		Compare_Two_Files c         =  new Compare_Two_Files( Full_File_Expected
+				                                            , Full_File_Actual
+				                                            , Full_File_Difference
+				                                            ) ;
+		
+		System.out.println          ( "Dir__Actual_Full for c = >"
+			                        +  c.get_Dir_Actaul()
+			                        + "<"
+			                        ) ;
 		
 	}
 
