@@ -32,10 +32,11 @@ public  boolean exists_Actual  (){
         return  exists_File    (             File_Name_Contents_Actual);
 
 }
-private boolean exists_File    ( String                    File_Name ){
-	    InputStream   stream  =  this.getClass()
-                                     .getResourceAsStream( File_Name );
-	    return        stream ==  null;
+private boolean exists_File    ( String      File_Name ){
+
+	    File    f              =  new File ( File_Name );
+	    return  f.exists();          
+	    
 }
 public  boolean equal_Files(){
         ArrayList    <String> expected = load_List( File_Name_Contents_Expected );
