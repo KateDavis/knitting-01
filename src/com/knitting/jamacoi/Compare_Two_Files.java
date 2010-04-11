@@ -81,7 +81,12 @@ catch  (Exception e)
        {System.out.println( "ERROR: Input file ..... = >"
     		              +  File_Name
     		              + "< does not exist or cannot be found."
-    		              );
+    		              )  ;
+        System.out.println( "       exception msg .. = >"
+        		          +  e.getMessage()
+        		          + "<"
+                          )  ;
+       
        }
 		return  list;
 }
