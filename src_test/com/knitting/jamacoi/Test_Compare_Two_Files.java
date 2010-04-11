@@ -150,7 +150,6 @@ static String  Dir__Difference      = "difference";
    		   show_Dir__Expected_Full  ();
    		   show_Dir__Difference_Full();	
     }
-
 	@Test
 	public void test_02_files_match (){
 		
@@ -158,18 +157,18 @@ static String  Dir__Difference      = "difference";
 		   set_Full_File_Actual     ( File_Matches  );
 		   set_Full_File_Difference ( File_Matches  );
 		
-		  show_Full_File_Expected  ();
-		  show_Full_File_Actual    ();
-		  show_Full_File_Difference();
+		  show_Full_File_Expected   ();
+		  show_Full_File_Actual     ();
+		  show_Full_File_Difference ();
 		
-          c                        =  new  Compare_Two_Files 
-                                           (  Full_File_Expected
-                                           ,  Full_File_Actual
-                                           ,  Full_File_Difference
-                                           )  ;
+          c                         =  new  Compare_Two_Files 
+                                            (  Full_File_Expected
+                                            ,  Full_File_Actual
+                                            ,  Full_File_Difference
+                                            )  ;
 		  assertTrue ( c.exists_Expected() );
 		  assertTrue ( c.exists_Actual  () );
-			
+		  assertTrue ( c.equal_Files    () );
 	}
 
 }
