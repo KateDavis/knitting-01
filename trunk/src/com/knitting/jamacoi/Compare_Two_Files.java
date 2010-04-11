@@ -78,7 +78,7 @@ try    {
         stream.close();
        }
 catch  (Exception e)
-       {System.out.println( "ERROR: Input file = >"
+       {System.out.println( "ERROR: Input file ..... = >"
     		              +  File_Name
     		              + "< does not exist or cannot be found."
     		              );
