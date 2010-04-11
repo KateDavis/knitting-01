@@ -2,7 +2,6 @@ package com.knitting.jamacoi;
 
 import static org.junit.Assert.assertTrue;
 
-import java.io.File;
 import java.net.URL;
 
 import org.junit.After;
@@ -13,7 +12,7 @@ import org.junit.Test;
 
 public class   Test_Compare_Two_Files {
 	
-static String  File_Separator       = File.pathSeparator;
+static String  File_Separator       = "/";  //File.pathSeparator;
 	
 static String  File_Name            = "Test_400_not_significant.txt";
 static String  File_Name_Missing    = "missing";
@@ -34,7 +33,8 @@ static String  Dir__Difference      = "difference";
        
        String  File_Difference;
        
-       Compare_Two_Files c;
+       Compare_Two_Files c_e;
+       Compare_Two_Files c_m;
 
 	@BeforeClass
 	public static void setUpBeforeClass  () throws Exception {
@@ -58,29 +58,38 @@ static String  Dir__Difference      = "difference";
            URL  difference      = this       . getClass()
                                              . getResource(Dir__Difference);
            Dir__Difference_Full = difference . getPath();
-           
-   		   show_Dir__Actual_Full    ();
-   		   show_Dir__Expected_Full  ();
-   		   show_Dir__Difference_Full();
-           
+                
    		   File_Existing_Actual     =  Dir__Actual_Full
-                                    +  File.pathSeparator
+                                    +  File_Separator
                                     +  File_Name;
 
    		   File_Existing_Expected   =  Dir__Expected_Full
-                                    +  File.pathSeparator
+                                    +  File_Separator
                                     +  File_Name;
 
            File_Difference          =  Dir__Difference_Full
-                                    +  File.pathSeparator
+                                    +  File_Separator
                                     +  File_Name;
            
-           c                        =  new  Compare_Two_Files 
+  		   File_Missing__Actual     =  Dir__Actual_Full
+                                    +  File_Separator
+                                    +  File_Name_Missing;
+  		   
+  		   File_Missing__Expected   =  Dir__Expected_Full
+                                    +  File_Separator
+                                    +  File_Name_Missing;
+  		   
+           c_e                      =  new  Compare_Two_Files 
         		                    (  File_Existing_Expected
                                     ,  File_Existing_Actual
                                     ,  File_Difference
                                     )  ;
-
+           
+           c_m                      =  new  Compare_Two_Files 
+                                    (  File_Missing__Expected
+                                    ,  File_Missing__Actual
+                                    ,  File_Difference
+                                    )  ;
 	}
 	private void show_Dir__Expected_Full(){
 		
@@ -98,28 +107,74 @@ static String  Dir__Difference      = "difference";
 	}
 	private void show_Dir__Difference_Full(){
         
-		    System.out.println   ( "Dir__Difference_Full . = >"
+		    System.out.println   ( "Dir__Difference_Full .... = >"
                                  +  Dir__Difference_Full
                                  + "<"
                                  ) ;
+	}
+	private void show_File_Existing_Actual(){
 		
+            System.out.println   ( "File_Existing_Actual .... = >"
+                                 +  File_Existing_Actual
+                                 + "<"
+                                 ) ;
+	}
+	private void show_File_Existing_Expected(){
+		
+            System.out.println   ( "File_Existing_Expected .. = >"
+                                 +  File_Existing_Expected
+                                 + "<"
+                                 ) ;
+	}
+	private void show_File_Missing__Actual() {
+		
+            System.out.println   ( "File_Missing__Actual .... = >"
+                                 +  File_Missing__Actual
+                                 + "<"
+                                 ) ;		
+	}
+	private void show_File_Difference(){
+		
+            System.out.println   ( "File_Difference ......... = >"
+                                 +  File_Difference
+                                 + "<"
+                                 ) ;
 	}
 	@After
 	public void tearDown() throws Exception {
 	}
- 
+    @Test
+    public void test_Show_Info() {
+		   show_Dir__Actual_Full    ();
+   		   show_Dir__Expected_Full  ();
+   		   show_Dir__Difference_Full();	
+   		   
+   		   show_File_Existing_Actual();
+   		   show_File_Existing_Expected();
+   		   show_File_Difference();
+   		   
+   		   show_File_Missing__Actual();
+    }
 	@Test
 	public void testGet_Dir_Actaul(){
 
-		assertTrue ( c.exists_Expected() );
-		assertTrue ( c.exists_Actual  () );
-		
+		assertTrue ( c_e.exists_Expected() );
+		assertTrue ( c_e.exists_Actual  () );	
 	}
-	   @Test
-	    public void test_02_file_exists_expected(){
+	@Test
+	public void test_02_file_exists_expected(){
 
-		assertTrue ( c.exists_Expected() );
-   	
-	    }
+		assertTrue ( c_e.exists_Expected() );
+	}
+	@Test
+	public void test_03_file_exists_actual(){
+
+		assertTrue ( c_m.exists_Actual  () );
+	}
+	@Test
+	public void test_04_file_missing_actual(){
+
+		assertTrue ( c_m.exists_Actual  () );
+	}
 
 }
