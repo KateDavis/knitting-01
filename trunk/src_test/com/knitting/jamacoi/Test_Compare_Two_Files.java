@@ -1,7 +1,9 @@
 package com.knitting.jamacoi;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.io.File;
 import java.net.URL;
 
 import org.junit.After;
@@ -160,15 +162,23 @@ static String  Dir__Difference      = "difference";
 		  show_Full_File_Expected   ();
 		  show_Full_File_Actual     ();
 		  show_Full_File_Difference ();
+		  
+		  File e = new File    ( Full_File_Expected   );
+		  File a = new File    ( Full_File_Actual     );
+		  File d = new File    ( Full_File_Difference );
+		  
+		  assertTrue  ( e.exists() );
+		  assertTrue  ( a.exists() );
+		  assertFalse ( d.exists() );
 		
-          c                         =  new  Compare_Two_Files 
-                                            (  Full_File_Expected
-                                            ,  Full_File_Actual
-                                            ,  Full_File_Difference
-                                            )  ;
-		  assertTrue ( c.exists_Expected() );
-		  assertTrue ( c.exists_Actual  () );
-		  assertTrue ( c.equal_Files    () );
+//          c                         =  new  Compare_Two_Files 
+//                                            (  Full_File_Expected
+//                                            ,  Full_File_Actual
+//                                            ,  Full_File_Difference
+//                                            )  ;
+//		  assertTrue ( c.exists_Expected() );
+//		  assertTrue ( c.exists_Actual  () );
+//		  assertTrue ( c.equal_Files    () );
 	}
 
 }
