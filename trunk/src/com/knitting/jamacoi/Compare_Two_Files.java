@@ -24,19 +24,19 @@ public  Compare_Two_Files       ( String File_Name_Contents_Expected
 	    this.File_Name_Contents_Actual     = File_Name_Contents_Actual;
 	    this.File_Name_Contents_Difference = File_Name_Contents_Difference;
 }
-public  boolean exists_Expected(){	
-	    return  exists_File    (             File_Name_Contents_Expected);
-	
+public  boolean exists_Expected   (){	
+	    return  exists_File       (          File_Name_Contents_Expected);
 }
-public  boolean exists_Actual  (){	
-        return  exists_File    (             File_Name_Contents_Actual);
-
+public  boolean exists_Actual     (){	
+        return  exists_File       (          File_Name_Contents_Actual);
 }
-private boolean exists_File    ( String      File_Name ){
+public  boolean exists_Difference (){	
+        return  exists_File       (          File_Name_Contents_Actual);
+}
+private boolean exists_File       ( String   File_Name ){
 
 	    File    f              =  new File ( File_Name );
-	    return  f.exists();          
-	    
+	    return  f.exists();              
 }
 public  boolean equal_Files(){
         ArrayList    <String> expected = load_List( File_Name_Contents_Expected );
