@@ -3,7 +3,6 @@ package com.knitting.jamacoi;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -80,16 +79,17 @@ private ArrayList<String>     load_List ( String                   File_Name){
 			                     )  ;	
 	         }
 try    {	    
-	    InputStream              stream = this.getClass()
-                                              .getResourceAsStream(File_Name);
+//	    InputStream              stream = this.getClass()
+//                                            .getResourceAsStream(File_Name);
 
-        Scanner                 scanner = new Scanner( stream );
+//      Scanner                 scanner = new Scanner( stream );
+	    Scanner                 scanner = new Scanner( File_Name );
         while (                 scanner . hasNextLine()
               )
               { 
                 list.add(       scanner . nextLine   () );
               }
-        stream.close();
+//     stream.close();
        }
 catch  (Exception e)
        {System.out.println( "ERROR: Input file ..... = >"
