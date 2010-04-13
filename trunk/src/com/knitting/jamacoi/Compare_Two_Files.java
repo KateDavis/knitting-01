@@ -65,6 +65,20 @@ public  boolean equal_Files(){
 }
 private ArrayList<String>     load_List ( String                   File_Name){
 	    ArrayList<String>          list = new ArrayList<String>();
+	    File                          f = new File                (File_Name);
+	    if   ( f.exists() )
+	         {
+	    	   System.out.println( "In load_List: file          exists = >"
+	    			             +  File_Name
+	    			             + "<"
+	    			             )  ;
+	         }
+	    else {
+	    	   System.out.println( "In load_List: file does NOT exists = >"
+			                     +  File_Name
+			                     + "<"
+			                     )  ;	
+	         }
 try    {	    
 	    InputStream              stream = this.getClass()
                                               .getResourceAsStream(File_Name);
