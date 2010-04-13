@@ -48,11 +48,13 @@ public  boolean equal_Files(){
         
         if  ( d )
             {
+        	  System.out.println ( "In equal_Files(): about to delete_diff_file()\n" );
         	  delete_diff_file();
             }
         else
             {
         	  try   {
+        		     System.out.println ( "In equal_Files(): about to create_diff_file()\n" );
 				     create_diff_file( diff.find_First_Difference() );
 			        }
         	  catch (IOException e) 
@@ -118,8 +120,11 @@ protected void delete_diff_file(){
 protected void create_diff_file( ArrayList<String> diff)
           throws IOException
 {
+	      System.out.println ( "In create_diff_file()\n" );
 	      delete_diff_file();
+	      System.out.println ( "In create_diff_file: back from delete_diff_file()\n" );
 try      {	      
+	      System.out.println ( "In create_diff_file: about to create FileWriter\n" );
 	      FileWriter d = new FileWriter( File_Name_Contents_Difference);
 	      Iterator<String> iter = diff.iterator();
 	      while ( iter.hasNext() )
