@@ -180,5 +180,32 @@ static String  Dir__Difference      = "difference";
 		  assertTrue ( c.exists_Actual  () );
 		  assertTrue ( c.equal_Files    () );
 	}
-
+	@Test
+	public void test_03_files_Dif_Line_01 (){
+		
+	  	   set_Full_File_Expected   ( File_Expected     );
+		   set_Full_File_Actual     ( File_Dif_Line_01  );
+		   set_Full_File_Difference ( File_Dif_Line_01  );
+		
+		  show_Full_File_Expected   ();
+		  show_Full_File_Actual     ();
+		  show_Full_File_Difference ();
+		  
+		  File e = new File    ( Full_File_Expected   );
+		  File a = new File    ( Full_File_Actual     );
+		  File d = new File    ( Full_File_Difference );
+		  
+		  assertTrue  ( e.exists() );
+		  assertTrue  ( a.exists() );
+		  assertFalse ( d.exists() );
+		
+          c                         =  new  Compare_Two_Files 
+                                            (  Full_File_Expected
+                                            ,  Full_File_Actual
+                                            ,  Full_File_Difference
+                                            )  ;
+		  assertTrue  ( c.exists_Expected() );
+		  assertTrue  ( c.exists_Actual  () );
+		  assertFalse ( c.equal_Files    () );
+	}
 }
