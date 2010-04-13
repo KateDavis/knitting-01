@@ -73,5 +73,15 @@ public class DataSet {
 			Collections.sort(domainDate);
 		}
 	}
+
+	/**
+	 * Returns true if a DataSeries exists for key.
+	 * 
+	 * @param key to test for
+	 * @return true if a DataSeries exists for key
+	 */
+	public boolean containsSeries(DataSeriesKey key) {
+		return seriesSet.containsKey(key);
+	}
 }
  
