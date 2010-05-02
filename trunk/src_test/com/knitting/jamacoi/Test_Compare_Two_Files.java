@@ -1,9 +1,26 @@
 package com.knitting.jamacoi;
 
-import static org.junit.Assert.assertFalse;
+//   org.eclipse.core.resources 
+//   public interface IProject
+//   IFile        if = getFile(String name) 
+//   public interface IFile
+//   InputStream  is =  getContents() 
+//   String       n  = getName() 
+//   IPath        fp = getFullPath() 
+//   InputStream  is = getContents()
+//   void              setContents  ( IFileState       source
+//                                  , boolean          force
+//                                  , boolean          keepHistory
+//                                  , IProgressMonitor monitor
+//                                  ) 
+
+
+//
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.junit.After;
@@ -55,10 +72,11 @@ static String  Dir__Difference      = "difference";
 
 	@Before
 	public void setUp() throws Exception {
+/**		
            URL  actual          = this       . getClass()
                                              . getResource(Dir__Actual    );
            Dir__Actual_Full     = actual     . getPath(); 
-           
+          
            URL  expected        = this       . getClass()
                                              . getResource(Dir__Expected  );
            Dir__Expected_Full   = expected   . getPath();
@@ -78,12 +96,13 @@ static String  Dir__Difference      = "difference";
            Full_File_Difference     =  Dir__Difference_Full
                                     +  File_Separator
                                     +  File_Name;
+ **/
            
-           c                        =  new  Compare_Two_Files 
-        		                    (  Full_File_Expected
-                                    ,  Full_File_Actual
-                                    ,  Full_File_Difference
-                                    )  ;
+ //          c                        =  new  Compare_Two_Files 
+ //       		                    (  Full_File_Expected
+ //                                   ,  Full_File_Actual
+ //                                   ,  Full_File_Difference
+ //                                  )  ;
            
 	}
 	private void show_Dir__Expected_Full(){
@@ -147,11 +166,68 @@ static String  Dir__Difference      = "difference";
 	public void tearDown() throws Exception {
 	}
     @Test
-    public void test_Show_Info() {
+    public void test_Show_Info() throws MalformedURLException {
+    	
+    String name = this.getClass().getSimpleName();
+    
+    System.out.println( "Class name .. = >"
+    		          + name
+    		          + "<"
+    		          );   
+    URL    me   = this.getClass().getResource(  name
+    		                                 + ".class"
+    		                                 );
+    assertNotNull (me);
+    
+    String u    = me  .toString();
+    System.out.println( "URL as string = >"
+                      +  u
+                      + "<"
+                      );
+    
+
+    URL url_workspace  = new URL(me, "../../../../../");
+           
+    assertNotNull(url_workspace);
+    String u2    = url_workspace  .toString();
+    System.out.println( "url_workspace as string = >"
+                      +  u2
+                      + "<"
+                      );          
+
+    URL url_expected   = new URL( url_workspace
+    		                    , "knitting-01/src_test/com/knitting/jamacoi/expected"
+    		                    );
+    assertNotNull(url_expected);
+    String ue    = url_expected.toString();
+    System.out.println( "url_expected as string = >"
+                      +  ue
+                      + "<"
+                      );  
+    String f     = url_expected.getFile();
+    System.out.println( "url_expected file name = >"
+            +  f
+            + "<"
+            ); 
+    
+    File file    = new File(f);
+    
+    assertTrue(file.exists());
+      
+ /**   
+    	   System.out.println ("Before URL actual.\n");
+           URL  actual          = this      . getClass()
+                                            . getResource(Dir__Actual    );
+           System.out.println ("After  URL actual.\n");
+           Dir__Actual_Full    = actual     . getPath(); 
+           System.out.println ("After  URL actual.\n");
 		   show_Dir__Actual_Full    ();
-   		   show_Dir__Expected_Full  ();
-   		   show_Dir__Difference_Full();	
+  **/
+    
+ //  	   show_Dir__Expected_Full  ();
+ //  	   show_Dir__Difference_Full();	
     }
+/**    
 	@Test
 	public void test_02_files_match (){
 		
@@ -208,4 +284,5 @@ static String  Dir__Difference      = "difference";
 		  assertTrue  ( c.exists_Actual  () );
 		  assertFalse ( c.equal_Files    () );
 	}
+**/	
 }
