@@ -20,7 +20,6 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.junit.After;
@@ -33,7 +32,8 @@ public class   Test_Compare_Two_Files {
 	
 static String  File_Separator       = "/";  //File.pathSeparator;
 
-static String  File_Prefix          = "Test_Compare_Two_Files_content_10_";
+static String  Dir__Prefix          = "knitting-01/src_test/com/knitting/jamacoi/";
+static String  File_Prefix          = "knitting-01/src_test/com/knitting/jamacoi/";
 
 static String  File_Expected        = File_Prefix + "expected";
 static String  File_Matches         = File_Prefix + "actual_matches";
@@ -46,9 +46,9 @@ static String  File_Line_Extra      = File_Prefix + "actual_plus_one_line";
 static String  File_Name            = "Test_400_not_significant.txt";
 static String  File_Name_Missing    = "missing";
 
-static String  Dir__Actual          = "expected";  // "actual";
-static String  Dir__Expected        = "expected";
-static String  Dir__Difference      = "difference";
+static String  Dir__Actual          = Dir__Prefix + "expected";  // "actual";
+static String  Dir__Expected        = Dir__Prefix + "expected";
+static String  Dir__Difference      = Dir__Prefix + "difference";
 
        String  Dir__Actual_Full;
        String  Dir__Expected_Full;
@@ -58,6 +58,13 @@ static String  Dir__Difference      = "difference";
        String  Full_File_Expected;
           
        String  Full_File_Difference;
+       
+       String  name;
+       URL     url_this;
+       URL     url_workspace;
+       URL     url_actual;
+       URL     url_expected;
+       URL     url_difference;
        
        Compare_Two_Files c;
 
@@ -72,6 +79,26 @@ static String  Dir__Difference      = "difference";
 
 	@Before
 	public void setUp() throws Exception {
+		
+	    name        =  this.getClass().getSimpleName();
+	    
+	                   url_this       = this.getClass   ()
+	                                        .getResource( name + ".class" );
+	    assertNotNull( url_this );
+	    	    
+	                   url_workspace  = new URL( url_this     , "../../../../../");
+	    assertNotNull( url_workspace );
+	    
+	                   url_actual     = new URL( url_workspace, Dir__Actual      );
+	    assertNotNull( url_actual     );
+	    
+                       url_expected   = new URL( url_workspace, Dir__Expected    );
+	    assertNotNull( url_expected   );
+	    
+                       url_difference = new URL( url_workspace, Dir__Difference  );
+	    assertNotNull( url_difference );
+	    
+
 /**		
            URL  actual          = this       . getClass()
                                              . getResource(Dir__Actual    );
@@ -97,13 +124,7 @@ static String  Dir__Difference      = "difference";
                                     +  File_Separator
                                     +  File_Name;
  **/
-           
- //          c                        =  new  Compare_Two_Files 
- //       		                    (  Full_File_Expected
- //                                   ,  Full_File_Actual
- //                                   ,  Full_File_Difference
- //                                  )  ;
-           
+                      
 	}
 	private void show_Dir__Expected_Full(){
 		
@@ -162,70 +183,89 @@ static String  Dir__Difference      = "difference";
                                            +  File_Separator
                                            +  Name;
     }
+    private void check_url_directory( URL url ){
+    	
+    	    File       f    = new File(   url.getFile() );
+            assertTrue(f.exists     ());
+            assertTrue(f.isDirectory());  	
+    }
 	@After
 	public void tearDown() throws Exception {
 	}
+
+	@Test
+	public void         test_01_show_info(){
+   	     
+		   System.out.println( "Class name ............. = >"
+		                     + name
+		                     + "<"
+		                     );  
+		
+	       System.out.println( "url_this as string ....  = >"
+                             +  url_this.toString()
+                             + "<"
+                             );	    
+           System.out.println( "url_workspace as string  = >"
+                             +  url_workspace .toString()
+                             + "<"
+                             );
+           System.out.println( " " );
+
+           System.out.println( "url_actual    as string  = >"
+                             +  url_expected.toString()
+                             + "<"
+                             );  
+           System.out.println( "url_actual    file name  =      >"
+                             +  url_expected.getFile()
+                             + "<"
+                             ); 
+           System.out.println( "url_actual    path name  =      >"
+                             +  url_expected.getPath()
+                             + "<"
+                             );
+           System.out.println( " " );
+
+           System.out.println( "url_expected  as string  = >"
+                             +  url_expected.toString()
+                             + "<"
+                             );  
+           System.out.println( "url_expected  file name  =      >"
+                             +  url_expected.getFile()
+                             + "<"
+                             ); 
+           System.out.println( "url_expected  path name  =      >"
+                             +  url_expected.getPath()
+                             + "<"
+                             ); 
+           System.out.println( " " );
+
+           System.out.println( "url_difference as string = >"
+                             +  url_difference.toString()
+                             + "<"
+                             );  
+           System.out.println( "url_difference file name =      >"
+                             +  url_difference.getFile()
+                             + "<"
+                             ); 
+           System.out.println( "url_difference path name =      >"
+                             +  url_difference.getPath()
+                             + "<"
+                             ); 
+           System.out.println( " " );
+
+		
+	}
     @Test
-    public void test_Show_Info() throws MalformedURLException {
-    	
-    String name = this.getClass().getSimpleName();
-    
-    System.out.println( "Class name .. = >"
-    		          + name
-    		          + "<"
-    		          );   
-    URL    me   = this.getClass().getResource(  name
-    		                                 + ".class"
-    		                                 );
-    assertNotNull (me);
-    
-    String u    = me  .toString();
-    System.out.println( "URL as string = >"
-                      +  u
-                      + "<"
-                      );
-    
-
-    URL url_workspace  = new URL(me, "../../../../../");
-           
-    assertNotNull(url_workspace);
-    String u2    = url_workspace  .toString();
-    System.out.println( "url_workspace as string = >"
-                      +  u2
-                      + "<"
-                      );          
-
-    URL url_expected   = new URL( url_workspace
-    		                    , "knitting-01/src_test/com/knitting/jamacoi/expected"
-    		                    );
-    assertNotNull(url_expected);
-    String ue    = url_expected.toString();
-    System.out.println( "url_expected as string = >"
-                      +  ue
-                      + "<"
-                      );  
-    String f     = url_expected.getFile();
-    System.out.println( "url_expected file name = >"
-            +  f
-            + "<"
-            ); 
-    
-    File file    = new File(f);
-    
-    assertTrue(file.exists());
-      
- /**   
-    	   System.out.println ("Before URL actual.\n");
-           URL  actual          = this      . getClass()
-                                            . getResource(Dir__Actual    );
-           System.out.println ("After  URL actual.\n");
-           Dir__Actual_Full    = actual     . getPath(); 
-           System.out.println ("After  URL actual.\n");
-		   show_Dir__Actual_Full    ();
-  **/
-    
- //  	   show_Dir__Expected_Full  ();
- //  	   show_Dir__Difference_Full();	
+    public void         test_02_url_actual    (){ 
+    	   check_url_directory( url_actual     );
+    }
+    @Test
+    public void         test_03_url_expected  (){ 
+    	   check_url_directory( url_expected   );
+    }
+    @Test
+    public void         test_04_url_difference(){ 
+    	   check_url_directory( url_difference );
     }
 /**    
 	@Test
