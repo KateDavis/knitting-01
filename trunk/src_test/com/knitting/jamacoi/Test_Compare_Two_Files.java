@@ -33,7 +33,7 @@ public class   Test_Compare_Two_Files {
 static String  File_Separator       = "/";  //File.pathSeparator;
 
 static String  Dir__Prefix          = "knitting-01/src_test/com/knitting/jamacoi/";
-static String  File_Prefix          = "knitting-01/src_test/com/knitting/jamacoi/";
+static String  File_Prefix          = "expected/Test_Compare_Two_Files_content_10_";
 
 static String  File_Expected        = File_Prefix + "expected";
 static String  File_Matches         = File_Prefix + "actual_matches";
@@ -266,6 +266,55 @@ static String  Dir__Difference      = Dir__Prefix + "difference";
     @Test
     public void         test_04_url_difference(){ 
     	   check_url_directory( url_difference );
+    }
+    @Test
+    public void         test_05_files_match()
+                        throws Exception
+    {
+    	   URL             url_file_expected = new URL( url_expected, File_Expected );
+    	   
+    	   assertNotNull ( url_file_expected );
+    	   
+           System.out.println( "url_file_expected    as string  = >"
+                             +  url_file_expected.toString()
+                             + "<"
+                             );  
+           System.out.println( "url_file_expected    file name  =      >"
+                             +  url_file_expected.getFile()
+                             + "<"
+                             ); 
+           System.out.println( "url_file_expected    path name  =      >"
+                             +  url_file_expected.getPath()
+                             + "<"
+                             );
+           System.out.println( " " );
+    	   
+     	   File       fe    = new File(   url_file_expected.getFile() );
+           assertTrue(fe.exists() );
+           assertTrue(fe.isFile() ); 
+           
+     	   URL             url_file_matches = new URL( url_expected, File_Matches );
+    	   
+    	   assertNotNull ( url_file_matches );
+    	   
+           System.out.println( "url_file_matches     as string  = >"
+                             +  url_file_matches.toString()
+                             + "<"
+                             );  
+           System.out.println( "url_file_matches     file name  =      >"
+                             +  url_file_matches.getFile()
+                             + "<"
+                             ); 
+           System.out.println( "url_file_matches     path name  =      >"
+                             +  url_file_matches.getPath()
+                             + "<"
+                             );
+           System.out.println( " " );
+    	   
+     	   File       fa    = new File(   url_file_matches.getFile() );
+           assertTrue(fa.exists() );
+           assertTrue(fa.isFile() ); 
+    	
     }
 /**    
 	@Test
