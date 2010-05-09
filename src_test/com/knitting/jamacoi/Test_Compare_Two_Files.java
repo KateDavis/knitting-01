@@ -35,15 +35,15 @@ static String  File_Separator       = "/";  //File.pathSeparator;
 
 static String  Dir__Prefix          = "knitting-01/src_test/com/knitting/jamacoi/";
 // tic String  Dir__Difference      =                                   "jamaoci/difference";
-static String  File_Prefix          = "expected/Test_Compare_Two_Files_content_10_";
+static String  File_Exp_Prefix      = "expected/Test_Compare_Two_Files_content_10_";
 
-static String  File_Expected        = File_Prefix + "expected";
-static String  File_Matches         = File_Prefix + "actual_matches";
-static String  File_Dif_Line_01     = File_Prefix + "actual_no_match_line_01";
-static String  File_Dif_Line_02     = File_Prefix + "actual_no_match_line_02";
-static String  File_Dif_Line_03     = File_Prefix + "actual_no_match_line_03";
-static String  File_Line_Missing    = File_Prefix + "actual_less_one_line";
-static String  File_Line_Extra      = File_Prefix + "actual_plus_one_line";
+static String  File_Exp_Expected     = File_Exp_Prefix + "expected";
+static String  File_Exp_Matches      = File_Exp_Prefix + "actual_matches";
+static String  File_Exp_Dif_Line_01  = File_Exp_Prefix + "actual_no_match_line_01";
+static String  File_Exp_Dif_Line_02  = File_Exp_Prefix + "actual_no_match_line_02";
+static String  File_Exp_Dif_Line_03  = File_Exp_Prefix + "actual_no_match_line_03";
+static String  File_Exp_Line_Missing = File_Exp_Prefix + "actual_less_one_line";
+static String  File_Exp_Line_Extra   = File_Exp_Prefix + "actual_plus_one_line";
 
 static String  File_Name            = "Test_400_not_significant.txt";
 static String  File_Name_Missing    = "missing";
@@ -273,7 +273,7 @@ static String  Dir__Difference      = Dir__Prefix + "difference";
     public void         test_05_files_match()
                         throws Exception
     {
-    	   URL             url_file_expected = new URL( url_expected, File_Expected );
+    	   URL             url_file_expected = new URL( url_expected, File_Exp_Expected );
     	   
     	   assertNotNull ( url_file_expected );
     	   
@@ -303,7 +303,7 @@ static String  Dir__Difference      = Dir__Prefix + "difference";
         		             );
            System.out.println( " " );
            
-           URI uri_rel_File_Expected   = new URI ( File_Expected );
+           URI uri_rel_File_Expected   = new URI ( File_Exp_Expected );
            
            System.out.println( "uri_rel_File_Expected   string  = >"
         		             +  uri_rel_File_Expected.toASCIIString()
@@ -317,7 +317,7 @@ static String  Dir__Difference      = Dir__Prefix + "difference";
 		                     + "<"
 		                     ) ;
  
-     	   URL             url_file_matches = new URL( url_expected, File_Matches );
+     	   URL             url_file_matches = new URL( url_expected, File_Exp_Matches );
     	   
     	   assertNotNull ( url_file_matches );
     	   
@@ -344,21 +344,21 @@ static String  Dir__Difference      = Dir__Prefix + "difference";
 	public void   test_06_files_Dif_Line_01 ()
 	       throws Exception{
 		
-		   URL             url_file_expected   = new URL( url_expected, File_Expected    );
+		   URL             url_file_expected   = new URL( url_expected, File_Exp_Expected    );
  	       assertNotNull ( url_file_expected   );
- 	       File            e                   = new File (url_file_expected.getFile()   );
+ 	       File            e                   = new File (url_file_expected.getFile()       );
            assertTrue    ( e.exists()          );
            assertTrue    ( e.isFile()          );
  	       
-		   URL             url_file_actual     = new URL( url_actual  , File_Dif_Line_01 );
+		   URL             url_file_actual     = new URL( url_actual  , File_Exp_Dif_Line_01 );
  	       assertNotNull ( url_file_actual     );
- 	       File            a                   = new File (url_file_actual.getFile()     );
+ 	       File            a                   = new File (url_file_actual.getFile()         );
            assertTrue    ( a.exists()          );
            assertTrue    ( a.isFile()          );
  	       
-		   URL             url_file_difference = new URL( url_actual  , File_Dif_Line_01 );
+		   URL             url_file_difference = new URL( url_actual  , File_Exp_Dif_Line_01 );
  	       assertNotNull ( url_file_difference );
- 	       File            d                   = new File (url_file_actual.getFile()     );
+ 	       File            d                   = new File (url_file_actual.getFile()         );
            assertTrue    ( d.exists()          );
            assertTrue    ( d.isFile()          );
  	       
