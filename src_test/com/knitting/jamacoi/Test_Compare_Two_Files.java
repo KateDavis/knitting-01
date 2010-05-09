@@ -20,6 +20,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
+import java.net.URI;
 import java.net.URL;
 
 import org.junit.After;
@@ -33,6 +34,7 @@ public class   Test_Compare_Two_Files {
 static String  File_Separator       = "/";  //File.pathSeparator;
 
 static String  Dir__Prefix          = "knitting-01/src_test/com/knitting/jamacoi/";
+// tic String  Dir__Difference      =                                   "jamaoci/difference";
 static String  File_Prefix          = "expected/Test_Compare_Two_Files_content_10_";
 
 static String  File_Expected        = File_Prefix + "expected";
@@ -80,7 +82,7 @@ static String  Dir__Difference      = Dir__Prefix + "difference";
 	@Before
 	public void setUp() throws Exception {
 		
-	    name        =  this.getClass().getSimpleName();
+	                   name           = this.getClass().getSimpleName();
 	    
 	                   url_this       = this.getClass   ()
 	                                        .getResource( name + ".class" );
@@ -293,6 +295,28 @@ static String  Dir__Difference      = Dir__Prefix + "difference";
            assertTrue(fe.exists() );
            assertTrue(fe.isFile() ); 
            
+           URI uri_expected  = url_expected.toURI();
+           
+           System.out.println( "uri_expected         as string  = >"
+        		             +  uri_expected.toASCIIString()
+        		             + "<"
+        		             );
+           System.out.println( " " );
+           
+           URI uri_rel_File_Expected   = new URI ( File_Expected );
+           
+           System.out.println( "uri_rel_File_Expected   string  = >"
+        		             +  uri_rel_File_Expected.toASCIIString()
+        		             + "<"
+        		             ) ;
+ 
+           URI uri_exp_file_resolved_2 = uri_expected.resolve( uri_rel_File_Expected );
+           
+           System.out.println( "uri_exp_file_resolved_2 string  = >"
+		                     +  uri_exp_file_resolved_2.toASCIIString()
+		                     + "<"
+		                     ) ;
+ 
      	   URL             url_file_matches = new URL( url_expected, File_Matches );
     	   
     	   assertNotNull ( url_file_matches );
@@ -316,6 +340,56 @@ static String  Dir__Difference      = Dir__Prefix + "difference";
            assertTrue(fa.isFile() ); 
     	
     }
+	@Test
+	public void   test_06_files_Dif_Line_01 ()
+	       throws Exception{
+		
+		   URL             url_file_expected   = new URL( url_expected, File_Expected    );
+ 	       assertNotNull ( url_file_expected   );
+ 	       File            e                   = new File (url_file_expected.getFile()   );
+           assertTrue    ( e.exists()          );
+           assertTrue    ( e.isFile()          );
+ 	       
+		   URL             url_file_actual     = new URL( url_actual  , File_Dif_Line_01 );
+ 	       assertNotNull ( url_file_actual     );
+ 	       File            a                   = new File (url_file_actual.getFile()     );
+           assertTrue    ( a.exists()          );
+           assertTrue    ( a.isFile()          );
+ 	       
+		   URL             url_file_difference = new URL( url_actual  , File_Dif_Line_01 );
+ 	       assertNotNull ( url_file_difference );
+ 	       File            d                   = new File (url_file_actual.getFile()     );
+           assertTrue    ( d.exists()          );
+           assertTrue    ( d.isFile()          );
+ 	       
+ /**
+		
+	  	   set_Full_File_Expected   ( File_Expected     );
+		   set_Full_File_Actual     ( File_Dif_Line_01  );
+		   set_Full_File_Difference ( File_Dif_Line_01  );
+		
+		  show_Full_File_Expected   ();
+		  show_Full_File_Actual     ();
+		  show_Full_File_Difference ();
+		  
+		  File e = new File    ( Full_File_Expected   );
+		  File a = new File    ( Full_File_Actual     );
+		  File d = new File    ( Full_File_Difference );
+		  
+		  assertTrue  ( e.exists() );
+		  assertTrue  ( a.exists() );
+		  assertFalse ( d.exists() );
+		
+          c                         =  new  Compare_Two_Files 
+                                            (  Full_File_Expected
+                                            ,  Full_File_Actual
+                                            ,  Full_File_Difference
+                                            )  ;
+		  assertTrue  ( c.exists_Expected() );
+		  assertTrue  ( c.exists_Actual  () );
+		  assertFalse ( c.equal_Files    () );
+ **/		  
+	}
 /**    
 	@Test
 	public void test_02_files_match (){
