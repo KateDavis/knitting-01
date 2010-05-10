@@ -402,7 +402,17 @@ static String  Dir__Difference       = Dir__Prefix + FS + Sub__Dir_Dif;  // "dif
  	    	      assertTrue (  d.isFile()          );
  	    	                    d.delete();
  	            }
-
+    // 	   ------------------------------------------------------------------------------------------- 
+ 	       Compare_Two_Files c = new Compare_Two_Files( url_file_expected  .getPath()
+ 	    		                                      , url_file_actual    .getPath()
+ 	    		                                      , url_file_difference.getPath()
+ 	    		                                      );
+ 	       assertTrue    (   c.exists_Expected  () );
+ 	       assertTrue    (   c.exists_Actual    () );
+ 	       assertTrue    ( ! c.exists_Difference() );
+ 	       
+ 	       assertTrue    ( ! c.equal_Files      () );
+ 	       
  	       
  /**
 		
