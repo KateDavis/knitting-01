@@ -24,13 +24,13 @@ public  Compare_Two_Files       ( String File_Name_Contents_Expected
 	    this.File_Name_Contents_Difference = File_Name_Contents_Difference;
 }
 public  boolean exists_Expected   (){	
-	    return  exists_File       (          File_Name_Contents_Expected);
+	    return  exists_File       (          File_Name_Contents_Expected   );
 }
 public  boolean exists_Actual     (){	
-        return  exists_File       (          File_Name_Contents_Actual);
+        return  exists_File       (          File_Name_Contents_Actual     );
 }
 public  boolean exists_Difference (){	
-        return  exists_File       (          File_Name_Contents_Actual);
+        return  exists_File       (          File_Name_Contents_Difference );
 }
 private boolean exists_File       ( String   File_Name ){
 
