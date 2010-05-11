@@ -38,15 +38,20 @@ private boolean exists_File       ( String   File_Name ){
 	    return  f.exists();              
 }
 public  boolean equal_Files(){
-        ArrayList    <String> expected = load_List( File_Name_Contents_Expected );
-        ArrayList    <String> actual   = load_List( File_Name_Contents_Actual   );
+        ArrayList    <String>  expected = load_List( File_Name_Contents_Expected );
+        ArrayList    <String>  actual   = load_List( File_Name_Contents_Actual   );
         
-        Compare_Two_ArrayLists diff    = new Compare_Two_ArrayLists ( expected
-                                                                    , actual
-                                                                    );
-        boolean d                      = diff.are_Equal();
+        Compare_Two_ArrayLists c        = new Compare_Two_ArrayLists ( expected
+                                                                     , actual
+                                                                     );
+                           
+        ArrayList<String>      diff     = c.find_First_Difference();
+        assert                (diff.size() > 0 );
+                                          c.print_ArrayList(diff);
+        System.out.println( " " );
+ 
         
-        if  ( d )
+        if  ( diff.size() == 0 )
             {
         	  System.out.println ( "In equal_Files(): about to delete_diff_file()\n" );
         	  delete_diff_file();
@@ -55,14 +60,14 @@ public  boolean equal_Files(){
             {
         	  try   {
         		     System.out.println ( "In equal_Files(): about to create_diff_file()\n" );
-				     create_diff_file( diff.find_First_Difference() );
+				     create_diff_file( diff );
 			        }
         	  catch (IOException e) 
         	        {
 			    	 e.printStackTrace();
 			        }
             }
-        return d;
+        return ( diff.size() == 0 );
 }
 private ArrayList<String>     load_List ( String                   File_Name){
 	    ArrayList<String>          list = new ArrayList<String>();
