@@ -29,24 +29,31 @@ return  Math.min( expected . size()
 }
 public  ArrayList<String> find_First_Difference(){
 	    ArrayList<String> difference_entries = new ArrayList<String>();
-	    int                      ix          =     0;
+	    int                      ix   = 0;
 	    while   ( (              ix   < get_Min()      )
 	    		  &&
 	    		  ( expected.get(ix) == actual.get(ix) )
 	    	    )  
 	            {
+	    	       System.out.println ( "ix = >"
+	    	    		              +  ix
+	    	    		              + "<"
+	    	    		              );
 	    	                   ++ix;
 	            }
 	    if      ( ix        < get_Min()       )
 	            {
+	    	      System.out.println( "About to execute: get_non_matching_lines");
 	    	      get_non_matching_lines( ix, difference_entries );
 	            }
 	    else if ( get_Min() < expected.size() )
                 {
+	    	      System.out.println( "About to execute: get_unmatched_line"    );
                   get_unmatched_line    ( ix, difference_entries );
                 }
 	    else if ( get_Min() < actual  .size() )
                 {
+	    	      System.out.println( "About to execute: get_extra_line"        );
                   get_extra_line        ( ix, difference_entries );
                 }
 	    else    { // the ArrayLists are equal
