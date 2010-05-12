@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Formatter;
 import java.util.Iterator;
 import java.util.Scanner;
 
@@ -144,8 +145,10 @@ try      {
 	      Iterator<String> iter = diff.iterator();
 	      while ( iter.hasNext() )
 	            {
-	    	      String   line = iter.next();
-	    	      d.write( line );
+	    	      String    line = iter.next();
+	    	      Formatter fmt  = new Formatter();
+	    	      fmt.format("%s\n", line);
+	    	      d.write( fmt.toString() );
 	    	      System.out.println("wrote a line to the differnece file.");
 	    	      System.out.println("        line>"
 	    	    		             +        line
