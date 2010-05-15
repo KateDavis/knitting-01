@@ -13,13 +13,14 @@ private static String line_02_e = "line 02 efghijk";
 private static String line_02_a = "line 02 efghhjk";
 private static String line_03_a = "line 03 xyz";
 
-public         Compare_Two_ArrayLists c          ;
-public         ArrayList<String>      e          ;
-public         ArrayList<String>      a_eq       ;
-public         ArrayList<String>      a_different;
-public         ArrayList<String>      a_missing  ;
-public         ArrayList<String>      a_extra    ;
-public         ArrayList<String>      a_empty    ;
+public         Compare_Two_ArrayLists c            ;
+public         ArrayList<String>      e            ;
+public         ArrayList<String>      a_eq         ;
+public         ArrayList<String>      a_different_1;
+public         ArrayList<String>      a_different_2;
+public         ArrayList<String>      a_missing    ;
+public         ArrayList<String>      a_extra      ;
+public         ArrayList<String>      a_empty      ;
 	@Before
 	public void setUp(){
 		   e            = new ArrayList<String>();
@@ -30,9 +31,13 @@ public         ArrayList<String>      a_empty    ;
            a_eq         . add( line_01_e );
            a_eq         . add( line_02_e );
 		   
-		   a_different  = new ArrayList<String>();
-           a_different  . add( line_01_a );
-           a_different  . add( line_02_e );
+		   a_different_1= new ArrayList<String>();
+           a_different_1. add( line_01_a );
+           a_different_1. add( line_02_e );
+		   
+           a_different_2= new ArrayList<String>();
+           a_different_2. add( line_01_e );
+           a_different_2. add( line_02_a );
 		   
 		   a_missing    = new ArrayList<String>();
            a_missing    . add( line_01_e );
@@ -59,23 +64,22 @@ public         ArrayList<String>      a_empty    ;
 
 	@Test
 	public void test_01_Find_First_Difference() {
-		              c = new Compare_Two_ArrayLists ( e, a_eq        );
+		              c = new Compare_Two_ArrayLists ( e, a_eq          );
     ArrayList<String> d = c.find_First_Difference();
     assert           (d.size() == 0 );
 	}
 	
 	@Test
 	public void test_02_Find_First_Difference() {
-		              c = new Compare_Two_ArrayLists ( e, a_different );
+		              c = new Compare_Two_ArrayLists ( e, a_different_1 );
     ArrayList<String> d = c.find_First_Difference();
     assert           (d.size()  > 0 );
                       c.print_ArrayList(d);
                       System.out.println( " " );
 	}
-	
 	@Test
 	public void test_03_Find_First_Difference() {
-		              c = new Compare_Two_ArrayLists ( e, a_missing   );
+		              c = new Compare_Two_ArrayLists ( e, a_different_2 );
     ArrayList<String> d = c.find_First_Difference();
     assert           (d.size()  > 0 );
                       c.print_ArrayList(d);
@@ -84,7 +88,7 @@ public         ArrayList<String>      a_empty    ;
 	
 	@Test
 	public void test_04_Find_First_Difference() {
-		              c = new Compare_Two_ArrayLists ( e, a_extra    );
+		              c = new Compare_Two_ArrayLists ( e, a_missing     );
     ArrayList<String> d = c.find_First_Difference();
     assert           (d.size()  > 0 );
                       c.print_ArrayList(d);
@@ -93,7 +97,16 @@ public         ArrayList<String>      a_empty    ;
 	
 	@Test
 	public void test_05_Find_First_Difference() {
-		              c = new Compare_Two_ArrayLists ( e, a_empty    );
+		              c = new Compare_Two_ArrayLists ( e, a_extra       );
+    ArrayList<String> d = c.find_First_Difference();
+    assert           (d.size()  > 0 );
+                      c.print_ArrayList(d);
+                      System.out.println( " " );
+	}
+	
+	@Test
+	public void test_06_Find_First_Difference() {
+		              c = new Compare_Two_ArrayLists ( e, a_empty       );
     ArrayList<String> d = c.find_First_Difference();
     assert           (d.size()  > 0 );
                       c.print_ArrayList(d);
