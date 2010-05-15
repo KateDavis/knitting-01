@@ -44,7 +44,7 @@ public  ArrayList<String> find_First_Difference(){
 	    if      ( ix        < get_Min()       )
 	            {
 	    	      System.out.println( "About to execute: get_non_matching_lines");
-	    	      get_non_matching_lines( ix, difference_entries );
+	    	      get_non_matching_lines( ix, difference_entries) ;
 	            }
 	    else if ( get_Min() < expected.size() )
                 {
@@ -67,6 +67,10 @@ private void   get_non_matching_lines( int                ix
 		                             ) {
         difference_entries.add( get_row_expected(ix) );
         difference_entries.add( get_row_actual  (ix) );
+        difference_entries.add( get_char_difference  ( get_row_expected(ix)
+        		                                     , get_row_actual  (ix)
+        		                                     )
+        		              ) ;
 }
 private void   get_unmatched_line    ( int                ix
 		                             , ArrayList<String>  difference_entries
@@ -111,6 +115,36 @@ return         (  "row "
                +  "Error: this is an extra line that should not be here"
                +  "<"
                )  ;
+}
+private String get_char_difference ( String exp
+		                           , String act
+		                           ) {
+	StringBuffer b       = new  StringBuffer();
+	int          len_min = Math.min( exp.length()
+			                       , act.length()
+			                       ) ;
+	int      ix = 0;
+	while ( (ix             <  len_min        )
+			&&
+			(exp.charAt(ix) != '>'            )
+          )
+          {
+  		    b.append  ( '-' );
+            ++ix;     	  
+          }
+		    b.append  ( '-' );
+            ++ix;     	  	
+	while (
+			(ix             <  len_min        )
+			&&
+			(exp.charAt(ix) == act.charAt(ix) )
+		  )
+          {
+		    b.append  ( '-' );
+          ++ix;
+          }
+	        b.append  ( '^' );
+	return  b.toString();	
 }
 public  void   print_ArrayList( ArrayList<String> list){
 	    Iterator<String> iter = list.iterator();
