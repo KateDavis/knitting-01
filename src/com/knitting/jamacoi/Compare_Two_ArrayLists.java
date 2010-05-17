@@ -95,7 +95,7 @@ private void   compare_lines         ( int                ix
 	            String exp = expected.get(ix);
 	            String act = actual  .get(ix);
 	    
-	            if   ( exp == act )
+	            if   ( exp.equals(act) )
 	                 {
 	    	           //  do nothing
 	                 }
