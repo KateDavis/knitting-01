@@ -1,21 +1,5 @@
 package com.knitting.jamacoi;
 
-//   org.eclipse.core.resources 
-//   public interface IProject
-//   IFile        if = getFile(String name) 
-//   public interface IFile
-//   InputStream  is =  getContents() 
-//   String       n  = getName() 
-//   IPath        fp = getFullPath() 
-//   InputStream  is = getContents()
-//   void              setContents  ( IFileState       source
-//                                  , boolean          force
-//                                  , boolean          keepHistory
-//                                  , IProgressMonitor monitor
-//                                  ) 
-
-
-//
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -126,34 +110,7 @@ static String  Dir__Difference       = Dir__Prefix + FS + Sub__Dir_Dif;  // "dif
 	    
                        url_difference = new URL( url_workspace, Dir__Difference  );
 	    assertNotNull( url_difference );
-	    
-
-/**		
-           URL  actual          = this       . getClass()
-                                             . getResource(Dir__Actual    );
-           Dir__Actual_Full     = actual     . getPath(); 
-          
-           URL  expected        = this       . getClass()
-                                             . getResource(Dir__Expected  );
-           Dir__Expected_Full   = expected   . getPath();
-           
-           URL  difference      = this       . getClass()
-                                             . getResource(Dir__Difference);
-           Dir__Difference_Full = difference . getPath();
-                
-   		   Full_File_Actual         =  Dir__Actual_Full
-                                    +  File_Separator
-                                    +  File_Name;
-
-   		   Full_File_Expected       =  Dir__Expected_Full
-                                    +  File_Separator
-                                    +  File_Name;
-
-           Full_File_Difference     =  Dir__Difference_Full
-                                    +  File_Separator
-                                    +  File_Name;
- **/
-                      
+	                         
 	}
 	private void show_Dir__Expected_Full(){
 		
@@ -512,62 +469,5 @@ static String  Dir__Difference       = Dir__Prefix + FS + Sub__Dir_Dif;  // "dif
  	       
  	       assertTrue    ( ! c.equal_Files      () );		  
 	}	
-/**    
-	@Test
-	public void test_02_files_match (){
-		
-	  	   set_Full_File_Expected   ( File_Expected );
-		   set_Full_File_Actual     ( File_Matches  );
-		   set_Full_File_Difference ( File_Matches  );
-		
-		  show_Full_File_Expected   ();
-		  show_Full_File_Actual     ();
-		  show_Full_File_Difference ();
-		  
-		  File e = new File    ( Full_File_Expected   );
-		  File a = new File    ( Full_File_Actual     );
-		  File d = new File    ( Full_File_Difference );
-		  
-		  assertTrue  ( e.exists() );
-		  assertTrue  ( a.exists() );
-		  assertFalse ( d.exists() );
-		
-          c                         =  new  Compare_Two_Files 
-                                            (  Full_File_Expected
-                                            ,  Full_File_Actual
-                                            ,  Full_File_Difference
-                                            )  ;
-		  assertTrue ( c.exists_Expected() );
-		  assertTrue ( c.exists_Actual  () );
-		  assertTrue ( c.equal_Files    () );
-	}
-	@Test
-	public void test_03_files_Dif_Line_01 (){
-		
-	  	   set_Full_File_Expected   ( File_Expected     );
-		   set_Full_File_Actual     ( File_Dif_Line_01  );
-		   set_Full_File_Difference ( File_Dif_Line_01  );
-		
-		  show_Full_File_Expected   ();
-		  show_Full_File_Actual     ();
-		  show_Full_File_Difference ();
-		  
-		  File e = new File    ( Full_File_Expected   );
-		  File a = new File    ( Full_File_Actual     );
-		  File d = new File    ( Full_File_Difference );
-		  
-		  assertTrue  ( e.exists() );
-		  assertTrue  ( a.exists() );
-		  assertFalse ( d.exists() );
-		
-          c                         =  new  Compare_Two_Files 
-                                            (  Full_File_Expected
-                                            ,  Full_File_Actual
-                                            ,  Full_File_Difference
-                                            )  ;
-		  assertTrue  ( c.exists_Expected() );
-		  assertTrue  ( c.exists_Actual  () );
-		  assertFalse ( c.equal_Files    () );
-	}
-**/	
+
 }
