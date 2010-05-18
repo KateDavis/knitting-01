@@ -38,30 +38,21 @@ public  ArrayList<String> find_First_Difference(){
 	    	      ( actual  .size() == 0 )
 	    	    )
 	            {
-                    System.out.println("Both lists are empty.  Hence they are equal.");
 	            }
 	    else if (   expected.size() == 0 )
                 {
-    	            System.out.println   ( "About to execute: get_extra_line.");
-    	            get_extra_line       ( ix
-    	            		             , difference_entries
-    	            		             );
+    	            get_extra_line       ( ix, difference_entries );
                 }
 	    else if (   actual  .size() == 0 )
                 {
-                    System.out.println   ( "About to execute: get_unmatched_line-1.");
-                    get_unmatched_line   ( ix
-                    		             , difference_entries
-                    		             );
+                    get_unmatched_line   ( ix, difference_entries );
                 }
 	    else 
 	            {
-	    	        compare_lines        ( ix
-	    	        		             , difference_entries
-	    	        		             );
+	    	        compare_lines        ( ix, difference_entries );
 	            }
 	    	        
-        return                             difference_entries;	
+        return                                 difference_entries  ;	
 }
 
 private void   get_non_matching_lines( int                ix
@@ -101,33 +92,19 @@ private void   compare_lines         ( int                ix
 	                 }
 	            else 
 	                 {
-	    	           System.out.println( "About to execute: get_non_matching_lines-2.");
-  	                   System.out.println( "      expected line is not equal to actual line");
-  	                   System.out.println( "      expected line length =>"
-  	    	  	                         +        exp.length()
-  	    		                         +       "<"
-  	    		                         );
-  	                   System.out.println( "      actual   line length =>"
-  		                                 +        act.length()
-  		                                 +       "<"
-  		                                 );
-  	                   get_non_matching_lines( ix, difference_entries) ;
+  	                   get_non_matching_lines( ix,        difference_entries );
   	                   return;
 	                 }
 	           ++ix;
               }
         if   ( get_Min() < expected.size() )
              {
-	           ix = get_Min();
-	           System.out.println( "About to execute: get_unmatched_line"    );
-	           get_unmatched_line            ( ix, difference_entries) ;
+	           get_unmatched_line            ( get_Min(), difference_entries );
 	           return;
              }
         if   ( get_Min() < actual  .size() )
              {
-               ix = get_Min();
-               System.out.println( "About to execute: get_extra_line"        );
-               get_extra_line                ( ix, difference_entries );
+               get_extra_line                ( get_Min(), difference_entries );
                return;
              }
 }
