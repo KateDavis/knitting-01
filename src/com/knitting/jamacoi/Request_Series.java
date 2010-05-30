@@ -27,6 +27,12 @@ public  String   get_human_name() {
 public  void     set_human_name(String     human_name) {
 	    this .       human_name     =      human_name;
 }
+public  SortedSet<Integer>  get_lags(){
+	    return                  lags;
+}
+public  void     set_lags(SortedSet<Integer>  lags){
+        this .       lags           =         lags;
+}
 }
 
 
