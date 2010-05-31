@@ -1,10 +1,12 @@
 package com.knitting.jamacoi;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.net.URI;
 import java.net.URL;
 import java.util.StringTokenizer;
+import java.util.TreeSet;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -120,35 +122,46 @@ public class Test_Request_Series {
 				             +  uri.toString()
 				             + "<"
 				             );
-		
-	}
-
-	@Test
-	public void test_03_Set_data_location() {
-		
+		   assertTrue        ( uri.toString() == uri_AAPL.toString() );
 	}
 
 	@Test
 	public void test_04_Get_human_name() {
-		   String s   = rs__AAPL.get_human_name();
+		   String s0  = "AAPL";
+		   String s1  =  rs__AAPL.get_human_name();
 		   System.out.println( "human_name = >"
-				             +  s
+				             +  s1
 				             + "<"
 				             );
-		
+		   assertTrue        (  s1.equals(s0) );
 	}
 
 	@Test
 	public void test_05_Set_human_name() {
-		
+		String s0 = "AAPL_LAG_0";
+		rs__AAPL.set_human_name( s0 );
+		assertTrue ( s0.equals( rs__AAPL.get_human_name() ) );
 	}
 	@Test
 	public void test_06_Get_lags() {
-		
+		TreeSet<Integer> ss = rs__AAPL.get_lags();
+		assertTrue     ( ss . isEmpty() );
 	}
-//	@Test
-//	public void test_07_Set_lags(SortedSet<Integer> lags) {
-//		
-//	}
+	@Test
+	public void test_07_Set_lags() {
+		TreeSet<Integer> ts = new TreeSet<Integer>();
+		                 ts . add( 3 );
+		                 ts . add( 4 );
+
+		assertTrue     ( 2 == ts.size() );
+		
+		rs__AAPL.set_lags( ts );
+		
+		assertTrue ( 2 == rs__AAPL.get_lags().size() );
+		
+		assertTrue ( rs__AAPL.get_lags().first() == 3   );
+		assertTrue ( rs__AAPL.get_lags().contains  (3)  );
+		assertTrue ( rs__AAPL.get_lags().contains  (4)  );
+	}
 
 }
