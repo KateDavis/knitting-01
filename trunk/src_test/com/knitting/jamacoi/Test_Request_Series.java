@@ -1,5 +1,6 @@
 package com.knitting.jamacoi;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -35,6 +36,7 @@ public class Test_Request_Series {
            URI             uri_GLD;
            
            Request_Series  rs__AAPL;
+           Request_Series  rs__AAPL_dup;
            Request_Series  rs__AMZN;
            Request_Series  rs__QCOM;
            Request_Series  rs__GLD;
@@ -163,5 +165,21 @@ public class Test_Request_Series {
 		assertTrue ( rs__AAPL.get_lags().contains  (3)  );
 		assertTrue ( rs__AAPL.get_lags().contains  (4)  );
 	}
-
+	@Test
+	public void test_08_not_equal_null(){
+		assertFalse ( rs__AAPL.equals(null) );
+		
+	}
+	@Test
+	public void test_09_equal_to_itself(){
+		assertTrue  ( rs__AAPL.equals(rs__AAPL) );
+		
+	}
+	@Test
+	public void test_10_equal_to_duplicate(){
+		rs__AAPL_dup   = new Request_Series(  uri_AAPL
+                                           , "AAPL_dup"
+                                           );
+		assertTrue  ( rs__AAPL.equals(rs__AAPL_dup) );	
+	}
 }
