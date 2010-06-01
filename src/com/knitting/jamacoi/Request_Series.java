@@ -12,6 +12,16 @@ final   public     class      Request_Series{
 	    protected  TreeSet<Integer>        lags;
 private            Request_Series(){}; //  prevent this constructor
 public             Request_Series( URI     data_location
+                                 ) {
+        this.data_location  =              data_location;
+        this.human_name     =              remove_file_type
+                                          (get_short_file_name
+                                          (data_location.toString()
+                                          ) 
+                                          );
+        this.lags           =          new TreeSet<Integer>();
+}
+public             Request_Series( URI     data_location
 		                         , String  human_name
 		                         ) {
 	    this.data_location  =              data_location;
@@ -47,11 +57,21 @@ public  String   get_short_file_name(String s){
         return  sb . toString();
 }
 public  String   remove_file_type(String s){
-	    int      ix  = s.lastIndexOf(".");
-	    return         s.substring  ( 0
-	    		                    , ix
-	    		                    );
-	
+	    int      ix =  s.lastIndexOf(".");
+	    if      (ix <  0)
+	            {
+	    	      return         s;
+	            }
+	    else if (ix == 0)
+	            {
+	    	      return         "";
+	            }
+	    else
+	            {
+	    	      return         s.substring  ( 0
+                                              , ix
+                                              );
+	            }
 }
 public  boolean  equals (Object obj){
 	    if (     this    ==     obj           )   return true ;
