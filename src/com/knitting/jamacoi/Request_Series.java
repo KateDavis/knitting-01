@@ -1,6 +1,7 @@
 package com.knitting.jamacoi;
 
 import java.net.URI;
+import java.util.StringTokenizer;
 import java.util.TreeSet;
 
 final   public     class      Request_Series{
@@ -31,6 +32,26 @@ public  TreeSet<Integer>  get_lags(){
 }
 public  void     set_lags(TreeSet<Integer> lags){
         this .       lags           =      lags;
+}
+public  String   get_short_file_name(String s){
+        StringTokenizer st            = new StringTokenizer (  s 
+                                                            , "/"
+                                                            );
+
+        StringBuffer    sb            = new StringBuffer    ( "" );
+
+        while ( st . hasMoreTokens() )
+              {
+                sb = new StringBuffer( st.nextToken() );
+              }
+        return  sb . toString();
+}
+public  String   remove_file_type(String s){
+	    int      ix  = s.lastIndexOf(".");
+	    return         s.substring  ( 0
+	    		                    , ix
+	    		                    );
+	
 }
 public  boolean  equals (Object obj){
 	    if (     this    ==     obj           )   return true ;
