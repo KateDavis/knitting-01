@@ -77,6 +77,7 @@ public class Test_Request_Series {
                    rs__AAPL       = new Request_Series( uri_AAPL
                 		                              , get_name( uri_AAPL.toString() )
                 		                              );
+                   rs__AMZN       = new Request_Series( uri_AMZN );
                    
 	}
 	public String get_name ( String s ){
@@ -200,5 +201,15 @@ public class Test_Request_Series {
         String s1 = rs__AAPL.get_short_file_name(s0);
         String s2 = rs__AAPL.remove_file_type   (s1);
         assertTrue( s2.equals( "AAPL" ) );
+	}
+	@Test
+	public void test_13_get_human_name(){
+		String s  = rs__AMZN.get_human_name();
+		System.out.println( "human_name = >"
+		                  +  s
+		                  + "<"
+		                  );
+
+        assertTrue( s.equals( "AMZN" ) );
 	}
 }
