@@ -39,7 +39,7 @@ public  boolean  equals (Object obj){
 	    String   s1 = ( (Request_Series)obj ) .get_data_location().toString();
 	    return ( s0.equals(s1) );
 }
-public  int      hashcode(){
+public  int      hashCode(){
 	    String   s0 = this.get_data_location().toString();
 	    return   s0.hashCode();
 }
