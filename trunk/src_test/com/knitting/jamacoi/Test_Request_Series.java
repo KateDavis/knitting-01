@@ -182,4 +182,23 @@ public class Test_Request_Series {
                                            );
 		assertTrue  ( rs__AAPL.equals(rs__AAPL_dup) );	
 	}
+	@Test
+	public void test_11_get_short_file_name(){
+		String s0 = rs__AAPL.get_data_location()
+		                   .toString();
+		String s1 = rs__AAPL.get_short_file_name(s0);
+		System.out.println( "short_name = >"
+				          +  s1
+				          + "<"
+				          );
+		assertTrue ( s1.equals("AAPL.txt") );
+	}
+	@Test
+	public void test_12_get_trimmed_file_name(){
+		String s0 = rs__AAPL.get_data_location()
+                            .toString();
+        String s1 = rs__AAPL.get_short_file_name(s0);
+        String s2 = rs__AAPL.remove_file_type   (s1);
+        assertTrue( s2.equals( "AAPL" ) );
+	}
 }
