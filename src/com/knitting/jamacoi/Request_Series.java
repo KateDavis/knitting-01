@@ -72,6 +72,7 @@ public  String   remove_file_type(String s){
                                               , ix
                                               );
 	            }
+	    
 }
 public  boolean  equals (Object obj){
 	    if (     this    ==     obj           )   return true ;
