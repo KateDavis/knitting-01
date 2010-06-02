@@ -6,7 +6,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.net.URI;
 import java.net.URL;
-import java.util.StringTokenizer;
 import java.util.TreeSet;
 
 import org.junit.After;
@@ -75,38 +74,10 @@ public class Test_Request_Series {
                    uri_GLD        =          url_GLD .toURI();
            
                    rs__AAPL       = new Request_Series( uri_AAPL
-                		                              , get_name( uri_AAPL.toString() )
+                		                              ,    "AAPL"
                 		                              );
                    rs__AMZN       = new Request_Series( uri_AMZN );
                    
-	}
-	public String get_name ( String s ){
-           StringTokenizer st            = new StringTokenizer (  s 
-                                                               , "/"
-                                                               );
-
-           StringBuffer    sb            = new StringBuffer    ( "" );
-
-           while ( st.hasMoreTokens() )
-                 {
-                   sb = new StringBuffer( st.nextToken() );
-                 }
-           
-           st                            = new StringTokenizer (  sb.toString() 
-        		                                               , "."
-        		                                               );
-           sb                            = new StringBuffer    ( "" );
-           
-           if   ( st.hasMoreTokens() )
-                {
-        	      return (new StringBuffer( st.nextToken() ) 
-        	             .    toString()
-        	             );
-                }
-           else {
-        	      return "error";
-                }
-        	    
 	}
 
 	@After
