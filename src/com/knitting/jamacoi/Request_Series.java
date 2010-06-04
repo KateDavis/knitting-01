@@ -15,10 +15,11 @@ private            Request_Series(){}; //  prevent this constructor
 public             Request_Series( URI     data_location
                                  ) {
         this.data_location  =              data_location;
-        this.human_name     =              remove_file_type
-                                          (K_String.get_file_name_short(
-                                          (data_location.toString()
+        this.human_name     =              K_String.remove_file_extention(
+                                          (K_String.get_file_name_short  (
+                                          (data_location.toString        ()
                                           ) 
+                                          )
                                           )
                                           );
         this.lags           =          new TreeSet<Integer>();
