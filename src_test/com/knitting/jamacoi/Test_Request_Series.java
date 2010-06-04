@@ -14,6 +14,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.knitting.util.K_String;
+
 public class Test_Request_Series {
 	static String          Dir__Prefix   = "knitting-01/src_test/com/knitting/datasource";
 	static String          AAPL          = Dir__Prefix + "/AAPL.txt";
@@ -79,7 +81,6 @@ public class Test_Request_Series {
                    rs__AMZN       = new Request_Series( uri_AMZN );
                    
 	}
-
 	@After
 	public void tearDown() throws Exception {
 	}
@@ -156,9 +157,10 @@ public class Test_Request_Series {
 	}
 	@Test
 	public void test_11_get_short_file_name(){
-		String s0 = rs__AAPL.get_data_location()
-		                   .toString();
-		String s1 = rs__AAPL.get_short_file_name(s0);
+		String s1 = K_String.get_file_name_short( rs__AAPL
+				                                . get_data_location()
+				                                . toString()
+				                                ) ;
 		System.out.println( "short_name = >"
 				          +  s1
 				          + "<"
@@ -167,9 +169,10 @@ public class Test_Request_Series {
 	}
 	@Test
 	public void test_12_get_trimmed_file_name(){
-		String s0 = rs__AAPL.get_data_location()
-                            .toString();
-        String s1 = rs__AAPL.get_short_file_name(s0);
+		String s1 = K_String.get_file_name_short( rs__AAPL
+                                                . get_data_location()
+                                                . toString()
+                                                ) ;
         String s2 = rs__AAPL.remove_file_type   (s1);
         assertTrue( s2.equals( "AAPL" ) );
 	}
