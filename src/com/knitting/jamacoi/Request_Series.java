@@ -1,8 +1,9 @@
 package com.knitting.jamacoi;
 
 import java.net.URI;
-import java.util.StringTokenizer;
 import java.util.TreeSet;
+
+import com.knitting.util.K_String;
 
 final   public     class      Request_Series{
 //        implements Comparable<Request_Series>{ 
@@ -15,9 +16,10 @@ public             Request_Series( URI     data_location
                                  ) {
         this.data_location  =              data_location;
         this.human_name     =              remove_file_type
-                                          (get_short_file_name
+                                          (K_String.get_file_name_short(
                                           (data_location.toString()
                                           ) 
+                                          )
                                           );
         this.lags           =          new TreeSet<Integer>();
 }
@@ -42,19 +44,6 @@ public  TreeSet<Integer>  get_lags(){
 }
 public  void     set_lags(TreeSet<Integer> lags){
         this .       lags           =      lags;
-}
-public  String   get_short_file_name(String s){
-        StringTokenizer st            = new StringTokenizer (  s 
-                                                            , "/"
-                                                            );
-
-        StringBuffer    sb            = new StringBuffer    ( "" );
-
-        while ( st . hasMoreTokens() )
-              {
-                sb = new StringBuffer( st.nextToken() );
-              }
-        return  sb . toString();
 }
 public  String   remove_file_type(String s){
 	    int      ix =  s.lastIndexOf(".");
