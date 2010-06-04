@@ -77,12 +77,13 @@ public class  Test_K_String {
 		assertTrue   ( s.length() == 0 );
 		assertTrue   ( s.equals( "" )  );
 	}
+	@Test
 	public void Test_06_s1_a_dot_b()
 	{
 		String s = K_String.remove_file_extention(s6);
 		assertNotNull( s );
 		assertTrue   ( s.length() == 1 );
-		assertTrue   ( s.equals( "b" ) );
+		assertTrue   ( s.equals( "a" ) );
 	}
 
 }
