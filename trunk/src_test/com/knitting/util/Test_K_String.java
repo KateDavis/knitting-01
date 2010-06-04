@@ -11,11 +11,16 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class  Test_K_String {
-       String s1 = "a/b";
-       String s2 = "a/b/c";
-       String s3 = "a";
-       String s4 = "/";
-       String s5 = "";
+       String s1  = "a/b";
+       String s2  = "a/b/c";
+       String s3  = "a";
+       String s4  = "/";
+       String s5  = "";
+       String s6  = "a.b";
+       String s7  = "a.b.c";
+       String s8  = "a";
+       String s9  = ".";
+       String s10 = "";
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -71,6 +76,13 @@ public class  Test_K_String {
 		assertNotNull( s );
 		assertTrue   ( s.length() == 0 );
 		assertTrue   ( s.equals( "" )  );
+	}
+	public void Test_06_s1_a_dot_b()
+	{
+		String s = K_String.remove_file_extention(s6);
+		assertNotNull( s );
+		assertTrue   ( s.length() == 1 );
+		assertTrue   ( s.equals( "b" ) );
 	}
 
 }
