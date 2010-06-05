@@ -78,12 +78,43 @@ public class  Test_K_String {
 		assertTrue   ( s.equals( "" )  );
 	}
 	@Test
-	public void Test_06_s1_a_dot_b()
+	public void Test_06_s6_a_dot_b()
 	{
 		String s = K_String.remove_file_extention(s6);
 		assertNotNull( s );
 		assertTrue   ( s.length() == 1 );
 		assertTrue   ( s.equals( "a" ) );
 	}
-
+	@Test
+	public void Test_07_s7_a_dot_b_dot_c()
+	{
+		String s = K_String.remove_file_extention(s7);
+		assertNotNull( s );
+		assertTrue   ( s.length() == 3 );
+		assertTrue   ( s.equals( "a.b" ) );
+	}
+	@Test
+	public void Test_08_s8_a()
+	{
+		String s = K_String.remove_file_extention(s8);
+		assertNotNull( s );
+		assertTrue   ( s.length() == 1 );
+		assertTrue   ( s.equals( "a" ) );
+	}
+	@Test
+	public void Test_09_s9_dot()
+	{
+		String s = K_String.remove_file_extention(s9);
+		assertNotNull( s );
+		assertTrue   ( s.length() == 0 );
+		assertTrue   ( s.equals( "" )  );
+	}
+	@Test
+	public void Test_10_s10_empty()
+	{
+		String s = K_String.remove_file_extention(s9);
+		assertNotNull( s );
+		assertTrue   ( s.length() == 0 );
+		assertTrue   ( s.equals( "" )  );
+	}
 }
