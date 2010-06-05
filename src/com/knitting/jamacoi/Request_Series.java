@@ -1,7 +1,6 @@
 package com.knitting.jamacoi;
 
 import java.net.URI;
-import java.util.Iterator;
 import java.util.TreeSet;
 
 import com.knitting.util.K_String;
@@ -57,11 +56,7 @@ public  TreeSet<Integer>  get_lags(){
 //}
 public  void          set_lags(final TreeSet<Integer>  ts){
 	    lags                   = new TreeSet<Integer>();
-	    Iterator<Integer> iter = ts.iterator();
-	    while ( iter.hasNext() )
-	          {
-	    	    lags.add(iter.next());
-	          }
+	    for (Integer i: ts){lags.add(i); }
 }
 final   public   boolean  equals (Object obj){
 	    if (     this    ==     obj           )   return true ;
