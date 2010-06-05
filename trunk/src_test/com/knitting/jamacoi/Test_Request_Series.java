@@ -173,7 +173,7 @@ public class Test_Request_Series {
                                                 . get_data_location()
                                                 . toString()
                                                 ) ;
-        String s2 = rs__AAPL.remove_file_type   (s1);
+        String s2 = K_String.remove_file_extention(s1);
         assertTrue( s2.equals( "AAPL" ) );
 	}
 	@Test
