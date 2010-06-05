@@ -1,10 +1,10 @@
 package com.knitting.jamacoi;
 
 import java.net.URI;
+import java.util.Iterator;
 import java.util.TreeSet;
 
 import com.knitting.util.K_String;
-
 public  class      Request_Series{ 
 
     	private    URI                     data_location;
@@ -39,11 +39,34 @@ public  String   get_human_name() {
 public  void     set_human_name(String     human_name) {
 	    this .       human_name     =      human_name;
 }
+public  boolean  add_lag     (Integer i){
+	    return   lags.add            (i);
+}
+public  boolean  remove_lag  (Integer i){
+        return   lags.remove         (i);
+}
+public  boolean  contains_lag(Integer i){
+        return   lags.contains       (i);
+}
 public  TreeSet<Integer>  get_lags(){
 	    return                lags;
 }
-public  void     set_lags(TreeSet<Integer> lags){
-        this .       lags           =      lags;
+//public              SortedSet<TreeSet<Integer>> getlags(){
+//	                  SortedSet<TreeSet<Integer>> s = unmodifiableSortedSet.lags;
+//	    
+//return  unmodifiableSortedSet<TreeSet<Integer>>( lags);
+//}
+//private unmodifiableSortedSet<TreeSet<Integer>> unmodifiableSortedSet(
+//		  TreeSet<Integer> lags2) {
+//	      return null;
+//}
+public  void          set_lags(final TreeSet<Integer>  ts){
+	    lags                   = new TreeSet<Integer>();
+	    Iterator<Integer> iter = ts.iterator();
+	    while ( iter.hasNext() )
+	          {
+	    	    lags.add(iter.next());
+	          }
 }
 final   public   boolean  equals (Object obj){
 	    if (     this    ==     obj           )   return true ;
