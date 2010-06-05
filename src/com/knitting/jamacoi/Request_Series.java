@@ -46,24 +46,6 @@ public  TreeSet<Integer>  get_lags(){
 public  void     set_lags(TreeSet<Integer> lags){
         this .       lags           =      lags;
 }
-//public  String   remove_file_type(String s){
-//	    int      ix =  s.lastIndexOf(".");
-//	    if      (ix <  0)
-//	            {
-//	    	      return         s;
-//	            }
-//	    else if (ix == 0)
-//	            {
-//	    	      return         "";
-//	            }
-//	    else
-//	            {
-//	    	      return         s.substring  ( 0
-//                                              , ix
-//                                              );
-//	            }
-//	    
-//}
 public  boolean  equals (Object obj){
 	    if (     this    ==     obj           )   return true ;
 	    if (  !( obj instanceof Request_Series) ) return false;
