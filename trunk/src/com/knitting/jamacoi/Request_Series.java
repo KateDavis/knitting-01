@@ -5,8 +5,7 @@ import java.util.TreeSet;
 
 import com.knitting.util.K_String;
 
-final   public     class      Request_Series{
-//        implements Comparable<Request_Series>{ 
+public  class      Request_Series{ 
 
     	private    URI                     data_location;
 	    private    String                  human_name;
@@ -46,14 +45,14 @@ public  TreeSet<Integer>  get_lags(){
 public  void     set_lags(TreeSet<Integer> lags){
         this .       lags           =      lags;
 }
-public  boolean  equals (Object obj){
+final   public   boolean  equals (Object obj){
 	    if (     this    ==     obj           )   return true ;
 	    if (  !( obj instanceof Request_Series) ) return false;
 	    String   s0 =    this                 .get_data_location().toString();
 	    String   s1 = ( (Request_Series)obj ) .get_data_location().toString();
 	    return ( s0.equals(s1) );
 }
-public  int      hashCode(){
+final   public   int      hashCode(){
 	    String   s0 = this.get_data_location().toString();
 	    return   s0.hashCode();
 }
