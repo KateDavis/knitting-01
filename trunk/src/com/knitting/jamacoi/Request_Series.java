@@ -52,13 +52,8 @@ public  TreeSet<Integer>  get_lags(){
 	    return                lags;
 }
 //public              SortedSet<TreeSet<Integer>> getlags(){
-//	                  SortedSet<TreeSet<Integer>> s = unmodifiableSortedSet.lags;
-//	    
+//	                  SortedSet<TreeSet<Integer>> s = unmodifiableSortedSet.lags;    
 //return  unmodifiableSortedSet<TreeSet<Integer>>( lags);
-//}
-//private unmodifiableSortedSet<TreeSet<Integer>> unmodifiableSortedSet(
-//		  TreeSet<Integer> lags2) {
-//	      return null;
 //}
 public  void          set_lags(final TreeSet<Integer>  ts){
 	    lags                   = new TreeSet<Integer>();
