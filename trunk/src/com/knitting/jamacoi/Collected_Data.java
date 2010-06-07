@@ -13,10 +13,10 @@ public class      Collected_Data {
 public            Collected_Data(){
 	              cal                    = Calendar.getInstance();
 	              
-	              cal                    . set(3000, Calendar.DECEMBER, 31);
+	              cal                    . set(1900, Calendar.JANUARY,   1);//set(3000, Calendar.DECEMBER, 31);
 	              shared_start__earliest = cal.getTime();
 	              
-	              cal                    . set(1900, Calendar.JANUARY,   1);
+	              cal                    . set(3000, Calendar.DECEMBER, 31);//set(1900, Calendar.JANUARY,   1);
 	              shared_ending_lastest  = cal.getTime();
 	              
 	              lag_max                = 0;
