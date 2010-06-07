@@ -12,7 +12,7 @@ import org.junit.Test;
 public class Test_Collected_Data {
 
 	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
+	public static void setUpBeforeClass()   throws Exception {
 	}
 
 	@AfterClass
@@ -34,8 +34,8 @@ public class Test_Collected_Data {
 		   String         lastest  = c_data.get_fmt_shared_ending_lastest ();
 		   Integer        max      = c_data.get_lag_max();
 		   
-		   assertTrue   ( earliest.equals("3000_12_31") );
-		   assertTrue   ( lastest .equals("1900_01_01") );
+		   assertTrue   ( earliest.equals("1900_01_01") );
+		   assertTrue   ( lastest .equals("3000_12_31") );
 		   assertTrue   ( max      ==      0            );
 		   
 	}
