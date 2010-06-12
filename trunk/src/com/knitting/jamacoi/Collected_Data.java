@@ -1,41 +1,141 @@
 package com.knitting.jamacoi;
 
-import java.text.DateFormat;
+import java.io.File;
+import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Scanner;
+import java.util.TreeMap;
+import java.util.regex.Pattern;
 
-public class      Collected_Data {
-	   private    Calendar cal;
-	   private    Date     shared_start__earliest; 
-	   private    Date     shared_ending_lastest;
-	   private    Integer  lag_max;
-public            Collected_Data(){
-	              cal                    = Calendar.getInstance();
-	              
-	              cal                    . set(1900, Calendar.JANUARY,   1);//set(3000, Calendar.DECEMBER, 31);
-	              shared_start__earliest = cal.getTime();
-	              
-	              cal                    . set(3000, Calendar.DECEMBER, 31);//set(1900, Calendar.JANUARY,   1);
-	              shared_ending_lastest  = cal.getTime();
-	              
-	              lag_max                = 0;
+public  class    Collected_Data {
+static  private  Pattern              d_comma  =  Pattern.compile(",");	
+static  private  Pattern              d_slash  =  Pattern.compile("/");
+        private	 String               human_name;
+        private	 String               state_desc;
+        private	 TreeMap<Date,Double> s         ;
+private          Collected_Data(){
+	             human_name    = "error";
+	             set_state_desc( "Created via no parm constructor" );
+	             s             =  new TreeMap<Date,Double>();
 }
-public String     get_fmt_shared_start__earliest(){
-	   DateFormat sdf = new SimpleDateFormat("yyyy_MM_dd");
-	   return     sdf.format(shared_start__earliest);
+public           Collected_Data( final  String  human_name
+		                       , final  URI     data_location
+		                       ){
+	      this . human_name    =  human_name;
+	             set_state_desc( "About to retreive data");
+	             s             =  new TreeMap<Date,Double>();
+	             load_data     (  data_location );
 }
-public Date       get_shared_start__earliest(){
-	   return         shared_start__earliest;
+protected void  load_data( URI  d ){
+	      File    f = new File (d);
+	      check_if_file_exists (f);
 }
-public String     get_fmt_shared_ending_lastest(){
-	   DateFormat sdf = new SimpleDateFormat("yyyy_MM_dd");
-	   return     sdf.format(shared_ending_lastest);
+protected void  check_if_file_exists       ( File  f ){
+          if   ( f.exists() )
+               {
+        	     set_state_desc( "File exists."          );
+        	     check_if_file_is_a_file   ( f );
+               }
+          else { set_state_desc( "File does NOT exist."  );}
 }
-public Date       get_shared_ending_lastest(){
-	   return         shared_ending_lastest;
+protected void  check_if_file_is_a_file    ( File  f ){
+	      if   ( f.isFile() )
+               {
+	             set_state_desc( "File is a file."       );
+	             check_if_file_is_readable ( f );
+               }
+	      else { set_state_desc( "File is NOT a file."   );}
 }
-public Integer    get_lag_max(){
-	   return         lag_max;
+protected void   check_if_file_is_readable ( File f ){
+          if   ( f.canRead() )
+               {
+	             set_state_desc( "File is a readable."   );
+	             read_source( f ); 
+               }
+          else { set_state_desc( "File is NOT readable." );}
 }
+protected void   read_source   ( File f ){
+	      try  {
+	             Scanner scan = new Scanner( f    );
+	                     load_source       ( scan );
+	                     scan .     close        ();
+	             set_state_desc( "File was closed."              );        
+	           }
+	      catch ( Exception FileNotFoundException )
+	            {
+	    	     set_state_desc( "File NOT found at read time."  );
+	            }
+}
+protected void  load_source( Scanner scan){
+	      boolean   parsed_ok = true;
+	      while ( 
+	    		  ( scan.hasNextLine() )
+	    		  &&
+	    		  ( parsed_ok          )
+	    		)
+	            {
+	    	      String line = scan.nextLine();
+	    	      parsed_ok   = parse_line (  line );
+	            }
+}
+protected boolean  parse_line( final  String  line){
+	SimpleDateFormat sdf     = new SimpleDateFormat("yyyy_MM_dd");
+	String []        tokens  =     d_comma .split (line);
+	Calendar         cal     =     Calendar.getInstance();
+	int              count   =     tokens  .length;
+	      if ( count >= 5 )
+	         {
+	    	  try   {
+	    	          Date      date   = cal.getTime();
+	    	          Double    close  = Double.parseDouble( tokens[4] );
+	    	          s.put             ( date
+	    		    		            , close
+	    		    			        );
+	    	        }
+	    	  catch ( Exception  NumberFormatException )
+	    	        {
+	    		      set_state_desc( "Could not parse line data"  );
+	    		      return false;
+	    	        }
+
+              return         true;
+	         }
+	                  set_state_desc( "line did not contain enough data to parse"  );
+	      return             false;
+}
+protected void   parse_date( String   s
+		                   , Calendar cal
+		                   )
+          throws NumberFormatException{
+	      String mmddyy [] = d_slash.split( s );
+	      int    mm        = Integer.parseInt(mmddyy[0]);
+	      int    dd        = Integer.parseInt(mmddyy[1]);
+	      int    yy        = Integer.parseInt(mmddyy[2]);
+	             cal       . set( yy
+	            		        , mm
+	            		        , dd
+	            		        ) ;
+}
+public  int     get_date_count(){
+	    return  s.size();
+}
+private void    set_state_desc(final  String  s){
+	                state_desc = s;
+}
+public  String  get_state_desc(){
+	    return      state_desc;
+}
+public  String  get_human_name(){
+	    return      human_name;
+}
+public  String  get_first_data(){
+	    SimpleDateFormat sdf     = new SimpleDateFormat("yyyy_MM_dd");
+	    return  sdf.format( s.firstKey() );     
+}
+public  boolean is_data_empty(){
+	    return  s.isEmpty();
+}
+
 }
