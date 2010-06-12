@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
+import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.regex.Pattern;
 
@@ -81,16 +82,17 @@ protected void  load_source( Scanner scan){
 	            }
 }
 protected boolean  parse_line( final  String  line){
-	SimpleDateFormat sdf     = new SimpleDateFormat("yyyy_MM_dd");
 	String []        tokens  =     d_comma .split (line);
 	Calendar         cal     =     Calendar.getInstance();
 	int              count   =     tokens  .length;
 	      if ( count >= 5 )
 	         {
 	    	  try   {
-	    	          Date      date   = cal.getTime();
-	    	          Double    close  = Double.parseDouble( tokens[4] );
-	    	          s.put             ( date
+	    	                  parse_date(  tokens[0]
+			                            ,  cal
+			                            );
+	    	          Double  close     =  Double.parseDouble( tokens[4] );
+	    	                  s.put     ( cal.getTime()
 	    		    		            , close
 	    		    			        );
 	    	        }
@@ -130,9 +132,29 @@ public  String  get_state_desc(){
 public  String  get_human_name(){
 	    return      human_name;
 }
-public  String  get_first_data(){
+public  SortedMap<Date, Double> get_prices(){
+//	    SortedMap<Date, Double> unmodifiableSortedMap(TreeMap<Date, Double> s2);
+	    return                  s;
+}
+public  String           get_first_date(){
 	    SimpleDateFormat sdf     = new SimpleDateFormat("yyyy_MM_dd");
-	    return  sdf.format( s.firstKey() );     
+	    return           sdf     .     format          ( get_prices().firstKey());     
+}
+public  Date             get_firstKey(){
+        return             s.firstKey();     
+}
+public  String           get_last__date(){
+        SimpleDateFormat sdf     = new SimpleDateFormat("yyyy_MM_dd");
+        return           sdf     .     format          ( get_prices().lastKey());     
+}
+public  Date             get_lastKey(){
+        return             s.lastKey();     
+}
+public  Double  get_first_price(){
+        return  s.get( get_firstKey() ) ;       
+}
+public  Double  get_last__price(){
+        return  s.get( get_lastKey() ) ;        
 }
 public  boolean is_data_empty(){
 	    return  s.isEmpty();
