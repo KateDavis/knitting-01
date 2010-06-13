@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.regex.Pattern;
@@ -149,6 +150,12 @@ public  String           get_last__date(){
 }
 public  Date             get_lastKey(){
         return             s.lastKey();     
+}
+public  Double  get_price_on_date( Date d ){
+	    return             s.get (      d );
+}
+public  Set<Date>        get_keys(){
+	    return             s.keySet();
 }
 public  Double  get_first_price(){
         return  s.get( get_firstKey() ) ;       
