@@ -7,7 +7,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 import java.util.Set;
-import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.regex.Pattern;
 
@@ -133,9 +132,10 @@ public  String  get_state_desc(){
 public  String  get_human_name(){
 	    return      human_name;
 }
-public  SortedMap<Date, Double> get_prices(){
-//	    SortedMap<Date, Double> unmodifiableSortedMap(TreeMap<Date, Double> s2);
-	    return                  s;
+public  TreeMap  <Date, Double> get_prices(){
+//	    SortedMap<Date, Double> usm = SortedMap.unmodifiableSortedMap( s );
+//	    return                  usm;
+	    return                    s;
 }
 public  String           get_first_date(){
 	    SimpleDateFormat sdf     = new SimpleDateFormat("yyyy_MM_dd");
