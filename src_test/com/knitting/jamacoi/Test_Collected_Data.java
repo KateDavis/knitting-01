@@ -74,7 +74,7 @@ assertNotNull ( url_AAPL       ) ;
 				             + "<"
 				             );
 		   assertFalse       ( c.is_data_empty ()         );
-		   assertTrue        ( c.get_date_count() == 1353 );
+		   assertTrue        ( c.get_date_count() == 1374 );
 	}
 	@Test
 	public void test_02_get_first_date(){
@@ -86,7 +86,7 @@ assertNotNull ( url_AAPL       ) ;
 				            +  date__first
 				            + "<"
 				            ); 
-		 String s           = "2004_11_25";
+		 String s           = "2004_10_25";
 		 assertTrue         (  date__first.equals( s ) );
 	}
 	@Test
@@ -113,7 +113,7 @@ assertNotNull ( url_AAPL       ) ;
 				           +  date__last
 				           + "<"
 				           );
-		 String s          = "2010_05_09";
+		 String s          = "2010_04_09";
 		 assertTrue        (  date__last.equals(s) ); 
 	}
 	@Test
