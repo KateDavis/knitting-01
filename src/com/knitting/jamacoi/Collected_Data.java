@@ -112,7 +112,7 @@ protected void   parse_date( String   s
 		                   )
           throws NumberFormatException{
 	      String mmddyy [] = d_slash.split( s );
-	      int    mm        = Integer.parseInt(mmddyy[0]);
+	      int    mm        = Integer.parseInt(mmddyy[0]) - 1;
 	      int    dd        = Integer.parseInt(mmddyy[1]);
 	      int    yy        = Integer.parseInt(mmddyy[2]);
 	             cal       . set( yy
