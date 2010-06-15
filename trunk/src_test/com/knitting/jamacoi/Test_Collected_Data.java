@@ -7,12 +7,17 @@ import static org.junit.Assert.assertTrue;
 
 import java.net.URI;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import com.knitting.util.Print_Dates_Prices;
 
 public class Test_Collected_Data {
 	static String          Dir__Prefix   = "knitting-01/src_test/com/knitting/datasource";
@@ -128,4 +133,117 @@ assertNotNull ( url_AAPL       ) ;
 				           );
 		 assertTrue        (  price_last  ==  241.7899932861328 ); 
 	}
+	@Test
+	public void test_06_first_10_dates_and_prices(){
+		Collected_Data     c            = new Collected_Data  ("AAPL"
+                                                              , uri_AAPL
+                                                              ) ;
+		Print_Dates_Prices pdp          = new Print_Dates_Prices();
+		                   pdp.print_data(c, 10);
+	}	
+	@Test
+	public void test_07_get_price_on_date(){
+		Collected_Data    c             = new Collected_Data  ("AAPL"
+                                                              , uri_AAPL
+                                                              ) ;
+		SimpleDateFormat  ccyy_mm_dd    = new SimpleDateFormat("yyyy_MM_dd");
+	    Calendar          cal           =     Calendar.getInstance();
+	                      cal           .     set(  2004
+                                                 , (10 - 1)
+                                                 ,  25
+                                                 ,  0
+                                                 ,  0
+                                                 ,  0
+                                                 );
+	    Date              d_2004_10_25  =     cal.getTime();
+	    System.out.println( "d_2004_10_25        = >"
+	    	              +  ccyy_mm_dd.format( d_2004_10_25 )
+	    	              + "<"
+	                      );
+	    Double            price         =     c.get_price_on_date(d_2004_10_25);
+	    System.out.println( "price on 2004_10_25 = >"
+	    		          +  price
+	    		          + "<"
+	    		          );
+                          cal           .     set(  2004
+                                                 , (10 - 1)
+                                                 ,  26
+                                                 ,  0
+                                                 ,  0
+                                                 ,  0
+                                                 );
+        Date              d_2004_10_26  =     cal.getTime();
+        System.out.println( "d_2004_10_26        = >"
+                          +  ccyy_mm_dd.format( d_2004_10_26 )
+                          + "<"
+                          );
+                          price         =     c.get_price_on_date(d_2004_10_26);
+        System.out.println( "price on 2004_10_26 = >"
+                          +  price
+                          + "<"
+                          );
+                          cal           .     set(  2004
+                                                 , (10 - 1)
+                                                 ,  27
+                                                 ,  0
+                                                 ,  0
+                                                 ,  0
+                                                 );
+        Date              d_2004_10_27  =     cal.getTime();
+        System.out.println( "d_2004_10_27        = >"
+                          +  ccyy_mm_dd.format( d_2004_10_27 )
+                          + "<"
+                          );
+                          price         =     c.get_price_on_date(d_2004_10_27);
+        System.out.println( "price on 2004_10_27 = >"
+                          +  price
+                          + "<"
+                          );
+		
+	}
+	@Test
+	public void test_08_compare_price_get_prices(){
+		Collected_Data     c             = new Collected_Data  ("AAPL"
+                                                               , uri_AAPL
+                                                               ) ;
+		SimpleDateFormat   ccyy_mm_dd    = new SimpleDateFormat("yyyy_MM_dd");
+	    Calendar           cal           =     Calendar.getInstance();
+	                       cal           .     set(  2004
+                                                  , (10 - 1)
+                                                  ,  25
+                                                  ,  0
+                                                  ,  0
+                                                  ,  0
+                                                  );
+	    Date               d_2004_10_25  =     cal.getTime();
+	    System.out.println ( "d_2004_10_25        = >"
+	    	               +  ccyy_mm_dd.format( d_2004_10_25 )
+	    	               + "<"
+	                       );
+	    Double             price         =     c.get_price_on_date(d_2004_10_25);
+	    System.out.println ( "price on 2004_10_25 = >"
+	    		           +  price
+	    		           + "<"
+	    		           );
+		Date  date__first  =  c.get_firstKey();
+	    System.out.println ( "date__first         = >"
+				           +  ccyy_mm_dd.format(date__first)
+			               + "<"
+			               ); 
+	    System.out.println ( "d_2004_10_25        = >"
+	    		           +  d_2004_10_25.toString()
+	    		           );
+	    System.out.println ( "date__first         = >"
+		                   +  date__first .toString()
+		                   );
+	   
+	    if   ( d_2004_10_25.equals(date__first) )
+	         {
+	    	   System.out.println("Dates are equal.");
+	         }
+	    else
+	         {
+	    	   System.out.println("Dates are NOT equal.");
+	         }
+	    }
 }
