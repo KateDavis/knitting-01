@@ -82,6 +82,7 @@ protected void  load_source( Scanner scan){
 	            }
 }
 protected boolean  parse_line( final  String  line){
+	SimpleDateFormat sdf     = new SimpleDateFormat("yyyy_MM_dd");
 	String []        tokens  =     d_comma .split (line);
 	Calendar         cal     =     Calendar.getInstance();
 	int              count   =     tokens  .length;
@@ -118,6 +119,9 @@ protected void   parse_date( String   s
 	             cal       . set( yy
 	            		        , mm
 	            		        , dd
+	            		        ,  0
+	            		        ,  0
+	            		        ,  0
 	            		        ) ;
 }
 public  int     get_date_count(){
@@ -151,8 +155,11 @@ public  String           get_last__date(){
 public  Date             get_lastKey(){
         return             s.lastKey();     
 }
-public  Double  get_price_on_date( Date d ){
-	    return             s.get (      d );
+public  Double           get_price_on_date ( Date d ) {
+	    if ( s.containsKey     ( (Object)     d ) )
+	       { return       s.get( (Object)     d ) ; } 
+	    else
+	       { return       -1.0;           }
 }
 public  Set<Date>        get_keys(){
 	    return             s.keySet();
