@@ -7,6 +7,7 @@ import java.net.URI;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.TreeMap;
 
@@ -89,10 +90,25 @@ assertNotNull( url_GLD        ) ;
 	}
 	@Test
 	public void test_01_new_Collected_Data(){
-	
+		   SimpleDateFormat ccyy_mm_dd = new SimpleDateFormat("yyyy_MM_dd");
+	       Calendar  cal             =       Calendar.getInstance();
+	                 cal             .       set(  2004
+                                                , (10 - 1)
+                                                ,  25
+                                                );
+	       Date      d_2004_10_25    =       cal.getTime();
+	       System.out.println( "d_2004_10_25 = >"
+	    		             +  ccyy_mm_dd.format( d_2004_10_25 )
+	    		             + "<"
+	    		             );
+	    		                                        
 		   Collected_Data      aapl  =  new  Collected_Data( "AAPL", uri_AAPL ) ;
 		   Collected_Data      amzn  =  new  Collected_Data( "AMZN", uri_AMZN ) ;
 		   Collected_Data      qcom  =  new  Collected_Data( "QCOM", uri_QCOM ) ;
+		   System.out.println( "appl 2004_10_25 = >"
+				             +  ccyy_mm_dd.format( aapl.get_price_on_date ( d_2004_10_25 ) )
+				             + "<"
+				             );
 		   System.out.println( "aapl_date_first = >"
 				             +  aapl.get_first_date()
 				             + "<"
@@ -144,7 +160,6 @@ assertNotNull( url_GLD        ) ;
 		          , ArrayList<Double>
 		          > matrix   =  cds.set_initial_matrix();
 		   
-		   SimpleDateFormat ccyy_mm_dd = new SimpleDateFormat("yyyy_MM_dd");
 		   System.out.println( "date_first             = >"
 				             +  ccyy_mm_dd.format( matrix.firstKey() )
 				             + "<"
