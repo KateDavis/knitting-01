@@ -5,9 +5,7 @@ import static org.junit.Assert.assertNotNull;
 
 import java.net.URI;
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.TreeMap;
 
@@ -17,12 +15,15 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.knitting.util.K_Calendar;
+
 public class Test_Collected_Data_Set {
 	static String          Dir__Prefix   = "knitting-01/src_test/com/knitting/datasource";
 	static String          AAPL          = Dir__Prefix + "/AAPL.txt";
 	static String          AMZN          = Dir__Prefix + "/AMZN.txt";
 	static String          QCOM          = Dir__Prefix + "/QCOM.txt";
 	static String          GLD           = Dir__Prefix +  "/GLD.txt";
+	       K_Calendar      kcal          = new  K_Calendar();
 	
            String          name;
            URL             url_this;
@@ -90,23 +91,17 @@ assertNotNull( url_GLD        ) ;
 	}
 	@Test
 	public void test_01_new_Collected_Data(){
-		   SimpleDateFormat ccyy_mm_dd = new SimpleDateFormat("yyyy_MM_dd");
-	       Calendar  cal             =       Calendar.getInstance();
-	                 cal             .       set(  2004
-                                                , (10 - 1)
-                                                ,  25
-                                                );
-	       Date      d_2004_10_25    =       cal.getTime();
-	       System.out.println( "d_2004_10_25 = >"
-	    		             +  ccyy_mm_dd.format( d_2004_10_25 )
+	       Date      d_2004_10_25    =       kcal.set_ccyy_mm_dd(2004, 10, 25);
+	       System.out.println( "d_2004_10_25    = >"
+	    		             +  kcal.get_ccyy_mm_dd( d_2004_10_25 )
 	    		             + "<"
 	    		             );
 	    		                                        
-		   Collected_Data      aapl  =  new  Collected_Data( "AAPL", uri_AAPL ) ;
-		   Collected_Data      amzn  =  new  Collected_Data( "AMZN", uri_AMZN ) ;
-		   Collected_Data      qcom  =  new  Collected_Data( "QCOM", uri_QCOM ) ;
+		   Collected_Data      aapl  =  new  Collected_Data( "AAPL", uri_AAPL ,kcal ) ;
+		   Collected_Data      amzn  =  new  Collected_Data( "AMZN", uri_AMZN ,kcal ) ;
+		   Collected_Data      qcom  =  new  Collected_Data( "QCOM", uri_QCOM ,kcal ) ;
 		   System.out.println( "appl 2004_10_25 = >"
-				             +  ccyy_mm_dd.format( aapl.get_price_on_date ( d_2004_10_25 ) )
+				             + (aapl.get_price_on_date ( d_2004_10_25 ) )
 				             + "<"
 				             );
 		   System.out.println( "aapl_date_first = >"
@@ -133,7 +128,7 @@ assertNotNull( url_GLD        ) ;
                              +  qcom.get_last__date()
                              + "<"
                              );
-		   Collected_Data_Set  cds   =  new  Collected_Data_Set();
+		   Collected_Data_Set  cds   =  new  Collected_Data_Set(kcal);
 		   
 		                       cds   .       add_data( aapl );
 		                       cds   .       add_data( amzn );
@@ -161,7 +156,7 @@ assertNotNull( url_GLD        ) ;
 		          > matrix   =  cds.set_initial_matrix();
 		   
 		   System.out.println( "date_first             = >"
-				             +  ccyy_mm_dd.format( matrix.firstKey() )
+				             +  kcal.get_ccyy_mm_dd( matrix.firstKey() )
 				             + "<"
 				             );
 		   ArrayList<Double> price_row = matrix.get( matrix.firstKey() );
@@ -173,8 +168,6 @@ assertNotNull( url_GLD        ) ;
 			    		           +      "<"
 			    		           );
 		       }
-
-		   
 	}
 
 }
