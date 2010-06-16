@@ -79,11 +79,18 @@ assertNotNull( url_GLD        ) ;
                uri_QCOM       =          url_QCOM.toURI();
                uri_GLD        =          url_GLD .toURI();
     
-               rs__AAPL       = new Request_Series( uri_AAPL
-         		                                  ,    "AAPL"
-         		                                  );
+               rs__AAPL       = new Request_Series( uri_AAPL );
+               rs__AAPL       .     add_lag(1);
+               rs__AAPL       .     add_lag(2);
+               rs__AAPL       .     add_lag(3);
+               rs__AAPL       .     add_lag(4);
+               
                rs__AMZN       = new Request_Series( uri_AMZN );
-            
+               rs__AMZN       .     add_lag(2);
+               rs__AMZN       .     add_lag(4);
+               
+               rs__QCOM       = new Request_Series( uri_QCOM );
+               rs__QCOM       .     add_lag(1);
 	}
 
 	@After
@@ -96,10 +103,18 @@ assertNotNull( url_GLD        ) ;
 	    		             +  kcal.get_ccyy_mm_dd( d_2004_10_25 )
 	    		             + "<"
 	    		             );
-	    		                                        
-		   Collected_Data      aapl  =  new  Collected_Data( "AAPL", uri_AAPL ,kcal ) ;
-		   Collected_Data      amzn  =  new  Collected_Data( "AMZN", uri_AMZN ,kcal ) ;
-		   Collected_Data      qcom  =  new  Collected_Data( "QCOM", uri_QCOM ,kcal ) ;
+		   Collected_Data      aapl  =  new  Collected_Data( rs__AAPL.get_human_name   ()
+				                                           , rs__AAPL.get_data_location() 
+				                                           , kcal 
+				                                           ) ;
+		   Collected_Data      amzn  =  new  Collected_Data( rs__AMZN.get_human_name   ()
+				                                           , rs__AAPL.get_data_location() 
+				                                           , kcal
+				                                           ) ;
+		   Collected_Data      qcom  =  new  Collected_Data( rs__QCOM.get_human_name   ()
+				                                           , rs__QCOM.get_data_location() 
+				                                           , kcal 
+				                                           ) ;
 		   System.out.println( "appl 2004_10_25 = >"
 				             + (aapl.get_price_on_date ( d_2004_10_25 ) )
 				             + "<"
