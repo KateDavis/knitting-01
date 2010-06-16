@@ -37,7 +37,7 @@ public String    get_ccyy_mm_dd(final   Date  d){
                  		                                   	
 }
 public String    get_ccyy_mm_dd_hh_mm_ss_mmm (final  Date  d){
-	             SimpleDateFormat sdf = new SimpleDateFormat("yyyy_MM_dd_HH:mm:ss");
+	             SimpleDateFormat sdf = new SimpleDateFormat("yyyy_MM_dd_HH:mm:ss.SSS_z");
                                   sdf .     setTimeZone     (tz);
        return                     sdf .     format          (d); 
 	
