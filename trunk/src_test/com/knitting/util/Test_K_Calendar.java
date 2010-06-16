@@ -41,7 +41,7 @@ public class Test_K_Calendar {
 	}
 
 	@Test
-	public void testToStringDate() {
+	public void test_02_ToStringDate() {
 		   Date d = kal.set_ccyy_mm_dd( 2005   // ccyy
                                       , 01     // mm
                                       , 01     // dd
