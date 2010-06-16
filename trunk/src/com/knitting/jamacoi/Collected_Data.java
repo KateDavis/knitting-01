@@ -2,30 +2,33 @@ package com.knitting.jamacoi;
 
 import java.io.File;
 import java.net.URI;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.regex.Pattern;
 
+import com.knitting.util.K_Calendar;
+
 public  class    Collected_Data {
 static  private  Pattern              d_comma  =  Pattern.compile(",");	
 static  private  Pattern              d_slash  =  Pattern.compile("/");
         private	 String               human_name;
         private	 String               state_desc;
+        private  K_Calendar           kcal;
         private	 TreeMap<Date,Double> s         ;
 private          Collected_Data(){
 	             human_name    = "error";
 	             set_state_desc( "Created via no parm constructor" );
 	             s             =  new TreeMap<Date,Double>();
 }
-public           Collected_Data( final  String  human_name
-		                       , final  URI     data_location
+public           Collected_Data( final  String      human_name
+		                       , final  URI         data_location
+		                       , final  K_Calendar  kcal
 		                       ){
 	      this . human_name    =  human_name;
 	             set_state_desc( "About to retreive data");
+	      this . kcal          =  kcal;
 	             s             =  new TreeMap<Date,Double>();
 	             load_data     (  data_location );
 }
@@ -82,19 +85,16 @@ protected void  load_source( Scanner scan){
 	            }
 }
 protected boolean  parse_line( final  String  line){
-	SimpleDateFormat sdf     = new SimpleDateFormat("yyyy_MM_dd");
+
 	String []        tokens  =     d_comma .split (line);
-	Calendar         cal     =     Calendar.getInstance();
 	int              count   =     tokens  .length;
 	      if ( count >= 5 )
 	         {
 	    	  try   {
-	    	                  parse_date(  tokens[0]
-			                            ,  cal
-			                            );
+	    	          Date    date      =  parse_date        ( tokens[0] );
 	    	          Double  close     =  Double.parseDouble( tokens[4] );
-	    	                  s.put     ( cal.getTime()
-	    		    		            , close
+	    	                  s.put     (  date
+	    		    		            ,  close
 	    		    			        );
 	    	        }
 	    	  catch ( Exception  NumberFormatException )
@@ -108,21 +108,17 @@ protected boolean  parse_line( final  String  line){
 	                  set_state_desc( "line did not contain enough data to parse"  );
 	      return             false;
 }
-protected void   parse_date( String   s
-		                   , Calendar cal
-		                   )
+protected Date   parse_date( String   s )
           throws NumberFormatException{
-	      String mmddyy [] = d_slash.split( s );
-	      int    mm        = Integer.parseInt(mmddyy[0]) - 1;
-	      int    dd        = Integer.parseInt(mmddyy[1]);
-	      int    yy        = Integer.parseInt(mmddyy[2]);
-	             cal       . set( yy
-	            		        , mm
-	            		        , dd
-	            		        ,  0
-	            		        ,  0
-	            		        ,  0
-	            		        ) ;
+	             String mmddyy [] = d_slash.split( s );
+	             int    mm        = Integer.parseInt(mmddyy[0]);
+	             int    dd        = Integer.parseInt(mmddyy[1]);
+	             int    yy        = Integer.parseInt(mmddyy[2]);
+	             
+	      return        kcal      . set_ccyy_mm_dd( yy
+	    		                                  , mm
+	    		                                  , dd
+	    		                                  ) ;
 }
 public  int     get_date_count(){
 	    return  s.size();
@@ -142,15 +138,13 @@ public  TreeMap  <Date, Double> get_prices(){
 	    return                    s;
 }
 public  String           get_first_date(){
-	    SimpleDateFormat sdf     = new SimpleDateFormat("yyyy_MM_dd");
-	    return           sdf     .     format          ( get_prices().firstKey());     
+	    return           kcal.get_ccyy_mm_dd( get_prices().firstKey() ); 
 }
 public  Date             get_firstKey(){
         return             s.firstKey();     
 }
-public  String           get_last__date(){
-        SimpleDateFormat sdf     = new SimpleDateFormat("yyyy_MM_dd");
-        return           sdf     .     format          ( get_prices().lastKey());     
+public  String           get_last__date(){  
+        return           kcal.get_ccyy_mm_dd( get_prices().lastKey() );
 }
 public  Date             get_lastKey(){
         return             s.lastKey();     
