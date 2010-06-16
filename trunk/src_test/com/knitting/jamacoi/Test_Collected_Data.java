@@ -7,8 +7,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.net.URI;
 import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 import org.junit.After;
@@ -17,12 +15,13 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.knitting.util.K_Calendar;
 import com.knitting.util.Print_Dates_Prices;
 
 public class Test_Collected_Data {
 	static String          Dir__Prefix   = "knitting-01/src_test/com/knitting/datasource";
 	static String          AAPL          = Dir__Prefix + "/AAPL.txt";
-
+           K_Calendar      kcal          = new K_Calendar();
 	
            String          name;
            URL             url_this;
@@ -33,7 +32,7 @@ public class Test_Collected_Data {
            URI             uri_AMZN;
            URI             uri_QCOM;
            URI             uri_GLD;
-           
+             
            Request_Series  rs__AAPL;
 
 	@BeforeClass
@@ -69,6 +68,7 @@ assertNotNull ( url_AAPL       ) ;
 	public void test_01_valid_URI(){
 		   Collected_Data c  = new Collected_Data("AAPL"
 				                                 , uri_AAPL
+				                                 , kcal
 				                                 ) ;
 		   System.out.println( "State       = >"
 				             +  c.get_state_desc()
@@ -85,6 +85,7 @@ assertNotNull ( url_AAPL       ) ;
 	public void test_02_get_first_date(){
 		 Collected_Data c   =  new Collected_Data("AAPL"
                                                  , uri_AAPL
+                                                 , kcal
                                                  ) ;
 		 String date__first =  c.get_first_date();
 		 System.out.println ( "date__first = >"
@@ -98,6 +99,7 @@ assertNotNull ( url_AAPL       ) ;
 	public void test_03_get_first_price(){
 		 Collected_Data c   =  new Collected_Data("AAPL"
                                                  , uri_AAPL
+                                                 , kcal
                                                  ) ;
 		 Double price_first =  c.get_first_price();
 		 System.out.println ( "price_first = >"
@@ -112,6 +114,7 @@ assertNotNull ( url_AAPL       ) ;
 	public void test_04_get_last__date(){
 		 Collected_Data c  =  new Collected_Data("AAPL"
                                                 , uri_AAPL
+                                                , kcal
                                                 ) ;
 		 String date__last =  c.get_last__date();
 		 System.out.println( "date__last  = >"
@@ -125,6 +128,7 @@ assertNotNull ( url_AAPL       ) ;
 	public void test_05_get_last__price(){
 		 Collected_Data c  = new Collected_Data("AAPL"
                                                , uri_AAPL
+                                               , kcal
                                                ) ;
 		 Double price_last = c.get_last__price();
 		 System.out.println( "price_last  = >"
@@ -137,27 +141,23 @@ assertNotNull ( url_AAPL       ) ;
 	public void test_06_first_10_dates_and_prices(){
 		Collected_Data     c            = new Collected_Data  ("AAPL"
                                                               , uri_AAPL
+                                                              , kcal
                                                               ) ;
 		Print_Dates_Prices pdp          = new Print_Dates_Prices();
 		                   pdp.print_data(c, 10);
 	}	
 	@Test
 	public void test_07_get_price_on_date(){
-		Collected_Data    c             = new Collected_Data  ("AAPL"
-                                                              , uri_AAPL
-                                                              ) ;
-		SimpleDateFormat  ccyy_mm_dd    = new SimpleDateFormat("yyyy_MM_dd");
-	    Calendar          cal           =     Calendar.getInstance();
-	                      cal           .     set(  2004
-                                                 , (10 - 1)
-                                                 ,  25
-                                                 ,  0
-                                                 ,  0
-                                                 ,  0
-                                                 );
-	    Date              d_2004_10_25  =     cal.getTime();
+		Collected_Data    c             = new Collected_Data     ("AAPL"
+                                                                 , uri_AAPL
+                                                                 , kcal
+                                                                 ) ;
+		Date              d_2004_10_25  =     kcal.set_ccyy_mm_dd( 2004
+		                		                                 , 10
+		                		                                 , 25
+		                		                                 ) ;
 	    System.out.println( "d_2004_10_25        = >"
-	    	              +  ccyy_mm_dd.format( d_2004_10_25 )
+	    	              +  kcal.get_ccyy_mm_dd(d_2004_10_25)
 	    	              + "<"
 	                      );
 	    Double            price         =     c.get_price_on_date(d_2004_10_25);
@@ -165,16 +165,13 @@ assertNotNull ( url_AAPL       ) ;
 	    		          +  price
 	    		          + "<"
 	    		          );
-                          cal           .     set(  2004
-                                                 , (10 - 1)
-                                                 ,  26
-                                                 ,  0
-                                                 ,  0
-                                                 ,  0
-                                                 );
-        Date              d_2004_10_26  =     cal.getTime();
+
+        Date              d_2004_10_26  =     kcal.set_ccyy_mm_dd( 2004
+                                                                 , 10
+                                                                 , 26
+                                                                 ) ;
         System.out.println( "d_2004_10_26        = >"
-                          +  ccyy_mm_dd.format( d_2004_10_26 )
+                          +  kcal.get_ccyy_mm_dd(d_2004_10_26)
                           + "<"
                           );
                           price         =     c.get_price_on_date(d_2004_10_26);
@@ -182,16 +179,13 @@ assertNotNull ( url_AAPL       ) ;
                           +  price
                           + "<"
                           );
-                          cal           .     set(  2004
-                                                 , (10 - 1)
-                                                 ,  27
-                                                 ,  0
-                                                 ,  0
-                                                 ,  0
-                                                 );
-        Date              d_2004_10_27  =     cal.getTime();
+
+        Date              d_2004_10_27  =     kcal.set_ccyy_mm_dd( 2004
+                                                                 , 10
+                                                                 , 27
+                                                                 ) ;
         System.out.println( "d_2004_10_27        = >"
-                          +  ccyy_mm_dd.format( d_2004_10_27 )
+                          +  kcal.get_ccyy_mm_dd(d_2004_10_27)
                           + "<"
                           );
                           price         =     c.get_price_on_date(d_2004_10_27);
@@ -205,19 +199,15 @@ assertNotNull ( url_AAPL       ) ;
 	public void test_08_compare_price_get_prices(){
 		Collected_Data     c             = new Collected_Data  ("AAPL"
                                                                , uri_AAPL
+                                                               , kcal
                                                                ) ;
-		SimpleDateFormat   ccyy_mm_dd    = new SimpleDateFormat("yyyy_MM_dd");
-	    Calendar           cal           =     Calendar.getInstance();
-	                       cal           .     set(  2004
-                                                  , (10 - 1)
-                                                  ,  25
-                                                  ,  0
-                                                  ,  0
-                                                  ,  0
-                                                  );
-	    Date               d_2004_10_25  =     cal.getTime();
+
+	    Date               d_2004_10_25  =     kcal.set_ccyy_mm_dd( 2004
+                                                                  , 10
+                                                                  , 25
+                                                                  ) ;
 	    System.out.println ( "d_2004_10_25        = >"
-	    	               +  ccyy_mm_dd.format( d_2004_10_25 )
+	    	               +  kcal.get_ccyy_mm_dd(d_2004_10_25)
 	    	               + "<"
 	                       );
 	    Double             price         =     c.get_price_on_date(d_2004_10_25);
@@ -227,14 +217,14 @@ assertNotNull ( url_AAPL       ) ;
 	    		           );
 		Date  date__first  =  c.get_firstKey();
 	    System.out.println ( "date__first         = >"
-				           +  ccyy_mm_dd.format(date__first)
+				           +  kcal.get_ccyy_mm_dd(date__first)
 			               + "<"
 			               ); 
 	    System.out.println ( "d_2004_10_25        = >"
-	    		           +  d_2004_10_25.toString()
+	    		           +  kcal.toString(d_2004_10_25)
 	    		           );
 	    System.out.println ( "date__first         = >"
-		                   +  date__first .toString()
+		                   +  kcal.toString(date__first)
 		                   );
 	   
 	    if   ( d_2004_10_25.equals(date__first) )
