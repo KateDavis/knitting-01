@@ -1,22 +1,21 @@
 package com.knitting.jamacoi;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import com.knitting.util.K_Calendar;
+
 public class      Collected_Data_Set {
 	   private    LinkedHashSet<Collected_Data> set;
 	   private    TreeSet      <Date          > date_intersection;
-	   private    DateFormat                    ccyy_mm_dd;
-//	   private    Calendar cal;
-public            Collected_Data_Set(){
+	   private    K_Calendar                    kcal;
+public            Collected_Data_Set( final  K_Calendar  k){
 	              set               = new LinkedHashSet<Collected_Data>();
 	              date_intersection = new TreeSet      <Date          >();
-	              ccyy_mm_dd        = new SimpleDateFormat("yyyy_MM_dd");
+	              kcal              =     k;
 }
 public boolean    add_data(Collected_Data d){
 	   return     set.add(d);
@@ -28,12 +27,10 @@ public int        get_date_intersection_size(){
 	   return         date_intersection.size();
 }
 public String     get_first_ccyy_mm_dd(){
-	              SimpleDateFormat sdf = new SimpleDateFormat( "yyyy_MM_dd" );
-	   return     sdf.format ( date_intersection.first() );
+	   return     kcal .get_ccyy_mm_dd( date_intersection.first() );
 }
 public String     get_last__ccyy_mm_dd(){
-                  SimpleDateFormat sdf = new SimpleDateFormat( "yyyy_MM_dd" );
-       return     sdf.format ( date_intersection.last () );
+	   return     kcal .get_ccyy_mm_dd( date_intersection.last () );
 }
 protected void    set_date_intersection(){
 	      TreeSet<Date>  intersection  =  new TreeSet<Date>();
