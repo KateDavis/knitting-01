@@ -6,31 +6,35 @@ import java.util.Date;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.TreeSet;
 import java.util.regex.Pattern;
 
 import com.knitting.util.K_Calendar;
 
-public  class    Collected_Data {
-static  private  Pattern              d_comma  =  Pattern.compile(",");	
-static  private  Pattern              d_slash  =  Pattern.compile("/");
-        private	 String               human_name;
-        private	 String               state_desc;
-        private  K_Calendar           kcal;
-        private	 TreeMap<Date,Double> s         ;
-private          Collected_Data(){
-	             human_name    = "error";
-	             set_state_desc( "Created via no parm constructor" );
-	             s             =  new TreeMap<Date,Double>();
+public  class      Collected_Data {
+static  private    Pattern              d_comma  =  Pattern.compile(",");	
+static  private    Pattern              d_slash  =  Pattern.compile("/");
+        private	   String               human_name;
+        private	   String               state_desc;
+        private    TreeSet<Integer>     lags;
+        private    K_Calendar           kcal;
+        private	   TreeMap<Date,Double> s         ;
+private            Collected_Data(){
+	               human_name    = "error";
+	               set_state_desc( "Created via no parm constructor" );
+	               s             =  new TreeMap<Date,Double>();
 }
-public           Collected_Data( final  String      human_name
-		                       , final  URI         data_location
-		                       , final  K_Calendar  kcal
-		                       ){
-	      this . human_name    =  human_name;
-	             set_state_desc( "About to retreive data");
-	      this . kcal          =  kcal;
-	             s             =  new TreeMap<Date,Double>();
-	             load_data     (  data_location );
+public             Collected_Data( final  String            human_name
+		                         , final  URI               data_location
+		                         , final  TreeSet<Integer>  lags
+		                         , final  K_Calendar        kcal
+		                         ){
+	        this . human_name    =  human_name;
+	               set_state_desc( "About to retreive data");
+	        this . lags          =  lags;
+	        this . kcal          =  kcal;
+	               s             =  new TreeMap<Date,Double>();
+	               load_data     (  data_location );
 }
 protected void  load_data( URI  d ){
 	      File    f = new File (d);
@@ -158,14 +162,16 @@ public  Double           get_price_on_date ( Date d ) {
 public  Set<Date>        get_keys(){
 	    return             s.keySet();
 }
-public  Double  get_first_price(){
-        return  s.get( get_firstKey() ) ;       
+public  Double           get_first_price(){
+        return           s.get( get_firstKey() ) ;       
 }
-public  Double  get_last__price(){
-        return  s.get( get_lastKey() ) ;        
+public  Double           get_last__price(){
+        return           s.get( get_lastKey() ) ;        
 }
-public  boolean is_data_empty(){
-	    return  s.isEmpty();
+public  boolean          is_data_empty(){
+	    return           s.isEmpty();
 }
-
+public  int              get_lag_size(){
+        return              lags.size();
+}
 }
