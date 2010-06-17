@@ -34,7 +34,8 @@ public class Test_Collected_Data {
            URI             uri_GLD;
              
            Request_Series  rs__AAPL;
-
+             
+                          
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
@@ -59,6 +60,8 @@ assertNotNull ( url_AAPL       ) ;
 
 
                 uri_AAPL       =          url_AAPL.toURI();
+                rs__AAPL = new Request_Series( uri_AAPL );
+                rs__AAPL .     add_lag(1);
 	}
 
 	@After
@@ -68,6 +71,7 @@ assertNotNull ( url_AAPL       ) ;
 	public void test_01_valid_URI(){
 		   Collected_Data c  = new Collected_Data("AAPL"
 				                                 , uri_AAPL
+				                                 , rs__AAPL.lags
 				                                 , kcal
 				                                 ) ;
 		   System.out.println( "State       = >"
@@ -85,6 +89,7 @@ assertNotNull ( url_AAPL       ) ;
 	public void test_02_get_first_date(){
 		 Collected_Data c   =  new Collected_Data("AAPL"
                                                  , uri_AAPL
+                                                 , rs__AAPL.get_lags()
                                                  , kcal
                                                  ) ;
 		 String date__first =  c.get_first_date();
@@ -99,6 +104,7 @@ assertNotNull ( url_AAPL       ) ;
 	public void test_03_get_first_price(){
 		 Collected_Data c   =  new Collected_Data("AAPL"
                                                  , uri_AAPL
+                                                 , rs__AAPL.get_lags()
                                                  , kcal
                                                  ) ;
 		 Double price_first =  c.get_first_price();
@@ -114,6 +120,7 @@ assertNotNull ( url_AAPL       ) ;
 	public void test_04_get_last__date(){
 		 Collected_Data c  =  new Collected_Data("AAPL"
                                                 , uri_AAPL
+                                                , rs__AAPL.get_lags()
                                                 , kcal
                                                 ) ;
 		 String date__last =  c.get_last__date();
@@ -128,6 +135,7 @@ assertNotNull ( url_AAPL       ) ;
 	public void test_05_get_last__price(){
 		 Collected_Data c  = new Collected_Data("AAPL"
                                                , uri_AAPL
+                                               , rs__AAPL.get_lags()
                                                , kcal
                                                ) ;
 		 Double price_last = c.get_last__price();
@@ -141,6 +149,7 @@ assertNotNull ( url_AAPL       ) ;
 	public void test_06_first_10_dates_and_prices(){
 		Collected_Data     c            = new Collected_Data  ("AAPL"
                                                               , uri_AAPL
+                                                              , rs__AAPL.get_lags()
                                                               , kcal
                                                               ) ;
 		Print_Dates_Prices pdp          = new Print_Dates_Prices();
@@ -150,6 +159,7 @@ assertNotNull ( url_AAPL       ) ;
 	public void test_07_get_price_on_date(){
 		Collected_Data    c             = new Collected_Data     ("AAPL"
                                                                  , uri_AAPL
+                                                                 , rs__AAPL.get_lags()
                                                                  , kcal
                                                                  ) ;
 		Date              d_2004_10_25  =     kcal.set_ccyy_mm_dd( 2004
@@ -199,6 +209,7 @@ assertNotNull ( url_AAPL       ) ;
 	public void test_08_compare_price_get_prices(){
 		Collected_Data     c             = new Collected_Data  ("AAPL"
                                                                , uri_AAPL
+                                                               , rs__AAPL.get_lags()
                                                                , kcal
                                                                ) ;
 
