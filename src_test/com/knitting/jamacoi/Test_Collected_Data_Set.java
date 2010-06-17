@@ -105,14 +105,17 @@ assertNotNull( url_GLD        ) ;
 	    		             );
 		   Collected_Data      aapl  =  new  Collected_Data( rs__AAPL.get_human_name   ()
 				                                           , rs__AAPL.get_data_location() 
+				                                           , rs__AAPL.get_lags             ()
 				                                           , kcal 
 				                                           ) ;
 		   Collected_Data      amzn  =  new  Collected_Data( rs__AMZN.get_human_name   ()
-				                                           , rs__AAPL.get_data_location() 
+				                                           , rs__AMZN.get_data_location()
+				                                           , rs__AMZN.get_lags             ()
 				                                           , kcal
 				                                           ) ;
 		   Collected_Data      qcom  =  new  Collected_Data( rs__QCOM.get_human_name   ()
-				                                           , rs__QCOM.get_data_location() 
+				                                           , rs__QCOM.get_data_location()
+				                                           , rs__QCOM.get_lags             ()
 				                                           , kcal 
 				                                           ) ;
 		   System.out.println( "appl 2004_10_25 = >"
@@ -168,7 +171,7 @@ assertNotNull( url_GLD        ) ;
 		                     );
 		   TreeMap< Date
 		          , ArrayList<Double>
-		          > matrix   =  cds.set_initial_matrix();
+		          > matrix   =  cds.set_lagged_matrix();
 		   
 		   System.out.println( "date_first             = >"
 				             +  kcal.get_ccyy_mm_dd( matrix.firstKey() )
