@@ -72,5 +72,45 @@ protected TreeMap  <Date, ArrayList<Double> >  set_initial_matrix(){
 	          }
 	      return matrix;
 }
-
+protected TreeMap  <Date, ArrayList<Double> >  set_lagged_matrix(){
+    TreeMap  <Date, ArrayList<Double> >  matrix  = new TreeMap  <Date, ArrayList<Double> >  ()  ;
+    int   cols =     get_cols();
+    System.out.println( "cols       = >"
+    		          +  cols
+    		          + "<"
+    		          );
+    int   ix = 0;
+    for ( Date date: date_intersection )
+        {
+  	    ArrayList<Double>              one_row = new ArrayList<Double>( cols );
+  	    
+  	    for ( Collected_Data cd: set )
+  	        {
+  	    	  if ( ix == 0 )
+  	    	     {
+  	    		   System.out.println(  cd.get_human_name()
+  	    				             + " "
+  	    				             + "price = >"
+  	    				             +  cd.get_price_on_date( date )
+  	    				             + "<"
+  	    				             );
+  	    	     }
+  	    	  one_row.add ( cd.get_price_on_date( date ) );
+  	        }
+  	    ++ix;
+  	    matrix.put( date, one_row );
+        }
+    return matrix;
+}
+public int    get_cols(){
+	
+	   int    ix  = 0;
+	
+              for ( Collected_Data cd: set )
+	              {
+            	      ix += cd.get_lag_size();
+		            ++ix;
+	              }
+       return ix;
+}
 }
