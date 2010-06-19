@@ -17,6 +17,8 @@ static  private    Pattern              d_slash  =  Pattern.compile("/");
         private	   String               human_name;
         private	   String               state_desc;
         private    TreeSet<Integer>     lags;
+        private    int                  price_q_size_actual;
+        private    Double[]             price_q;
         private    K_Calendar           kcal;
         private	   TreeMap<Date,Double> s         ;
 private            Collected_Data(){
@@ -31,7 +33,8 @@ public             Collected_Data( final  String            human_name
 		                         ){
 	        this . human_name    =  human_name;
 	               set_state_desc( "About to retreive data");
-	        this . lags          =  lags;
+	        this . lags          =  (TreeSet<Integer>)lags.clone();
+	               set_price_q();
 	        this . kcal          =  kcal;
 	               s             =  new TreeMap<Date,Double>();
 	               load_data     (  data_location );
@@ -136,6 +139,12 @@ public  String  get_state_desc(){
 public  String  get_human_name(){
 	    return      human_name;
 }
+public  TreeSet  <Integer     > get_lags  (){
+	    return                      lags;
+}
+public  Double[]  get_price_q(){
+	    return        price_q;
+}
 public  TreeMap  <Date, Double> get_prices(){
 //	    SortedMap<Date, Double> usm = SortedMap.unmodifiableSortedMap( s );
 //	    return                  usm;
@@ -173,5 +182,65 @@ public  boolean          is_data_empty(){
 }
 public  int              get_lag_size(){
         return              lags.size();
+}
+public  int              get_lags_max(){
+	    return               lags.last();
+}
+public  int              get_price_q_size_actual(){
+	    return               price_q_size_actual;
+}
+public  void             print_print_q(){
+           for ( int     ix = 0
+	    	   ;         ix <      get_price_q_size_actual()
+	    	   ;       ++ix
+	    	   )
+	           {
+	    	             System.out.println( "  price_q["
+	    	               		           +    ix
+	    	            		           +   "] = >"
+	    	            		           +    price_q[ix]
+	    	            		           +   "<"
+	    	            		           );
+	           }
+}
+public  void             add_price_q( Double  price ){
+	    if   (
+	    		 ( lags.last() != get_price_q_size_actual() )
+	    		 ||
+	    		 ( price_q        == null               )
+	    	 )
+	         {
+	    	       insert_price( price );   
+	         }
+	    else
+	         {
+	    	       set_price_q();
+	         }
+}
+protected  void  insert_price( Double price){
+	       for ( int    ix = (get_price_q_size_actual() - 1 )
+	    	   ;        ix > 0      
+	    	   ;      --ix
+	    	   )
+	           {
+	    	            price_q[ ix ] = price_q[ ix - 1 ];
+	           }
+	       price_q[0] = price;
+}
+protected  void  set_price_q(){
+	                             set_price_q_size_actual();
+	       price_q = new Double[ get_price_q_size_actual() ];
+	       
+	       for ( int   ix = 0
+	    	   ;       ix <      get_price_q_size_actual()
+	    	   ;     ++ix
+	    	   )
+	           {
+	    	           price_q[ix] = -1.0;
+	           } 
+}
+protected  void set_price_q_size_actual(){
+	                price_q_size_actual = lags.last()
+	                                    + 1;
 }
 }
