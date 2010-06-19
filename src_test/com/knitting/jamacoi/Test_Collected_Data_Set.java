@@ -7,6 +7,8 @@ import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.Set;
 import java.util.TreeMap;
 
 import org.junit.After;
@@ -108,6 +110,14 @@ assertNotNull( url_GLD        ) ;
 				                                           , rs__AAPL.get_lags             ()
 				                                           , kcal 
 				                                           ) ;
+		   if ( rs__AAPL.get_lags() == null )
+		      {
+			    System.out.println(" rs__AAPL.get_lags() == null" );
+		      }
+		   else
+		      {
+			    System.out.println(" rs__AAPL.get_lags() != null" );
+		      }
 		   Collected_Data      amzn  =  new  Collected_Data( rs__AMZN.get_human_name   ()
 				                                           , rs__AMZN.get_data_location()
 				                                           , rs__AMZN.get_lags             ()
@@ -172,7 +182,32 @@ assertNotNull( url_GLD        ) ;
 		   TreeMap< Date
 		          , ArrayList<Double>
 		          > matrix   =  cds.set_lagged_matrix();
+		   Set<Date> date    =  matrix.keySet();
 		   
+		   Iterator<Date> iter     =  date.iterator();
+		   int        ix     =  0;
+		   while (
+				    ( iter.hasNext() )
+				    &&
+				    ( ix     <  10   )
+				 )
+		         {
+			        Date d = iter.next();
+			        System.out.println( "date                   = >"
+			                          +  kcal.get_ccyy_mm_dd( d )
+			                          + "<"
+			                          );
+			        ArrayList<Double> price_row = matrix.get( d );
+			        for ( Double p: price_row )
+				        {
+					     System.out.println( "     price = >"
+					    		           +       p
+					    		           +      "<"
+					    		           );
+				        }
+			      ++ix;
+		         }
+/***************************************************************************		   
 		   System.out.println( "date_first             = >"
 				             +  kcal.get_ccyy_mm_dd( matrix.firstKey() )
 				             + "<"
@@ -186,6 +221,7 @@ assertNotNull( url_GLD        ) ;
 			    		           +      "<"
 			    		           );
 		       }
+***************************************************************************/
 	}
 
 }
