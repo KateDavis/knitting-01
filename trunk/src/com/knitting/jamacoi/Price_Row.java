@@ -52,14 +52,20 @@ public     boolean  set_price( final  int    col
 public     Double   get_price( final  int  col){
 	       return   pr.get( col );
 }
-public     String   print_decimal(){
-	       return   fmt_row( "  %7.3d" );
+public     String   fmt_row_space_and_decimal(){
+	       return   fmt_row( "  %9.4f" );
+}
+public     String   fmt_row_comma_and_decimal(){
+    return   fmt_row( ",%9.4f" );
+}
+public     String   fmt_row_comma_and_scientific(){
+    return   fmt_row( ",%12.5E" );
 }
 public     String     fmt_row(final String fmt_str ){
 	       Formatter  fmt = new Formatter();
 	       for ( Double price: pr)
 	           {
-	    	     fmt.format( fmt_str, price );
+	    	     fmt.format( fmt_str, price.floatValue() );
 	           }
 	       return fmt.toString();
 	       
