@@ -46,7 +46,7 @@ protected void    set_date_intersection(){
 	             }
      date_intersection   = intersection;      
 }
-protected Lagged_Matrix set_lagged_matrix(){
+protected Lagged_Matrix      set_lagged_matrix(){
 	      Lagged_Matrix lm = new Lagged_Matrix   ( get_cols() );
 	      for ( Date date: date_intersection )
 	          {
