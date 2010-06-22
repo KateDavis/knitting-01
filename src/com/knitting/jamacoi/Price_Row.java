@@ -56,10 +56,10 @@ public     String   fmt_row_space_and_decimal(){
 	       return   fmt_row( "  %9.4f" );
 }
 public     String   fmt_row_comma_and_decimal(){
-    return   fmt_row( ",%9.4f" );
+           return   fmt_row( ",%9.4f" );
 }
 public     String   fmt_row_comma_and_scientific(){
-    return   fmt_row( ",%12.5E" );
+           return   fmt_row( ",%12.5E" );
 }
 public     String     fmt_row(final String fmt_str ){
 	       Formatter  fmt = new Formatter();
