@@ -5,11 +5,7 @@ import static org.junit.Assert.assertNotNull;
 
 import java.net.URI;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
-import java.util.Set;
-import java.util.TreeMap;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -179,6 +175,9 @@ assertNotNull( url_GLD        ) ;
 		                     +  cds.get_last__ccyy_mm_dd()
 		                     + "<"
 		                     );
+		   Lagged_Matrix lm  = cds.set_lagged_matrix_1();
+		                 lm  . print_ix_entries( 10 );
+/*************************************************************************************		   
 		   TreeMap< Date
 		          , ArrayList<Double>
 		          > matrix   =  cds.set_lagged_matrix();
@@ -207,6 +206,7 @@ assertNotNull( url_GLD        ) ;
 				        }
 			      ++ix;
 		         }
+**********************************************************************************/
 /***************************************************************************		   
 		   System.out.println( "date_first             = >"
 				             +  kcal.get_ccyy_mm_dd( matrix.firstKey() )
