@@ -10,12 +10,13 @@ public class      Collected_Data_Set {
 	   private    LinkedHashSet<Collected_Data> set;
 	   private    TreeSet      <Date          > date_intersection;
 	   private    K_Calendar                    kcal;
+private           Collected_Data_Set(){}  // to prevent this constructor's use
 public            Collected_Data_Set( final  K_Calendar  k){
 	              set               = new LinkedHashSet<Collected_Data>();
 	              date_intersection = new TreeSet      <Date          >();
 	              kcal              =     k;
 }
-public boolean    add_data(Collected_Data d){
+public boolean    add_data( final  Collected_Data  d){
 	   return     set.add(d);
 }
 public int        get_data_size(){
@@ -45,34 +46,7 @@ protected void    set_date_intersection(){
 	             }
      date_intersection   = intersection;      
 }
-/****************************************************
-protected TreeMap  <Date, ArrayList<Double> >  set_initial_matrix(){
-	      TreeMap  <Date, ArrayList<Double> >  matrix  = new TreeMap  <Date, ArrayList<Double> >  ()  ;
-	      int   ix = 0;
-	      for ( Date date: date_intersection )
-	          {
-	    	    ArrayList<Double>              one_row = new ArrayList<Double>( this.get_data_size() );
-	    	    
-	    	    for ( Collected_Data cd: set )
-	    	        {
-	    	    	  if ( ix == 0 )
-	    	    	     {
-	    	    		   System.out.println(  cd.get_human_name()
-	    	    				             + " "
-	    	    				             + "price = >"
-	    	    				             +  cd.get_price_on_date( date )
-	    	    				             + "<"
-	    	    				             );
-	    	    	     }
-	    	    	  one_row.add ( cd.get_price_on_date( date ) );
-	    	        }
-	    	    ++ix;
-	    	    matrix.put( date, one_row );
-	          }
-	      return matrix;
-}
-***********************************************************/
-protected Lagged_Matrix set_lagged_matrix_1(){
+protected Lagged_Matrix set_lagged_matrix(){
 	      Lagged_Matrix lm = new Lagged_Matrix   ( get_cols() );
 	      for ( Date date: date_intersection )
 	          {
@@ -95,46 +69,6 @@ protected Lagged_Matrix set_lagged_matrix_1(){
 	          }
 	      return        lm;
 }
-/***************************************************************************************************
-protected TreeMap  <Date, ArrayList<Double> >  set_lagged_matrix(){
-    TreeMap  <Date, ArrayList<Double> >  matrix  = new TreeMap  <Date, ArrayList<Double> >  ()  ;
-    int   cols =     get_cols();
-    System.out.println( "cols       = >"
-    		          +  cols
-    		          + "<"
-    		          );
-    int   ix = 0;
-    for ( Date date: date_intersection )
-        {
-  	    ArrayList<Double>              one_row = new ArrayList<Double>( cols );
-  	    
-  	    for ( Collected_Data cd: set )
-  	        {
-  	    	  if ( ix == 0 )
-  	    	     {
-  	    		   System.out.println(  cd.get_human_name()
-  	    				             + " "
-  	    				             + "price = >"
-  	    				             +  cd.get_price_on_date( date )
-  	    				             + "<"
-  	    				             );
-  	    	     }
-  	    	  Double        price = cd.get_price_on_date( date );
-  	    	  one_row.add ( price );
-  	    	  if ( cd.get_lag_size() > 0 )
-  	    	     {
-  	    		   cd.add_price_q ( price );
-  	    		   add_lag_prices ( one_row
-  	    				          , cd
-  	    				          );
-  	    	     }
-  	        }
-  	    ++ix;
-  	    matrix.put( date, one_row );
-        }
-    return matrix;
-}
-******************************************************************************/
 public int    get_cols(){
 	   int    ix  = 0;
               for ( Collected_Data cd: set )
@@ -147,31 +81,9 @@ public int    get_cols(){
 protected  void  add_lag_prices( final  Price_Row       pr
 		                       , final  Collected_Data  cd
 		                       ) {
-	       if ( pr  ==  null )
-	          {
-	    	    System.out.println("pr  ==  null" );
-	          }
-	       if ( cd  ==  null )
-	          {
-	    	    System.out.println("cd  ==  null" );
-	          }
-	       if ( cd.get_price_q() == null )
-	          {
-	    	    System.out.println("price_q == null" );
-	          }
 	       for  ( int     lag:   cd.get_lags()  )
 	            {
-	    	      Double       price = cd.get_price_q()[lag];
-/**********************************************************************	    	      
-	    	      System.out.println( "lag=>"
-	    	    		            +  lag
-	    	    		            + "<"
-	    	    		            + "  "
-	    	    		            + "price=>"
-	    	    		            +  price
-	    	    		            + "<"
-	    	    		            );
-**********************************************************************/	    	    		            
+	    	      Double        price = cd.get_price_q()[lag]; 	    		            
 	    	      pr.add_price( price );
 	            }
 }
