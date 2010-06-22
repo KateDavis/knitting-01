@@ -175,53 +175,8 @@ assertNotNull( url_GLD        ) ;
 		                     +  cds.get_last__ccyy_mm_dd()
 		                     + "<"
 		                     );
-		   Lagged_Matrix lm  = cds.set_lagged_matrix_1();
+		   Lagged_Matrix lm  = cds.set_lagged_matrix();
 		                 lm  . print_ix_entries( 10 );
-/*************************************************************************************		   
-		   TreeMap< Date
-		          , ArrayList<Double>
-		          > matrix   =  cds.set_lagged_matrix();
-		   Set<Date> date    =  matrix.keySet();
-		   
-		   Iterator<Date> iter     =  date.iterator();
-		   int        ix     =  0;
-		   while (
-				    ( iter.hasNext() )
-				    &&
-				    ( ix     <  10   )
-				 )
-		         {
-			        Date d = iter.next();
-			        System.out.println( "date                   = >"
-			                          +  kcal.get_ccyy_mm_dd( d )
-			                          + "<"
-			                          );
-			        ArrayList<Double> price_row = matrix.get( d );
-			        for ( Double p: price_row )
-				        {
-					     System.out.println( "     price = >"
-					    		           +       p
-					    		           +      "<"
-					    		           );
-				        }
-			      ++ix;
-		         }
-**********************************************************************************/
-/***************************************************************************		   
-		   System.out.println( "date_first             = >"
-				             +  kcal.get_ccyy_mm_dd( matrix.firstKey() )
-				             + "<"
-				             );
-		   ArrayList<Double> price_row = matrix.get( matrix.firstKey() );
-		   
-		   for ( Double p: price_row )
-		       {
-			     System.out.println( "     price = >"
-			    		           +       p
-			    		           +      "<"
-			    		           );
-		       }
-***************************************************************************/
 	}
 
 }
