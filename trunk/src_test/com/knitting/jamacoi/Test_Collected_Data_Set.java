@@ -176,7 +176,12 @@ assertNotNull( url_GLD        ) ;
 		                     + "<"
 		                     );
 		   Lagged_Matrix lm  = cds.set_lagged_matrix();
-		                 lm  . print_ix_entries( 10 );
+		   System.out.println(" ");
+		                 lm  . print_ix_entries_space_decimal   ( 10 );
+		   System.out.println(" ");
+		                 lm  . print_ix_entries_comma_decimal   ( 10 );              
+		   System.out.println(" ");
+		                 lm  . print_ix_entries_comma_scientific( 10 );
 	}
 
 }
