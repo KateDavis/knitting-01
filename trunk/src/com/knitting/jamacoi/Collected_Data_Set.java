@@ -1,9 +1,7 @@
 package com.knitting.jamacoi;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashSet;
-import java.util.TreeMap;
 import java.util.TreeSet;
 
 import com.knitting.util.K_Calendar;
@@ -74,6 +72,30 @@ protected TreeMap  <Date, ArrayList<Double> >  set_initial_matrix(){
 	      return matrix;
 }
 ***********************************************************/
+protected Lagged_Matrix set_lagged_matrix_1(){
+	      Lagged_Matrix lm = new Lagged_Matrix   ( get_cols() );
+	      for ( Date date: date_intersection )
+	          {
+	  	        Price_Row pr    = new Price_Row  ( get_cols() );
+	  	        for ( Collected_Data cd: set )
+	  	            {
+	  	    	      Double       price =     cd.get_price_on_date( date );
+	  	    	      pr.add_price(price);
+	  	    	      if ( cd.get_lag_size() > 0 )
+	  	    	         {
+	  	    		       cd.add_price_q ( price );
+	  	    		       add_lag_prices ( pr
+	  	    				              , cd
+	  	    				              );
+	  	    	         }
+	  	            }
+	  	        lm.put( date
+	  	        	  , pr
+	  	        	  );
+	          }
+	      return        lm;
+}
+/***************************************************************************************************
 protected TreeMap  <Date, ArrayList<Double> >  set_lagged_matrix(){
     TreeMap  <Date, ArrayList<Double> >  matrix  = new TreeMap  <Date, ArrayList<Double> >  ()  ;
     int   cols =     get_cols();
@@ -112,6 +134,7 @@ protected TreeMap  <Date, ArrayList<Double> >  set_lagged_matrix(){
         }
     return matrix;
 }
+******************************************************************************/
 public int    get_cols(){
 	   int    ix  = 0;
               for ( Collected_Data cd: set )
@@ -121,16 +144,16 @@ public int    get_cols(){
 	              }
        return ix;
 }
-protected  void  add_lag_prices( ArrayList<Double>  one_row
-		                       , Collected_Data     cd
+protected  void  add_lag_prices( final  Price_Row       pr
+		                       , final  Collected_Data  cd
 		                       ) {
-	       if ( one_row == null )
+	       if ( pr  ==  null )
 	          {
-	    	    System.out.println("one_row == null" );
+	    	    System.out.println("pr  ==  null" );
 	          }
-	       if ( cd      == null )
+	       if ( cd  ==  null )
 	          {
-	    	    System.out.println("cd      == null" );
+	    	    System.out.println("cd  ==  null" );
 	          }
 	       if ( cd.get_price_q() == null )
 	          {
@@ -149,8 +172,7 @@ protected  void  add_lag_prices( ArrayList<Double>  one_row
 	    	    		            + "<"
 	    	    		            );
 **********************************************************************/	    	    		            
-	    	      one_row.add( price );
+	    	      pr.add_price( price );
 	            }
-	
 }
 }
