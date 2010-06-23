@@ -177,11 +177,23 @@ assertNotNull( url_GLD        ) ;
 		                     );
 		   Lagged_Matrix lm  = cds.set_lagged_matrix();
 		   System.out.println(" ");
-		                 lm  . print_ix_entries_space_decimal   ( 10 );
+		   Price_Row_Format  prf = new Price_Row_Format
+		                             ( Price_Row_Format.fmt_type.SPACE_DECIMAL );
+		                     lm  .     print_ix_entries( 10
+		                    		                   , prf
+		                    		                   ) ;
 		   System.out.println(" ");
-		                 lm  . print_ix_entries_comma_decimal   ( 10 );              
+		                     prf = new Price_Row_Format
+                                     ( Price_Row_Format.fmt_type.COMMA_DECIMAL );
+		                     lm  .     print_ix_entries( 10
+		                    		                   , prf
+		                    		                   ) ;              
 		   System.out.println(" ");
-		                 lm  . print_ix_entries_comma_scientific( 10 );
+		                     prf = new Price_Row_Format
+                                     ( Price_Row_Format.fmt_type.COMMA_SCIENTIFIC );
+		                     lm  .     print_ix_entries( 10
+		                    		                   , prf
+		                    		                   );
 	}
 
 }
