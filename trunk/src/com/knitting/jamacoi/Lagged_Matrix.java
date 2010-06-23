@@ -30,82 +30,35 @@ public    void       put( final Date       date
 		                ) {
 	      tm.put(date, pr);
 }
-public    void       print_ix_entries_space_decimal(final int ix_max){
-	
-	      Set     <Map.Entry<Date,Price_Row>> set  = tm .entrySet();
-	      Iterator<Map.Entry<Date,Price_Row>> iter = set.iterator();
-	      int                                 ix   = 0;
-	      
-	      while (
-	    		   ( iter.hasNext()   )
-	    		   &&
-	    		   ( ix < ix_max      )
-	    		)
-	            {  System.out.println(fmt_entry_space_decimal( iter.next() 
-	            		                                     )
-	            		             );
-	    	       ++ix;
-	            }
-}
-public    void       print_ix_entries_comma_decimal(final int ix_max){
-	
-    Set     <Map.Entry<Date,Price_Row>> set  = tm .entrySet();
-    Iterator<Map.Entry<Date,Price_Row>> iter = set.iterator();
-    int                                 ix   = 0;
+public   void        print_ix_entries ( final  int               ix_max
+		                              , final  Price_Row_Format  prf
+		                              ){
+         Set     <Map.Entry<Date,Price_Row>> set  = tm .entrySet();
+         Iterator<Map.Entry<Date,Price_Row>> iter = set.iterator();
+         int                                 ix   = 0;
     
-    while (
-  		   ( iter.hasNext()   )
-  		   &&
-  		   ( ix < ix_max      )
-  		)
-          {  System.out.println(fmt_entry_comma_decimal( iter.next() 
-          		                                     )
-          		             );
-  	       ++ix;
-          }
+         while (
+  		          ( iter.hasNext()   )
+  		          &&
+  		          ( ix < ix_max      )
+  		       )
+               {
+        	        System.out.println(fmt_entry( iter.next() 
+        	        		                    , prf
+        	        		                    ) 
+        	        		          );
+  	              ++ix;
+               }
 }
-public    void       print_ix_entries_comma_scientific(final int ix_max){
-	
-    Set     <Map.Entry<Date,Price_Row>> set  = tm .entrySet();
-    Iterator<Map.Entry<Date,Price_Row>> iter = set.iterator();
-    int                                 ix   = 0;
-    
-    while (
-  		   ( iter.hasNext()   )
-  		   &&
-  		   ( ix < ix_max      )
-  		)
-          {  System.out.println(fmt_entry_comma_scientific( iter.next() 
-          		                                     )
-          		             );
-  	       ++ix;
-          }
-}
-protected String     fmt_entry_space_decimal(final Map.Entry<Date,Price_Row>  me ){
-	      K_Calendar kcal = new K_Calendar();
-	      String     date =     kcal.get_ccyy_mm_dd( (  me.getKey  () ) );
-	      Price_Row  pr   =                             me.getValue();
-	      String     row  =     pr.fmt_row_space_and_decimal();
-	      return     (  date
-	    		     +  row
-	    		     ) ;
-}
-protected String     fmt_entry_comma_decimal(final Map.Entry<Date,Price_Row>  me ){
+protected String     fmt_entry(final  Map.Entry<Date,Price_Row>  me 
+		                      ,final  Price_Row_Format           prf
+		                      ){
           K_Calendar kcal = new K_Calendar();
           String     date =     kcal.get_ccyy_mm_dd( (  me.getKey  () ) );
-          Price_Row  pr   =                             me.getValue();
-          String     row  =     pr.fmt_row_comma_and_decimal();
+          Price_Row  pr   =                             me.getValue()    ;
+          String     row  =     pr.fmt_row(prf.get_price_row_format() )  ;
           return     (  date
   		             +  row
   		             ) ;
-}
-protected String     fmt_entry_comma_scientific(final Map.Entry<Date,Price_Row>  me ){
-          K_Calendar kcal = new K_Calendar();
-          String     date =     kcal.get_ccyy_mm_dd( (  me.getKey  () ) );
-          Price_Row  pr   =                             me.getValue();
-          String     row  =     pr.fmt_row_comma_and_scientific();
-          return     (  date
-	                 +  row
-	                 ) ;
 }
 }
