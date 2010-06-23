@@ -4,6 +4,14 @@ import java.util.ArrayList;
 import java.util.Formatter;
 
 public     class    Price_Row {
+static	   enum     fmt_type  { SPACE_DECIMAL
+	                          , COMMA_DECIMAL
+	                          , COMMA_SCIENTIFIC
+	                          };
+static     String[] fmt_str = { "  %9.4f"
+		                      ,  ",%9.4f"
+		                      , ",%12.5E"
+                              } ;
 	       private  int               cols;
            private  ArrayList<Double> pr;
 
@@ -53,13 +61,19 @@ public     Double   get_price( final  int  col){
 	       return   pr.get( col );
 }
 public     String   fmt_row_space_and_decimal(){
-	       return   fmt_row( "  %9.4f" );
+	       Price_Row_Format f = new Price_Row_Format
+	                              ( Price_Row_Format.fmt_type.SPACE_DECIMAL );
+	       return   fmt_row ( f.get_price_row_format() );
 }
 public     String   fmt_row_comma_and_decimal(){
-           return   fmt_row( ",%9.4f" );
+           Price_Row_Format f = new Price_Row_Format
+                                  ( Price_Row_Format.fmt_type.COMMA_DECIMAL );
+           return   fmt_row ( f.get_price_row_format() );	
 }
 public     String   fmt_row_comma_and_scientific(){
-           return   fmt_row( ",%12.5E" );
+           Price_Row_Format f = new Price_Row_Format
+                                  ( Price_Row_Format.fmt_type.COMMA_SCIENTIFIC );
+           return   fmt_row ( f.get_price_row_format() );	
 }
 public     String     fmt_row(final String fmt_str ){
 	       Formatter  fmt = new Formatter();
