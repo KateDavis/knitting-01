@@ -75,7 +75,7 @@ public     String   fmt_row_comma_and_scientific(){
                                   ( Price_Row_Format.fmt_type.COMMA_SCIENTIFIC );
            return   fmt_row ( f.get_price_row_format() );	
 }
-public     String     fmt_row(final String fmt_str ){
+public     String   fmt_row(final String fmt_str ){
 	       Formatter  fmt = new Formatter();
 	       for ( Double price: pr)
 	           {
