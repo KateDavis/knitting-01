@@ -1,7 +1,8 @@
 package com.knitting.jamacoi;
 // junk commit 1 to test svn
 // junk commit 2 to test svn
-import  java.io.*;
+import java.io.File;
+import java.io.IOException;
 
 import com.thoughtworks.xstream.XStream;
 
@@ -15,25 +16,26 @@ public class Main
          ,       not_significant
 {
 //int              count_args       = args.length;
-String             file_xml_name_02 = "C:/Temp/test_xml_02.xml";
+//String           file_xml_name_02 = "C:/Temp/test_xml_02.xml";
+String             file_xml_name_02 =   "/Temp/test_xml_02.xml";
     
 Build_xml_string   xml_in      = new Build_xml_string   ( file_xml_name_02 );
 XStream            xstream     = new XStream();
 Analysis_Parms     my_parms_02 = (Analysis_Parms)
                                 xstream.fromXML( xml_in.get_xml_string() );
 
-                 my_parms_02 . report_values();
+                   my_parms_02 . report_values();
      
 File               Delete_Detail = new File ( my_parms_02.getNAME_OUT_DIR()
-                                          , my_parms_02.getNAME_OUT_DETAILS()
-                                          );
+                                            , my_parms_02.getNAME_OUT_DETAILS()
+                                            );
                  if   ( Delete_Detail.isFile() )
                       {
                         Delete_Detail.delete();
                       }             
                  Delete_Detail = null;
      
-File               Delete_Summary = new File ( my_parms_02.getNAME_OUT_DIR()
+File             Delete_Summary = new File ( my_parms_02.getNAME_OUT_DIR()
                                            , my_parms_02.getNAME_OUT_SUMMARY()
                                            );
                  if   ( Delete_Summary.isFile() )
@@ -42,7 +44,7 @@ File               Delete_Summary = new File ( my_parms_02.getNAME_OUT_DIR()
                       }             
                  Delete_Summary = null;        
 Rectangular_CVS_Matrix m = new Rectangular_CVS_Matrix ( my_parms_02 );
-                     m . show_input_names();
+                       m . show_input_names();
   
 Sub_Matrix  sub_matrix   =  new Sub_Matrix ( my_parms_02.getCOUNT_MAX_MATRIX_ROWS()
                                            , my_parms_02.getCOUNT_MAX_COLUMNS()
