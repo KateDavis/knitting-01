@@ -95,7 +95,7 @@ protected Lagged_Matrix      set_lagged_matrix(){
 	      return        lm;
 }
 protected String_Row build_name_security_row(){
-	      String_Row row = new String_Row( get_cols() );
+	      String_Row row = new String_Row( get_cols() - 1 );
 	      for ( Collected_Data cd: set )
           {
     	    String security_name  = cd.get_human_name();
@@ -111,21 +111,20 @@ protected String_Row build_name_security_row(){
 	      return   row;
 }
 protected  String_Row  build_name_lag_row(){
-	       String_Row  row = new String_Row( get_cols() );
+	       String_Row  row = new String_Row( get_cols() - 1 );
 	       
    	       for ( Collected_Data cd: set )
                {
 	             row.add_string( "lag_0" ); 
-
-	             for ( int   ix = 0
-	                 ;       ix < cd.get_lag_size()
-	        	     ;     ++ix
-	        	     )
-	        	     {
-	        	            row . add_string ("lag_"
-	        	          		             + ix
-	        	        		             );
- 	         	     }
+	             
+	             TreeSet<Integer>  lags = cd.get_lags();
+	             
+	             for ( Integer ix: lags )
+	                 {
+	            	   row.add_string( "lag_"
+	            			         +  ix.toString()
+	            			         );
+	                 }
               }
    	       return row;
 }
