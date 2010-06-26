@@ -47,7 +47,32 @@ protected void    set_date_intersection(){
      date_intersection   = intersection;      
 }
 protected Lagged_Matrix      set_lagged_matrix(){
-	      Lagged_Matrix lm = new Lagged_Matrix   ( get_cols() );
+/*************************************************************************	
+	      String_Row  name_security_row  =  build_name_security_row();
+	      String_Row  name_lag_row       =  build_name_lag_row();
+**************************************************************************/	      
+	      
+	      Lagged_Matrix lm = new Lagged_Matrix   ( get_cols()
+	    		                                 , build_name_security_row()
+	    		                                 , build_name_lag_row()
+	    		                                 );
+	      for ( Collected_Data cd: set )
+              {
+	    	    String security_name  = cd.get_human_name();
+	    	           lm             . add_name_security( security_name );
+	    	           lm             . add_name_lag     ("lag_0"        ); 
+
+	    	           for ( int   ix = 0
+	    	               ;       ix < cd.get_lag_size()
+	    	        	   ;     ++ix
+	    	        	   )
+	    	        	   {
+	    	        	           lm . add_name_security( security_name );
+	    	        	           lm . add_name_lag     ("lag_"
+	    	        	        		                 + ix
+	    	        	        		                 );
+	    	        	   }
+              }
 	      for ( Date date: date_intersection )
 	          {
 	  	        Price_Row pr    = new Price_Row  ( get_cols() );
@@ -68,6 +93,41 @@ protected Lagged_Matrix      set_lagged_matrix(){
 	  	        	  );
 	          }
 	      return        lm;
+}
+protected String_Row build_name_security_row(){
+	      String_Row row = new String_Row( get_cols() );
+	      for ( Collected_Data cd: set )
+          {
+    	    String security_name  = cd.get_human_name();
+    	           row            . add_string( security_name );            
+    	           for ( int   ix = 0
+    	               ;       ix < cd.get_lag_size()
+    	        	   ;     ++ix
+    	        	   )
+    	        	   {
+    	        	          row . add_string( security_name );
+    	        	   }
+          }
+	      return   row;
+}
+protected  String_Row  build_name_lag_row(){
+	       String_Row  row = new String_Row( get_cols() );
+	       
+   	       for ( Collected_Data cd: set )
+               {
+	             row.add_string( "lag_0" ); 
+
+	             for ( int   ix = 0
+	                 ;       ix < cd.get_lag_size()
+	        	     ;     ++ix
+	        	     )
+	        	     {
+	        	            row . add_string ("lag_"
+	        	          		             + ix
+	        	        		             );
+ 	         	     }
+              }
+   	       return row;
 }
 public int    get_cols(){
 	   int    ix  = 0;
