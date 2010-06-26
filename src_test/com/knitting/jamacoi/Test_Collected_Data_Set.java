@@ -177,20 +177,35 @@ assertNotNull( url_GLD        ) ;
 		                     );
 		   Lagged_Matrix lm  = cds.set_lagged_matrix();
 		   System.out.println(" ");
+		   String_Row_Format srf = new String_Row_Format
+		                             ( String_Row_Format.fmt_type.SPACE_DECIMAL );
+		                     lm  .     print_name_security( srf );
+		                     lm  .     print_name_lag     ( srf );
+		                     
 		   Price_Row_Format  prf = new Price_Row_Format
-		                             ( Price_Row_Format.fmt_type.SPACE_DECIMAL );
+		                             ( Price_Row_Format.fmt_type .SPACE_DECIMAL );
 		                     lm  .     print_ix_entries( 10
 		                    		                   , prf
 		                    		                   ) ;
 		   System.out.println(" ");
+		                     srf = new String_Row_Format
+                                     ( String_Row_Format.fmt_type.COMMA_DECIMAL );
+		                     lm  .     print_name_security( srf );
+                             lm  .     print_name_lag     ( srf );
+            
 		                     prf = new Price_Row_Format
-                                     ( Price_Row_Format.fmt_type.COMMA_DECIMAL );
+                                     ( Price_Row_Format.fmt_type .COMMA_DECIMAL );
 		                     lm  .     print_ix_entries( 10
 		                    		                   , prf
 		                    		                   ) ;              
 		   System.out.println(" ");
+  		                     srf = new String_Row_Format
+                                     ( String_Row_Format.fmt_type.COMMA_SCIENTIFIC );
+                             lm  .     print_name_security( srf );
+                             lm  .     print_name_lag     ( srf );
+
 		                     prf = new Price_Row_Format
-                                     ( Price_Row_Format.fmt_type.COMMA_SCIENTIFIC );
+                                     ( Price_Row_Format.fmt_type .COMMA_SCIENTIFIC );
 		                     lm  .     print_ix_entries( 10
 		                    		                   , prf
 		                    		                   );
