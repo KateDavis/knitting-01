@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Formatter;
 
 public     class    Price_Row {
+/**********************************************************************	
 static	   enum     fmt_type  { SPACE_DECIMAL
 	                          , COMMA_DECIMAL
 	                          , COMMA_SCIENTIFIC
@@ -12,6 +13,7 @@ static     String[] fmt_str = { "  %9.4f"
 		                      ,  ",%9.4f"
 		                      , ",%12.5E"
                               } ;
+**********************************************************************/                              
 	       private  int               cols;
            private  ArrayList<Double> pr;
 
@@ -81,8 +83,6 @@ public     String   fmt_row(final String fmt_str ){
 	           {
 	    	     fmt.format( fmt_str, price.floatValue() );
 	           }
-	       return fmt.toString();
-	       
-	
+	       return fmt.toString();	
 }
 }
