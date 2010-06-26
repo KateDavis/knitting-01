@@ -6,9 +6,9 @@ static	  enum      fmt_type   { SPACE_DECIMAL
                                , COMMA_DECIMAL
                                , COMMA_SCIENTIFIC;
                                };
-static    String[]  fmt_strs = { "  %9.4f"
-                               ,  ",%9.4f"
-                               , ",%12.5E"
+static    String[]  fmt_strs = { "%11s"
+                               , ",%9s"
+                               , ",%12s"
                                } ;
 private   String    fmt_str;
 public              String_Row_Format(){
