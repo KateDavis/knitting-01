@@ -9,9 +9,11 @@ public class Analysis_Parms {
     private int    COL_START                      =   0;
     private int    COL_END                        =   2;
     private int    ROW_BASE                       = 300;
-    private String NAME_IN_DIR   = "C:\\Temp\\Residual_attempt_01";
+//  private String NAME_IN_DIR   = "C:\\Temp\\Residual_attempt_01";
+    private String NAME_IN_DIR   = "/Temp/Residual_attempt_01";
     private String NAME_IN_FILE  = "GLD_vs_London_Spot_2_with_lag_1_day.txt";
-    private String NAME_OUT_DIR  = "C:\\Temp";
+//  private String NAME_OUT_DIR  = "C:\\Temp";
+    private String NAME_OUT_DIR  = "/Temp";
     private String NAME_OUT_DETAILS = "Regression_Details.txt";
     private String NAME_OUT_SUMMARY = "Regression_Summary.txt";
 
