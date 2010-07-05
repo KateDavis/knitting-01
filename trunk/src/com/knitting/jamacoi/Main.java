@@ -1,6 +1,4 @@
 package com.knitting.jamacoi;
-// junk commit 1 to test svn
-// junk commit 2 to test svn
 import java.io.File;
 import java.io.IOException;
 
@@ -15,8 +13,6 @@ public class Main
          ,       not_rectangular
          ,       not_significant
 {
-//int              count_args       = args.length;
-//String           file_xml_name_02 = "C:/Temp/test_xml_02.xml";
 String             file_xml_name_02 =   "/Temp/test_xml_02.xml";
     
 Build_xml_string   xml_in      = new Build_xml_string   ( file_xml_name_02 );
