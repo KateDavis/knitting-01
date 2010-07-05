@@ -3,6 +3,7 @@ package com.knitting.jamacoi;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.io.IOException;
 import java.net.URI;
 import java.net.URL;
 import java.util.Date;
@@ -14,6 +15,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.knitting.util.K_Calendar;
+import com.thoughtworks.xstream.XStream;
 
 public class Test_Integration_With_XML {
 	static String          Dir__Prefix   = "knitting-01/src_test/com/knitting/datasource";
@@ -94,7 +96,9 @@ assertNotNull( url_GLD        ) ;
 	public void tearDown() throws Exception {
 	}
 	@Test
-	public void test_01_new_Collected_Data(){
+	public void    test_01_new_Collected_Data()
+	       throws  IOException
+	{
 	       Date      d_2004_10_25    =       kcal.set_ccyy_mm_dd(2004, 10, 25);
 	       System.out.println( "d_2004_10_25    = >"
 	    		             +  kcal.get_ccyy_mm_dd( d_2004_10_25 )
@@ -208,5 +212,23 @@ assertNotNull( url_GLD        ) ;
 		                     lm  .     print_ix_entries( 10
 		                    		                   , prf
 		                    		                   );
+		   System.out.println(" ");
+		   
+ String             file_xml_name_02 =   "/Temp/test_xml_06.xml";
+		                     
+ Build_xml_string   xml_in      = new  Build_xml_string   ( file_xml_name_02 );
+ XStream            xstream     = new  XStream();
+ Analysis_Parms     my_parms_02 =     (Analysis_Parms)
+		                               xstream.fromXML( xml_in.get_xml_string() );
+
+		            my_parms_02 . report_values();
+		            
+ System.out.println(" ");
+ 
+                    my_parms_02 . setCOL_END   (10);
+                    my_parms_02 . report_values();
+//                  xstream.toXML(obj, out);
+		            
+		                          	                     
 	}
 }
