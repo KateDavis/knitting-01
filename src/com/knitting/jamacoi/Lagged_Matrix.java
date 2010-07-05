@@ -19,15 +19,6 @@ public    class      Lagged_Matrix {
 private              Lagged_Matrix(){   // to prevent this constructor's use
 	
 }
-/*******************************************************************************
-public               Lagged_Matrix( final int price_cols ){
-
-	                          set_price_cols( price_cols )  ;
-	      name_security = new String_Row( get_price_cols() );
-	      name_lag      = new String_Row( get_price_cols() );
-	      tm            = new TreeMap<  Date, Price_Row>()  ;
-}
-*******************************************************************************/
 public               Lagged_Matrix( final int         price_cols
 		                          , final String_Row  ns
 		                          , final String_Row  nl
