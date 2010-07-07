@@ -3,6 +3,8 @@ package com.knitting.jamacoi;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URL;
@@ -227,6 +229,18 @@ assertNotNull( url_GLD        ) ;
  
                     my_parms_02 . setCOL_END   (10);
                     my_parms_02 . report_values();
+                    
+ try   {
+	    FileOutputStream fs = new FileOutputStream( "/Temp/test_xml_06.xml" );
+	    
+	                     xstream.toXML( my_parms_02
+	                    		      , fs
+	                    		      );
+       }
+ catch ( FileNotFoundException e1 )
+       {
+	     e1.printStackTrace();
+       }
 //                  xstream.toXML(obj, out);
 		            
 		                          	                     
