@@ -1,5 +1,6 @@
 package com.knitting.jamacoi;
-import  java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
 public class Build_xml_string {
 	private String xml_trimmed;
     
@@ -35,4 +36,17 @@ public class Build_xml_string {
 	{
 	       return xml_trimmed;
 	}
+//	public void    write_to_disk      ( String file_name_xml )
+//	       throws  java.io.IOException
+//	{
+//		   try    {
+//			   
+//		          }
+//		   catch  ( java.io.FileNotFoundException e)
+//	              {
+//	                System.out.println("ERROR: could not read "
+//	                                  + file_name_xml
+//	                                  );
+//	              }  
+//	}
 }
