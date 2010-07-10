@@ -129,10 +129,9 @@ public   void        write_ix_entries ( final  int               ix_max
                         {
         	                fw.write( fmt_entry ( iter.next() , prf )
                                     );
-                            ++ix;
+                          ++ix;
                         }
-                 fw.close();
-                                
+                 fw.close();       
                }  
          catch ( IOException e ) 
                {
