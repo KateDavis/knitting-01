@@ -3,6 +3,7 @@ package com.knitting.jamacoi;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -20,16 +21,25 @@ import com.knitting.util.K_Calendar;
 import com.thoughtworks.xstream.XStream;
 
 public class Test_Integration_With_XML {
-	static String          Dir__Prefix   = "knitting-01/src_test/com/knitting/datasource";
-	static String          AAPL          = Dir__Prefix + "/AAPL.txt";
-	static String          AMZN          = Dir__Prefix + "/AMZN.txt";
-	static String          QCOM          = Dir__Prefix + "/QCOM.txt";
-	static String          GLD           = Dir__Prefix +  "/GLD.txt";
+	static String  File_Separator        = "/"; 
+	static String  FS                    = File_Separator;
+	static String  Sub__Dir_Act          = "actual";
+	static String  Sub__Dir_Exp          = "expected";
+	static String  Dir__Prefix           = "knitting-01/src_test/com/knitting/jamacoi";
+	static String  Dir__Actual_Out       = Dir__Prefix + FS + Sub__Dir_Act; 
+	static String  Dir__Expected         = Dir__Prefix + FS + Sub__Dir_Exp;
+	static String  Dir__Prefix_In        = "knitting-01/src_test/com/knitting/datasource";
+	static String          AAPL          = Dir__Prefix_In + "/AAPL.txt";
+	static String          AMZN          = Dir__Prefix_In + "/AMZN.txt";
+	static String          QCOM          = Dir__Prefix_In + "/QCOM.txt";
+	static String          GLD           = Dir__Prefix_In + "/GLD.txt";
 	       K_Calendar      kcal          = new  K_Calendar();
 	
            String          name;
            URL             url_this;
            URL             url_workspace;
+           URL             url_actual;
+           URL             url_expected;
            URL             url_AAPL;
            URL             url_AMZN;
            URL             url_QCOM;
@@ -66,6 +76,13 @@ assertNotNull( url_this );
                url_workspace  = new URL( url_this     , "../../../../../");
 assertNotNull( url_workspace  ) ;
 
+               url_expected   = new URL( url_workspace, Dir__Expected      );
+assertNotNull( url_expected   );
+
+               url_actual     = new URL( url_workspace, Dir__Actual_Out      );
+assertNotNull( url_actual     );
+
+
                url_AAPL       = new URL( url_workspace, AAPL );
 assertNotNull( url_AAPL       ) ;
                url_AMZN       = new URL( url_workspace, AMZN );
@@ -95,11 +112,15 @@ assertNotNull( url_GLD        ) ;
 	}
 
 	@After
-	public void tearDown() throws Exception {
+	public void    tearDown() throws Exception {
 	}
 	@Test
 	public void    test_01_new_Collected_Data()
 	       throws  IOException
+	       ,       not_estimated
+	       ,       not_invertable
+	       ,       not_rectangular
+           ,       not_significant
 	{
 	       Date      d_2004_10_25    =       kcal.set_ccyy_mm_dd(2004, 10, 25);
 	       System.out.println( "d_2004_10_25    = >"
@@ -214,6 +235,9 @@ assertNotNull( url_GLD        ) ;
 		                     lm  .     print_ix_entries( 10
 		                    		                   , prf
 		                    		                   );
+		                     lm  .     write_ix_entries( prf
+                                                       , "/Temp/Residuals_attempt_01/first_10_col_test"
+                                                       );
 		   System.out.println(" ");
 		   
  String             file_xml_name_02 =   "/Temp/test_xml_06.xml";
@@ -227,7 +251,11 @@ assertNotNull( url_GLD        ) ;
 		            
  System.out.println(" ");
  
-                    my_parms_02 . setCOL_END   (10);
+                    my_parms_02 . setCOL_END          (10);
+                    my_parms_02 . setNAME_IN_FILE     ( "first_10_col_test"    );
+                    my_parms_02 . setNAME_OUT_DETAILS ( "first_10_col_details" );
+                    my_parms_02 . setNAME_OUT_SUMMARY ( "first_10_col_summary" );
+                    
                     my_parms_02 . report_values();
                     
  try   {
@@ -241,7 +269,62 @@ assertNotNull( url_GLD        ) ;
        {
 	     e1.printStackTrace();
        }
-//                  xstream.toXML(obj, out);
+ 
+ File               Delete_Detail = new File ( my_parms_02.getNAME_OUT_DIR()
+                                             , my_parms_02.getNAME_OUT_DETAILS()
+                                             );
+ if   ( Delete_Detail.isFile() )
+      {
+        Delete_Detail.delete();
+      }             
+        Delete_Detail = null;
+
+ File              Delete_Summary = new File ( my_parms_02.getNAME_OUT_DIR()
+                                             , my_parms_02.getNAME_OUT_SUMMARY()
+                                             );
+ if   ( Delete_Summary.isFile() )
+      {
+        Delete_Summary.delete();
+      }             
+        Delete_Summary = null;        
+ Rectangular_CVS_Matrix m = new Rectangular_CVS_Matrix ( my_parms_02 );
+                        m . show_input_names();
+
+ Sub_Matrix  sub_matrix   =  new Sub_Matrix ( my_parms_02.getCOUNT_MAX_MATRIX_ROWS()
+                                            , my_parms_02.getCOUNT_MAX_COLUMNS()
+                                            );
+
+ for ( int ir_base  =   my_parms_02.getROW_BASE()
+     ;     ir_base  < ( my_parms_02.getROW_BASE()
+                      + my_parms_02.getCOUNT_MAX_REGRESSION_ANALYSIS()
+                      )
+     ;     ir_base++
+     )   
+     {
+
+           sub_matrix.Load_Data( ir_base
+                               , m
+                               );
+           try
+               {                            
+                 Regression        r = new Regression ( sub_matrix ); 
+
+                 Report_Regression_Results 
+                                 rrr = new Report_Regression_Results  ( r
+                                                                      , sub_matrix
+                                                                      , my_parms_02
+                                                                      );
+                                 rrr .     report_All                 ();
+               }
+           catch (not_enough_rows e)
+                 {}                  
+           catch (not_invertable  e)
+                 {}        
+           catch (not_significant e)
+                 {}
+           catch (java.io.FileNotFoundException e)
+                 {}
+           }
 		            
 		                          	                     
 	}
