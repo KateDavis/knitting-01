@@ -210,7 +210,7 @@ assertNotNull( url_GLD        ) ;
 		                    		                   , prf
 		                    		                   );
 		                     lm  .     write_ix_entries( prf
-          		                                       , "C:/temp/data_matrix_01"
+          		                                       , "/Temp/data_matrix_01"
           		                                       );
 	}
 
