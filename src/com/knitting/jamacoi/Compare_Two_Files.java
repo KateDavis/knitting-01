@@ -131,14 +131,14 @@ protected void create_diff_file( ArrayList<String> diff)
 	      delete_diff_file();
 try      {	      
 
-	      FileWriter d = new FileWriter( File_Name_Contents_Difference);
-	      Iterator<String> iter = diff.iterator();
+	      FileWriter        d    = new  FileWriter( File_Name_Contents_Difference);
+	      Iterator<String>  iter =      diff.iterator();
 	      while ( iter.hasNext() )
 	            {
-	    	      String    line = iter.next();
-	    	      Formatter fmt  = new Formatter();
-	    	      fmt.format("%s\n", line);
-	    	      d.write( fmt.toString() );
+	    	      String     line = iter.next();
+	    	      Formatter  fmt  = new Formatter();
+	    	      fmt.format ( "%s\n", line   );
+	    	      d.write    ( fmt.toString() );
 	            }
 	      d.close();
          }
