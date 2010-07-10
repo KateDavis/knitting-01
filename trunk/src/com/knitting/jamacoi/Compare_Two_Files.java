@@ -50,19 +50,14 @@ public  boolean equal_Files(){
         assert                (diff.size() > 0 );
                                           c.print_ArrayList(diff);
         System.out.println( " " );
-        
-//      expected.
  
-        
         if  ( diff.size() == 0 )
             {
-//        	  System.out.println ( "In equal_Files(): about to delete_diff_file()\n" );
         	  delete_diff_file();
             }
         else
             {
         	  try   {
-//        		     System.out.println ( "In equal_Files(): about to create_diff_file()\n" );
 				     create_diff_file( diff );
 			        }
         	  catch (IOException e) 
@@ -94,10 +89,6 @@ try    {
               )
               { 
                 list.add(       scanner . nextLine   () );
-//              System.out.println( "load_list =>"
-//                		          +  scanner.nextLine()
-//                		          + "<"
-//                		          );
               }
         scanner.close();
        }
