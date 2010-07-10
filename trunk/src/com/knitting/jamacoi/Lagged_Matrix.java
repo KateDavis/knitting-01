@@ -1,6 +1,8 @@
  
  package com.knitting.jamacoi;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
@@ -108,5 +110,33 @@ protected String     fmt_entry(final  Map.Entry<Date,Price_Row>  me
           return     (  date
   		             +  row
   		             ) ;
+}
+public   void        write_ix_entries ( final  int               ix_max
+                                      , final  Price_Row_Format  prf
+                                      , final  String            file_name
+                                      ){
+         FileWriter                          fw;
+         Set     <Map.Entry<Date,Price_Row>> set  = tm .entrySet();
+         Iterator<Map.Entry<Date,Price_Row>> iter = set.iterator();
+         int                                 ix   = 0;
+         try   {
+  	             fw     =   new  FileWriter  ( file_name );      	 
+                 while  (
+                          ( iter.hasNext()   )
+                          &&
+                          ( ix < ix_max      )
+                        )
+                        {
+        	                fw.write( fmt_entry ( iter.next() , prf )
+                                    );
+                            ++ix;
+                        }
+                 fw.close();
+                                
+               }  
+         catch ( IOException e ) 
+               {
+                 e.printStackTrace();
+               }
 }
 }
