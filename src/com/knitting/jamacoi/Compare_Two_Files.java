@@ -128,15 +128,9 @@ protected void delete_diff_file(){
 protected void create_diff_file( ArrayList<String> diff)
           throws IOException
 {
-//	      System.out.println ( "In create_diff_file()\n" );
 	      delete_diff_file();
-//	      System.out.println ( "In create_diff_file: back from delete_diff_file()\n" );
 try      {	      
-//	      System.out.println ( "In create_diff_file: about to create FileWriter\n" );
-//	      System.out.println ( "          diff_file>"
-//	    		             +            File_Name_Contents_Difference
-//	    		             +           "<"
-//	    		             );
+
 	      FileWriter d = new FileWriter( File_Name_Contents_Difference);
 	      Iterator<String> iter = diff.iterator();
 	      while ( iter.hasNext() )
@@ -145,11 +139,6 @@ try      {
 	    	      Formatter fmt  = new Formatter();
 	    	      fmt.format("%s\n", line);
 	    	      d.write( fmt.toString() );
-//	    	      System.out.println("wrote a line to the differnece file.");
-//	    	      System.out.println("        line>"
-//	    	    		             +        line
-//	    	    		             +       "<"
-//	    	    		            );
 	            }
 	      d.close();
          }
