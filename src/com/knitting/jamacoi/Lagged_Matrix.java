@@ -111,8 +111,7 @@ protected String     fmt_entry(final  Map.Entry<Date,Price_Row>  me
   		             +  row
   		             ) ;
 }
-public   void        write_ix_entries ( final  int               ix_max
-                                      , final  Price_Row_Format  prf
+public   void        write_ix_entries ( final  Price_Row_Format  prf
                                       , final  String            file_name
                                       ){
          FileWriter                          fw;
@@ -120,16 +119,13 @@ public   void        write_ix_entries ( final  int               ix_max
          Iterator<Map.Entry<Date,Price_Row>> iter = set.iterator();
          int                                 ix   = 0;
          try   {
-  	             fw     =   new  FileWriter  ( file_name );      	 
-                 while  (
-                          ( iter.hasNext()   )
-                          &&
-                          ( ix < ix_max      )
-                        )
+  	             fw     =   new  FileWriter   ( file_name );      	 
+                 while  ( iter.hasNext()  )
                         {
-        	                fw.write( fmt_entry ( iter.next() , prf )
-                                    );
-                          ++ix;
+        	              fw.write( fmt_entry ( iter.next() , prf )
+        	            		  + "\n"
+                                  );
+                        ++ix;
                         }
                  fw.close();       
                }  
