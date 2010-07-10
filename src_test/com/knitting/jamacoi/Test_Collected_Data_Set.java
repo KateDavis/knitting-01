@@ -209,6 +209,9 @@ assertNotNull( url_GLD        ) ;
 		                     lm  .     print_ix_entries( 10
 		                    		                   , prf
 		                    		                   );
+		                     lm  .     write_ix_entries( prf
+          		                                       , "C:/temp/data_matrix_01"
+          		                                       );
 	}
 
 }
