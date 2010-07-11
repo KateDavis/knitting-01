@@ -303,6 +303,8 @@ assertNotNull( url_GLD        ) ;
  Sub_Matrix  sub_matrix   =  new Sub_Matrix ( my_parms_02.getCOUNT_MAX_MATRIX_ROWS()
                                             , my_parms_02.getCOUNT_MAX_COLUMNS()
                                             );
+             sub_matrix   .      Load_Name_Security ( lm.get_name_security() );
+             sub_matrix   .      Load_Name_Lag      ( lm.get_name_lag()      );
 
  for ( int ir_base  =   my_parms_02.getROW_BASE()
      ;     ir_base  < ( my_parms_02.getROW_BASE()
