@@ -106,13 +106,50 @@ public  void   report_YX()
  
  int ir;
  int ic;
+ 
  Formatter line_02 = new Formatter();
-        
  line_02.format( "    %10s  %4s"
+               , ""
+               , ""
+               );
+
+ for  (   ic  = 0
+      ;   ic  < r.get_YX_max_cols()
+      ; ++ic
+      )
+      {
+          line_02.format( "%15s"
+                        , sub_matrix.get_name_security(ic)
+                        );
+      }
+ line_02.format( "%n");
+ Rpt_Detail.write(line_02.toString());
+ 
+ Formatter line_03 = new Formatter();
+ line_03.format( "    %10s  %4s"
+               , ""
+               , ""
+               );
+
+ for  (   ic  = 0
+      ;   ic  < r.get_YX_max_cols()
+      ; ++ic
+      )
+      {
+          line_03.format( "%15s"
+                        , sub_matrix.get_name_lag(ic)
+                        );
+      }
+ line_03.format( "%n");
+ Rpt_Detail.write(line_03.toString());
+ 
+ Formatter line_04 = new Formatter();
+        
+ line_04.format( "    %10s  %4s"
                , "Row-ID"
                , "Time"
                );
- line_02.format( "%15s"
+ line_04.format( "%15s"
                , "Y"
                );
  for  (   ic  = 0
@@ -120,17 +157,17 @@ public  void   report_YX()
       ; ++ic
       )
       {
-          line_02.format( "%13s%02d"
+          line_04.format( "%13s%02d"
                         , "X"
                         , (ic + 1)
                         );
       }
- line_02.format( "%n");
- Rpt_Detail.write(line_02.toString());
+ line_04.format( "%n");
+ Rpt_Detail.write(line_04.toString());
   
- Formatter line_03 = new Formatter();
+ Formatter line_05 = new Formatter();
         
- line_03.format( "    %10s  %4s"
+ line_05.format( "    %10s  %4s"
                , "----------"
                , "----"
                );
@@ -139,21 +176,21 @@ public  void   report_YX()
       ; ++ic
       )
       {
-          line_03.format( "%15s"
+          line_05.format( "%15s"
                         , "------------"
                         );
       }
- line_03.format( "%n");
- Rpt_Detail.write(line_03.toString());
+ line_05.format( "%n");
+ Rpt_Detail.write(line_05.toString());
    
  for  (   ir  = 0
       ;   ir  < r.get_YX_max_rows()
       ;   ir++
       )
       {
-        Formatter line_04 = new Formatter();
+        Formatter line_06 = new Formatter();
         
-        line_04.format( "    %s   %03d"
+        line_06.format( "    %s   %03d"
                       , sub_matrix.get_row_id(ir)
                       , ( ir + 1 )
                       );
@@ -163,13 +200,13 @@ public  void   report_YX()
             ;   ic++
             )
             {
-              line_04.format( "%15.5E"
+              line_06.format( "%15.5E"
                             , r.get_YX_cell(ir, ic)
                             );
             }
-        line_04.format( "%n");
-        Rpt_Detail.write(line_04.toString()); 
-        line_04 = null;
+        line_06.format( "%n");
+        Rpt_Detail.write(line_06.toString()); 
+        line_06 = null;
       }
 }     
 public  void   report_Y_est_Y_residual_X()
