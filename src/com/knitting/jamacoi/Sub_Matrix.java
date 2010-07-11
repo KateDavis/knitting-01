@@ -28,6 +28,9 @@ public class Sub_Matrix
 	public int get_row_source_last ()      {return sub_row_source_last ;}
 	public double [][] get_Data()          {return sub_matrix  ;}
 	public String      get_row_id  (int ix){return sub_row_id [ix];}
+	
+	public String      get_name_security (int ix)  {return name_security.get_string(ix); }
+	public String      get_name_lag      (int ix)  {return name_lag     .get_string(ix); }
 
 	public void Load_IDS  ( final int                     row_base
 	                      , final Rectangular_CVS_Matrix  m
