@@ -55,6 +55,10 @@ public class Sub_Matrix
 	      //                         most recent measurement) 
 	      int         sub_row_target   = sub_rows_max - (row_target - row_base); 
 	      sub_row_id[ sub_row_target ] = m.get_id       (row_target           );
+	      System.out.println( "row_id = >"
+	    		            +  sub_row_id[ sub_row_target ]
+	    		            + "<"               
+	    		            );
 	      double []   hold_row         = m.get_row      (row_target           );
 
 	      Load_Row ( sub_row_target
@@ -74,6 +78,14 @@ public class Sub_Matrix
 	      ;     ix_c++
 	      )
 	      {
+		    System.out.println ( "ix_c = >"
+		    		           +  ix_c
+		    		           + "<"
+		    		           );
+		    System.out.println ( "double = >"
+		    		           +  hold_row[ix_c]
+		    		           + "<"            
+		    		           );
 	        sub_matrix[sub_row_target][ix_c]= hold_row[ix_c];
 	      }   
 	    
