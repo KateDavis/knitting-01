@@ -283,11 +283,15 @@ public  void   report_Estimated_Function()
 
  ArrayList<Double> c =   r.get_Estimated_Coefficients();    
          
- line_2.format("%5s%4s%s%15.5E%n"
+ line_2.format("%5s%4s%s%15.5E%s%s  %s  (%s)%n"
               ,"Y"
               ,"="
               ," "
               , r.get_Estimated_Intercept()
+              ,"   "
+              ,"intercept"
+              ,sub_matrix.get_name_security(0)
+              ,sub_matrix.get_name_lag     (0)
               );
  Rpt_Detail.write(line_2.toString());
        
@@ -299,7 +303,7 @@ public  void   report_Estimated_Function()
      )
      {
        Formatter line_3 = new Formatter();
-                 line_3.format("%5s%4s%s%15.5E%s%s%d%n"
+                 line_3.format("%5s%4s%s%15.5E%s%s%d%s  %s  (%s)%n"
                               ,""
                               ,"+"
                               ," "
@@ -307,6 +311,9 @@ public  void   report_Estimated_Function()
                               ," * "
                               ,"X"
                               ,(ix + 1)
+                              ,"       "
+                              , sub_matrix.get_name_security(ix + 1)
+                              , sub_matrix.get_name_lag     (ix + 1)                               
                               );
        Rpt_Detail.write(line_3.toString());             
      }      
