@@ -1,6 +1,9 @@
 package com.knitting.jamacoi;
-import  java.util.*;
-import  java.io.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Formatter;
+import java.util.Scanner;
 
 /**
  * This class provides the ability to read in a rectangular matrix
@@ -248,6 +251,12 @@ public class Rectangular_CVS_Matrix
 	}  
 	public  double [] get_row(int Row_Target){
 	        int       ic_max = get_matrix_cols();
+	        /********************************************************
+	        System.out.println ( "ic_max = >"
+	        		           +  ic_max
+	        		           + "<"
+	        		           );
+	        ********************************************************/		           
 	        double [] Row    = new double [ ic_max ];
 	        int       ic;
 	        for     ( ic = 0
@@ -256,6 +265,14 @@ public class Rectangular_CVS_Matrix
 	                )
 	                {
 	                  Row[ic] = matrix[Row_Target][ic];
+	                  /*********************************************
+	                  System.out.println ( "col = >"
+	                		             +   ic
+	                		             + "<  double = >"
+	                		             +     Row[ic]
+	                		             + "<"
+	                		             );
+	                  *********************************************/ 		             
 	                }
 	        return    Row;
 	}
