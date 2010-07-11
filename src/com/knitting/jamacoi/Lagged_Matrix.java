@@ -37,6 +37,9 @@ protected void       set_price_cols(final int cols){
 public    int        get_price_cols(){
           return         price_cols;
 }
+public    String_Row get_name_security(){
+	      return         name_security;
+}
 public    String     get_name_security( final int col){
 	      return         name_security.get_string(col);
 }
@@ -49,6 +52,9 @@ public    void       set_name_security( final int    col
 }
 public    void       add_name_security( final String s ){
 	                     name_security.add_string  ( s );
+}
+public    String_Row get_name_lag(){
+	      return         name_lag;
 }
 public    String     get_name_lag     ( final int col ){
           return         name_lag.get_string    ( col );   
