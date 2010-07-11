@@ -44,9 +44,9 @@ public class Sub_Matrix
 	public void Load_Name_Lag      ( String_Row sr ){
 		        name_lag      =                 sr ;
 	}
-	public void Load_Data ( final int                     row_base
-	                      , final Rectangular_CVS_Matrix  m
-	                      )
+	public void Load_Data_Backwards ( final int                     row_base
+	                                , final Rectangular_CVS_Matrix  m
+	                                )
 	{
 	 //sub_row_source_first =                 row_base + 1;
 	 //sub_row_source_last  =  sub_rows_max + row_base + 1;
