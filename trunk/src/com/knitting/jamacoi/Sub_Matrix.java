@@ -17,6 +17,7 @@ public class Sub_Matrix
 	 this.sub_cols_max =                           sub_cols_max;
 	 this.sub_matrix   = new double         [ this.sub_rows_max ]
 	                                        [ this.sub_cols_max ];
+	 
 	 this.sub_row_id   = new String         [ this.sub_rows_max ];
 	}                 
 	public int         get_rows_max()      {return sub_rows_max;}
@@ -55,10 +56,12 @@ public class Sub_Matrix
 	      //                         most recent measurement) 
 	      int         sub_row_target   = sub_rows_max - (row_target - row_base); 
 	      sub_row_id[ sub_row_target ] = m.get_id       (row_target           );
+	      /************************************************************************
 	      System.out.println( "row_id = >"
 	    		            +  sub_row_id[ sub_row_target ]
 	    		            + "<"               
 	    		            );
+	      ************************************************************************/	            
 	      double []   hold_row         = m.get_row      (row_target           );
 
 	      Load_Row ( sub_row_target
@@ -73,19 +76,33 @@ public class Sub_Matrix
 	                     , final double [] hold_row
 	                     )
 	{
+	  /*************************************************************	
+	  System.out.println ( "sub_row_target = >"
+		                 +  sub_row_target
+		                 + "<  sub_matrix ["
+		                 +     get_rows_max()
+		                 + "]["
+		                 +     get_cols_max()
+		                 + "]"
+		                 );	
+      **************************************************************/		                 
 	  for ( int ix_c = 0
 	      ;     ix_c < cols_max
 	      ;     ix_c++
 	      )
 	      {
+            /*******************************************************
 		    System.out.println ( "ix_c = >"
 		    		           +  ix_c
-		    		           + "<"
-		    		           );
-		    System.out.println ( "double = >"
+		    		           + "<  cols_max = >" 
+		    		           +     cols_max
+		    		           + "<  hold_row.length = >"
+		    		           +     hold_row.length
+		    		           + "<  double = >"
 		    		           +  hold_row[ix_c]
-		    		           + "<"            
+		    		    	   + "<"
 		    		           );
+		     ******************************************************/ 		           
 	        sub_matrix[sub_row_target][ix_c]= hold_row[ix_c];
 	      }   
 	    
