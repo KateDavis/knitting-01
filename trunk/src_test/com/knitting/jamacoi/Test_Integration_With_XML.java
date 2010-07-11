@@ -251,7 +251,7 @@ assertNotNull( url_GLD        ) ;
 		            
  System.out.println(" ");
  
-                    my_parms_02 . setCOL_END          (10);
+                    my_parms_02 . setCOL_END          (8);
                     my_parms_02 . setNAME_IN_FILE     ( "first_10_col_test"    );
                     my_parms_02 . setNAME_OUT_DETAILS ( "first_10_col_details" );
                     my_parms_02 . setNAME_OUT_SUMMARY ( "first_10_col_summary" );
