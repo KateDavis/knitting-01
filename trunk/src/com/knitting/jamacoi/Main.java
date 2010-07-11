@@ -54,9 +54,9 @@ for ( int ir_base  =   my_parms_02.getROW_BASE()
     )   
 {
 
-   sub_matrix.Load_Data( ir_base
-                       , m
-                       );
+   sub_matrix.Load_Data_Backwards( ir_base
+                                 , m
+                                 );
    try
       {                            
        Regression        r = new Regression ( sub_matrix ); 
