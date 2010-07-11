@@ -8,6 +8,8 @@ public class Sub_Matrix
 	private int                                    sub_row_source_last;
 	private double [][]                            sub_matrix ;
 	private String []                              sub_row_id;
+	private String_Row                             name_security;
+	private String_Row                             name_lag;
 	    
 	public        Sub_Matrix ( int                 sub_rows_max
 	                         , int                 sub_cols_max
@@ -32,7 +34,13 @@ public class Sub_Matrix
 	                      )
 	{
 	       return;
-	}                      
+	}                 
+	public void Load_Name_Security ( String_Row sr ){
+		        name_security =                 sr ;
+	}
+	public void Load_Name_Lag      ( String_Row sr ){
+		        name_lag      =                 sr ;
+	}
 	public void Load_Data ( final int                     row_base
 	                      , final Rectangular_CVS_Matrix  m
 	                      )
