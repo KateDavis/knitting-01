@@ -251,10 +251,11 @@ assertNotNull( url_GLD        ) ;
 		            
  System.out.println(" ");
  
-                    my_parms_02 . setCOL_END          (8);
-                    my_parms_02 . setNAME_IN_FILE     ( "first_10_col_test"    );
-                    my_parms_02 . setNAME_OUT_DETAILS ( "first_10_col_details" );
-                    my_parms_02 . setNAME_OUT_SUMMARY ( "first_10_col_summary" );
+                    my_parms_02 . setCOL_END           ( 8);
+                    my_parms_02 . setCOUNT_MAX_COLUMNS (10);
+                    my_parms_02 . setNAME_IN_FILE      ( "first_10_col_test"    );
+                    my_parms_02 . setNAME_OUT_DETAILS  ( "first_10_col_details" );
+                    my_parms_02 . setNAME_OUT_SUMMARY  ( "first_10_col_summary" );
                     
                     my_parms_02 . report_values();
                     
@@ -289,6 +290,15 @@ assertNotNull( url_GLD        ) ;
         Delete_Summary = null;        
  Rectangular_CVS_Matrix m = new Rectangular_CVS_Matrix ( my_parms_02 );
                         m . show_input_names();
+                        
+ System.out.println (            "getCOUNT_MAX_MATRIX_ROWS = >"
+		            + my_parms_02.getCOUNT_MAX_MATRIX_ROWS()
+		            + "<"
+		            );
+ System.out.println (            "getCOUNT_MAX_COLUMNS     = >"
+		            + my_parms_02.getCOUNT_MAX_COLUMNS()
+		            + "<"
+		            );
 
  Sub_Matrix  sub_matrix   =  new Sub_Matrix ( my_parms_02.getCOUNT_MAX_MATRIX_ROWS()
                                             , my_parms_02.getCOUNT_MAX_COLUMNS()
