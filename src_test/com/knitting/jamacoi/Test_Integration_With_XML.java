@@ -253,6 +253,7 @@ assertNotNull( url_GLD        ) ;
  
                     my_parms_02 . setCOL_END           ( 8);
                     my_parms_02 . setCOUNT_MAX_COLUMNS (10);
+             //     my_parms_02 . setROW_BASE          (10);
                     my_parms_02 . setNAME_IN_FILE      ( "first_10_col_test"    );
                     my_parms_02 . setNAME_OUT_DETAILS  ( "first_10_col_details" );
                     my_parms_02 . setNAME_OUT_SUMMARY  ( "first_10_col_summary" );
@@ -313,8 +314,16 @@ assertNotNull( url_GLD        ) ;
      ;     ir_base++
      )   
      {
-
-           sub_matrix.Load_Data_Backwards( ir_base
+	 /****************************************************************
+           System.out.println ( "ir_base = >"
+        		              +  ir_base
+        		              + "<"
+        		              );
+     ****************************************************************/
+     //    sub_matrix.Load_Data_Backwards( ir_base
+     //                                  , m
+     //                                  );
+           sub_matrix.Load_Data_Forwards ( ir_base
                                          , m
                                          );
            try
