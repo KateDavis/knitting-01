@@ -50,16 +50,26 @@ public class Sub_Matrix
 	{
 		 sub_row_source_first =                 row_base + 1;
 		 sub_row_source_last  =  sub_rows_max + row_base + 1;
-		 for ( int row_target = (row_base + 1                  )    
+		 for ( int row_target = (row_base + 1               )    
 		     ;     row_target < (row_base + 1 + sub_rows_max)
 		     ;     row_target++          
 		     )
 		     { 
-		      int         sub_row_target   = sub_rows_max - (row_target - row_base); 
-		      sub_row_id[ sub_row_target ] = m.get_id       (row_target           );            
+		 //   int         sub_row_target   = sub_rows_max - (row_target - row_base  ); 
+		      int         sub_row_target   =                 row_target - row_base -1;
+		      sub_row_id[ sub_row_target ] = m.get_id       (row_target             );   
+		      /********************************************************************
+		      System.out.println( "row_id = >"
+  		                        +  sub_row_id[ sub_row_target ]
+  		                        + "<  "
+  		                        + "row_target = >"
+  		                        +  row_target
+  		                        + "<"               
+  		                        );		      
+  		      ********************************************************************/                 
 		      double []   hold_row         = m.get_row      (row_target           );
 
-		      Load_Row ( sub_row_target
+		      Load_Row ( sub_row_target    // - ( row_base + 1)
 		               , m.get_matrix_cols()
 		               , hold_row
 		               );      
@@ -108,7 +118,7 @@ public class Sub_Matrix
 	                     , final double [] hold_row
 	                     )
 	{
-	  /*************************************************************	
+	  /*********************************************************	
 	  System.out.println ( "sub_row_target = >"
 		                 +  sub_row_target
 		                 + "<  sub_matrix ["
@@ -117,13 +127,13 @@ public class Sub_Matrix
 		                 +     get_cols_max()
 		                 + "]"
 		                 );	
-      **************************************************************/		                 
+      *********************************************************/	                 
 	  for ( int ix_c = 0
 	      ;     ix_c < cols_max
 	      ;     ix_c++
 	      )
 	      {
-            /*******************************************************
+            /**************************************************
 		    System.out.println ( "ix_c = >"
 		    		           +  ix_c
 		    		           + "<  cols_max = >" 
@@ -134,7 +144,7 @@ public class Sub_Matrix
 		    		           +  hold_row[ix_c]
 		    		    	   + "<"
 		    		           );
-		     ******************************************************/ 		           
+		    **************************************************/ 		           
 	        sub_matrix[sub_row_target][ix_c]= hold_row[ix_c];
 	      }   
 	    
