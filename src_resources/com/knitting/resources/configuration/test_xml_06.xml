@@ -1,0 +1,14 @@
+<com.knitting.jamacoi.Analysis__Parms>
+  <COUNT__MAX__MATRIX__ROWS>200</COUNT__MAX__MATRIX__ROWS>
+  <COUNT__MAX__COLUMNS>10</COUNT__MAX__COLUMNS>
+  <COUNT__MAX__REGRESSION__ANALYSIS>60</COUNT__MAX__REGRESSION__ANALYSIS>
+  <ROW__TARGET>10</ROW__TARGET>
+  <COL__START>0</COL__START>
+  <COL__END>8</COL__END>
+  <ROW__BASE>10</ROW__BASE>
+  <NAME__IN__DIR>\Temp\Residuals_attempt_01</NAME__IN__DIR>
+  <NAME__IN__FILE>first_10_col_test</NAME__IN__FILE>
+  <NAME__OUT__DIR>\Temp</NAME__OUT__DIR>
+  <NAME__OUT__DETAILS>first_10_col_details</NAME__OUT__DETAILS>
+  <NAME__OUT__SUMMARY>first_10_col_summary</NAME__OUT__SUMMARY>
+</com.knitting.jamacoi.Analysis__Parms>
