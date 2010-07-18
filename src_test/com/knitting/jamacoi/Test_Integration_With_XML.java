@@ -40,8 +40,8 @@ public class Test_Integration_With_XML {
   	//                                                        test_xml_06.xml
 	       K_Calendar      kcal          = new  K_Calendar();
 	
-           String          name;
-           URL             url_this;
+	       Workspace       ws;
+	       
            URL             url_workspace;
            URL             url_actual;
            URL             url_expected;
@@ -78,14 +78,9 @@ public class Test_Integration_With_XML {
 
 	@Before
 	public void setUp() throws Exception {
-               name           = this.getClass().getSimpleName();
-        
-               url_this       = this.getClass()
-                              . getResource( name + ".class" );
-assertNotNull( url_this );
 
-               url_workspace  = new URL( url_this     , "../../../../../");
-assertNotNull( url_workspace  ) ;
+    Workspace  ws             = new Workspace();
+               url_workspace  = ws.get_Workspace();
 
                url_expected   = new URL( url_workspace, Dir__Expected    );
 assertNotNull( url_expected   );
@@ -265,10 +260,7 @@ assertNotNull( url_xml        ) ;
                                                        , "/Temp/Residuals_attempt_01/first_10_col_test"
                                                        );
 		   System.out.println(" ");
-		   
- //String           file_xml_name_02 =   "/Temp/test_xml_06.xml";
- String             file_xml_name_02 =   url_xml.toString();
- 
+		    
  check_directory    ( url_workspace );
  check_directory    ( url_knitting  );
  check_directory    ( url_src_res   );
@@ -279,11 +271,9 @@ assertNotNull( url_xml        ) ;
  
  check_file         ( url_AAPL      );
  check_file         ( url_xml       );
- check_file         ( url_this      );
  
  System.out.println ( " " );
  		                     
- //Build_xml_string xml_in      = new  Build_xml_string   ( file_xml_name_02 );
  Build_xml_string   xml_in      = new  Build_xml_string   ( url_xml );
  XStream            xstream     = new  XStream();
  Analysis_Parms     my_parms_02 =     (Analysis_Parms)
