@@ -4,8 +4,6 @@ package com.knitting.jamacoi;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URL;
@@ -29,10 +27,17 @@ public class Test_Integration_With_XML {
 	static String  Dir__Actual_Out       = Dir__Prefix + FS + Sub__Dir_Act; 
 	static String  Dir__Expected         = Dir__Prefix + FS + Sub__Dir_Exp;
 	static String  Dir__Prefix_In        = "knitting-01/src_test/com/knitting/datasource";
+	static String  Dir__Knitting         = "knitting-01";
+	static String  Dir__Src_Res          = "knitting-01/src_resources";
+	static String  Dir__Resources        = "knitting-01/src_resources/com/knitting/resources";
+	static String  Dir__Config           = "knitting-01/src_resources/com/knitting/resources/configuration";
+	//                     C:\Eclipse_ws_00\knitting-01\src_resources\com\knitting\resources\configuration
 	static String          AAPL          = Dir__Prefix_In + "/AAPL.txt";
 	static String          AMZN          = Dir__Prefix_In + "/AMZN.txt";
 	static String          QCOM          = Dir__Prefix_In + "/QCOM.txt";
 	static String          GLD           = Dir__Prefix_In + "/GLD.txt";
+	static String          xml           = Dir__Config    + "/test_xml_06.xml";
+  	//                                                        test_xml_06.xml
 	       K_Calendar      kcal          = new  K_Calendar();
 	
            String          name;
@@ -40,15 +45,21 @@ public class Test_Integration_With_XML {
            URL             url_workspace;
            URL             url_actual;
            URL             url_expected;
+           URL             url_knitting;
+           URL             url_src_res;
+           URL             url_resources;
+           URL             url_config;
            URL             url_AAPL;
            URL             url_AMZN;
            URL             url_QCOM;
            URL             url_GLD;
+           URL             url_xml;
            
            URI             uri_AAPL;
            URI             uri_AMZN;
            URI             uri_QCOM;
            URI             uri_GLD;
+           URI             uri_xml;
            
            Request_Series  rs__AAPL;
            Request_Series  rs__AAPL_dup;
@@ -69,18 +80,30 @@ public class Test_Integration_With_XML {
 	public void setUp() throws Exception {
                name           = this.getClass().getSimpleName();
         
-               url_this       = this.getClass   ()
+               url_this       = this.getClass()
                               . getResource( name + ".class" );
 assertNotNull( url_this );
 
                url_workspace  = new URL( url_this     , "../../../../../");
 assertNotNull( url_workspace  ) ;
 
-               url_expected   = new URL( url_workspace, Dir__Expected      );
+               url_expected   = new URL( url_workspace, Dir__Expected    );
 assertNotNull( url_expected   );
 
-               url_actual     = new URL( url_workspace, Dir__Actual_Out      );
+               url_actual     = new URL( url_workspace, Dir__Actual_Out  );
 assertNotNull( url_actual     );
+
+               url_knitting   = new URL( url_workspace, Dir__Knitting    );
+assertNotNull( url_knitting   );
+
+               url_src_res    = new URL( url_workspace, Dir__Src_Res     );
+assertNotNull( url_src_res    );
+
+               url_resources  = new URL( url_workspace, Dir__Resources   );
+assertNotNull( url_resources  );
+
+               url_config     = new URL( url_workspace, Dir__Config      );
+assertNotNull( url_config     );
 
 
                url_AAPL       = new URL( url_workspace, AAPL );
@@ -91,11 +114,14 @@ assertNotNull( url_AMZN       ) ;
 assertNotNull( url_QCOM       ) ;
                url_GLD        = new URL( url_workspace, GLD  );
 assertNotNull( url_GLD        ) ;
+               url_xml        = new URL( url_workspace, xml  );
+assertNotNull( url_xml        ) ;
 
                uri_AAPL       =          url_AAPL.toURI();
                uri_AMZN       =          url_AMZN.toURI();
                uri_QCOM       =          url_QCOM.toURI();
                uri_GLD        =          url_GLD .toURI();
+               uri_xml        =          url_xml .toURI();
 
                rs__AAPL       = new Request_Series( uri_AAPL );
                rs__AAPL       .     add_lag(1);
@@ -240,9 +266,25 @@ assertNotNull( url_GLD        ) ;
                                                        );
 		   System.out.println(" ");
 		   
- String             file_xml_name_02 =   "/Temp/test_xml_06.xml";
-		                     
- Build_xml_string   xml_in      = new  Build_xml_string   ( file_xml_name_02 );
+ //String           file_xml_name_02 =   "/Temp/test_xml_06.xml";
+ String             file_xml_name_02 =   url_xml.toString();
+ 
+ check_directory    ( url_workspace );
+ check_directory    ( url_knitting  );
+ check_directory    ( url_src_res   );
+ check_directory    ( url_resources );
+ check_directory    ( url_config    );
+ 
+ System.out.println ( " " );
+ 
+ check_file         ( url_AAPL      );
+ check_file         ( url_xml       );
+ check_file         ( url_this      );
+ 
+ System.out.println ( " " );
+ 		                     
+ //Build_xml_string xml_in      = new  Build_xml_string   ( file_xml_name_02 );
+ Build_xml_string   xml_in      = new  Build_xml_string   ( url_xml );
  XStream            xstream     = new  XStream();
  Analysis_Parms     my_parms_02 =     (Analysis_Parms)
 		                               xstream.fromXML( xml_in.get_xml_string() );
@@ -259,7 +301,7 @@ assertNotNull( url_GLD        ) ;
                     my_parms_02 . setNAME_OUT_SUMMARY  ( "first_10_col_summary" );
                     
                     my_parms_02 . report_values();
-                    
+/******************************************************************************************                    
  try   {
 	    FileOutputStream fs = new FileOutputStream( "/Temp/test_xml_06.xml" );
 	    
@@ -271,7 +313,7 @@ assertNotNull( url_GLD        ) ;
        {
 	     e1.printStackTrace();
        }
- 
+ ******************************************************************************/
  File               Delete_Detail = new File ( my_parms_02.getNAME_OUT_DIR()
                                              , my_parms_02.getNAME_OUT_DETAILS()
                                              );
@@ -348,5 +390,72 @@ assertNotNull( url_GLD        ) ;
            }
 		            
 		                          	                     
-	}
+	} 
+public void  check_directory ( final  URL  u){
+	
+	   File               d           = new  File ( u.getFile() );
+	 
+	   if   ( d.exists() )
+	        {
+              System.out.println( "exists:         =>"
+                                +  u.toString()
+                                + "<"
+                                );
+	          if   ( d.isDirectory() )
+	               {
+		             System.out.println( "is a directory  =>"
+			    	                   +  u.toString()
+				                       + "<"
+				                       );
+	               }
+	         else
+	               {
+		             System.out.println( "is NOT a directory:  =>"
+	                                   +  u.toString()
+	                                   + "<"
+	                                   );
+	               }
+	        }
+	   else
+	        {
+              System.out.println( "does NOT exists:  =>"
+                                +  u.toString()
+                                + "<"
+                                );
+	        }
+}
+public void  check_file ( final  URL  u ){
+	
+	   File               f           = new  File (u.getFile() );
+	 
+	   if   ( f.exists() )
+	        {
+              System.out.println( "exists:         =>"
+                                +  u.toString()
+                                + "<"
+                                );
+	          if   ( f.isFile() )
+	               {
+		             System.out.println( "is a file:      =>"
+			    	                   +  u.toString()
+				                       + "<"
+				                       );
+	               }
+	          else
+	               {
+		             System.out.println( "is NOT a file:  =>"
+	                                   +  u.toString()
+	                                   + "<"
+	                                   );
+	               }  
+	        }
+	   else 
+	        {
+              System.out.println( "does NOT exists:    =>"
+                                +  u.toString()
+                                + "<"
+                                );
+	        }
+	
+}
 }
