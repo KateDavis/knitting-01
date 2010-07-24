@@ -1,0 +1,14 @@
+<com.knitting.jamacoi.Analysis__Parms>
+  <COUNT__MAX__MATRIX__ROWS>200</COUNT__MAX__MATRIX__ROWS>
+  <COUNT__MAX__COLUMNS>4</COUNT__MAX__COLUMNS>
+  <COUNT__MAX__REGRESSION__ANALYSIS>60</COUNT__MAX__REGRESSION__ANALYSIS>
+  <ROW__TARGET>10</ROW__TARGET>
+  <COL__START>0</COL__START>
+  <COL__END>3</COL__END>
+  <ROW__BASE>300</ROW__BASE>
+  <NAME__IN__DIR>\Temp\Residuals_attempt_01</NAME__IN__DIR>
+  <NAME__IN__FILE>G_lagged_1_day_and_2_day_with_row_id_txt.txt</NAME__IN__FILE>
+  <NAME__OUT__DIR>\Temp</NAME__OUT__DIR>
+  <NAME__OUT__DETAILS>Regression_Details_02_day_lag.txt</NAME__OUT__DETAILS>
+  <NAME__OUT__SUMMARY>Regression_Summary_02_day_lag.txt</NAME__OUT__SUMMARY>
+</com.knitting.jamacoi.Analysis__Parms>
