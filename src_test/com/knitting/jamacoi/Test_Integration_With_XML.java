@@ -24,8 +24,13 @@ public class Test_Integration_With_XML {
 	static String  Sub__Dir_Act          = "actual";
 	static String  Sub__Dir_Exp          = "expected";
 	static String  Dir__Prefix           = "knitting-01/src_test/com/knitting/jamacoi";
-	static String  Dir__Actual_Out       = Dir__Prefix + FS + Sub__Dir_Act; 
-	static String  Dir__Expected         = Dir__Prefix + FS + Sub__Dir_Exp;
+	static String  Dir__Out_Base         = "knitting-01/src_test/com/knitting/out_base";
+	static String  Dir__Out_Family       =  Dir__Out_Base    + FS + "aapl_amzn_qcom";
+	static String  Dir__Out_Request      =  Dir__Out_Family  + FS + "requets_001";
+	static String  File_Out_Rpt_Detail   =  Dir__Out_Request + FS + "report_detail.txt";
+	static String  File_Out_Rpt_Summary  =  Dir__Out_Request + FS + "report_summary.txt";
+	static String  Dir__Actual_Out       =  Dir__Prefix      + FS + Sub__Dir_Act; 
+	static String  Dir__Expected         =  Dir__Prefix      + FS + Sub__Dir_Exp;
 	static String  Dir__Prefix_In        = "knitting-01/src_test/com/knitting/datasource";
 	static String  Dir__Knitting         = "knitting-01";
 	static String  Dir__Src_Res          = "knitting-01/src_resources";
@@ -39,7 +44,10 @@ public class Test_Integration_With_XML {
 	static String          xml           = Dir__Config    + "/test_xml_06.xml";
   	//                                                        test_xml_06.xml
 	       K_Calendar      kcal          = new  K_Calendar();
-	
+	/**************************************************************
+	       private String URL_NAME_IN_DIR                = "";  ??? Dir_Config
+	       private String URL_NAME_IN_FILE               = "";  ??? xml
+	**************************************************************/
 	       Workspace       ws;
 	       
            URL             url_workspace;
@@ -54,13 +62,18 @@ public class Test_Integration_With_XML {
            URL             url_QCOM;
            URL             url_GLD;
            URL             url_xml;
+           URL             url_out_base;
+           URL             url_out_family;
+           URL             url_out_request;
+           URL             url_out_rpt_detail;
+           URL             url_out_rpt_summary;
            
            URI             uri_AAPL;
            URI             uri_AMZN;
            URI             uri_QCOM;
            URI             uri_GLD;
            URI             uri_xml;
-           
+            
            Request_Series  rs__AAPL;
            Request_Series  rs__AAPL_dup;
            Request_Series  rs__AMZN;
@@ -69,7 +82,7 @@ public class Test_Integration_With_XML {
            
            Request_Set     r_set;
 	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
+	public static void setUpBeforeClass  () throws Exception {
 	}
 
 	@AfterClass
@@ -101,16 +114,26 @@ assertNotNull( url_resources  );
 assertNotNull( url_config     );
 
 
-               url_AAPL       = new URL( url_workspace, AAPL );
-assertNotNull( url_AAPL       ) ;
-               url_AMZN       = new URL( url_workspace, AMZN );
-assertNotNull( url_AMZN       ) ;
-               url_QCOM       = new URL( url_workspace, QCOM );
-assertNotNull( url_QCOM       ) ;
-               url_GLD        = new URL( url_workspace, GLD  );
-assertNotNull( url_GLD        ) ;
-               url_xml        = new URL( url_workspace, xml  );
-assertNotNull( url_xml        ) ;
+               url_AAPL             = new URL( url_workspace   , AAPL );
+assertNotNull( url_AAPL             ) ;
+               url_AMZN             = new URL( url_workspace   , AMZN );
+assertNotNull( url_AMZN             ) ;
+               url_QCOM             = new URL( url_workspace   , QCOM );
+assertNotNull( url_QCOM             ) ;
+               url_GLD              = new URL( url_workspace   , GLD  );
+assertNotNull( url_GLD              ) ;
+               url_xml              = new URL( url_workspace   , xml  );
+assertNotNull( url_xml              ) ;
+               url_out_base         = new URL( url_workspace   , Dir__Out_Base        );
+assertNotNull( url_out_base         ) ;
+               url_out_family       = new URL( url_out_base    , Dir__Out_Family      );               
+assertNotNull( url_out_family       ) ;
+               url_out_request      = new URL( url_out_family  , Dir__Out_Request     );               
+assertNotNull( url_out_request      ) ;
+               url_out_rpt_detail   = new URL( url_out_request , File_Out_Rpt_Detail  );               
+assertNotNull( url_out_rpt_detail   ) ;
+               url_out_rpt_summary  = new URL( url_out_request , File_Out_Rpt_Summary );               
+assertNotNull( url_out_rpt_summary  ) ;
 
                uri_AAPL       =          url_AAPL.toURI();
                uri_AMZN       =          url_AMZN.toURI();
@@ -261,16 +284,23 @@ assertNotNull( url_xml        ) ;
                                                        );
 		   System.out.println(" ");
 		    
- check_directory    ( url_workspace );
- check_directory    ( url_knitting  );
- check_directory    ( url_src_res   );
- check_directory    ( url_resources );
- check_directory    ( url_config    );
+ check_directory    ( url_workspace   );
+ check_directory    ( url_knitting    );
+ check_directory    ( url_src_res     );
+ check_directory    ( url_resources   );
+ check_directory    ( url_config      );
+ check_directory    ( url_out_base    );
+ check_directory    ( url_out_family  );
+ check_directory    ( url_out_request );
+ 
  
  System.out.println ( " " );
  
- check_file         ( url_AAPL      );
- check_file         ( url_xml       );
+ check_file         ( url_AAPL            );
+ check_file         ( url_xml             );
+ check_file         ( url_out_rpt_detail  );
+ check_file         ( url_out_rpt_summary );
+ 
  
  System.out.println ( " " );
  		                     
@@ -286,10 +316,20 @@ assertNotNull( url_xml        ) ;
                     my_parms_02 . setCOL_END            ( 8);
                     my_parms_02 . setCOUNT_MAX_COLUMNS  (10);
              //     my_parms_02 . setROW_BASE           (10);
-                    my_parms_02 . setURL_NAME_WORKSPACE (  url_workspace.toExternalForm() );
+                    
                     my_parms_02 . setNAME_IN_FILE       ( "first_10_col_test"       );
                     my_parms_02 . setNAME_OUT_DETAILS   ( "first_10_col_details"    );
                     my_parms_02 . setNAME_OUT_SUMMARY   ( "first_10_col_summary"    );
+                    
+                    my_parms_02 . setURL_NAME_IN_DIR    ( "junk_dir__for_now" );  
+                    my_parms_02 . setURL_NAME_IN_FILE   ( "junk_file_for_now" );
+                    
+                    my_parms_02 . setURL_NAME_WORKSPACE         ( url_workspace       . toExternalForm() );  
+                    my_parms_02 . setURL_NAME_OUT_DIR_BASE      ( url_out_base        . toExternalForm() );
+                    my_parms_02 . setURL_NAME_OUT_DIR_FAMILY    ( url_out_family      . toExternalForm() );
+                    my_parms_02 . setURL_NANE_OUT_DIR_REQUEST   ( url_out_request     . toExternalForm() );  
+                    my_parms_02 . setURL_NAME_OUT_FILE_DETAILS  ( url_out_rpt_detail  . toExternalForm() );
+                    my_parms_02 . setURL_NAME_OUT_FILE_SUMMARY  ( url_out_rpt_summary . toExternalForm() );
                     
                     my_parms_02 . report_values();
                     
