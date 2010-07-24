@@ -9,9 +9,17 @@ public class Analysis_Parms {
     private int    COL_START                      =   0;
     private int    COL_END                        =   2;
     private int    ROW_BASE                       = 300;
-    private String NAME_IN_DIR   = "/Temp/Residual_attempt_01";
-    private String NAME_IN_FILE  = "GLD_vs_London_Spot_2_with_lag_1_day.txt";
-    private String NAME_OUT_DIR  = "/Temp";
+    private String URL_NAME_WORKSPACE        = "";
+    private String URL_NAME_IN_DIR           = "";
+    private String URL_NAME_IN_FILE          = "";
+    private String URL_NAME_OUT_DIR_BASE     = "";
+    private String URL_NAME_OUT_DIR_FAMILY   = "";
+    private String URL_NANE_OUT_DIR_REQUEST  = "";
+    private String URL_NAME_OUT_FILE_DETAILS = "";
+    private String URL_NAME_OUT_FILE_SUMMARY = "";
+    private String NAME_IN_DIR      = "/Temp/Residual_attempt_01";
+    private String NAME_IN_FILE     = "GLD_vs_London_Spot_2_with_lag_1_day.txt";
+    private String NAME_OUT_DIR     = "/Temp";
     private String NAME_OUT_DETAILS = "Regression_Details.txt";
     private String NAME_OUT_SUMMARY = "Regression_Summary.txt";
 
@@ -33,20 +41,66 @@ public class Analysis_Parms {
         this.COL_START = COL_START;
     }
 
-    public int getCOUNT_MAX_COLUMNS() {
-        return COUNT_MAX_COLUMNS;
+    public int    getCOUNT_MAX_COLUMNS() {
+           return    COUNT_MAX_COLUMNS;
     }
-
-    public void setCOUNT_MAX_COLUMNS(int COUNT_MAX_COLUMNS) {
-        this.COUNT_MAX_COLUMNS = COUNT_MAX_COLUMNS;
+    public void   setCOUNT_MAX_COLUMNS(int  COUNT_MAX_COLUMNS) {
+           this.     COUNT_MAX_COLUMNS   =  COUNT_MAX_COLUMNS;
     }
-
+    public String getURL_NAME_WORKSPACE(){
+    	   return    URL_NAME_WORKSPACE;
+    }
+    public void   setURL_NAME_WORKSPACE(String  URL_NAME_WORKSPACE ){
+ 	       this.     URL_NAME_WORKSPACE      =  URL_NAME_WORKSPACE;
+    }
+    public String getURL_NAME_IN_DIR(){
+    	   return    URL_NAME_IN_DIR;
+    }
+    public void   setURL_NAME_IN_DIR   (String  URL_NAME_IN_DIR    ){
+ 	       this.     URL_NAME_IN_DIR         =  URL_NAME_IN_DIR;
+    }
+    public String getURL_NAME_IN_FILE(){
+ 	       return    URL_NAME_IN_FILE;
+    }
+    public void   setURL_NAME_IN_FILE  (String  URL_NAME_IN_FILE   ){
+	       this.     URL_NAME_IN_FILE        =  URL_NAME_IN_FILE;
+    }
+    public String getURL_NAME_OUT_DIR_BASE(){
+	       return    URL_NAME_OUT_DIR_BASE;
+    }
+    public void   setURL_NAME_OUT_DIR_BASE  (String  URL_NAME_OUT_DIR_BASE   ){
+	       this.     URL_NAME_OUT_DIR_BASE        =  URL_NAME_OUT_DIR_BASE;
+    }
+    public String getURL_NAME_OUT_DIR_FAMILY(){
+	       return    URL_NAME_OUT_DIR_FAMILY;
+    }
+    public void   setURL_NAME_OUT_DIR_FAMILY  (String  URL_NAME_OUT_DIR_FAMILY   ){
+	       this.     URL_NAME_OUT_DIR_FAMILY        =  URL_NAME_OUT_DIR_FAMILY;
+    }
+    public String getURL_NANE_OUT_DIR_REQUEST(){
+	       return    URL_NANE_OUT_DIR_REQUEST;
+    }
+    public void   setURL_NANE_OUT_DIR_REQUEST  (String  URL_NANE_OUT_DIR_REQUEST   ){
+	       this.     URL_NANE_OUT_DIR_REQUEST        =  URL_NANE_OUT_DIR_REQUEST;
+    }
+    public String getURL_NAME_OUT_FILE_DETAILS(){
+	       return    URL_NAME_OUT_FILE_DETAILS;
+    }
+    public void   setURL_NAME_OUT_FILE_DETAILS  (String  URL_NAME_OUT_FILE_DETAILS   ){
+	       this.     URL_NAME_OUT_FILE_DETAILS        =  URL_NAME_OUT_FILE_DETAILS;
+    }
+    public String getURL_NAME_OUT_FILE_SUMMARY(){
+	       return    URL_NAME_OUT_FILE_SUMMARY;
+    }
+    public void   setURL_NAME_OUT_FILE_SUMMARY  (String  URL_NAME_OUT_FILE_SUMMARY   ){
+	       this.     URL_NAME_OUT_FILE_SUMMARY        =  URL_NAME_OUT_FILE_SUMMARY;
+    }
     public int getROW_BASE() {
-        return ROW_BASE;
+        return    ROW_BASE;
     }
 
     public void setROW_BASE(int ROW_BASE) {
-        this.ROW_BASE = ROW_BASE;
+           this.   ROW_BASE =   ROW_BASE;
     }
 
     public int getROW_TARGET() {
@@ -115,51 +169,83 @@ public class Analysis_Parms {
 
     public void report_values()
     {
-      System.out.println("COUNT_MAX_MATRIX_ROWS:         >"
+      System.out.println(   "COUNT_MAX_MATRIX_ROWS:         >"
                         + getCOUNT_MAX_MATRIX_ROWS()
                         +"<"
                         );
-      System.out.println("COUNT_MAX_COLUMNS:             >"
+      System.out.println(   "COUNT_MAX_COLUMNS:             >"
                         + getCOUNT_MAX_COLUMNS()
                         +"<"
                         );
-      System.out.println("COUNT_MAX_REGRESSION_ANALYSIS: >"
+      System.out.println(   "COUNT_MAX_REGRESSION_ANALYSIS: >"
                         + getCOUNT_MAX_REGRESSION_ANALYSIS()
                         +"<"
                         );
-      System.out.println("ROW_TARGET:                    >"
+      System.out.println(   "ROW_TARGET:                    >"
                         + getROW_TARGET()
                         +"<"
                         );
-      System.out.println("ROW_BASE:                      >"
+      System.out.println(   "ROW_BASE:                      >"
                         + getROW_BASE()
                         +"<"
                         );
-      System.out.println("COL_START:                     >"
+      System.out.println(   "COL_START:                     >"
                         + getCOL_START()
                         +"<"
                         );
-      System.out.println("COL_END:                       >"
+      System.out.println(   "COL_END:                       >"
                         + getCOL_END()   
                         +"<"
                         );
-      System.out.println("NAME_IN_DIR:                   >"
+      System.out.println(   "URL_NAME_WORKSPACE             >"
+    		            + getURL_NAME_WORKSPACE()
+    		            +"<"
+    		            );
+      System.out.println(   "URL_NAME_IN_DIR                >"
+                        + getURL_NAME_IN_DIR()
+                        +"<"
+                        );
+      System.out.println(   "URL_NAME_IN_FILE               >"
+                        + getURL_NAME_IN_FILE()
+                        +"<"
+                        );
+      System.out.println(   "URL_NAME_OUT_DIR_BASE          >"
+                        + getURL_NAME_OUT_DIR_BASE()
+                        +"<"
+                        );
+      System.out.println(   "URL_NAME_OUT_DIR_FAMILY        >"
+                        + getURL_NAME_OUT_DIR_FAMILY()
+                        +"<"
+                        );
+      System.out.println(   "URL_NAME_OUT_DIR_REQUEST       >"
+                        + getURL_NANE_OUT_DIR_REQUEST()
+                        +"<"
+                        );
+      System.out.println(   "URL_NAME_OUT_FILE_DETAILS      >"
+                        + getURL_NAME_OUT_FILE_DETAILS()
+                        +"<"
+                        );
+      System.out.println(   "URL_NAME_OUT_FILE_SUMMARY      >"
+                        + getURL_NAME_OUT_FILE_SUMMARY()
+                        +"<"
+                        );
+      System.out.println(   "NAME_IN_DIR:                   >"
                         + getNAME_IN_DIR()
                         +"<"
                         );
-      System.out.println("NAME_IN_FILE:                  >"
+      System.out.println(   "NAME_IN_FILE:                  >"
                         + getNAME_IN_FILE()
                         +"<"
                         );
-      System.out.println("NAME_OUT_DIR:                  >"
+      System.out.println(   "NAME_OUT_DIR:                  >"
                         + getNAME_OUT_DIR()
                         +"<"
                         );
-      System.out.println("NAME_OUT_DETAILS:              >"
+      System.out.println(   "NAME_OUT_DETAILS:              >"
                         + getNAME_OUT_DETAILS()
                         +"<"
                         );
-      System.out.println("NAME_OUT_SUMMARY:              >"
+      System.out.println(   "NAME_OUT_SUMMARY:              >"
                         + getNAME_OUT_SUMMARY()
                         +"<"
                         );
