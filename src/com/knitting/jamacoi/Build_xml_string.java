@@ -4,8 +4,11 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.net.URL;
+
+import com.thoughtworks.xstream.XStream;
 public class Build_xml_string {
 	private String xml_trimmed;
     
@@ -49,17 +52,22 @@ public class Build_xml_string {
 	{
 	       return xml_trimmed;
 	}
-//	public void    write_to_disk      ( String file_name_xml )
-//	       throws  java.io.IOException
-//	{
-//		   try    {
-//			   
-//		          }
-//		   catch  ( java.io.FileNotFoundException e)
-//	              {
-//	                System.out.println("ERROR: could not read "
-//	                                  + file_name_xml
-//	                                  );
-//	              }  
-//	}
+  	public void    write_to_disk      ( URL             u
+  			                          , XStream         x
+  			                          , Analysis_Parms  p
+  			                          )
+  	       throws  java.io.IOException
+   {
+  		   try    {
+  			        File              f = new File ( u.getFile() );
+  			        FileOutputStream os = new FileOutputStream( f );
+  			        x.toXML(p, os);
+  		          }
+  		   catch  ( java.io.FileNotFoundException e)
+  	              {
+  	                System.out.println("ERROR: could not read "
+  	                                  + u.toExternalForm()
+  	                                  );
+  	              }  
+  	}
 }
