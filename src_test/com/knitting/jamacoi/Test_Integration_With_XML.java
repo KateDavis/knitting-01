@@ -283,14 +283,20 @@ assertNotNull( url_xml        ) ;
 		            
  System.out.println(" ");
  
-                    my_parms_02 . setCOL_END           ( 8);
-                    my_parms_02 . setCOUNT_MAX_COLUMNS (10);
-             //     my_parms_02 . setROW_BASE          (10);
-                    my_parms_02 . setNAME_IN_FILE      ( "first_10_col_test"    );
-                    my_parms_02 . setNAME_OUT_DETAILS  ( "first_10_col_details" );
-                    my_parms_02 . setNAME_OUT_SUMMARY  ( "first_10_col_summary" );
+                    my_parms_02 . setCOL_END            ( 8);
+                    my_parms_02 . setCOUNT_MAX_COLUMNS  (10);
+             //     my_parms_02 . setROW_BASE           (10);
+                    my_parms_02 . setURL_NAME_WORKSPACE (  url_workspace.toExternalForm() );
+                    my_parms_02 . setNAME_IN_FILE       ( "first_10_col_test"       );
+                    my_parms_02 . setNAME_OUT_DETAILS   ( "first_10_col_details"    );
+                    my_parms_02 . setNAME_OUT_SUMMARY   ( "first_10_col_summary"    );
                     
                     my_parms_02 . report_values();
+                    
+                    xml_in.write_to_disk ( url_xml
+                    		             , xstream
+                    		             , my_parms_02
+                    		             );
 /******************************************************************************************                    
  try   {
 	    FileOutputStream fs = new FileOutputStream( "/Temp/test_xml_06.xml" );
