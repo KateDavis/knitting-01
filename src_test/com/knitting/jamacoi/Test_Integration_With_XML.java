@@ -26,7 +26,7 @@ public class Test_Integration_With_XML {
 	static String  Dir__Prefix           = "knitting-01/src_test/com/knitting/jamacoi";
 	static String  Dir__Out_Base         = "knitting-01/src_test/com/knitting/out_base";
 	static String  Dir__Out_Family       =  Dir__Out_Base    + FS + "aapl_amzn_qcom";
-	static String  Dir__Out_Request      =  Dir__Out_Family  + FS + "requets_001";
+	static String  Dir__Out_Request      =  Dir__Out_Family  + FS + "request_001";
 	static String  File_Out_Rpt_Detail   =  Dir__Out_Request + FS + "report_detail.txt";
 	static String  File_Out_Rpt_Summary  =  Dir__Out_Request + FS + "report_summary.txt";
 	static String  Dir__Actual_Out       =  Dir__Prefix      + FS + Sub__Dir_Act; 
@@ -114,25 +114,25 @@ assertNotNull( url_resources  );
 assertNotNull( url_config     );
 
 
-               url_AAPL             = new URL( url_workspace   , AAPL );
+               url_AAPL             = new URL( url_workspace , AAPL );
 assertNotNull( url_AAPL             ) ;
-               url_AMZN             = new URL( url_workspace   , AMZN );
+               url_AMZN             = new URL( url_workspace , AMZN );
 assertNotNull( url_AMZN             ) ;
-               url_QCOM             = new URL( url_workspace   , QCOM );
+               url_QCOM             = new URL( url_workspace , QCOM );
 assertNotNull( url_QCOM             ) ;
-               url_GLD              = new URL( url_workspace   , GLD  );
+               url_GLD              = new URL( url_workspace , GLD  );
 assertNotNull( url_GLD              ) ;
-               url_xml              = new URL( url_workspace   , xml  );
+               url_xml              = new URL( url_workspace , xml  );
 assertNotNull( url_xml              ) ;
-               url_out_base         = new URL( url_workspace   , Dir__Out_Base        );
+               url_out_base         = new URL( url_workspace , Dir__Out_Base        );
 assertNotNull( url_out_base         ) ;
-               url_out_family       = new URL( url_out_base    , Dir__Out_Family      );               
+               url_out_family       = new URL( url_workspace , Dir__Out_Family      );               
 assertNotNull( url_out_family       ) ;
-               url_out_request      = new URL( url_out_family  , Dir__Out_Request     );               
+               url_out_request      = new URL( url_workspace , Dir__Out_Request     );               
 assertNotNull( url_out_request      ) ;
-               url_out_rpt_detail   = new URL( url_out_request , File_Out_Rpt_Detail  );               
+               url_out_rpt_detail   = new URL( url_workspace , File_Out_Rpt_Detail  );               
 assertNotNull( url_out_rpt_detail   ) ;
-               url_out_rpt_summary  = new URL( url_out_request , File_Out_Rpt_Summary );               
+               url_out_rpt_summary  = new URL( url_workspace , File_Out_Rpt_Summary );               
 assertNotNull( url_out_rpt_summary  ) ;
 
                uri_AAPL       =          url_AAPL.toURI();
@@ -454,7 +454,7 @@ public void  check_directory ( final  URL  u){
 	        }
 	   else
 	        {
-              System.out.println( "does NOT exists:  =>"
+              System.out.println( "does NOT exists =>"
                                 +  u.toString()
                                 + "<"
                                 );
@@ -487,7 +487,7 @@ public void  check_file ( final  URL  u ){
 	        }
 	   else 
 	        {
-              System.out.println( "does NOT exists:    =>"
+              System.out.println( "does NOT exists =>"
                                 +  u.toString()
                                 + "<"
                                 );
