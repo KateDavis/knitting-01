@@ -1,5 +1,6 @@
 package com.knitting.jamacoi;
 import java.io.FileWriter;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Formatter;
 
@@ -31,26 +32,24 @@ public Report_Regression_Results (final Regression     r
                                  )
     throws java.io.IOException
 {        
-    this.r          = r;
-    this.sub_matrix = sub_matrix;
+    this.r           = r;
+    this.sub_matrix  = sub_matrix;
 
-    Rpt_Detail      = new FileWriter( xml_parms.getNAME_OUT_DIR()
-                                    + "/"
-                                    + xml_parms.getNAME_OUT_DETAILS()
-                                    , true
-                                    );
-    Rpt_Summary     = new FileWriter( xml_parms.getNAME_OUT_DIR()
-                                    + "/"
-                                    + xml_parms.getNAME_OUT_SUMMARY()
-                                    , true
-                                    );
-      
+    URL  d           = new URL       ( xml_parms.getURL_NAME_OUT_FILE_DETAILS() );
+         Rpt_Detail  = new FileWriter( d.getFile()
+                                     , true
+                                     );
+        
+    URL  s           = new URL       ( xml_parms.getURL_NAME_OUT_FILE_SUMMARY() );
+         Rpt_Summary = new FileWriter( s.getFile()
+    		                         , true
+                                     );
 } 
 public  void   report_All()
-    throws not_estimated
-         , not_invertable
-         , not_significant
-         , java.io.IOException
+        throws not_estimated
+             , not_invertable
+             , not_significant
+             , java.io.IOException
 
 { 
            report_row_selection_info         ();
