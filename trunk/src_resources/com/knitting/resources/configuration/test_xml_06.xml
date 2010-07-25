@@ -7,13 +7,13 @@
   <COL__END>8</COL__END>
   <ROW__BASE>10</ROW__BASE>
   <URL__NAME__WORKSPACE>file:/C:/Eclipse_ws_00/</URL__NAME__WORKSPACE>
-  <URL_NAME_IN_DIR>           </URL_NAME_IN_DIR>
-  <URL_NAME_IN_FILE>          </URL_NAME_IN_FILE>
-  <URL_NAME_OUT_DIR_BASE>     </URL_NAME_OUT_DIR_BASE>
-  <URL_NAME_OUT_DIR_FAMILY>   </URL_NAME_OUT_DIR_FAMILY>
-  <URL_NANE_OUT_DIR_REQUEST>  </URL_NANE_OUT_DIR_REQUEST> 
-  <URL_NAME_OUT_FILE_DETAILS> </URL_NAME_OUT_FILE_DETAILS>
-  <URL_NAME_OUT_FILE_SUMMARY> </URL_NAME_OUT_FILE_SUMMARY>
+  <URL__NAME__IN__DIR>junk_dir__for_now</URL__NAME__IN__DIR>
+  <URL__NAME__IN__FILE>junk_file_for_now</URL__NAME__IN__FILE>
+  <URL__NAME__OUT__DIR__BASE>file:/C:/Eclipse_ws_00/knitting-01/src_test/com/knitting/out_base</URL__NAME__OUT__DIR__BASE>
+  <URL__NAME__OUT__DIR__FAMILY>file:/C:/Eclipse_ws_00/knitting-01/src_test/com/knitting/out_base/aapl_amzn_qcom</URL__NAME__OUT__DIR__FAMILY>
+  <URL__NANE__OUT__DIR__REQUEST>file:/C:/Eclipse_ws_00/knitting-01/src_test/com/knitting/out_base/aapl_amzn_qcom/request_001</URL__NANE__OUT__DIR__REQUEST>
+  <URL__NAME__OUT__FILE__DETAILS>file:/C:/Eclipse_ws_00/knitting-01/src_test/com/knitting/out_base/aapl_amzn_qcom/request_001/report_detail.txt</URL__NAME__OUT__FILE__DETAILS>
+  <URL__NAME__OUT__FILE__SUMMARY>file:/C:/Eclipse_ws_00/knitting-01/src_test/com/knitting/out_base/aapl_amzn_qcom/request_001/report_summary.txt</URL__NAME__OUT__FILE__SUMMARY>
   <NAME__IN__DIR>\Temp\Residuals_attempt_01</NAME__IN__DIR>
   <NAME__IN__FILE>first_10_col_test</NAME__IN__FILE>
   <NAME__OUT__DIR>\Temp</NAME__OUT__DIR>
