@@ -36,13 +36,13 @@ public class Test_Integration_With_XML {
 	static String  Dir__Src_Res          = "knitting-01/src_resources";
 	static String  Dir__Resources        = "knitting-01/src_resources/com/knitting/resources";
 	static String  Dir__Config           = "knitting-01/src_resources/com/knitting/resources/configuration";
-	//                     C:\Eclipse_ws_00\knitting-01\src_resources\com\knitting\resources\configuration
+	
 	static String          AAPL          = Dir__Prefix_In + "/AAPL.txt";
 	static String          AMZN          = Dir__Prefix_In + "/AMZN.txt";
 	static String          QCOM          = Dir__Prefix_In + "/QCOM.txt";
 	static String          GLD           = Dir__Prefix_In + "/GLD.txt";
 	static String          xml           = Dir__Config    + "/test_xml_06.xml";
-  	//                                                        test_xml_06.xml
+  
 	       K_Calendar      kcal          = new  K_Calendar();
 	/**************************************************************
 	       private String URL_NAME_IN_DIR                = "";  ??? Dir_Config
@@ -337,36 +337,19 @@ assertNotNull( url_out_rpt_summary  ) ;
                     		             , xstream
                     		             , my_parms_02
                     		             );
-/******************************************************************************************                    
- try   {
-	    FileOutputStream fs = new FileOutputStream( "/Temp/test_xml_06.xml" );
-	    
-	                     xstream.toXML( my_parms_02
-	                    		      , fs
-	                    		      );
-       }
- catch ( FileNotFoundException e1 )
-       {
-	     e1.printStackTrace();
-       }
- ******************************************************************************/
- File               Delete_Detail = new File ( my_parms_02.getNAME_OUT_DIR()
-                                             , my_parms_02.getNAME_OUT_DETAILS()
-                                             );
- if   ( Delete_Detail.isFile() )
-      {
-        Delete_Detail.delete();
-      }             
-        Delete_Detail = null;
+                       
+ URL    d              = new URL  ( my_parms_02.getURL_NAME_OUT_FILE_DETAILS() );
+ File   Delete_Detail  = new File ( d . getFile() );
+                                            
+ if   ( Delete_Detail  . isFile() ) { Delete_Detail.delete(); }             
+        Delete_Detail  = null;
 
- File              Delete_Summary = new File ( my_parms_02.getNAME_OUT_DIR()
-                                             , my_parms_02.getNAME_OUT_SUMMARY()
-                                             );
- if   ( Delete_Summary.isFile() )
-      {
-        Delete_Summary.delete();
-      }             
-        Delete_Summary = null;        
+ URL    s              = new URL  ( my_parms_02.getURL_NAME_OUT_FILE_SUMMARY() );
+ File   Delete_Summary = new File ( s . getFile() );
+ 
+ if   ( Delete_Summary . isFile() ) { Delete_Summary.delete(); }             
+        Delete_Summary = null;
+        
  Rectangular_CVS_Matrix m = new Rectangular_CVS_Matrix ( my_parms_02 );
                         m . show_input_names();
                         
@@ -427,71 +410,31 @@ assertNotNull( url_out_rpt_summary  ) ;
 		            
 		                          	                     
 	} 
-public void  check_directory ( final  URL  u){
-	
-	   File               d           = new  File ( u.getFile() );
-	 
+public void   check_directory ( final  URL  u){
+	   File   d = new  File   ( u.getFile()  );
 	   if   ( d.exists() )
 	        {
-              System.out.println( "exists:         =>"
-                                +  u.toString()
-                                + "<"
-                                );
+              System.out.println(        "exists:            =>" +  u.toString() + "<" );
 	          if   ( d.isDirectory() )
-	               {
-		             System.out.println( "is a directory  =>"
-			    	                   +  u.toString()
-				                       + "<"
-				                       );
-	               }
-	         else
-	               {
-		             System.out.println( "is NOT a directory:  =>"
-	                                   +  u.toString()
-	                                   + "<"
-	                                   );
-	               }
+	               { System.out.println( "is a directory     =>" +  u.toString() + "<" ); }
+	          else
+	               { System.out.println( "is NOT a directory =>" +  u.toString() + "<" ); }
 	        }
 	   else
-	        {
-              System.out.println( "does NOT exists =>"
-                                +  u.toString()
-                                + "<"
-                                );
-	        }
+	        {        System.out.println( "does NOT exists    =>" +  u.toString() + "<" ); }
 }
-public void  check_file ( final  URL  u ){
-	
-	   File               f           = new  File (u.getFile() );
-	 
+public void   check_file     ( final  URL  u ){
+	   File   f = new  File  (u.getFile()    );
 	   if   ( f.exists() )
 	        {
-              System.out.println( "exists:         =>"
-                                +  u.toString()
-                                + "<"
-                                );
+              System.out.println(        "exists:            =>" +  u.toString() + "<" );
 	          if   ( f.isFile() )
-	               {
-		             System.out.println( "is a file:      =>"
-			    	                   +  u.toString()
-				                       + "<"
-				                       );
-	               }
+	               { System.out.println( "is a file:         =>" +  u.toString() + "<" ); }
 	          else
-	               {
-		             System.out.println( "is NOT a file:  =>"
-	                                   +  u.toString()
-	                                   + "<"
-	                                   );
-	               }  
+	               { System.out.println( "is NOT a file:     =>" +  u.toString() + "<" ); }  
 	        }
 	   else 
-	        {
-              System.out.println( "does NOT exists =>"
-                                +  u.toString()
-                                + "<"
-                                );
-	        }
+	        {        System.out.println( "does NOT exists    =>" +  u.toString() + "<" ); }
 	
 }
 }
