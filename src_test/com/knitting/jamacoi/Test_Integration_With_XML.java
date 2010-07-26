@@ -27,6 +27,7 @@ public class Test_Integration_With_XML {
 	static String  Dir__Out_Base         = "knitting-01/src_test/com/knitting/out_base";
 	static String  Dir__Out_Family       =  Dir__Out_Base    + FS + "aapl_amzn_qcom";
 	static String  Dir__Out_Request      =  Dir__Out_Family  + FS + "request_001";
+	static String  File_In__First_10_Col =  Dir__Out_Request + FS + "first_10_col_test.txt";
 	static String  File_Out_Rpt_Detail   =  Dir__Out_Request + FS + "report_detail.txt";
 	static String  File_Out_Rpt_Summary  =  Dir__Out_Request + FS + "report_summary.txt";
 	static String  Dir__Actual_Out       =  Dir__Prefix      + FS + Sub__Dir_Act; 
@@ -65,6 +66,7 @@ public class Test_Integration_With_XML {
            URL             url_out_base;
            URL             url_out_family;
            URL             url_out_request;
+           URL             url_in__first_10_col;
            URL             url_out_rpt_detail;
            URL             url_out_rpt_summary;
            
@@ -130,6 +132,8 @@ assertNotNull( url_out_base         ) ;
 assertNotNull( url_out_family       ) ;
                url_out_request      = new URL( url_workspace , Dir__Out_Request     );               
 assertNotNull( url_out_request      ) ;
+               url_in__first_10_col = new URL( url_workspace , File_In__First_10_Col  );               
+assertNotNull( url_in__first_10_col ) ;
                url_out_rpt_detail   = new URL( url_workspace , File_Out_Rpt_Detail  );               
 assertNotNull( url_out_rpt_detail   ) ;
                url_out_rpt_summary  = new URL( url_workspace , File_Out_Rpt_Summary );               
@@ -279,8 +283,13 @@ assertNotNull( url_out_rpt_summary  ) ;
 		                     lm  .     print_ix_entries( 10
 		                    		                   , prf
 		                    		                   );
+		                     /***********************************************************************
 		                     lm  .     write_ix_entries( prf
                                                        , "/Temp/Residuals_attempt_01/first_10_col_test"
+                                                       );
+                             ***********************************************************************/                          
+		                     lm  .     write_ix_entries( prf
+                                                       , url_in__first_10_col
                                                        );
 		   System.out.println(" ");
 		    
@@ -296,10 +305,11 @@ assertNotNull( url_out_rpt_summary  ) ;
  
  System.out.println ( " " );
  
- check_file         ( url_AAPL            );
- check_file         ( url_xml             );
- check_file         ( url_out_rpt_detail  );
- check_file         ( url_out_rpt_summary );
+ check_file         ( url_AAPL             );
+ check_file         ( url_xml              );
+ check_file         ( url_in__first_10_col );
+ check_file         ( url_out_rpt_detail   );
+ check_file         ( url_out_rpt_summary  );
  
  
  System.out.println ( " " );
@@ -321,8 +331,8 @@ assertNotNull( url_out_rpt_summary  ) ;
                     my_parms_02 . setNAME_OUT_DETAILS   ( "first_10_col_details"    );
                     my_parms_02 . setNAME_OUT_SUMMARY   ( "first_10_col_summary"    );
                     
-                    my_parms_02 . setURL_NAME_IN_DIR    ( "junk_dir__for_now" );  
-                    my_parms_02 . setURL_NAME_IN_FILE   ( "junk_file_for_now" );
+                    my_parms_02 . setURL_NAME_IN_DIR            ( url_out_request     . toExternalForm() ); 
+                    my_parms_02 . setURL_NAME_IN_FILE           ( url_in__first_10_col. toExternalForm() );
                     
                     my_parms_02 . setURL_NAME_WORKSPACE         ( url_workspace       . toExternalForm() );  
                     my_parms_02 . setURL_NAME_OUT_DIR_BASE      ( url_out_base        . toExternalForm() );
