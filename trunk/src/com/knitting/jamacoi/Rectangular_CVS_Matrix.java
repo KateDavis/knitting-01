@@ -1,6 +1,8 @@
 package com.knitting.jamacoi;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.Scanner;
@@ -24,9 +26,11 @@ import java.util.Scanner;
 
 public class Rectangular_CVS_Matrix 
 {
+	/***********************************************
 	private String            Name_Directory;
 	private String            Name_File_Short;
-	private String            Name_File_Full;
+	***********************************************/
+	private Analysis_Parms    ap;
 	private int               cols_min         = Integer.MAX_VALUE;
 	private int               cols_max         = Integer.MIN_VALUE;
 	private int               matrix_rows;
@@ -46,17 +50,23 @@ public class Rectangular_CVS_Matrix
 	        throws IOException  
 	             , not_rectangular
 	{
+		set_Analysis_Parms  ( my_parms_02 );
+		/**********************************************************
 	    set_Name_Directory  ( my_parms_02.getNAME_IN_DIR () );
 	    set_Name_File_Short ( my_parms_02.getNAME_IN_FILE() );
-	    set_Name_File_Full  ();
+	    **********************************************************/
 	    set_has_row_id      ( true );
 	    check_directory     ();
 	    get_data            ();
 	}   
+	private void   set_Analysis_Parms ( final  Analysis_Parms  my_parms_02 ){
+		    ap   = my_parms_02;
+	}
 	private void   check_directory()
 	        throws IOException
 	{
-	   File  dir = new File(get_Name_Directory() );
+	   URL   d   = new URL ( ap.getURL_NAME_IN_DIR() );
+	   File  dir = new File(  d.getFile()            );
 	    if  ( dir.isDirectory() )
 	        {
 	        }
@@ -80,30 +90,52 @@ public class Rectangular_CVS_Matrix
 	private void    set_cols_min(final int i){
 	                    cols_min =         i;
 	}
+	/******************************************************************
 	private void    set_Name_Directory  (final String Name_Directory){
 	               this.Name_Directory  =             Name_Directory;
 	}
+	******************************************************************/
 	public  String  get_Name_Directory  (){
-	        return      Name_Directory;
+		    try    {
+		    	    URL  d  =   new URL ( ap.getURL_NAME_IN_DIR() );
+		            return      d.toExternalForm();
+		           }
+		    catch  (MalformedURLException e)
+		           {
+		    	    return     "cannot find Directory Name";
+		           }
 	}
+	/*******************************************************************
 	private void    set_Name_File_Short (final String Name_File_Short){
 	               this.Name_File_Short =             Name_File_Short;
 	}
+	*******************************************************************/
 	private void    set_has_row_id ( boolean b){
 	               this.has_row_id = b;
 	}
 	public  boolean get_has_row_id(){return has_row_id;}
 	        
 	public  String  get_Name_File_Short (){
-	        return      Name_File_Short;
+		    try    {
+		        	URL  d  =   new URL ( ap.getURL_NAME_IN_FILE() );
+		            return      d.toExternalForm();
+		           }
+		    catch  (MalformedURLException e)
+		           {
+		    	    return     "cannot find in_file";
+		           }
 	}
+	/******************************************************************
 	private void    set_Name_File_Full  (){
 	                    Name_File_Full  = get_Name_Directory ()
 	                                    + "\\"
 	                                    + get_Name_File_Short();
 	}
-	public  String  get_Name_File_Full  (){
-	        return      Name_File_Full;
+	******************************************************************/
+	public  String  get_Name_File_Full  () 
+	        throws  MalformedURLException{
+		    URL  d  =   new URL ( ap.getURL_NAME_IN_DIR() );
+	        return      d.toExternalForm();
 	}
 
 	private void   get_data()        
@@ -118,7 +150,8 @@ public class Rectangular_CVS_Matrix
 	
 	    ArrayList<String>    row_ids = new ArrayList<String>();
 	    
-	    File                 file    = new File(get_Name_File_Full() );
+	    URL   f                      = new URL ( ap . getURL_NAME_IN_FILE() );
+	    File                 file    = new File( f  . getFile()             );
 	    
 	    check_if_file_exists(file);
 	    
@@ -306,9 +339,9 @@ public class Rectangular_CVS_Matrix
 	           fmt_01.format( "%n%n%s%n%n%s%s%n%s%s"
 	                        , "0) Input Names new:" 
 	                        , "         Dir  = "
-	                        ,  Name_Directory
+	                        ,  get_Name_Directory()
 	                        , "         File = "
-	                        ,  Name_File_Short
+	                        ,  get_Name_File_Short()
 	                        );
 	           
 	           System.out.println(fmt_01);

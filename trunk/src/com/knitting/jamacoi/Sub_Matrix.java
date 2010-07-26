@@ -79,8 +79,8 @@ public class Sub_Matrix
 	                                , final Rectangular_CVS_Matrix  m
 	                                )
 	{
-	 //sub_row_source_first =                 row_base + 1;
-	 //sub_row_source_last  =  sub_rows_max + row_base + 1;
+   //sub_row_source_first =                 row_base + 1;
+   //sub_row_source_last  =  sub_rows_max + row_base + 1;
 	 sub_row_source_first =  sub_rows_max + row_base + 1;
 	 sub_row_source_last  =                 row_base + 1;
 	 for ( int row_target = (row_base + 1                  )    

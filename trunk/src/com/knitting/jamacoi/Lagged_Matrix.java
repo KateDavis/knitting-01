@@ -3,6 +3,7 @@
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
@@ -117,6 +118,7 @@ protected String     fmt_entry(final  Map.Entry<Date,Price_Row>  me
   		             +  row
   		             ) ;
 }
+/******************************************************************************
 public   void        write_ix_entries ( final  Price_Row_Format  prf
                                       , final  String            file_name
                                       ){
@@ -130,6 +132,30 @@ public   void        write_ix_entries ( final  Price_Row_Format  prf
                         {
         	              fw.write( fmt_entry ( iter.next() , prf )
         	            		  + "\n"
+                                  );
+                        ++ix;
+                        }
+                 fw.close();       
+               }  
+         catch ( IOException e ) 
+               {
+                 e.printStackTrace();
+               }
+}
+*****************************************************************************/
+public   void        write_ix_entries ( final  Price_Row_Format  prf
+                                      , final  URL               file_name
+                                      ){
+         FileWriter                          fw;
+         Set     <Map.Entry<Date,Price_Row>> set  = tm .entrySet();
+         Iterator<Map.Entry<Date,Price_Row>> iter = set.iterator();
+         int                                 ix   = 0;
+         try   {
+                 fw     =   new  FileWriter   ( file_name.getFile() );      	 
+                 while  ( iter.hasNext()  )
+                        {
+                          fw.write( fmt_entry ( iter.next() , prf   )
+	                              + "\n"
                                   );
                         ++ix;
                         }
