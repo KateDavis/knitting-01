@@ -3,6 +3,7 @@ package com.knitting.jamacoi;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.io.File;
 import java.net.URI;
 import java.net.URL;
 import java.util.Date;
@@ -17,6 +18,8 @@ import com.knitting.util.K_Calendar;
 
 public class Test_Collected_Data_Set {
 	static String          Dir__Prefix   = "knitting-01/src_test/com/knitting/datasource";
+	static String          Dir__Tmp      = "knitting-01/src_test/com/knitting/tmp";
+	static String          DATA          = Dir__Tmp    + "/data_matrix_01.txt";
 	static String          AAPL          = Dir__Prefix + "/AAPL.txt";
 	static String          AMZN          = Dir__Prefix + "/AMZN.txt";
 	static String          QCOM          = Dir__Prefix + "/QCOM.txt";
@@ -26,6 +29,8 @@ public class Test_Collected_Data_Set {
            String          name;
            URL             url_this;
            URL             url_workspace;
+           URL             url_tmp;
+           URL             url_DATA;
            URL             url_AAPL;
            URL             url_AMZN;
            URL             url_QCOM;
@@ -62,7 +67,10 @@ assertNotNull( url_this );
 
                url_workspace  = new URL( url_this     , "../../../../../");
 assertNotNull( url_workspace  ) ;
-
+               url_tmp        = new URL( url_workspace, Dir__Tmp );
+assertNotNull( url_tmp        ) ;
+               url_DATA       = new URL( url_workspace, DATA );
+assertNotNull( url_DATA       ) ;
                url_AAPL       = new URL( url_workspace, AAPL );
 assertNotNull( url_AAPL       ) ;
                url_AMZN       = new URL( url_workspace, AMZN );
@@ -96,6 +104,14 @@ assertNotNull( url_GLD        ) ;
 	}
 	@Test
 	public void test_01_new_Collected_Data(){
+		
+		 check_directory    ( url_tmp  );
+		 
+		 System.out.println ( " " );
+		 
+		 check_file         ( url_DATA );
+		 
+		 System.out.println ( " " );
 	       Date      d_2004_10_25    =       kcal.set_ccyy_mm_dd(2004, 10, 25);
 	       System.out.println( "d_2004_10_25    = >"
 	    		             +  kcal.get_ccyy_mm_dd( d_2004_10_25 )
@@ -209,9 +225,37 @@ assertNotNull( url_GLD        ) ;
 		                     lm  .     print_ix_entries( 10
 		                    		                   , prf
 		                    		                   );
+		                   
 		                     lm  .     write_ix_entries( prf
-          		                                       , "/Temp/data_matrix_01"
+          		                                       , url_DATA
           		                                       );
+        
 	}
-
+	public void   check_directory ( final  URL  u){
+		   File   d = new  File   ( u.getFile()  );
+		   if   ( d.exists() )
+		        {
+	              System.out.println(        "exists:            =>" +  u.toString() + "<" );
+		          if   ( d.isDirectory() )
+		               { System.out.println( "is a directory     =>" +  u.toString() + "<" ); }
+		          else
+		               { System.out.println( "is NOT a directory =>" +  u.toString() + "<" ); }
+		        }
+		   else
+		        {        System.out.println( "does NOT exists    =>" +  u.toString() + "<" ); }
+	}
+	public void   check_file     ( final  URL  u ){
+		   File   f = new  File  (u.getFile()    );
+		   if   ( f.exists() )
+		        {
+	              System.out.println(        "exists:            =>" +  u.toString() + "<" );
+		          if   ( f.isFile() )
+		               { System.out.println( "is a file:         =>" +  u.toString() + "<" ); }
+		          else
+		               { System.out.println( "is NOT a file:     =>" +  u.toString() + "<" ); }  
+		        }
+		   else 
+		        {        System.out.println( "does NOT exists    =>" +  u.toString() + "<" ); }
+		
+	}	
 }
