@@ -344,7 +344,6 @@ assertNotNull( url_out_rpt_summary  ) ;
                     my_parms_02 . report_values();
                     
                     xml_in.write_to_disk ( url_xml
-                    		             , xstream
                     		             , my_parms_02
                     		             );
                        

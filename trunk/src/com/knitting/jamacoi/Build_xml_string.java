@@ -53,15 +53,15 @@ public class Build_xml_string {
 	       return xml_trimmed;
 	}
   	public void    write_to_disk      ( URL             u
-  			                          , XStream         x
   			                          , Object          p
   			                          )
   	       throws  java.io.IOException
    {
+    XStream         xstream     = new  XStream();
   		   try    {
   			        File              f = new File ( u.getFile() );
   			        FileOutputStream os = new FileOutputStream( f );
-  			        x.toXML(p, os);
+  			        xstream.toXML(p, os);
   		          }
   		   catch  ( java.io.FileNotFoundException e)
   	              {
