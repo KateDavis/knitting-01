@@ -54,7 +54,7 @@ public class Build_xml_string {
 	}
   	public void    write_to_disk      ( URL             u
   			                          , XStream         x
-  			                          , Analysis_Parms  p
+  			                          , Object          p
   			                          )
   	       throws  java.io.IOException
    {
