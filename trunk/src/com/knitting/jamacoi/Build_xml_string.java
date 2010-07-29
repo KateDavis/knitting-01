@@ -10,14 +10,15 @@ import java.net.URL;
 
 import com.thoughtworks.xstream.XStream;
 public class Build_xml_string {
-	private String xml_trimmed;
+	private String  xml_trimmed;
+	private XStream xstream;
     
 	public         Build_xml_string ( URL u )
 	       throws  java.io.IOException
 	{
-		   assertNotNull       ( u ) ;
-		   
-		   File  f    = new File   ( u.getFile() );
+		   assertNotNull            ( u ) ;
+		   xstream    = new  XStream();
+		   File  f    = new  File   ( u.getFile() );
 
 		   assertTrue ( f.exists() );
 		   assertTrue ( f.isFile() );
@@ -57,7 +58,6 @@ public class Build_xml_string {
   			                          )
   	       throws  java.io.IOException
    {
-    XStream         xstream     = new  XStream();
   		   try    {
   			        File              f = new File ( u.getFile() );
   			        FileOutputStream os = new FileOutputStream( f );
