@@ -51,7 +51,8 @@ assertNotNull   (url_workspace);
                  sb  . append(str_1_application_base);
                  rel_1_application_base = new URL ( url_workspace,  sb.toString()        );
 assertNotNull   (rel_1_application_base );
-	
+
+                 sb  . append("/");
                  sb  . append(str_2_family);
 	             rel_2_family           = new URL ( url_workspace,  sb.toString()        );
 assertNotNull   (rel_2_family );
@@ -67,7 +68,7 @@ StringBuffer     sb4                    = new StringBuffer();
 final int        sb4_base_len           = sb4.length();                 
 
                  sb4.append(reports);
-                 rel_4_reports          = new URL ( url_workspace,  sb.toString() );
+                 rel_4_reports          = new URL ( url_workspace,  sb4.toString() );
 assertNotNull   (rel_4_reports);
 
                  sb4.replace( sb4_base_len
@@ -75,7 +76,7 @@ assertNotNull   (rel_4_reports);
                 		    , request_series
                 		    );
                  
-                 rel_4_request_series   = new URL ( url_workspace,  sb.toString() );
+                 rel_4_request_series   = new URL ( url_workspace,  sb4.toString() );
 assertNotNull   (rel_4_request_series);
 
                  sb4.replace( sb4_base_len
@@ -83,7 +84,7 @@ assertNotNull   (rel_4_request_series);
 		                    , request_set
 		                    );
 
-                 rel_4_request_set      = new URL ( url_workspace,  sb.toString() );
+                 rel_4_request_set      = new URL ( url_workspace,  sb4.toString() );
 assertNotNull   (rel_4_request_set);
 
                  sb4.replace( sb4_base_len
@@ -91,24 +92,43 @@ assertNotNull   (rel_4_request_set);
                             , residuals
                             );
 
-                 rel_4_residuals        = new URL ( url_workspace,  sb.toString() );
+                 rel_4_residuals        = new URL ( url_workspace,  sb4.toString() );
 assertNotNull   (rel_4_residuals);               
 }
+private URL[]   get_urls(){
+	    URL[]       urls    = new URL[ 7 ];
+	                urls[0] =     rel_1_application_base;
+	                urls[1] =     rel_2_family;
+	                urls[2] =     rel_3_request;
+	                urls[3] =     rel_4_reports;
+	                urls[4] =     rel_4_request_series;
+	                urls[5] =     rel_4_request_set;
+	                urls[6] =     rel_4_residuals;
+	    
+return              urls;	    
+}
 public void     show_urls(){
-	            System.out.println( " " );
-	            show_url ( rel_1_application_base );
-	            show_url ( rel_2_family           );
-	            show_url ( rel_3_request          );
-	            show_url ( rel_4_reports          );
-	            show_url ( rel_4_request_series   );
-	            show_url ( rel_4_request_set      );
-	            show_url ( rel_4_residuals        );
-	            System.out.println( " " );
+final  URL[]    urls  = get_urls();
+
+	            System.out.println( "\n" );
+	                            
+                for ( URL  u
+                	: urls
+                	)
+                    { show_url ( u ); } 
+                
+                System.out.println( "\n" );
 }
 public void     show_url ( URL  u ){
 	            System.out.print  ( "url = >"
 	            		          +  u.toExternalForm()
-	            		          + "<"
+	            		          + "<\n"
 	                              );	
 }	
+public void     check_urls(){
+	
+}
+public void     check_url ( URL  u ){
+	
+}
 }
