@@ -2,6 +2,7 @@ package com.knitting.jamacoi;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.io.File;
 import java.net.URL;
 
 public   class    Build_Directory_Structure {
@@ -96,39 +97,138 @@ assertNotNull   (rel_4_request_set);
 assertNotNull   (rel_4_residuals);               
 }
 private URL[]   get_urls(){
-	    URL[]       urls    = new URL[ 7 ];
-	                urls[0] =     rel_1_application_base;
-	                urls[1] =     rel_2_family;
-	                urls[2] =     rel_3_request;
-	                urls[3] =     rel_4_reports;
-	                urls[4] =     rel_4_request_series;
-	                urls[5] =     rel_4_request_set;
-	                urls[6] =     rel_4_residuals;
+	    URL[]       urls    = new URL[ 6 ];
+	                urls[0] =     rel_2_family;
+	                urls[1] =     rel_3_request;
+	                urls[2] =     rel_4_reports;
+	                urls[3] =     rel_4_request_series;
+	                urls[4] =     rel_4_request_set;
+	                urls[5] =     rel_4_residuals;
 	    
 return              urls;	    
 }
 public void     show_urls(){
 final  URL[]    urls  = get_urls();
-
-	            System.out.println( "\n" );
-	                            
+                
+	            System.out.println( " " );
+	                  show_url ( rel_1_application_base );             
                 for ( URL  u
                 	: urls
                 	)
                     { show_url ( u ); } 
                 
-                System.out.println( "\n" );
+                System.out.println( " " );
 }
 public void     show_url ( URL  u ){
-	            System.out.print  ( "url = >"
-	            		          +  u.toExternalForm()
-	            		          + "<\n"
-	                              );	
+	            System.out.println  ( "url = >"
+	            		            +  u.toExternalForm()
+	            		            + "<"
+	                                );	
 }	
 public void     check_urls(){
+final  URL[]    urls  = get_urls();
+
+                System.out.println( " " );
+                      check_directory ( rel_1_application_base );
+                for ( URL  u
+    	            : urls
+    	            )
+                    { check_directory ( u ); } 
+    
+                System.out.println( " " );	
 	
 }
-public void     check_url ( URL  u ){
+public void     check_directory ( URL  u ){
+final String s	      =     u.getFile();       
+final File   d        = new File ( s );
+                if   (  d.exists() )
+                     {
+                       System.out.println( "File does     exist   =>" + s + "<" ); 
+                       if   ( d.isDirectory() )
+                            {
+                    	      System.out.println( "File is    directory  =>" + s + "<" );
+                            }
+                       else
+                            {
+                    	      System.out.println( "File is NOT directory =>" + s + "<" );
+                            }
+                     }
+                else
+                     {
+                	   System.out.println( "File does NOT exist   =>" + s + "<" );
+                     }
+}
+protected  void   create_directories(){
+final      URL[]  urls  = get_urls();
+                        create_directory_top ( rel_1_application_base );
+                  for ( URL  u
+                      : urls
+                      )
+                      { create_directory     ( u ); } 
 	
+}
+private    void   create_directory_top ( URL u ) {
+	       final String s	        =     u.getFile();       
+	       final File   d           = new File ( s );
+		                if   (  d.exists() )
+		                	 {
+		                	    if ( d.isDirectory() )
+		                	       {
+		                	    	   System.out.println( "directory exists      =>" + s + "<" );
+		                	       }
+		                	    else
+		                	         {
+		                	    	   mkdirs ( s, d );
+		                	         }
+		                     }
+		                else
+		                     {
+		                	           mkdirs ( s, d );
+		                     }	
+		
+	}
+private    void   create_directory ( URL u ) {
+final String s	         =     u.getFile();       
+final File   d           = new File ( s );
+	                if   (  d.exists() )
+	                	 {
+	                	    if ( d.isDirectory() )
+	                	       {
+	                	    	   System.out.println( "directory exists      =>" + s + "<" );
+	                	       }
+	                	    else
+	                	         {
+	                	    	   mkdir ( s, d );
+	                	         }
+	                     }
+	                else
+	                     {
+	                	           mkdir ( s, d );
+	                     }	
+	
+}
+private  void      mkdir ( String  s
+		                 , File    d
+		                 ){
+	               if    ( d.mkdir() )
+                         {
+	                       System.out.println( "directory     created =>" + s + "<" );
+                         }
+                   else
+                         {
+	                       System.out.println( "directory NOT created =>" + s + "<" );
+                         }
+}
+private  void      mkdirs( String  s
+                         , File    d
+                         ){
+                   if    ( d.mkdirs() )
+                         {
+                           System.out.println( "directory     created =>" + s + "<" );
+                         }
+                   else
+                         {
+                           System.out.println( "directory NOT created =>" + s + "<" );
+                         }
 }
 }
