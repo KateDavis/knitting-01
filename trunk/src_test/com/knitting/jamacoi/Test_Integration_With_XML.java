@@ -331,7 +331,7 @@ assertNotNull( url_out_rpt_summary  ) ;
                     my_parms_02 . setNAME_OUT_DETAILS   ( "first_10_col_details"    );
                     my_parms_02 . setNAME_OUT_SUMMARY   ( "first_10_col_summary"    );
                     
-                    my_parms_02 . setNAME_REL_APP_BASE  ( "knitting_01/src_test/com/knitting/regression" );
+                    my_parms_02 . setNAME_REL_APP_BASE  ( "knitting-01/src_test/com/knitting/regression" );
                     my_parms_02 . setNAME_REL_FAMILY    ( "aapl_amzn_qcom" );
                     my_parms_02 . setNAME_REL_REQUEST   ( "request_0001"   );
                     
