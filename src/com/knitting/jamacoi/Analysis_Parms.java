@@ -17,11 +17,14 @@ public class Analysis_Parms {
     private String URL_NANE_OUT_DIR_REQUEST       = "";
     private String URL_NAME_OUT_FILE_DETAILS      = "";
     private String URL_NAME_OUT_FILE_SUMMARY      = "";
-    private String NAME_IN_DIR      = "/Temp/Residual_attempt_01";
-    private String NAME_IN_FILE     = "GLD_vs_London_Spot_2_with_lag_1_day.txt";
-    private String NAME_OUT_DIR     = "/Temp";
-    private String NAME_OUT_DETAILS = "Regression_Details.txt";
-    private String NAME_OUT_SUMMARY = "Regression_Summary.txt";
+    private String NAME_IN_DIR        = "/Temp/Residual_attempt_01";
+    private String NAME_IN_FILE       = "GLD_vs_London_Spot_2_with_lag_1_day.txt";
+    private String NAME_OUT_DIR       = "/Temp";
+    private String NAME_OUT_DETAILS   = "Regression_Details.txt";
+    private String NAME_OUT_SUMMARY   = "Regression_Summary.txt";
+    private String NAME_REL_APP_BASE  = "knitting_01/src_test/com/knitting/regression";
+    private String NAME_REL_FAMILY    = "aapl_amzn_qcom";
+    private String NAME_REL_REQUEST   = "request_0001";
 
 
 
@@ -166,7 +169,27 @@ public class Analysis_Parms {
     public void setNAME_OUT_SUMMARY(String NAME_OUT_SUMMARY) {
         this.NAME_OUT_SUMMARY = NAME_OUT_SUMMARY;
     }
+    public String getNAME_REL_APP_BASE() {
+           return    NAME_REL_APP_BASE;
+    }
 
+    public void setNAME_REL_APP_BASE(String NAME_REL_APP_BASE) {
+           this.   NAME_REL_APP_BASE =      NAME_REL_APP_BASE;
+    }
+    public String getNAME_REL_FAMILY() {
+           return    NAME_REL_FAMILY;
+    }
+
+    public void setNAME_REL_FAMILY(String NAME_REL_FAMILY) {
+           this.   NAME_REL_FAMILY =      NAME_REL_FAMILY;
+    }    
+    public String getNAME_REL_REQUEST() {
+           return    NAME_REL_REQUEST;
+ }
+
+ public void setNAME_REL_REQUEST(String NAME_REL_REQUEST) {
+        this.   NAME_REL_REQUEST =      NAME_REL_REQUEST;
+ }        
     public void report_values()
     {
       System.out.println(   "COUNT_MAX_MATRIX_ROWS:         >"
@@ -249,6 +272,18 @@ public class Analysis_Parms {
                         + getNAME_OUT_SUMMARY()
                         +"<"
                         );
+      System.out.println(   "NAME_REL_APP_BASE:             >"
+                        + getNAME_REL_APP_BASE()
+                        +"<"
+                        );
+      System.out.println(   "NAME_REL_FAMILY:               >"
+                        + getNAME_REL_FAMILY()
+                        +"<"
+                        );     
+      System.out.println(   "NAME_REL_REQUEST:              >"
+                        + getNAME_REL_REQUEST()
+                        +"<"
+                        );         
     }        
     
 
