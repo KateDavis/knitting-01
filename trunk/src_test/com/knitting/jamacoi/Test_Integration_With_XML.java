@@ -363,6 +363,20 @@ assertNotNull( url_out_rpt_summary  ) ;
  if   ( Delete_Summary . isFile() ) { Delete_Summary.delete(); }             
         Delete_Summary = null;
         
+    	       Workspace  ws       =   new  Workspace();
+    	
+    	Build_Directory_Structure  bds = new
+    	Build_Directory_Structure            ( ws.get_Workspace() 
+    			                             , my_parms_02.getNAME_REL_APP_BASE()
+    			                             , my_parms_02.getNAME_REL_FAMILY()
+    			                             , my_parms_02.getNAME_REL_REQUEST()
+    			                             );
+    	bds.create_urls();
+    	bds.show_urls  ();
+    	bds.check_urls ();
+    	bds.create_directories();
+       
+        
  Rectangular_CVS_Matrix m = new Rectangular_CVS_Matrix ( my_parms_02 );
                         m . show_input_names();
                         
