@@ -19,4 +19,7 @@
   <NAME__OUT__DIR>\Temp</NAME__OUT__DIR>
   <NAME__OUT__DETAILS>first_10_col_details</NAME__OUT__DETAILS>
   <NAME__OUT__SUMMARY>first_10_col_summary</NAME__OUT__SUMMARY>
+  <NAME__REL__APP__BASE>knitting_01/src_test/com/knitting/regression</NAME__REL__APP__BASE>
+  <NAME__REL__FAMILY>aapl_amzn_qcom</NAME__REL__FAMILY>
+  <NAME__REL__REQUEST>request_0001</NAME__REL__REQUEST>
 </com.knitting.jamacoi.Analysis__Parms>
