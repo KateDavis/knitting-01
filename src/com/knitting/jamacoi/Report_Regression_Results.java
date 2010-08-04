@@ -21,6 +21,11 @@ public class Report_Regression_Results
     private Sub_Matrix  sub_matrix;
     private FileWriter  Rpt_Summary; 
     private FileWriter  Rpt_Detail;
+    
+    private URL         reports;
+    private URL         request_series;
+    private URL         request_set;
+    private URL         residuals;
 /**
 * @param r is an "estimated" Regression instance.  Because this reference
 * is passed into this constructor, the Report_Regression_Result instance
@@ -44,6 +49,31 @@ public Report_Regression_Results (final Regression     r
          Rpt_Summary = new FileWriter( s.getFile()
     		                         , true
                                      );
+} 
+public Report_Regression_Results ( final Regression                 r
+                                 , final Sub_Matrix                 sub_matrix
+                                 , final Analysis_Parms             xml_parms
+                                 , final Build_Directory_Structure  bds
+                                 )
+       throws java.io.IOException
+{        
+	        reports         =  bds.get_reports();
+	        request_series  =  bds.get_request_series();
+	        request_set     =  bds.get_request_set();
+	        residuals       =  bds.get_residuals();
+       this.r           = r;
+       this.sub_matrix  = sub_matrix;
+       
+final String detail     = "/rpt_details.txt";
+final String summary    = "/rpt_summary.txt";
+
+            Rpt_Detail  = new FileWriter(( reports.getFile() + detail )
+                                        ,  true
+                                        );
+
+            Rpt_Summary = new FileWriter(( reports.getFile() + summary )
+                                        ,  true
+                                        );
 } 
 public  void   report_All()
         throws not_estimated
