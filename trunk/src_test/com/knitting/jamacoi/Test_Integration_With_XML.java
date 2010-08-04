@@ -422,6 +422,7 @@ assertNotNull( url_out_rpt_summary  ) ;
                                  rrr = new Report_Regression_Results  ( r
                                                                       , sub_matrix
                                                                       , my_parms_02
+                                                                      , bds
                                                                       );
                                  rrr .     report_All                 ();
                }
