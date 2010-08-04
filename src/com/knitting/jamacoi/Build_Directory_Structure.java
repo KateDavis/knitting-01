@@ -231,4 +231,25 @@ private  void      mkdirs( String  s
                            System.out.println( "directory NOT created =>" + s + "<" );
                          }
 }
+public URL       get_application_base(){
+	   return  rel_1_application_base;
+}
+public URL       get_family(){
+	   return  rel_2_family;
+}
+public URL       get_request(){
+	   return  rel_3_request;
+}
+public URL       get_reports(){
+	   return  rel_4_reports;
+}
+public URL       get_residuals(){
+	   return  rel_4_residuals;
+}
+public URL       get_request_series(){
+	   return  rel_4_request_series;
+}
+public URL       get_request_set(){
+	   return  rel_4_request_set;
+}
 }
