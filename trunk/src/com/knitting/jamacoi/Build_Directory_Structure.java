@@ -6,10 +6,10 @@ import java.io.File;
 import java.net.URL;
 
 public   class    Build_Directory_Structure {
-final    private  static  String  reports         =  "reports";
-final    private  static  String  request_series  =  "request_series";
-final    private  static  String  request_set     =  "request_set";
-final    private  static  String  residuals       =  "residuals";
+final    private  static  String  reports         =  "reports/";
+final    private  static  String  request_series  =  "request_series/";
+final    private  static  String  request_set     =  "request_set/";
+final    private  static  String  residuals       =  "residuals/";
 
          private  URL     url_workspace;
          private  URL     rel_1_application_base;

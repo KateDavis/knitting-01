@@ -63,17 +63,20 @@ public Report_Regression_Results ( final Regression                 r
 	        residuals       =  bds.get_residuals();
        this.r           = r;
        this.sub_matrix  = sub_matrix;
-       
-final String detail     = "/rpt_details.txt";
-final String summary    = "/rpt_summary.txt";
 
-            Rpt_Detail  = new FileWriter(( reports.getFile() + detail )
+final String detail     = "rpt_details.txt";
+final String summary    = "rpt_summary.txt";
+
+URL   d                 =  new URL ( reports, detail  );
+URL   s                 =  new URL ( reports, summary );
+
+            Rpt_Detail  = new FileWriter(  d.getFile() 
                                         ,  true
                                         );
 
-            Rpt_Summary = new FileWriter(( reports.getFile() + summary )
+            Rpt_Summary = new FileWriter(  s.getFile() 
                                         ,  true
-                                        );
+                                        );       
 } 
 public  void   report_All()
         throws not_estimated
