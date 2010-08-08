@@ -484,7 +484,6 @@ new Build_Directory_Structure	  ( ws1.get_Workspace()
                                  rrr = new Report_Regression_Results  ( r
                                                                       , sub_matrix
                                                                       , my_parms_02
-                                                                 /*   , bds          */
                                                                       );
                                  rrr .     report_All                 ();
                }
