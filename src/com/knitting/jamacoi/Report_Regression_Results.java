@@ -40,12 +40,12 @@ public Report_Regression_Results (final Regression     r
     this.r           = r;
     this.sub_matrix  = sub_matrix;
 
-    URL  d           = new URL       ( xml_parms.getURL_NAME_OUT_FILE_DETAILS() );
+    URL  d           = new URL       ( xml_parms.getURL_REL_RPT_DETAILS() );
          Rpt_Detail  = new FileWriter( d.getFile()
                                      , true
                                      );
         
-    URL  s           = new URL       ( xml_parms.getURL_NAME_OUT_FILE_SUMMARY() );
+    URL  s           = new URL       ( xml_parms.getURL_REL_RPT_SUMMARY() );
          Rpt_Summary = new FileWriter( s.getFile()
     		                         , true
                                      );
