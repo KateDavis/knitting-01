@@ -345,12 +345,61 @@ assertNotNull( url_out_rpt_summary  ) ;
                     my_parms_02 . setURL_NAME_OUT_FILE_DETAILS  ( url_out_rpt_detail  . toExternalForm() );
                     my_parms_02 . setURL_NAME_OUT_FILE_SUMMARY  ( url_out_rpt_summary . toExternalForm() );
                     
+                    my_parms_02 . setNAME_REL_APP_BASE( "knitting_01/src_test/com/knitting/regression"   );
+                    my_parms_02 . setNAME_REL_FAMILY  ( "aapl_amzn_qcom"                                 );
+                    my_parms_02 . setNAME_REL_REQUEST ( "request_0001"                                   );
+                    
+                    my_parms_02 . setNAME_REL_REPORTS        ( "reports"                                );
+                    my_parms_02 . setNAME_REL_REQUEST_SERIES ( "request_series"                         );
+                    my_parms_02 . setNAME_REL_REQUEST_SET    ( "request_set"                            );
+                    my_parms_02 . setNAME_REL_RESIDUALS      ( "residuals"                              );
+                    
+                    my_parms_02 . setNAME_RPT_DETAILS        ( "rpt_details.txt"                        );
+                    my_parms_02 . setNAME_RPT_SUMMARY        ( "rpt_summary.txt"                        );
+                    
+                    my_parms_02 . setURL_REL_APP_BASE        ( "" );
+                    my_parms_02 . setURL_REL_FAMILY          ( "" );
+                    my_parms_02 . setURL_REL_REQUEST         ( "" );
+                    my_parms_02 . setURL_REL_REPORTS         ( "" );
+                    my_parms_02 . setURL_REL_REQUEST_SERIES  ( "" );
+                    my_parms_02 . setURL_REL_REQUEST_SET     ( "" );
+                    my_parms_02 . setURL_REL_RESIDUALS       ( "" );
+    Workspace       ws1           =  new Workspace();
+    Build_Directory_Structure bds1= 
+new Build_Directory_Structure	  ( ws1.get_Workspace()
+                                  , my_parms_02.getNAME_REL_APP_BASE()
+                                  , my_parms_02.getNAME_REL_FAMILY()
+                                  , my_parms_02.getNAME_REL_REQUEST()
+                                  );
+    
+	                bds1.create_urls();
+	                bds1.show_urls  ();
+	                bds1.check_urls ();
+	                bds1.create_directories();
+                    
+	                my_parms_02 . setURL_REL_APP_BASE       ( bds1.get_application_base().toExternalForm() );
+	                my_parms_02 . setURL_REL_FAMILY         ( bds1.get_family()          .toExternalForm() );
+	                my_parms_02 . setURL_REL_REQUEST        ( bds1.get_request()         .toExternalForm() );
+	                my_parms_02 . setURL_REL_REPORTS        ( bds1.get_reports()         .toExternalForm() );
+	                my_parms_02 . setURL_REL_REQUEST_SERIES ( bds1.get_request_series()  .toExternalForm() );
+	                my_parms_02 . setURL_REL_REQUEST_SET    ( bds1.get_request_set()     .toExternalForm() );
+	                my_parms_02 . setURL_REL_RESIDUALS      ( bds1.get_residuals()       .toExternalForm() );
+	                
+	                URL    rpt_base    = new URL ( my_parms_02.getURL_REL_REPORTS () );
+	                URL    rpt_details = new URL ( rpt_base
+	                		                     , my_parms_02.getNAME_RPT_DETAILS()
+	                		                     );
+	                URL    rpt_summary = new URL ( rpt_base
+	                		                     , my_parms_02.getNAME_RPT_SUMMARY()
+	                		                     );
+	                my_parms_02.setURL_REL_RPT_DETAILS ( rpt_details.toExternalForm() );
+	                my_parms_02.setURL_REL_RPT_SUMMARY ( rpt_summary.toExternalForm() );
                     my_parms_02 . report_values();
                     
                     xml_in.write_to_disk ( url_xml
                     		             , my_parms_02
                     		             );
-                       
+/******************************/                       
  URL    d              = new URL  ( my_parms_02.getURL_NAME_OUT_FILE_DETAILS() );
  File   Delete_Detail  = new File ( d . getFile() );
                                             
@@ -362,6 +411,19 @@ assertNotNull( url_out_rpt_summary  ) ;
  
  if   ( Delete_Summary . isFile() ) { Delete_Summary.delete(); }             
         Delete_Summary = null;
+/*****************************/  
+        
+ URL    rpt_d          = new URL    ( my_parms_02.getURL_REL_RPT_DETAILS() );
+ File   rpt_d_f        = new File   ( rpt_d      .getFile() );
+                                                   
+ if   ( rpt_d_f        . isFile() ) { rpt_d_f.delete(); }             
+        rpt_d_f        = null;
+
+ URL    rpt_s          = new URL    ( my_parms_02.getURL_REL_RPT_SUMMARY() );
+ File   rpt_s_f        = new File   ( rpt_s      .getFile() );
+                                                          
+ if   ( rpt_s_f        . isFile() ) { rpt_s_f.delete(); }             
+        rpt_s_f        = null;
         
     	       Workspace  ws       =   new  Workspace();
     	
@@ -422,7 +484,7 @@ assertNotNull( url_out_rpt_summary  ) ;
                                  rrr = new Report_Regression_Results  ( r
                                                                       , sub_matrix
                                                                       , my_parms_02
-                                                                      , bds
+                                                                 /*   , bds          */
                                                                       );
                                  rrr .     report_All                 ();
                }

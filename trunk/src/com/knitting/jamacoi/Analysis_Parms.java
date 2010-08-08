@@ -1,5 +1,6 @@
 package com.knitting.jamacoi;
 
+
 public class Analysis_Parms {
     
     private int    COUNT_MAX_MATRIX_ROWS          = 200;
@@ -22,11 +23,28 @@ public class Analysis_Parms {
     private String NAME_OUT_DIR       = "/Temp";
     private String NAME_OUT_DETAILS   = "Regression_Details.txt";
     private String NAME_OUT_SUMMARY   = "Regression_Summary.txt";
-    private String NAME_REL_APP_BASE  = "knitting_01/src_test/com/knitting/regression";
-    private String NAME_REL_FAMILY    = "aapl_amzn_qcom";
-    private String NAME_REL_REQUEST   = "request_0001";
-
-
+    
+    private String NAME_REL_APP_BASE       = "knitting_01/src_test/com/knitting/regression";
+    private String NAME_REL_FAMILY         = "aapl_amzn_qcom";
+    private String NAME_REL_REQUEST        = "request_0001";
+    
+    private String NAME_REL_REPORTS        = "reports/";
+    private String NAME_REL_REQUEST_SERIES = "request_series/";
+    private String NAME_REL_REQUEST_SET    = "request_set/";
+    private String NAME_REL_RESIDUALS      = "residuals/";
+    
+    private String NAME_RPT_DETAILS        = "rpt_details.txt";
+    private String NAME_RPT_SUMMARY        = "rpt_summary.txt";
+    
+    private String URL_REL_APP_BASE        = "";
+    private String URL_REL_FAMILY          = "";
+    private String URL_REL_REQUEST         = "";
+    private String URL_REL_REPORTS         = "";
+    private String URL_REL_REQUEST_SERIES  = "";
+    private String URL_REL_REQUEST_SET     = "";
+    private String URL_REL_RESIDUALS       = "";
+    private String URL_REL_RPT_DETAILS     = "";
+    private String URL_REL_RPT_SUMMARY     = "";
 
     public int getCOL_END() {
         return COL_END;
@@ -173,23 +191,115 @@ public class Analysis_Parms {
            return    NAME_REL_APP_BASE;
     }
 
-    public void setNAME_REL_APP_BASE(String NAME_REL_APP_BASE) {
-           this.   NAME_REL_APP_BASE =      NAME_REL_APP_BASE;
+    public void   setNAME_REL_APP_BASE(String NAME_REL_APP_BASE) {
+           this.     NAME_REL_APP_BASE =      NAME_REL_APP_BASE;
     }
     public String getNAME_REL_FAMILY() {
            return    NAME_REL_FAMILY;
     }
 
-    public void setNAME_REL_FAMILY(String NAME_REL_FAMILY) {
-           this.   NAME_REL_FAMILY =      NAME_REL_FAMILY;
+    public void   setNAME_REL_FAMILY         (String  NAME_REL_FAMILY) {
+           this.     NAME_REL_FAMILY =                NAME_REL_FAMILY;
     }    
     public String getNAME_REL_REQUEST() {
            return    NAME_REL_REQUEST;
- }
+    }
 
- public void setNAME_REL_REQUEST(String NAME_REL_REQUEST) {
-        this.   NAME_REL_REQUEST =      NAME_REL_REQUEST;
- }        
+    public void   setNAME_REL_REQUEST        (String  NAME_REL_REQUEST) {
+           this.     NAME_REL_REQUEST =               NAME_REL_REQUEST;
+    }
+  
+    public  String getNAME_REL_REPORTS(){  
+            return    NAME_REL_REPORTS;
+    }           
+    public  void   setNAME_REL_REPORTS       (String  NAME_REL_REPORTS){
+            this.     NAME_REL_REPORTS  =             NAME_REL_REPORTS;
+    }        
+    public  String getNAME_REL_REQUEST_SERIES(){
+            return    NAME_REL_REQUEST_SERIES;
+    }      
+    public  void   setNAME_REL_REQUEST_SERIES(String  NAME_REL_REQUEST_SERIES ){
+            this.     NAME_REL_REQUEST_SERIES  =      NAME_REL_REQUEST_SERIES;
+    }      
+    public  String getNAME_REL_REQUEST_SET(){
+            return    NAME_REL_REQUEST_SET;
+    }    
+    public  void   setNAME_REL_REQUEST_SET   (String  NAME_REL_REQUEST_SET){
+            this.     NAME_REL_REQUEST_SET  =         NAME_REL_REQUEST_SET;
+    }     
+    public  String getNAME_REL_RESIDUALS(){  
+            return    NAME_REL_RESIDUALS;
+    }   
+    public  void   setNAME_REL_RESIDUALS     (String  NAME_REL_RESIDUALS){  
+            this.     NAME_REL_RESIDUALS  =           NAME_REL_RESIDUALS;
+    }       
+    public  String getNAME_RPT_DETAILS(){
+    	    return    NAME_RPT_DETAILS;
+    }
+    public  void   setNAME_RPT_DETAILS       (String  NAME_RPT_DETAILS  ){
+	        this.     NAME_RPT_DETAILS     =          NAME_RPT_DETAILS;
+    }
+    public  String getNAME_RPT_SUMMARY(){
+    	    return    NAME_RPT_SUMMARY;
+    }
+    public  void   setNAME_RPT_SUMMARY       (String  NAME_RPT_SUMMARY  ){
+	        this.     NAME_RPT_SUMMARY     =          NAME_RPT_SUMMARY;
+    }    
+    public  String getURL_REL_APP_BASE(){     
+            return    URL_REL_APP_BASE;
+    }      
+    public  void   setURL_REL_APP_BASE       (String  URL_REL_APP_BASE){     
+            this.     URL_REL_APP_BASE =              URL_REL_APP_BASE;
+    }     
+    public  String getURL_REL_FAMILY(){     
+            return    URL_REL_FAMILY;
+    }  
+    public  void   setURL_REL_FAMILY         (String  URL_REL_FAMILY  ){     
+            this.     URL_REL_FAMILY =                URL_REL_FAMILY;
+    }       
+    public  String getURL_REL_REQUEST(){ 
+            return    URL_REL_REQUEST;
+    }     
+    public  void   setURL_REL_REQUEST        (String  URL_REL_REQUEST ){ 
+            this.     URL_REL_REQUEST =               URL_REL_REQUEST;
+    }      
+    public  String getURL_REL_REPORTS(){  
+            return    URL_REL_REPORTS;
+    }     
+    public  void   setURL_REL_REPORTS        (String  URL_REL_REPORTS ){  
+            this.     URL_REL_REPORTS =               URL_REL_REPORTS;
+    }     
+    public  String getURL_REL_REQUEST_SERIES(){
+            return    URL_REL_REQUEST_SERIES;
+    }    
+    public  void   setURL_REL_REQUEST_SERIES (String  URL_REL_REQUEST_SERIES){
+            this.     URL_REL_REQUEST_SERIES =        URL_REL_REQUEST_SERIES;
+    }      
+    public  String getURL_REL_REQUEST_SET(){
+            return    URL_REL_REQUEST_SET;
+    }   
+    public  void   setURL_REL_REQUEST_SET    (String  URL_REL_REQUEST_SET   ){
+            this.     URL_REL_REQUEST_SET =           URL_REL_REQUEST_SET;
+    }       
+    public  String getURL_REL_RESIDUALS(){ 
+            return    URL_REL_RESIDUALS;
+    }     
+    public  void   setURL_REL_RESIDUALS      (String  URL_REL_RESIDUALS     ){ 
+            this.     URL_REL_RESIDUALS =             URL_REL_RESIDUALS;
+    }    
+    public  String getURL_REL_RPT_DETAILS(){
+    	    return    URL_REL_RPT_DETAILS;
+    }
+    public  void   setURL_REL_RPT_DETAILS    (String  URL_REL_RPT_DETAILS   ){
+	        this.     URL_REL_RPT_DETAILS =           URL_REL_RPT_DETAILS;
+    }
+    public  String getURL_REL_RPT_SUMMARY(){    
+    	    return    URL_REL_RPT_SUMMARY;
+    }
+    public  void   setURL_REL_RPT_SUMMARY    (String  URL_REL_RPT_SUMMARY   ){    
+	        this.     URL_REL_RPT_SUMMARY =           URL_REL_RPT_SUMMARY;
+}
+
     public void report_values()
     {
       System.out.println(   "COUNT_MAX_MATRIX_ROWS:         >"
@@ -272,6 +382,7 @@ public class Analysis_Parms {
                         + getNAME_OUT_SUMMARY()
                         +"<"
                         );
+      System.out.println(" ");
       System.out.println(   "NAME_REL_APP_BASE:             >"
                         + getNAME_REL_APP_BASE()
                         +"<"
@@ -283,7 +394,81 @@ public class Analysis_Parms {
       System.out.println(   "NAME_REL_REQUEST:              >"
                         + getNAME_REL_REQUEST()
                         +"<"
-                        );         
+                        );  
+      System.out.println(   "NAME_REL_APP_BASE:             >"
+    		            + getNAME_REL_APP_BASE()
+    		            +"<"
+    		            );
+      System.out.println(   "NAME_REL_FAMILY:               >"
+    		            + getNAME_REL_FAMILY()
+    		            +"<"
+    		            );
+      System.out.println(   "NAME_REL_REQUEST:              >"
+    		            + getNAME_REL_REQUEST()
+    		            +"<"
+    		            );
+      System.out.println(   "NAME_REL_REPORTS:              >"
+    		            + getNAME_REL_REPORTS()
+    		            +"<"
+    		            );
+      System.out.println(   "NAME_REL_REQUEST_SERIES:       >"
+    		            + getNAME_REL_REQUEST_SERIES()
+    		            +"<"
+    		            );
+      System.out.println(   "NAME_REL_REQUEST_SET:          >"
+    		            + getNAME_REL_REQUEST_SET()
+    		            +"<"
+    		            );
+      System.out.println(   "NAME_REL_RESIDUALS:            >"
+                        + getNAME_REL_RESIDUALS()
+                        +"<"
+                        );   
+      System.out.println(" ");
+      System.out.println(   "NAME_RPT_DETAILS:              >"
+    		            + getNAME_RPT_DETAILS()  
+    		            +"<"
+    		            );
+      System.out.println(   "NAME_RPT_SUMMARY:              >"
+	                    + getNAME_RPT_SUMMARY()  
+	                    +"<"
+	                    );      
+      System.out.println(" ");
+      System.out.println(   "URL_REL_APP_BASE:              >"
+    		            + getURL_REL_APP_BASE()
+    		            +"<"
+    		            );
+      System.out.println(   "URL_REL_FAMILY:                >"
+    		            + getURL_REL_FAMILY()
+    		            +"<"
+    		            );
+      System.out.println(   "URL_REL_REQUEST:               >"
+    		            + getURL_REL_REQUEST()
+    		            +"<"
+    		            );
+      System.out.println(   "URL_REL_REPORTS:               >"
+    		            + getURL_REL_REPORTS()
+    		            +"<"
+    		            );
+      System.out.println(   "URL_REL_REQUEST_SERIES:        >"
+    		            + getURL_REL_REQUEST_SERIES()
+    		            +"<"
+    		            );
+      System.out.println(   "URL_REL_REQUEST_SET:           >"
+    		            + getURL_REL_REQUEST_SET()
+    		            +"<"
+    		            );
+      System.out.println(   "URL_REL_RESIDUALS:             >"
+    		            + getURL_REL_RESIDUALS()
+    		            +"<"
+    		            );
+      System.out.println(   "URL_REL_RPT_DETAILS:           >"
+	                    + getURL_REL_RPT_DETAILS()
+	                    +"<"
+	                    );
+      System.out.println(   "URL_REL_RPT_SUMMARY:           >"
+                        + getURL_REL_RPT_SUMMARY()
+                        +"<"
+                        );
     }        
     
 

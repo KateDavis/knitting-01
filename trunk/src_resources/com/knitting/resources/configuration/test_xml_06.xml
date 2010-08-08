@@ -19,7 +19,22 @@
   <NAME__OUT__DIR>\Temp</NAME__OUT__DIR>
   <NAME__OUT__DETAILS>first_10_col_details</NAME__OUT__DETAILS>
   <NAME__OUT__SUMMARY>first_10_col_summary</NAME__OUT__SUMMARY>
-  <NAME__REL__APP__BASE>knitting-01/src_test/com/knitting/regression</NAME__REL__APP__BASE>
+  <NAME__REL__APP__BASE>knitting_01/src_test/com/knitting/regression</NAME__REL__APP__BASE>
   <NAME__REL__FAMILY>aapl_amzn_qcom</NAME__REL__FAMILY>
   <NAME__REL__REQUEST>request_0001</NAME__REL__REQUEST>
+  <NAME__REL__REPORTS>reports</NAME__REL__REPORTS>
+  <NAME__REL__REQUEST__SERIES>request_series</NAME__REL__REQUEST__SERIES>
+  <NAME__REL__REQUEST__SET>request_set</NAME__REL__REQUEST__SET>
+  <NAME__REL__RESIDUALS>residuals</NAME__REL__RESIDUALS>
+  <NAME__RPT__DETAILS>rpt_details.txt</NAME__RPT__DETAILS>
+  <NAME__RPT__SUMMARY>rpt_summary.txt</NAME__RPT__SUMMARY>
+  <URL__REL__APP__BASE>file:/C:/Eclipse_ws_00/knitting_01/src_test/com/knitting/regression</URL__REL__APP__BASE>
+  <URL__REL__FAMILY>file:/C:/Eclipse_ws_00/knitting_01/src_test/com/knitting/regression/aapl_amzn_qcom</URL__REL__FAMILY>
+  <URL__REL__REQUEST>file:/C:/Eclipse_ws_00/knitting_01/src_test/com/knitting/regression/aapl_amzn_qcom/request_0001</URL__REL__REQUEST>
+  <URL__REL__REPORTS>file:/C:/Eclipse_ws_00/knitting_01/src_test/com/knitting/regression/aapl_amzn_qcom/request_0001/reports/</URL__REL__REPORTS>
+  <URL__REL__REQUEST__SERIES>file:/C:/Eclipse_ws_00/knitting_01/src_test/com/knitting/regression/aapl_amzn_qcom/request_0001/request_series/</URL__REL__REQUEST__SERIES>
+  <URL__REL__REQUEST__SET>file:/C:/Eclipse_ws_00/knitting_01/src_test/com/knitting/regression/aapl_amzn_qcom/request_0001/request_set/</URL__REL__REQUEST__SET>
+  <URL__REL__RESIDUALS>file:/C:/Eclipse_ws_00/knitting_01/src_test/com/knitting/regression/aapl_amzn_qcom/request_0001/residuals/</URL__REL__RESIDUALS>
+  <URL__REL__RPT__DETAILS>file:/C:/Eclipse_ws_00/knitting_01/src_test/com/knitting/regression/aapl_amzn_qcom/request_0001/reports/rpt_details.txt</URL__REL__RPT__DETAILS>
+  <URL__REL__RPT__SUMMARY>file:/C:/Eclipse_ws_00/knitting_01/src_test/com/knitting/regression/aapl_amzn_qcom/request_0001/reports/rpt_summary.txt</URL__REL__RPT__SUMMARY>
 </com.knitting.jamacoi.Analysis__Parms>
