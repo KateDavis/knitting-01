@@ -1,4 +1,5 @@
 package com.knitting.jamacoi;
+import java.io.File;
 import java.io.FileWriter;
 import java.net.URL;
 import java.util.ArrayList;
@@ -7,7 +8,7 @@ import java.util.Formatter;
 /**
  * This class implements usable and more meaningful reports that the 
  * Regression class has calculated.  These reports have standard
- * formating with every field labled.  The class can be replaced or
+ * formating with every field labeled.  The class can be replaced or
  * overridden to provide custom reporting.  This class provides the
  * important function of separating the calculation of regression results
  * from the reporting of these results.  This keeps the Regression class
@@ -17,15 +18,16 @@ import java.util.Formatter;
 
 public class Report_Regression_Results 
 {
-    private Regression  r;
-    private Sub_Matrix  sub_matrix;
-    private FileWriter  Rpt_Summary; 
-    private FileWriter  Rpt_Detail;
+	private int             residual_rpt_count  =  0;
+    private Regression      r;
+    private Sub_Matrix      sub_matrix;
+    private FileWriter      Rpt_Summary; 
+    private FileWriter      Rpt_Detail;
     
-    private URL         reports;
-    private URL         request_series;
-    private URL         request_set;
-    private URL         residuals;
+    private URL             reports;
+    private URL             request_series;
+    private URL             request_set;
+    private URL             residuals;
 /**
 * @param r is an "estimated" Regression instance.  Because this reference
 * is passed into this constructor, the Report_Regression_Result instance
@@ -37,18 +39,21 @@ public Report_Regression_Results (final Regression     r
                                  )
     throws java.io.IOException
 {        
-    this.r           = r;
-    this.sub_matrix  = sub_matrix;
+    this.r            = r;
+    this.sub_matrix   = sub_matrix;
+         residuals    = new URL       ( xml_parms.getURL_REL_RESIDUALS  () );
 
-    URL  d           = new URL       ( xml_parms.getURL_REL_RPT_DETAILS() );
-         Rpt_Detail  = new FileWriter( d.getFile()
-                                     , true
-                                     );
+    URL  d            = new URL       ( xml_parms.getURL_REL_RPT_DETAILS() );
+    File fd           = new File      ( d.getFile() );
+         Rpt_Detail   = new FileWriter( fd
+                                      , true
+                                      );
         
-    URL  s           = new URL       ( xml_parms.getURL_REL_RPT_SUMMARY() );
-         Rpt_Summary = new FileWriter( s.getFile()
-    		                         , true
-                                     );
+    URL  s            = new URL       ( xml_parms.getURL_REL_RPT_SUMMARY() );
+    File fs           = new File      ( s.getFile() );
+         Rpt_Summary  = new FileWriter( fs
+    		                          , true
+                                      );
 } 
 
 public  void   report_All()
@@ -60,6 +65,7 @@ public  void   report_All()
 { 
            report_row_selection_info         ();
            report_YX                         ();
+           report_standardized_Y_residuals   (); 
            report_Y_est_Y_residual_X         ();
            report_Estimated_Function         ();
            report_Error_Analysis             ();
@@ -214,11 +220,106 @@ public  void   report_YX()
         line_06 = null;
       }
 }     
+public  void   report_standardized_Y_residuals()
+        throws not_estimated
+             , not_invertable
+             , not_significant 
+             , java.io.IOException
+{
+	
+    Formatter   fmt_count      = new Formatter ();
+                fmt_count.format("residuals_%04d.txt"
+                		        , residual_rpt_count
+                		        );
+                                ++residual_rpt_count;
+                                
+    URL         rpt_residuals  = new URL       ( residuals,  fmt_count.toString() );
+    File        file_residual  = new File      ( rpt_residuals.getFile() );
+    FileWriter  rpt_writer     = new FileWriter( file_residual
+                                               , false
+                                               );
+               
+	int           ir;
+	double        residual_sum      = 0;
+	double        residual_ave      = 0;
+	double        sqt_deviation_sum = 0;
+	double        std_deviation     = 0;
+	
+	for       (   ir  = 0
+		      ;   ir  < r.get_YX_max_rows()
+		      ; ++ir
+		      )
+	          {
+	                              residual_sum =+ r.get_est_Y_residual(ir, 1);
+	          };
+	              residual_ave =  residual_sum /  r.get_YX_max_rows();
+	              
+	Formatter fmt_ave = new Formatter();
+	          fmt_ave.format("residual_ave ..... = >%5.5E<%n"
+	        		        , residual_ave
+	        		        );
+	          rpt_writer.write(fmt_ave.toString());
+	          
+	              
+	for       (   ir  = 0
+	          ;   ir  < r.get_YX_max_rows()
+	          ; ++ir
+	          )
+	          {
+	          	  double           deviation         =    r.get_est_Y_residual(ir, 1)
+	          	                                     -    residual_ave;
+	          	  
+	          	                   sqt_deviation_sum =+ ( deviation
+	          	        		                        * deviation
+	          	        		                        );
+	          }
+	Formatter fmt_sqt_sum = new Formatter();
+	          fmt_sqt_sum.format("sqt_deviation_sum  = >%5.5E<%n"
+	        		            , sqt_deviation_sum
+	        		            );
+	          rpt_writer.write(fmt_sqt_sum.toString() );
+	          
+	std_deviation   =   Math.sqrt(   sqt_deviation_sum 
+			                     / ( r.get_YX_max_rows() - 1 )
+			                     );
+	 
+	
+	Formatter fmt_std_dev = new Formatter();
+    fmt_std_dev.format("std_deviation .... = >%5.5E<%n"
+  		            , std_deviation
+  		            );
+    rpt_writer.write(fmt_std_dev.toString() );
+  
+	for       (   ir  = 0
+		      ;   ir  < r.get_YX_max_rows()
+		      ; ++ir
+		      )
+		      {
+		        Formatter line_01 = new Formatter();
+		        line_01.format( "%s,"
+	                          , sub_matrix.get_row_id(ir)
+	                          );    
+             
+		        line_01.format( "%5.5E,%5.5E"
+		        		      ,       r.get_est_Y_residual(ir, 1)
+		                      , ( 
+		                    	   (  r.get_est_Y_residual(ir, 1)
+		                    	   -  residual_ave
+		                    	   )
+		                        /  std_deviation		  
+		                        )		  
+		                      );   
+		        line_01.format( "%n");
+		        rpt_writer.write(line_01.toString()); 
+		        line_01 = null;
+		      }  
+	rpt_writer.close();
+}
 public  void   report_Y_est_Y_residual_X()
-    throws not_estimated
-         , not_invertable
-         , not_significant 
-         , java.io.IOException
+        throws not_estimated
+             , not_invertable
+             , not_significant 
+             , java.io.IOException
 { 
  Formatter line_01 = new Formatter();
            line_01.format("%n%n%s%n"
