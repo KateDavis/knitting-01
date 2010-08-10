@@ -480,12 +480,19 @@ new Build_Directory_Structure	  ( ws1.get_Workspace()
                {                            
                  Regression        r = new Regression ( sub_matrix ); 
 
-                 Report_Regression_Results 
-                                 rrr = new Report_Regression_Results  ( r
-                                                                      , sub_matrix
-                                                                      , my_parms_02
-                                                                      );
-                                 rrr .     report_All                 ();
+                 Report_Regression_Results          rrr =
+             new Report_Regression_Results        ( r
+                                                  , sub_matrix
+                                                  , my_parms_02
+                                                  );
+                                                    rrr . report_All();
+                 Report_Standardized_Y_Residuals    syr =
+             new Report_Standardized_Y_Residuals  ( ir_base
+            		                              , r
+            		                              , sub_matrix
+            		                              , my_parms_02
+            		                              );	 
+                                                    syr . create_rpt();
                }
            catch (not_enough_rows e)
                  {}                  

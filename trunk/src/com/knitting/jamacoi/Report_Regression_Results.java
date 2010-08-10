@@ -23,6 +23,7 @@ public class Report_Regression_Results
     private Sub_Matrix      sub_matrix;
     private FileWriter      Rpt_Summary; 
     private FileWriter      Rpt_Detail;
+    private Analysis_Parms  xml_parms;
     
     private URL             reports;
     private URL             request_series;
@@ -65,7 +66,7 @@ public  void   report_All()
 { 
            report_row_selection_info         ();
            report_YX                         ();
-           report_standardized_Y_residuals   (); 
+     //    report_standardized_Y_residuals   (); 
            report_Y_est_Y_residual_X         ();
            report_Estimated_Function         ();
            report_Error_Analysis             ();
