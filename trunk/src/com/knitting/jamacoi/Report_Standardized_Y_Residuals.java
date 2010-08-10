@@ -32,19 +32,23 @@ public             Report_Standardized_Y_Residuals( int             residual_rpt
 public      void     create_rpt()
             throws   java.io.IOException
 {
-Formatter   fmt_count      = new Formatter ();
-            fmt_count.format   ("residuals_%04d.txt"
-    	  	                   , residual_rpt_count
-    		                   );
-                    
             residuals      = new URL       ( xml_parms.getURL_REL_RESIDUALS() );            
-URL         rpt_residuals  = new URL       ( residuals,  fmt_count.toString() );
-File        file_residual  = new File      ( rpt_residuals.getFile() );
+URL         rpt_residuals  = new URL       ( residuals,  fmt_file_name     () );
+File        file_residual  = new File      ( rpt_residuals.getFile         () );
             rpt_writer     = new FileWriter( file_residual
                                            , false
                                            );
             rpt_details();
             rpt_writer.close();
+}
+protected   String  fmt_file_name(){
+Formatter   fmt_file_name = new Formatter ();
+            fmt_file_name . format   ("residuals_%04d__%s__%s.txt"
+  	                                 , residual_rpt_count
+  	                                 , sub_matrix.get_row_id(0)
+  	                                 , sub_matrix.get_row_id( r.get_YX_max_rows() -1 )
+	                                 );
+return      fmt_file_name . toString();            
 }
 protected   void    rpt_details()
             throws  java.io.IOException
