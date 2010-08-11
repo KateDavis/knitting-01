@@ -25,6 +25,8 @@ public class Report_Regression_Results
     private FileWriter      Rpt_Detail;
     private Analysis_Parms  xml_parms;
     
+    private Report_YX       rpt_yx;
+    
     private URL             reports;
     private URL             request_series;
     private URL             request_set;
@@ -55,6 +57,10 @@ public Report_Regression_Results (final Regression     r
          Rpt_Summary  = new FileWriter( fs
     		                          , true
                                       );
+         rpt_yx       = new Report_YX ( r
+        		                      , sub_matrix
+        		                      , Rpt_Detail
+        		                      );
 } 
 
 public  void   report_All()
@@ -65,7 +71,8 @@ public  void   report_All()
 
 { 
            report_row_selection_info         ();
-           report_YX                         ();
+       //  report_YX                         ();
+           rpt_yx.write_details              ();        
            report_Y_est_Y_residual_X         ();
            report_Estimated_Function         ();
            report_Error_Analysis             ();
