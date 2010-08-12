@@ -21,7 +21,7 @@ public   void        write_details()
 {
 	     Rpt_Detail.write( fmt_line_01() );
 	     Rpt_Detail.write( fmt_line_02() );
-	     Rpt_Detail.write( fmt_line_02() );
+	     Rpt_Detail.write( fmt_line_03() );
 }
 protected  String  fmt_line_01(){
 Formatter  line =  new Formatter();
@@ -32,7 +32,7 @@ return     line .  toString();
 }
 protected  String  fmt_line_02(){
 Formatter  line =  new Formatter();
-           line .  format( "%s%02d%s%s%04d%n"
+           line .  format( "%s%04d%s%s%04d%n"
                          , "matrix row = "
                          , 1                                
                          , "  "
@@ -43,12 +43,12 @@ return     line .  toString();
 }
 protected  String  fmt_line_03(){
 Formatter  line =  new Formatter();
-           line .  format( "%s%02d%s%s%04d%n"
+           line .  format( "%s%04d%s%s%04d%n"
                          , "matrix row = "
                          ,  sub_matrix.get_rows_max()        
                          , "  "
                          , "source row = "
-                         ,  sub_matrix.get_row_source_last() 
+                         ,  sub_matrix.get_row_source_last()
                          );
 return     line .  toString();           
 }
