@@ -26,6 +26,7 @@ public class Report_Regression_Results
     private Analysis_Parms  xml_parms;
     
     private Report_YX       rpt_yx;
+    private Report_Row_Selection_Info  rpt_row_info;
     
     private URL             reports;
     private URL             request_series;
@@ -57,6 +58,9 @@ public Report_Regression_Results (final Regression     r
          Rpt_Summary  = new FileWriter( fs
     		                          , true
                                       );
+         rpt_row_info = new Report_Row_Selection_Info ( sub_matrix
+        		                                      , Rpt_Detail
+        		                                      );
          rpt_yx       = new Report_YX ( r
         		                      , sub_matrix
         		                      , Rpt_Detail
@@ -70,8 +74,8 @@ public  void   report_All()
              , java.io.IOException
 
 { 
-           report_row_selection_info         ();
-           rpt_yx.write_details              ();        
+	       rpt_row_info . write_details      ();
+           rpt_yx       . write_details      ();        
            report_Y_est_Y_residual_X         ();
            report_Estimated_Function         ();
            report_Error_Analysis             ();
@@ -81,36 +85,6 @@ public  void   report_All()
            report_CVS_summary                ();
            Rpt_Summary.close();
            Rpt_Detail .close();
-}
-public  void   report_row_selection_info()
-    throws java.io.IOException
-{
- 
- Formatter line_01 = new Formatter();
-           line_01.format("%n%s%n"
-                         ,"-------------------------------------------------"
-                         ); 
- Rpt_Detail.write(line_01.toString());
- 
- Formatter line_02 = new Formatter();
-           line_02.format("%s%02d%s%s%04d%n"
-                         ,"matrix row = "
-                         , 1                                
-                         ,"  "
-                         ,"source row = "
-                         , sub_matrix.get_row_source_first()
-                         );
- Rpt_Detail.write(line_02.toString());   
-
- Formatter line_03 = new Formatter();
-           line_03.format("%s%02d%s%s%04d%n"
-                         ,"matrix row = "
-                         , sub_matrix.get_rows_max()        
-                         ,"  "
-                         ,"source row = "
-                         , sub_matrix.get_row_source_last() 
-                         );
- Rpt_Detail.write(line_03.toString());     
 }
 
 public  void   report_Y_est_Y_residual_X()
