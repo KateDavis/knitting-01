@@ -28,6 +28,7 @@ public class Report_Regression_Results
     private Report_YX                  rpt_yx;
     private Report_Row_Selection_Info  rpt_row_info;
     private Report_Y_Est_Y_Residual_X  rpt_YYX;
+    private Report_Estimated_Function  rpt_est_func;
     
     private URL             reports;
     private URL             request_series;
@@ -72,6 +73,11 @@ public Report_Regression_Results (final Regression     r
         		                                      , sub_matrix
         		                                      , Rpt_Detail
         		                                      );
+         
+         rpt_est_func = new Report_Estimated_Function ( r
+                                                      , sub_matrix
+                                                      , Rpt_Detail
+                                                      );        		 
 } 
 
 public  void   report_All()
@@ -84,7 +90,8 @@ public  void   report_All()
 	       rpt_row_info . write_details      ();
            rpt_yx       . write_details      ();  
            rpt_YYX      . write_details      ();
-           report_Estimated_Function         ();
+           rpt_est_func . write_details      ();
+           
            report_Error_Analysis             ();
            report_Significant_Analysis       ();
            report_Covariance_Matrix          ();
@@ -93,57 +100,7 @@ public  void   report_All()
            Rpt_Summary.close();
            Rpt_Detail .close();
 }
-public  void   report_Estimated_Function()
-    throws not_estimated
-         , not_invertable
-         , not_significant 
-         , java.io.IOException
-{ 
- Formatter line_1 = new Formatter();
- Formatter line_2 = new Formatter();
- 
- line_1.format("%n%n%s%n"
-              ,"2) Estimated Function Report ==============================="
-              );
- Rpt_Detail.write(line_1.toString());
 
- ArrayList<Double> c =   r.get_Estimated_Coefficients();    
-         
- line_2.format("%5s%4s%s%15.5E%s%s  %s  (%s)%n"
-              ,"Y"
-              ,"="
-              ," "
-              , r.get_Estimated_Intercept()
-              ,"   "
-              ,"intercept"
-              ,sub_matrix.get_name_security(0)
-              ,sub_matrix.get_name_lag     (0)
-              );
- Rpt_Detail.write(line_2.toString());
-       
- int  ix;
- int  ix_max = c.size();
- for (ix     = 0
-     ;ix     < ix_max
-     ;ix++
-     )
-     {
-       Formatter line_3 = new Formatter();
-                 line_3.format("%5s%4s%s%15.5E%s%s%d%s  %s  (%s)%n"
-                              ,""
-                              ,"+"
-                              ," "
-                              ,c.get(ix)
-                              ," * "
-                              ,"X"
-                              ,(ix + 1)
-                              ,"       "
-                              , sub_matrix.get_name_security(ix + 1)
-                              , sub_matrix.get_name_lag     (ix + 1)                               
-                              );
-       Rpt_Detail.write(line_3.toString());             
-     }      
-}
 public void   report_Error_Analysis()
    throws not_estimated
         , not_invertable
