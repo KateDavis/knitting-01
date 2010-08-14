@@ -25,8 +25,9 @@ public class Report_Regression_Results
     private FileWriter      Rpt_Detail;
     private Analysis_Parms  xml_parms;
     
-    private Report_YX       rpt_yx;
+    private Report_YX                  rpt_yx;
     private Report_Row_Selection_Info  rpt_row_info;
+    private Report_Y_Est_Y_Residual_X  rpt_YYX;
     
     private URL             reports;
     private URL             request_series;
@@ -61,10 +62,16 @@ public Report_Regression_Results (final Regression     r
          rpt_row_info = new Report_Row_Selection_Info ( sub_matrix
         		                                      , Rpt_Detail
         		                                      );
-         rpt_yx       = new Report_YX ( r
-        		                      , sub_matrix
-        		                      , Rpt_Detail
-        		                      );
+         
+         rpt_yx       = new Report_YX                 ( r
+        		                                      , sub_matrix
+        		                                      , Rpt_Detail
+        		                                      );
+         
+         rpt_YYX      = new Report_Y_Est_Y_Residual_X ( r
+        		                                      , sub_matrix
+        		                                      , Rpt_Detail
+        		                                      );
 } 
 
 public  void   report_All()
@@ -75,8 +82,8 @@ public  void   report_All()
 
 { 
 	       rpt_row_info . write_details      ();
-           rpt_yx       . write_details      ();        
-           report_Y_est_Y_residual_X         ();
+           rpt_yx       . write_details      ();  
+           rpt_YYX      . write_details      ();
            report_Estimated_Function         ();
            report_Error_Analysis             ();
            report_Significant_Analysis       ();
@@ -85,102 +92,6 @@ public  void   report_All()
            report_CVS_summary                ();
            Rpt_Summary.close();
            Rpt_Detail .close();
-}
-
-public  void   report_Y_est_Y_residual_X()
-        throws not_estimated
-             , not_invertable
-             , not_significant 
-             , java.io.IOException
-{ 
- Formatter line_01 = new Formatter();
-           line_01.format("%n%n%s%n"
-                         ,"1) Y, est_Y, residual, X matrix contents ========"
-                         ); 
- Rpt_Detail.write(line_01.toString());          
- 
- int ir;
- int ic;
- 
- Formatter line_02 = new Formatter();
- line_02.format( "    %10s  %4s"
-               , "Row-ID"
-               , "Time"
-               );           
- line_02.format( "%15s"
-               , "Y"
-               );
- line_02.format( "%15s"
-               , "Estimated Y"
-               );
- line_02.format( "%15s"
-               , "Residual"
-               );
- for  (   ic  = 0
-      ;   ic  < ( r.get_YX_max_cols() - 1 )
-      ; ++ic
-      )
-      {
-          line_02.format( "%13s%02d"
-                        , "X"
-                        , (ic + 1)
-                        );
-      }
- line_02.format( "%n");
- Rpt_Detail.write(line_02.toString());
-  
- Formatter line_03 = new Formatter();
-        
- line_03.format( "    %10s  %4s"
-               , "----------"
-               , "----"
-               );
- for  (   ic  = 0
-      ;   ic  < ( 2+ r.get_YX_max_cols() )
-      ; ++ic
-      )
-      {
-          line_03.format( "%15s"
-                        , "------------"
-                        );
-      }
- line_03.format( "%n");
- Rpt_Detail.write(line_03.toString());
-
- for  (   ir  = 0
-      ;   ir  < r.get_YX_max_rows()
-      ;   ir++
-      )
-      {
-        Formatter line_04 = new Formatter();
-        
-        line_04.format( "    %s   %03d"
-                      , sub_matrix.get_row_id(ir)
-                      , ( ir + 1 )
-                      );       
-        line_04.format( "%15.5E"
-                      , r.get_YX_cell(ir, 0)
-                      );
-        line_04.format( "%15.5E"
-                      , r.get_est_Y_residual(ir, 0)
-                      );
-        line_04.format( "%15.5E"
-                      , r.get_est_Y_residual(ir, 1)
-                      );
-        
-        for (   ic  = 1
-            ;   ic  < r.get_YX_max_cols()
-            ;   ic++
-            )
-            {
-              line_04.format( "%15.5E"
-                            , r.get_YX_cell(ir, ic)
-                            );
-            }
-        line_04.format( "%n");
-        Rpt_Detail.write(line_04.toString()); 
-        line_04 = null;
-      }   
 }
 public  void   report_Estimated_Function()
     throws not_estimated
