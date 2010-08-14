@@ -3,7 +3,7 @@ package com.knitting.jamacoi;
 import java.io.FileWriter;
 import java.util.Formatter;
 
-public class Report_Y_Est_Y_Residual_X {
+public   class       Report_Y_Est_Y_Residual_X {
 
 private  Regression  r;
 private  Sub_Matrix  sub_matrix;
