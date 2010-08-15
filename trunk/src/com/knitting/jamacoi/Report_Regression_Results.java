@@ -30,6 +30,7 @@ public class Report_Regression_Results
     private Report_Y_Est_Y_Residual_X  rpt_YYX;
     private Report_Estimated_Function  rpt_est_func;
     private Report_Abstract            rpt_err_analysis;
+    private Report_Abstract            rpt_cov_matrix;
     
     private URL             reports;
     private URL             request_series;
@@ -56,34 +57,41 @@ public Report_Regression_Results (final Regression     r
                                       , true
                                       );
         
-    URL  s            = new URL       ( xml_parms.getURL_REL_RPT_SUMMARY() );
-    File fs           = new File      ( s.getFile() );
-         Rpt_Summary  = new FileWriter( fs
-    		                          , true
-                                      );
-         rpt_row_info = new Report_Row_Selection_Info ( sub_matrix
-        		                                      , Rpt_Detail
-        		                                      );
+    URL  s                = new URL   ( xml_parms.getURL_REL_RPT_SUMMARY() );
+    File fs               = new File  ( s.getFile() );
+         Rpt_Summary      = new FileWriter                ( fs
+    		                                              , true
+                                                          );
          
-         rpt_yx       = new Report_YX                 ( r
-        		                                      , sub_matrix
-        		                                      , Rpt_Detail
-        		                                      );
+         rpt_row_info     = new Report_Row_Selection_Info ( sub_matrix
+        		                                          , Rpt_Detail
+        		                                          );
          
-         rpt_YYX      = new Report_Y_Est_Y_Residual_X ( r
-        		                                      , sub_matrix
-        		                                      , Rpt_Detail
-        		                                      );
+         rpt_yx           = new Report_YX                 ( r
+        		                                          , sub_matrix
+        		                                          , Rpt_Detail
+        		                                          );
          
-         rpt_est_func = new Report_Estimated_Function ( r
-                                                      , sub_matrix
-                                                      , Rpt_Detail
-                                                      );   
+         rpt_YYX          = new Report_Y_Est_Y_Residual_X ( r
+        		                                          , sub_matrix
+        		                                          , Rpt_Detail
+        		                                          );
          
-         rpt_err_analysis = new Report_Error_Analysis ( r
-                                                      , sub_matrix
-                                                      , Rpt_Detail
-        		                                      );
+         rpt_est_func     = new Report_Estimated_Function ( r
+                                                          , sub_matrix
+                                                          , Rpt_Detail
+                                                          );   
+         
+         rpt_err_analysis = new Report_Error_Analysis     ( r
+                                                          , sub_matrix
+                                                          , Rpt_Detail
+        		                                          );
+         
+         rpt_cov_matrix   = new Report_Covariance_Matrix  ( r
+        		                                          , sub_matrix
+        		                                          , Rpt_Detail
+        		                                          );
+         
          
 } 
 
@@ -94,18 +102,20 @@ public  void   report_All()
              , java.io.IOException
 
 { 
-	       rpt_row_info     . write_details  ();
-           rpt_yx           . write_details  ();  
-           rpt_YYX          . write_details  ();
-           rpt_est_func     . write_details  ();
-           rpt_err_analysis . write_details  ();
+	    rpt_row_info     . write_details  ();
+        rpt_yx           . write_details  ();  
+        rpt_YYX          . write_details  ();
+        rpt_est_func     . write_details  ();
+        rpt_err_analysis . write_details  ();
            
-           report_Significant_Analysis       ();
-           report_Covariance_Matrix          ();
-           report_Covariance_Matrix_Adjusted ();
-           report_CVS_summary                ();
-           Rpt_Summary.close();
-           Rpt_Detail .close();
+        report_Significant_Analysis       ();
+        rpt_cov_matrix   . write_details  ();
+       
+     // report_Covariance_Matrix          ();
+        report_Covariance_Matrix_Adjusted ();
+        report_CVS_summary                ();
+        Rpt_Summary.close();
+        Rpt_Detail .close();
 }
 
 public void   report_Significant_Analysis()
