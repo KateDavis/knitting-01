@@ -29,6 +29,7 @@ public class Report_Regression_Results
     private Report_Row_Selection_Info  rpt_row_info;
     private Report_Y_Est_Y_Residual_X  rpt_YYX;
     private Report_Estimated_Function  rpt_est_func;
+    private Report_Abstract            rpt_err_analysis;
     
     private URL             reports;
     private URL             request_series;
@@ -77,7 +78,13 @@ public Report_Regression_Results (final Regression     r
          rpt_est_func = new Report_Estimated_Function ( r
                                                       , sub_matrix
                                                       , Rpt_Detail
-                                                      );        		 
+                                                      );   
+         
+         rpt_err_analysis = new Report_Error_Analysis ( r
+                                                      , sub_matrix
+                                                      , Rpt_Detail
+        		                                      );
+         
 } 
 
 public  void   report_All()
@@ -87,12 +94,12 @@ public  void   report_All()
              , java.io.IOException
 
 { 
-	       rpt_row_info . write_details      ();
-           rpt_yx       . write_details      ();  
-           rpt_YYX      . write_details      ();
-           rpt_est_func . write_details      ();
+	       rpt_row_info     . write_details  ();
+           rpt_yx           . write_details  ();  
+           rpt_YYX          . write_details  ();
+           rpt_est_func     . write_details  ();
+           rpt_err_analysis . write_details  ();
            
-           report_Error_Analysis             ();
            report_Significant_Analysis       ();
            report_Covariance_Matrix          ();
            report_Covariance_Matrix_Adjusted ();
@@ -101,100 +108,6 @@ public  void   report_All()
            Rpt_Detail .close();
 }
 
-public void   report_Error_Analysis()
-   throws not_estimated
-        , not_invertable
-        , not_significant 
-        , java.io.IOException
-{
- final String detail_fmt_a = "%17s%15.5E%8.2f%s%8d%n";
- final String detail_fmt_b = "%17s%15s%8s%1s%8s%n";
- final String detail_fmt_c = "%17s%15.5E%n";
- 
- Formatter line_1 = new Formatter();
- Formatter line_2 = new Formatter();   
- Formatter line_3 = new Formatter(); 
- Formatter line_4 = new Formatter(); 
- Formatter line_5 = new Formatter(); 
- Formatter line_6 = new Formatter(); 
- Formatter line_7 = new Formatter(); 
- Formatter line_8 = new Formatter(); 
- Formatter line_9 = new Formatter(); 
-     
- line_1.format("%n%n%s%n"
-              ,"3) Error Analysis Report ==================================="
-              );
- Rpt_Detail.write(line_1.toString());
-      
- line_2.format( detail_fmt_b
-              ,""
-              ,"Sum of"
-              ,""
-              ,""
-              ,"Degrees"
-              );
- Rpt_Detail.write(line_2.toString());
-       
- line_3.format( detail_fmt_b
-              ,""
-              ,"Squared"
-              ,""
-              ,""
-              ,"of"
-              );
- Rpt_Detail.write(line_3.toString());
-      
- line_4.format( detail_fmt_b
-              ,""
-              ,"Errors"
-              ,""
-              ,""
-              ,"Freedom"
-              );
- Rpt_Detail.write(line_4.toString());
-      
- line_5.format( detail_fmt_a 
-              ,"Total     Error:"
-              , r.get_Error_Total()
-              , r.get_Pct_Error_Total()
-              ,"%"
-              , r.get_T_d_of_freedom()
-              );
- Rpt_Detail.write(line_5.toString());
-                 
- line_6.format( detail_fmt_a 
-              ,"Explained Error:"
-              , r.get_Error_Explained()
-              , r.get_Pct_Error_Explained()
-              ,"%"
-              , r.get_X_d_of_freedom()
-              );
- Rpt_Detail.write(line_6.toString());
-
- line_7.format( detail_fmt_b 
-              ,""
-              ,"  -------------"
-              ,"  -------"
-              ,""
-              ,"  ------"
-              );
- Rpt_Detail.write(line_7.toString());    
-        
- line_8.format( detail_fmt_a 
-              ,"Residual  Error:"
-              , r.get_Error_Residual()
-              , r.get_Pct_Error_Residual()
-              ,"%"
-              , r.get_R_d_of_freedom()
-              );
- Rpt_Detail.write(line_8.toString());
-
- line_9.format( detail_fmt_c 
-              ,"F_value:"
-              , r.get_F_value()
-              );
- Rpt_Detail.write(line_9.toString());   
-} 
 public void   report_Significant_Analysis()
    throws not_estimated
         , not_invertable
