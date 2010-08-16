@@ -31,6 +31,7 @@ public class Report_Regression_Results
     private Report_Estimated_Function  rpt_est_func;
     private Report_Abstract            rpt_err_analysis;
     private Report_Abstract            rpt_cov_matrix;
+    private Report_Abstract            rpt_cov_adjusted;
     
     private URL             reports;
     private URL             request_series;
@@ -92,7 +93,10 @@ public Report_Regression_Results (final Regression     r
         		                                          , Rpt_Detail
         		                                          );
          
-         
+         rpt_cov_adjusted = new Report_Covariance_Adjusted( r
+                                                          , sub_matrix
+                                                          , Rpt_Detail
+                                                          );    
 } 
 public  void   report_All()
         throws not_estimated
@@ -108,8 +112,9 @@ public  void   report_All()
            
         report_Significant_Analysis       ();
         rpt_cov_matrix   . write_details  ();
+        rpt_cov_adjusted . write_details  ();
        
-        report_Covariance_Matrix_Adjusted ();
+  
         report_CVS_summary                ();
         Rpt_Summary.close();
         Rpt_Detail .close();
@@ -150,44 +155,6 @@ public void   report_Significant_Analysis()
 		                           , r.get_F_value()
 		                           ) ;
                                rsa . get();
-}
-
-public  void   report_Covariance_Matrix_Adjusted()
-    throws not_estimated
-         , not_invertable
-         , not_significant   
-         , java.io.IOException
-
-{int ir;
-int ic;
-Formatter line_1 = new Formatter();
- 
-line_1.format("%n%n%s%n"
-          ,"6) Covariance Matrix Adjusted Report ==========================="
-          );
-Rpt_Detail.write(line_1.toString());
-  
-Formatter line_2;
-
-for ( ir    = 0
- ; ir    < r.get_p_XX_dev_adjusted_rows()
- ; ir++
- )
- { 
-   line_2     = new Formatter();
-   for ( ic   = 0
-       ; ic   < r.get_p_XX_dev_adjusted_cols()
-       ; ic++
-       )
-       {
-        line_2.format( "%15.5E"
-                     , r.get_p_XX_dev_adjusted_cell(ir, ic)
-                     );
-       }
-   line_2.format("%n");
-   Rpt_Detail.write(line_2.toString());
-   line_2 = null;
- }
 }
 public void   report_CVS_summary()
    throws not_estimated
