@@ -27,8 +27,8 @@ public class Report_Regression_Results
     
     private Report_YX                  rpt_yx;
     private Report_Row_Selection_Info  rpt_row_info;
-    private Report_Y_Est_Y_Residual_X  rpt_YYX;
-//  private Report_Estimated_Function  rpt_est_func;
+//  private Report_Y_Est_Y_Residual_X  rpt_YYX;
+    private Report_Abstract            rpt_YYX;
     private Report_Abstract            rpt_est_func;
     private Report_Abstract            rpt_err_analysis;
     private Report_Abstract            rpt_cov_matrix;
