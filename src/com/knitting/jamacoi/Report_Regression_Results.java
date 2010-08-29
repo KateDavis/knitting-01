@@ -25,9 +25,9 @@ public class Report_Regression_Results
     private FileWriter      Rpt_Detail;
     private Analysis_Parms  xml_parms;
     
+    private Report_Abstract            rpt_row_info;
     private Report_YX                  rpt_yx;
-    private Report_Row_Selection_Info  rpt_row_info;
-//  private Report_Y_Est_Y_Residual_X  rpt_YYX;
+
     private Report_Abstract            rpt_YYX;
     private Report_Abstract            rpt_est_func;
     private Report_Abstract            rpt_err_analysis;
@@ -65,7 +65,8 @@ public Report_Regression_Results (final Regression     r
     		                                              , true
                                                           );
          
-         rpt_row_info     = new Report_Row_Selection_Info ( sub_matrix
+         rpt_row_info     = new Report_Row_Selection_Info ( r
+        		                                          , sub_matrix
         		                                          , Rpt_Detail
         		                                          );
          
