@@ -30,6 +30,7 @@ public class Report_Regression_Results
     private Report_Abstract            rpt_YYX;
     private Report_Abstract            rpt_est_func;
     private Report_Abstract            rpt_err_analysis;
+    private Report_Abstract            rpt_sig_analysis;    
     private Report_Abstract            rpt_cov_matrix;
     private Report_Abstract            rpt_cov_adjusted;
     
@@ -89,6 +90,11 @@ public Report_Regression_Results (final Regression     r
                                                           , Rpt_Detail
         		                                          );
          
+         rpt_sig_analysis = new Report_Significant_Analysis_2     ( r
+                                                          , sub_matrix
+                                                          , Rpt_Detail
+                                                          );
+         
          rpt_cov_matrix   = new Report_Covariance_Matrix  ( r
         		                                          , sub_matrix
         		                                          , Rpt_Detail
@@ -110,8 +116,7 @@ public  void   report_All()
         rpt_YYX          . write_details  ();
         rpt_est_func     . write_details  ();
         rpt_err_analysis . write_details  ();
-           
-        report_Significant_Analysis       ();
+        rpt_sig_analysis . write_details  ();
         rpt_cov_matrix   . write_details  ();
         rpt_cov_adjusted . write_details  ();
        
@@ -119,20 +124,6 @@ public  void   report_All()
         report_CVS_summary                ();
         Rpt_Summary.close();
         Rpt_Detail .close();
-}
-public void   report_Significant_Analysis()
-   throws not_estimated
-        , not_invertable
-        , not_significant 
-        , java.io.IOException
-{       
-   Report_Significant_Analysis rsa = new
-   Report_Significant_Analysis     ( Rpt_Detail
-		                           , r.get_R_d_of_freedom()
-		                           , r.get_X_d_of_freedom()
-		                           , r.get_F_value()
-		                           ) ;
-                               rsa . get();
 }
 public void   report_CVS_summary()
    throws not_estimated
