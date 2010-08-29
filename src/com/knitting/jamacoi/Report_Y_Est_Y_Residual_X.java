@@ -20,11 +20,12 @@ public   void        write_details()
          throws      java.io.IOException
 {
 
-get_Rpt_Detail().write( fmt_line_01() ); 
-get_Rpt_Detail().write( fmt_line_02() ); 
-get_Rpt_Detail().write( fmt_line_04() ); 
-get_Rpt_Detail().write( fmt_line_05() );
-loop_thru_rows  ();
+         get_Rpt_Detail().write( fmt_line_01() ); 
+         get_Rpt_Detail().write( fmt_line_02() ); 
+         get_Rpt_Detail().write( fmt_line_03() );
+         get_Rpt_Detail().write( fmt_line_04() ); 
+         get_Rpt_Detail().write( fmt_line_05() );
+         loop_thru_rows  ();
 }
 protected  String      fmt_line_01(){
 Formatter  line =  new Formatter();
@@ -61,6 +62,34 @@ Formatter  line  = new Formatter();
 		  }
 		   line . format( "%n");	
 return     line . toString();	
+}
+protected  String  fmt_line_03(){
+	
+Formatter  line = new Formatter();
+		   line . format( "    %10s  %4s"
+		                , ""
+	                    , ""
+		                );
+		   line . format( "%15s"
+	                    , get_Sub_Matrix().get_name_lag(0)
+	                    );
+		   line . format( "%15s"
+                        , ""
+                        );
+		   line . format( "%15s"
+                        , ""
+                        );
+	 for  (int   ic  = 1
+	   	  ;      ic  < get_Regression().get_YX_max_cols()
+		  ;    ++ic
+		  )
+		  {
+		   line . format( "%15s"
+		                , get_Sub_Matrix().get_name_lag(ic)
+		                );
+		  }
+		   line . format( "%n");
+return     line . toString();	  
 }
 protected  String     fmt_line_04(){
 Formatter  line = new Formatter();
