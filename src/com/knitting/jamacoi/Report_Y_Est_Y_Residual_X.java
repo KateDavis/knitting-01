@@ -22,7 +22,8 @@ public   void        write_details()
 
 get_Rpt_Detail().write( fmt_line_01() ); 
 get_Rpt_Detail().write( fmt_line_02() ); 
-get_Rpt_Detail().write( fmt_line_03() );
+get_Rpt_Detail().write( fmt_line_04() ); 
+get_Rpt_Detail().write( fmt_line_05() );
 loop_thru_rows  ();
 }
 protected  String      fmt_line_01(){
@@ -32,7 +33,36 @@ Formatter  line =  new Formatter();
                          ); 
 return     line .  toString();
 }
-protected  String     fmt_line_02(){
+protected  String  fmt_line_02(){
+
+Formatter  line  = new Formatter();
+           line  . format( "    %10s  %4s"
+                         , ""
+                         , ""
+		                 );
+		   line  . format( "%15s"
+	                     , get_Sub_Matrix().get_name_security(0)
+	                     );
+		   line  . format( "%15s"
+                         , ""
+                         );
+		   line  . format( "%15s"
+                         , ""
+                         );
+		   
+	 for  (int   ic  = 1
+	 	  ;      ic  < get_Regression().get_YX_max_cols()
+		  ;    ++ic
+		  )
+		  {
+		   line . format( "%15s"
+		                , get_Sub_Matrix().get_name_security(ic)
+		                );
+		  }
+		   line . format( "%n");	
+return     line . toString();	
+}
+protected  String     fmt_line_04(){
 Formatter  line = new Formatter();
   	       line . format( "    %10s  %4s"
 	                    , "Row-ID"
@@ -54,7 +84,7 @@ Formatter  line = new Formatter();
 	       line . format( "%n");
 return     line . toString();	 
 }
-protected  String     fmt_line_03(){
+protected  String     fmt_line_05(){
 Formatter  line = new Formatter();
     
 	       line . format( "    %10s  %4s"
