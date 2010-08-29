@@ -26,7 +26,6 @@ public class Report_Regression_Results
     private Analysis_Parms  xml_parms;
     
     private Report_Abstract            rpt_row_info;
-//    private Report_YX                  rpt_yx;
     private Report_Abstract            rpt_yx;
     private Report_Abstract            rpt_YYX;
     private Report_Abstract            rpt_est_func;
@@ -126,30 +125,7 @@ public void   report_Significant_Analysis()
         , not_invertable
         , not_significant 
         , java.io.IOException
-{
-   Formatter line_1  = new Formatter();
-   try   {
-          line_1.format("%n%n%s"
-                       ,"4) Significant Analysis Report  ========================"
-                       );
-          Rpt_Detail.write(line_1.toString());
-
-          Table_of_F_Tables  fdt = new Table_of_F_Tables();
-
-          Result_Tree rt = fdt.build_Result_Tree( r.get_R_d_of_freedom()
-                                                , r.get_X_d_of_freedom()
-                                                );
-          
-                      rt.compare_reg_with_data  ( Rpt_Detail
-                                                , r.get_R_d_of_freedom()
-                                                , r.get_X_d_of_freedom()
-                                                , r.get_F_value()
-                                                );  
-         } 
-   catch (Exception e)
-         { 
-          System.out.println ( "Exception was caught:");
-         }  
+{       
    Report_Significant_Analysis rsa = new
    Report_Significant_Analysis     ( Rpt_Detail
 		                           , r.get_R_d_of_freedom()
