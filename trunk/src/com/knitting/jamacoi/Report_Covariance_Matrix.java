@@ -24,8 +24,10 @@ public      void     write_details()
             throws   IOException
                  ,   not_estimated
 {
-get_Rpt_Detail() .   write( fmt_line_01() );
-loop_thru_rows();
+            get_Rpt_Detail() .   write( fmt_line_01() );
+            get_Rpt_Detail() .   write( fmt_line_02() );
+            get_Rpt_Detail() .   write( fmt_line_03() );
+            loop_thru_rows();
 
 }
 public      String   fmt_line_01(){
@@ -35,6 +37,38 @@ Formatter   line =   new Formatter();
 	                       , "5) Covariance Matrix Report ===================================="
 	                       );
 return      line .   toString();	        
+}
+protected  String  fmt_line_02(){
+Formatter  line = new Formatter();
+
+	 for  (int   ic  =  1
+		  ;      ic  < get_Regression().get_YX_max_cols()
+		  ;    ++ic
+		  )
+		  {
+		   line . format( "%15s"
+		                , get_Sub_Matrix().get_name_security(ic)
+		                );
+		 }
+		   line . format( "%n");	
+return     line . toString();	
+}
+protected  String  fmt_line_03(){
+	
+Formatter  line = new Formatter();
+
+
+	 for  (int   ic  = 1
+	   	  ;      ic  < get_Regression().get_YX_max_cols()
+		  ;    ++ic
+		  )
+		  {
+		   line . format( "%15s"
+		                , get_Sub_Matrix().get_name_lag(ic)
+		                );
+		  }
+		   line . format( "%n");
+return     line . toString();	  
 }
 protected   void    loop_thru_rows()
             throws  java.io.IOException
