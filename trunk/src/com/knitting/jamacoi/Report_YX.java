@@ -3,30 +3,28 @@ package com.knitting.jamacoi;
 import java.io.FileWriter;
 import java.util.Formatter;
 
-public   class       Report_YX {
-private  Regression  r;
-private  Sub_Matrix  sub_matrix;
-private  FileWriter  Rpt_Detail;
-
+public   class       Report_YX
+         extends     Report_Abstract
+{
 public               Report_YX( Regression  r
 		                      , Sub_Matrix  sub_matrix
 		                      , FileWriter  Rpt_Detail
 		                      )	
 	     throws      java.io.IOException{
-
-this.r            =  r;
-this.sub_matrix   =  sub_matrix;
-this.Rpt_Detail   =  Rpt_Detail;
+         super     ( r
+	               , sub_matrix
+	               , Rpt_Detail
+	               );
 }
 public   void        write_details()
          throws      java.io.IOException
 {
-Rpt_Detail.write( fmt_line_01() );  
-Rpt_Detail.write( fmt_line_02() );
-Rpt_Detail.write( fmt_line_03() );
-Rpt_Detail.write( fmt_line_04() );
-Rpt_Detail.write( fmt_line_05() );
-loop_thru_rows();
+         get_Rpt_Detail().write( fmt_line_01() );  
+         get_Rpt_Detail().write( fmt_line_02() );
+         get_Rpt_Detail().write( fmt_line_03() );
+         get_Rpt_Detail().write( fmt_line_04() );
+         get_Rpt_Detail().write( fmt_line_05() );
+         loop_thru_rows();
 } 
 protected  String  fmt_line_01(){
 Formatter  line =  new Formatter();
@@ -43,12 +41,12 @@ Formatter  line  = new Formatter();
 	                     , ""
 	                     );
 for  (int   ic  = 0
-	 ;      ic  < r.get_YX_max_cols()
+	 ;      ic  < get_Regression().get_YX_max_cols()
 	 ;    ++ic
 	 )
 	 {
 	    line . format( "%15s"
-	                 , sub_matrix.get_name_security(ic)
+	                 , get_Sub_Matrix().get_name_security(ic)
 	                 );
 	 }
 	    line . format( "%n");	
@@ -63,12 +61,12 @@ Formatter line = new Formatter();
 	                   );
 
 for  (int   ic  = 0
-  	 ;      ic  < r.get_YX_max_cols()
+  	 ;      ic  < get_Regression().get_YX_max_cols()
 	 ;    ++ic
 	 )
 	 {
 	    line . format( "%15s"
-	                 , sub_matrix.get_name_lag(ic)
+	                 , get_Sub_Matrix().get_name_lag(ic)
 	                 );
 	 }
 	    line . format( "%n");
@@ -85,7 +83,7 @@ Formatter  line = new Formatter();
 	                    , "Y"
 	                    );
 for  (int   ic  = 0
-	 ;      ic  < ( r.get_YX_max_cols() - 1 )
+	 ;      ic  < ( get_Regression().get_YX_max_cols() - 1 )
 	 ;    ++ic
 	 )
 	 {
@@ -105,7 +103,7 @@ Formatter  line = new Formatter();
 	                    , "----"
 	                    );
 for  (int   ic  = 0
-	 ;      ic  < r.get_YX_max_cols()
+	 ;      ic  < get_Regression().get_YX_max_cols()
 	 ;    ++ic
 	 )
 	 {
@@ -120,20 +118,20 @@ protected  void   loop_thru_rows()
            throws java.io.IOException
 {	
 for  (int  ir   = 0
-	 ;     ir   < r.get_YX_max_rows()
+	 ;     ir   < get_Regression().get_YX_max_rows()
 	 ;   ++ir
 	 )
 	 {
 	   Formatter line = new Formatter();
 
 			     line . format( "    %s   %03d"
-			                  , sub_matrix.get_row_id(ir)
+			                  , get_Sub_Matrix().get_row_id(ir)
 			                  , ( ir + 1 )
 			                  );
 			     line . format("%s%n" 
 			     		      , fmt_line_06_cells(ir)
 			     		      );
-			     Rpt_Detail.write( line.toString() );
+			     get_Rpt_Detail().write( line.toString() );
 			     
 			     line = null;
 	 }		     	
@@ -141,12 +139,12 @@ for  (int  ir   = 0
 protected  String  fmt_line_06_cells(int  ir){
 Formatter  line =  new Formatter();
 for (int   ic   =  0
-	;      ic   <  r.get_YX_max_cols()
+	;      ic   <  get_Regression().get_YX_max_cols()
 	;    ++ic
 	)
 	{
 	    line . format( "%15.5E"
-			         , r.get_YX_cell(ir, ic)
+			         , get_Regression().get_YX_cell(ir, ic)
 			         );
 	}
 return  line . toString();	

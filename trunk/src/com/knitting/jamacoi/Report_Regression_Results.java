@@ -26,8 +26,8 @@ public class Report_Regression_Results
     private Analysis_Parms  xml_parms;
     
     private Report_Abstract            rpt_row_info;
-    private Report_YX                  rpt_yx;
-
+//    private Report_YX                  rpt_yx;
+    private Report_Abstract            rpt_yx;
     private Report_Abstract            rpt_YYX;
     private Report_Abstract            rpt_est_func;
     private Report_Abstract            rpt_err_analysis;
