@@ -25,6 +25,9 @@ public   abstract    void             write_details()
 public   FileWriter  get_Rpt_Detail(){
 return                   Rpt_Detail;
 }
+public   FileWriter  get_Rpt(){
+return                   Rpt_Detail;
+}
 public   Sub_Matrix  get_Sub_Matrix(){
 return                   sub_matrix;	
 }
