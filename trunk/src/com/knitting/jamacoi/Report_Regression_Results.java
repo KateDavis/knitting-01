@@ -16,26 +16,26 @@ import java.net.URL;
 
 public class Report_Regression_Results 
 {
-	private int             residual_rpt_count  =  0;
+  	private int             residual_rpt_count  =  0;
     private Regression      r;
     private Sub_Matrix      sub_matrix;
     private FileWriter      Rpt_Summary; 
     private FileWriter      Rpt_Detail;
     private Analysis_Parms  xml_parms;
     
-    private Report_Abstract            rpt_row_info;
-    private Report_Abstract            rpt_yx;
-    private Report_Abstract            rpt_YYX;
-    private Report_Abstract            rpt_est_func;
-    private Report_Abstract            rpt_err_analysis;
-    private Report_Abstract            rpt_sig_analysis;    
-    private Report_Abstract            rpt_cov_matrix;
-    private Report_Abstract            rpt_cov_adjusted;
-    private Report_Abstract            rpt_csv_summary;
+    private Report_Abstract rpt_row_info;
+    private Report_Abstract rpt_yx;
+    private Report_Abstract rpt_YYX;
+    private Report_Abstract rpt_est_func;
+    private Report_Abstract rpt_err_analysis;
+    private Report_Abstract rpt_sig_analysis;    
+    private Report_Abstract rpt_cov_matrix;
+    private Report_Abstract rpt_cov_adjusted;
+    private Report_Abstract rpt_csv_summary;
     
-    private URL             reports;
-    private URL             request_series;
-    private URL             request_set;
+//  private URL             reports;
+//  private URL             request_series;
+//  private URL             request_set;
     private URL             residuals;
 /**
 * @param r is an "estimated" Regression instance.  Because this reference
