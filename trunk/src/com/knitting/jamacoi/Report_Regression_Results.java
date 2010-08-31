@@ -2,8 +2,6 @@ package com.knitting.jamacoi;
 import java.io.File;
 import java.io.FileWriter;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Formatter;
 
 /**
  * This class implements usable and more meaningful reports that the 
@@ -33,6 +31,7 @@ public class Report_Regression_Results
     private Report_Abstract            rpt_sig_analysis;    
     private Report_Abstract            rpt_cov_matrix;
     private Report_Abstract            rpt_cov_adjusted;
+    private Report_Abstract            rpt_csv_summary;
     
     private URL             reports;
     private URL             request_series;
@@ -103,7 +102,11 @@ public Report_Regression_Results (final Regression     r
          rpt_cov_adjusted = new Report_Covariance_Adjusted( r
                                                           , sub_matrix
                                                           , Rpt_Detail
-                                                          );    
+                                                          );   
+         rpt_csv_summary  = new Report_CSV_Summary        ( r
+                                                          , sub_matrix
+                                                          , Rpt_Summary
+                                                          );  
 } 
 public  void   report_All()
         throws not_estimated
@@ -120,62 +123,9 @@ public  void   report_All()
         rpt_cov_matrix   . write_details  ();
         rpt_cov_adjusted . write_details  ();
        
-  
-        report_CVS_summary                ();
+        rpt_csv_summary  . write_details  ();
         Rpt_Summary.close();
         Rpt_Detail .close();
-}
-public void   report_CVS_summary()
-   throws not_estimated
-        , not_invertable
-        , not_significant  
-        , java.io.IOException
-{
- Formatter line_2    = new Formatter();
-      
- ArrayList<Double> c =   r.get_Estimated_Coefficients();  
- line_2.format("%4d,%4d,"
-              , sub_matrix.get_row_source_first()
-              , sub_matrix.get_row_source_last ()
-              );       
-   
- line_2.format("%12.5E,"
-              , r.get_Estimated_Intercept()
-              );       
- int  ix;
- int  ix_max = c.size();
- for (ix     = 0
-     ;ix     < ix_max
-     ;ix++
-     )
-     {
-                 line_2.format("%12.5E,"
-                              ,c.get(ix)
-                              );   
-     }  
- line_2.format("%5.2f,"
-              , r.get_Pct_Error_Explained()
-              );
- int   ir;
- int   ic;
- 
- for ( ir    = 0
-     ; ir    < r.get_p_XX_dev_adjusted_rows()
-     ; ir++
-     )
-     {
-       for ( ic   = ir
-           ; ic   < r.get_p_XX_dev_adjusted_cols()
-           ; ic++
-           )
-           {
-             line_2.format( "%12.5E,"
-                          , r.get_p_XX_dev_adjusted_cell(ir, ic)
-                          );
-           }
-      }  
- line_2.format ( "%n" );
- Rpt_Summary.write(line_2.toString());
 }
 
 }
