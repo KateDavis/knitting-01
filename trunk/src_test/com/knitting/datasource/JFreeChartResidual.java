@@ -30,7 +30,6 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.xy.DefaultXYDataset;
 import org.jfree.data.xy.XYDataset;
 
-
 public class JFreeChartResidual {
 	
 	enum SeriesKey implements DataSeriesKey {RESIDUAL};
