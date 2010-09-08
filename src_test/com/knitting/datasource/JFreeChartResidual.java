@@ -33,7 +33,7 @@ import org.jfree.data.xy.XYDataset;
 
 public class JFreeChartResidual {
 	
-	enum SeriesKey implements DataSeriesKey {RESIDUAL};
+	enum SeriesKey implements DataSeriesKey {RESIDUAL, OTHER};
 	
 	private JFrame frame;
 	private JPanel contentPane;
