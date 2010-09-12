@@ -19,7 +19,6 @@ public class Report_Regression_Results
   	private int             residual_rpt_count  =  0;
     private Regression      r;
     private Sub_Matrix      sub_matrix;
-    private FileWriter      Rpt_Summary; 
     private FileWriter      Rpt_Detail;
     private Analysis_Parms  xml_parms;
     
@@ -31,11 +30,7 @@ public class Report_Regression_Results
     private Report_Abstract rpt_sig_analysis;    
     private Report_Abstract rpt_cov_matrix;
     private Report_Abstract rpt_cov_adjusted;
-    private Report_Abstract rpt_csv_summary;
     
-//  private URL             reports;
-//  private URL             request_series;
-//  private URL             request_set;
     private URL             residuals;
 /**
 * @param r is an "estimated" Regression instance.  Because this reference
@@ -57,56 +52,46 @@ public Report_Regression_Results (final Regression     r
          Rpt_Detail   = new FileWriter( fd
                                       , true
                                       );
-        
-    URL  s                = new URL   ( xml_parms.getURL_REL_RPT_SUMMARY() );
-    File fs               = new File  ( s.getFile() );
-         Rpt_Summary      = new FileWriter                ( fs
-    		                                              , true
-                                                          );
+                                                                      
+         rpt_row_info     = new Report_Row_Selection_Info      ( r
+        		                                               , sub_matrix
+        		                                               , Rpt_Detail
+        		                                               );
          
-         rpt_row_info     = new Report_Row_Selection_Info ( r
-        		                                          , sub_matrix
-        		                                          , Rpt_Detail
-        		                                          );
+         rpt_yx           = new Report_YX                      ( r
+        		                                               , sub_matrix
+        		                                               , Rpt_Detail
+        		                                               );
          
-         rpt_yx           = new Report_YX                 ( r
-        		                                          , sub_matrix
-        		                                          , Rpt_Detail
-        		                                          );
+         rpt_YYX          = new Report_Y_Est_Y_Residual_X      ( r
+        		                                               , sub_matrix
+        		                                               , Rpt_Detail
+        		                                               );
          
-         rpt_YYX          = new Report_Y_Est_Y_Residual_X ( r
-        		                                          , sub_matrix
-        		                                          , Rpt_Detail
-        		                                          );
+         rpt_est_func     = new Report_Estimated_Function      ( r
+                                                               , sub_matrix
+                                                               , Rpt_Detail
+                                                               );   
          
-         rpt_est_func     = new Report_Estimated_Function ( r
-                                                          , sub_matrix
-                                                          , Rpt_Detail
-                                                          );   
+         rpt_err_analysis = new Report_Error_Analysis          ( r
+                                                               , sub_matrix
+                                                               , Rpt_Detail
+        		                                               );
          
-         rpt_err_analysis = new Report_Error_Analysis     ( r
-                                                          , sub_matrix
-                                                          , Rpt_Detail
-        		                                          );
+         rpt_sig_analysis = new Report_Significant_Analysis_2  ( r
+                                                               , sub_matrix
+                                                               , Rpt_Detail
+                                                               );
          
-         rpt_sig_analysis = new Report_Significant_Analysis_2     ( r
-                                                          , sub_matrix
-                                                          , Rpt_Detail
-                                                          );
+         rpt_cov_matrix   = new Report_Covariance_Matrix       ( r
+        		                                               , sub_matrix
+        		                                               , Rpt_Detail
+        		                                               );
          
-         rpt_cov_matrix   = new Report_Covariance_Matrix  ( r
-        		                                          , sub_matrix
-        		                                          , Rpt_Detail
-        		                                          );
-         
-         rpt_cov_adjusted = new Report_Covariance_Adjusted( r
-                                                          , sub_matrix
-                                                          , Rpt_Detail
-                                                          );   
-         rpt_csv_summary  = new Report_CSV_Summary        ( r
-                                                          , sub_matrix
-                                                          , Rpt_Summary
-                                                          );  
+         rpt_cov_adjusted = new Report_Covariance_Adjusted     ( r
+                                                               , sub_matrix
+                                                               , Rpt_Detail
+                                                               );    
 } 
 public  void   report_All()
         throws not_estimated
@@ -123,8 +108,6 @@ public  void   report_All()
         rpt_cov_matrix   . write_details  ();
         rpt_cov_adjusted . write_details  ();
        
-        rpt_csv_summary  . write_details  ();
-        Rpt_Summary.close();
         Rpt_Detail .close();
 }
 

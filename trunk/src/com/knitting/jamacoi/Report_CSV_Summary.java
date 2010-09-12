@@ -27,6 +27,33 @@ public     void     write_details()
 {
 	       get_Rpt() . write( fmt_line_01() );
 }
+public     void     write_headers() 
+           throws   IOException
+           ,        not_estimated 
+{
+           get_Rpt() . write( fmt_headers_01() );
+}
+protected  String   fmt_headers_01()
+{
+           Formatter  line  = new Formatter();
+                      line  . format( "    %10s  %4s"
+                                    , ""
+                                    , ""
+                                    );
+           for  ( int   ic  = 0
+                ;       ic  < get_Regression().get_YX_max_cols()
+                ;     ++ic
+                )
+                {
+                  line . format( "%15s"
+                               , get_Sub_Matrix().get_name_security(ic)
+                               );
+                }
+                  line . format( "%n");
+              
+return            line . toString();	
+	
+}
 protected  String   fmt_line_01()
            throws   not_estimated
 {
