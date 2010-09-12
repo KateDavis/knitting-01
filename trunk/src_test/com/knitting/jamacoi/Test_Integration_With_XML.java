@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.util.Date;
@@ -177,7 +178,7 @@ assertNotNull( url_out_rpt_summary  ) ;
 	    		             );
 		   Collected_Data      aapl  =  new  Collected_Data( rs__AAPL.get_human_name   ()
 				                                           , rs__AAPL.get_data_location() 
-				                                           , rs__AAPL.get_lags             ()
+				                                           , rs__AAPL.get_lags         ()
 				                                           , kcal 
 				                                           ) ;
 		   if ( rs__AAPL.get_lags() == null )
@@ -190,12 +191,12 @@ assertNotNull( url_out_rpt_summary  ) ;
 		      }
 		   Collected_Data      amzn  =  new  Collected_Data( rs__AMZN.get_human_name   ()
 				                                           , rs__AMZN.get_data_location()
-				                                           , rs__AMZN.get_lags             ()
+				                                           , rs__AMZN.get_lags         ()
 				                                           , kcal
 				                                           ) ;
 		   Collected_Data      qcom  =  new  Collected_Data( rs__QCOM.get_human_name   ()
 				                                           , rs__QCOM.get_data_location()
-				                                           , rs__QCOM.get_lags             ()
+				                                           , rs__QCOM.get_lags         ()
 				                                           , kcal 
 				                                           ) ;
 		   System.out.println( "appl 2004_10_25 = >"
@@ -400,11 +401,14 @@ new Build_Directory_Structure	  ( ws1.get_Workspace()
                     		             , my_parms_02
                     		             );
 /******************************/                       
- URL    d              = new URL  ( my_parms_02.getURL_NAME_OUT_FILE_DETAILS() );
- File   Delete_Detail  = new File ( d . getFile() );
+                    
+ //       initialize_to_empty_file  ( my_parms_02.getURL_NAME_OUT_FILE_DETAILS() );
+                    
+ //URL    d              = new URL  ( my_parms_02.getURL_NAME_OUT_FILE_DETAILS() );
+ //File   Delete_Detail  = new File ( d . getFile() );
                                             
- if   ( Delete_Detail  . isFile() ) { Delete_Detail.delete(); }             
-        Delete_Detail  = null;
+ //if   ( Delete_Detail  . isFile() ) { Delete_Detail.delete(); }             
+ //       Delete_Detail  = null;
 
  URL    s              = new URL  ( my_parms_02.getURL_NAME_OUT_FILE_SUMMARY() );
  File   Delete_Summary = new File ( s . getFile() );
@@ -413,11 +417,13 @@ new Build_Directory_Structure	  ( ws1.get_Workspace()
         Delete_Summary = null;
 /*****************************/  
         
- URL    rpt_d          = new URL    ( my_parms_02.getURL_REL_RPT_DETAILS() );
- File   rpt_d_f        = new File   ( rpt_d      .getFile() );
+          initialize_to_empty_file    ( my_parms_02.getURL_REL_RPT_DETAILS() );
+        
+ //URL    rpt_d          = new URL    ( my_parms_02.getURL_REL_RPT_DETAILS() );
+ //File   rpt_d_f        = new File   ( rpt_d      .getFile() );
                                                    
- if   ( rpt_d_f        . isFile() ) { rpt_d_f.delete(); }             
-        rpt_d_f        = null;
+ //if   ( rpt_d_f        . isFile() ) { rpt_d_f.delete(); }             
+ //       rpt_d_f        = null;
 
  URL    rpt_s          = new URL    ( my_parms_02.getURL_REL_RPT_SUMMARY() );
  File   rpt_s_f        = new File   ( rpt_s      .getFile() );
@@ -480,18 +486,29 @@ new Build_Directory_Structure	  ( ws1.get_Workspace()
                {                            
                  Regression        r = new Regression ( sub_matrix ); 
 
+                 
                  Report_Regression_Results          rrr =
-             new Report_Regression_Results        ( r
-                                                  , sub_matrix
-                                                  , my_parms_02
-                                                  );
+             new Report_Regression_Results              ( r
+                                                        , sub_matrix
+                                                        , my_parms_02
+                                                        );
                                                     rrr . report_All();
+                                            
+                                                    
+                 Report_Regression_Summary          rrs =
+             new Report_Regression_Summary              ( r
+            		                                    , sub_matrix
+            		                                    , my_parms_02
+            		                                    );
+                                                    rrs . report_All();
+                                                    
+                                                    
                  Report_Standardized_Y_Residuals    syr =
-             new Report_Standardized_Y_Residuals  ( ir_base
-            		                              , r
-            		                              , sub_matrix
-            		                              , my_parms_02
-            		                              );	 
+             new Report_Standardized_Y_Residuals        ( ir_base
+            		                                    , r
+            		                                    , sub_matrix
+            		                                    , my_parms_02
+            		                                    );	 
                                                     syr . create_rpt();
                }
            catch (not_enough_rows e)
@@ -531,6 +548,19 @@ public void   check_file     ( final  URL  u ){
 	        }
 	   else 
 	        {        System.out.println( "does NOT exists    =>" +  u.toString() + "<" ); }
+	
+}
+public void   initialize_to_empty_file ( String URL_name ) 
+       throws MalformedURLException{
+	
+	   URL    u  = new URL    ( URL_name );
+	   File   f  = new File   ( u . getFile() );
+	                                            
+	   if   ( f  . isFile() ) { f . delete(); }
+	                  
+	         	          
+//	          URL    rpt_d          = new URL    ( my_parms_02.getURL_REL_RPT_DETAILS() );
+//	          File   rpt_d_f        = new File   ( rpt_d      .getFile() );
 	
 }
 }
