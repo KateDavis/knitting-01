@@ -20,11 +20,16 @@ public             Report_Covariance_Adjusted( Regression  r
 @Override
 public     void    write_details() 
            throws  IOException
-                , not_estimated 
+                ,  not_estimated 
 {
 get_Rpt_Detail().write( fmt_line_01() );
 loop_thru_rows();
 }
+@Override
+public     void    write_headers()
+           throws  IOException
+                ,  not_estimated
+                {;}
 protected  String  fmt_line_01(){
 Formatter  line =  new Formatter();
 	 

@@ -22,6 +22,10 @@ public   abstract    void             write_details()
          throws      java.io.IOException
               ,      not_estimated;
 
+public   abstract    void             write_headers()
+         throws      java.io.IOException
+              ,      not_estimated;
+
 public   FileWriter  get_Rpt_Detail(){
 return                   Rpt_Detail;
 }

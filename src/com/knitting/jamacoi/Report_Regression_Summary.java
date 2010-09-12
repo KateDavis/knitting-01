@@ -45,7 +45,16 @@ public class Report_Regression_Summary {
                  , java.io.IOException
 { 
     rpt_csv_summary  . write_details  ();
-    Rpt_Summary.close();
+    Rpt_Summary      . close();
 }
 
+    public  void   report_headers()
+            throws not_estimated
+                 , not_invertable
+                 , not_significant
+                , java.io.IOException
+{ 
+    rpt_csv_summary  . write_headers  ();
+    Rpt_Summary      . close();
+}
 }

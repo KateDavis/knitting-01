@@ -1,6 +1,7 @@
 package com.knitting.jamacoi;
 
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Formatter;
 
@@ -29,8 +30,13 @@ public   void        write_details()
 {
 	get_Rpt_Detail().write( fmt_line_01() );	
 	get_Rpt_Detail().write( fmt_line_02() );
-loop_thru_rows  ();
+    loop_thru_rows();
 }
+@Override
+public     void    write_headers()
+           throws  IOException
+                ,  not_estimated
+                {;}
 protected  String       fmt_line_01(){
 Formatter  line = new Formatter();
 	 

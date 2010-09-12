@@ -27,9 +27,9 @@ public     void     write_details()
 {
 	       get_Rpt() . write( fmt_line_01() );
 }
+@Override
 public     void     write_headers() 
            throws   IOException
-           ,        not_estimated 
 {
            get_Rpt() . write( fmt_headers_01() );
 }

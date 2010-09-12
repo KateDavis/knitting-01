@@ -6,14 +6,14 @@
   <COL__START>0</COL__START>
   <COL__END>8</COL__END>
   <ROW__BASE>10</ROW__BASE>
-  <URL__NAME__WORKSPACE>file:/C:/Eclipse_ws_00/</URL__NAME__WORKSPACE>
-  <URL__NAME__IN__DIR>file:/C:/Eclipse_ws_00/knitting-01/src_test/com/knitting/out_base/aapl_amzn_qcom/request_001</URL__NAME__IN__DIR>
-  <URL__NAME__IN__FILE>file:/C:/Eclipse_ws_00/knitting-01/src_test/com/knitting/out_base/aapl_amzn_qcom/request_001/first_10_col_test.txt</URL__NAME__IN__FILE>
-  <URL__NAME__OUT__DIR__BASE>file:/C:/Eclipse_ws_00/knitting-01/src_test/com/knitting/out_base</URL__NAME__OUT__DIR__BASE>
-  <URL__NAME__OUT__DIR__FAMILY>file:/C:/Eclipse_ws_00/knitting-01/src_test/com/knitting/out_base/aapl_amzn_qcom</URL__NAME__OUT__DIR__FAMILY>
-  <URL__NANE__OUT__DIR__REQUEST>file:/C:/Eclipse_ws_00/knitting-01/src_test/com/knitting/out_base/aapl_amzn_qcom/request_001</URL__NANE__OUT__DIR__REQUEST>
-  <URL__NAME__OUT__FILE__DETAILS>file:/C:/Eclipse_ws_00/knitting-01/src_test/com/knitting/out_base/aapl_amzn_qcom/request_001/report_detail.txt</URL__NAME__OUT__FILE__DETAILS>
-  <URL__NAME__OUT__FILE__SUMMARY>file:/C:/Eclipse_ws_00/knitting-01/src_test/com/knitting/out_base/aapl_amzn_qcom/request_001/report_summary.txt</URL__NAME__OUT__FILE__SUMMARY>
+  <URL__NAME__WORKSPACE>file:/Users/scottsmith/workspaces/knitting/</URL__NAME__WORKSPACE>
+  <URL__NAME__IN__DIR>file:/Users/scottsmith/workspaces/knitting/knitting-01/src_test/com/knitting/out_base/aapl_amzn_qcom/request_001</URL__NAME__IN__DIR>
+  <URL__NAME__IN__FILE>file:/Users/scottsmith/workspaces/knitting/knitting-01/src_test/com/knitting/out_base/aapl_amzn_qcom/request_001/first_10_col_test.txt</URL__NAME__IN__FILE>
+  <URL__NAME__OUT__DIR__BASE>file:/Users/scottsmith/workspaces/knitting/knitting-01/src_test/com/knitting/out_base</URL__NAME__OUT__DIR__BASE>
+  <URL__NAME__OUT__DIR__FAMILY>file:/Users/scottsmith/workspaces/knitting/knitting-01/src_test/com/knitting/out_base/aapl_amzn_qcom</URL__NAME__OUT__DIR__FAMILY>
+  <URL__NANE__OUT__DIR__REQUEST>file:/Users/scottsmith/workspaces/knitting/knitting-01/src_test/com/knitting/out_base/aapl_amzn_qcom/request_001</URL__NANE__OUT__DIR__REQUEST>
+  <URL__NAME__OUT__FILE__DETAILS>file:/Users/scottsmith/workspaces/knitting/knitting-01/src_test/com/knitting/out_base/aapl_amzn_qcom/request_001/report_detail.txt</URL__NAME__OUT__FILE__DETAILS>
+  <URL__NAME__OUT__FILE__SUMMARY>file:/Users/scottsmith/workspaces/knitting/knitting-01/src_test/com/knitting/out_base/aapl_amzn_qcom/request_001/report_summary.txt</URL__NAME__OUT__FILE__SUMMARY>
   <NAME__IN__DIR>\Temp\Residuals_attempt_01</NAME__IN__DIR>
   <NAME__IN__FILE>first_10_col_test</NAME__IN__FILE>
   <NAME__OUT__DIR>\Temp</NAME__OUT__DIR>
@@ -28,13 +28,13 @@
   <NAME__REL__RESIDUALS>residuals</NAME__REL__RESIDUALS>
   <NAME__RPT__DETAILS>rpt_details.txt</NAME__RPT__DETAILS>
   <NAME__RPT__SUMMARY>rpt_summary.txt</NAME__RPT__SUMMARY>
-  <URL__REL__APP__BASE>file:/C:/Eclipse_ws_00/knitting_01/src_test/com/knitting/regression</URL__REL__APP__BASE>
-  <URL__REL__FAMILY>file:/C:/Eclipse_ws_00/knitting_01/src_test/com/knitting/regression/aapl_amzn_qcom</URL__REL__FAMILY>
-  <URL__REL__REQUEST>file:/C:/Eclipse_ws_00/knitting_01/src_test/com/knitting/regression/aapl_amzn_qcom/request_0001</URL__REL__REQUEST>
-  <URL__REL__REPORTS>file:/C:/Eclipse_ws_00/knitting_01/src_test/com/knitting/regression/aapl_amzn_qcom/request_0001/reports/</URL__REL__REPORTS>
-  <URL__REL__REQUEST__SERIES>file:/C:/Eclipse_ws_00/knitting_01/src_test/com/knitting/regression/aapl_amzn_qcom/request_0001/request_series/</URL__REL__REQUEST__SERIES>
-  <URL__REL__REQUEST__SET>file:/C:/Eclipse_ws_00/knitting_01/src_test/com/knitting/regression/aapl_amzn_qcom/request_0001/request_set/</URL__REL__REQUEST__SET>
-  <URL__REL__RESIDUALS>file:/C:/Eclipse_ws_00/knitting_01/src_test/com/knitting/regression/aapl_amzn_qcom/request_0001/residuals/</URL__REL__RESIDUALS>
-  <URL__REL__RPT__DETAILS>file:/C:/Eclipse_ws_00/knitting_01/src_test/com/knitting/regression/aapl_amzn_qcom/request_0001/reports/rpt_details.txt</URL__REL__RPT__DETAILS>
-  <URL__REL__RPT__SUMMARY>file:/C:/Eclipse_ws_00/knitting_01/src_test/com/knitting/regression/aapl_amzn_qcom/request_0001/reports/rpt_summary.txt</URL__REL__RPT__SUMMARY>
+  <URL__REL__APP__BASE>file:/Users/scottsmith/workspaces/knitting/knitting_01/src_test/com/knitting/regression</URL__REL__APP__BASE>
+  <URL__REL__FAMILY>file:/Users/scottsmith/workspaces/knitting/knitting_01/src_test/com/knitting/regression/aapl_amzn_qcom</URL__REL__FAMILY>
+  <URL__REL__REQUEST>file:/Users/scottsmith/workspaces/knitting/knitting_01/src_test/com/knitting/regression/aapl_amzn_qcom/request_0001</URL__REL__REQUEST>
+  <URL__REL__REPORTS>file:/Users/scottsmith/workspaces/knitting/knitting_01/src_test/com/knitting/regression/aapl_amzn_qcom/request_0001/reports/</URL__REL__REPORTS>
+  <URL__REL__REQUEST__SERIES>file:/Users/scottsmith/workspaces/knitting/knitting_01/src_test/com/knitting/regression/aapl_amzn_qcom/request_0001/request_series/</URL__REL__REQUEST__SERIES>
+  <URL__REL__REQUEST__SET>file:/Users/scottsmith/workspaces/knitting/knitting_01/src_test/com/knitting/regression/aapl_amzn_qcom/request_0001/request_set/</URL__REL__REQUEST__SET>
+  <URL__REL__RESIDUALS>file:/Users/scottsmith/workspaces/knitting/knitting_01/src_test/com/knitting/regression/aapl_amzn_qcom/request_0001/residuals/</URL__REL__RESIDUALS>
+  <URL__REL__RPT__DETAILS>file:/Users/scottsmith/workspaces/knitting/knitting_01/src_test/com/knitting/regression/aapl_amzn_qcom/request_0001/reports/rpt_details.txt</URL__REL__RPT__DETAILS>
+  <URL__REL__RPT__SUMMARY>file:/Users/scottsmith/workspaces/knitting/knitting_01/src_test/com/knitting/regression/aapl_amzn_qcom/request_0001/reports/rpt_summary.txt</URL__REL__RPT__SUMMARY>
 </com.knitting.jamacoi.Analysis__Parms>

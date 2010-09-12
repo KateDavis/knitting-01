@@ -1,6 +1,7 @@
 package com.knitting.jamacoi;
 
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Formatter;
 
 public   class       Report_YX
@@ -16,15 +17,20 @@ public               Report_YX( Regression  r
 	               , Rpt_Detail
 	               );
 }
-public   void        write_details()
-         throws      java.io.IOException
+@Override
+public     void    write_headers()
+           throws  IOException
+                ,  not_estimated
+                {;}
+public     void    write_details()
+           throws  java.io.IOException
 {
-         get_Rpt_Detail().write( fmt_line_01() );  
-         get_Rpt_Detail().write( fmt_line_02() );
-         get_Rpt_Detail().write( fmt_line_03() );
-         get_Rpt_Detail().write( fmt_line_04() );
-         get_Rpt_Detail().write( fmt_line_05() );
-         loop_thru_rows();
+           get_Rpt_Detail().write( fmt_line_01() );  
+           get_Rpt_Detail().write( fmt_line_02() );
+           get_Rpt_Detail().write( fmt_line_03() );
+           get_Rpt_Detail().write( fmt_line_04() );
+           get_Rpt_Detail().write( fmt_line_05() );
+           loop_thru_rows();
 } 
 protected  String  fmt_line_01(){
 Formatter  line =  new Formatter();
