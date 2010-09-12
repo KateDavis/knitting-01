@@ -165,7 +165,7 @@ public class Analysis_Parms {
         this.COUNT_MAX_REGRESSION_ANALYSIS = COUNT_MAX_REGRESSION_ANALYSIS;
     }
         public String getNAME_OUT_DETAILS() {
-        return NAME_OUT_DETAILS;
+        return           NAME_OUT_DETAILS;
     }
 
     public void setNAME_OUT_DETAILS(String NAME_OUT_DETAILS) {

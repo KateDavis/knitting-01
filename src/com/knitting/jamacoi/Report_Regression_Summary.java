@@ -22,7 +22,7 @@ public class Report_Regression_Summary {
                                      ,final Sub_Matrix     sub_matrix
                                      ,final Analysis_Parms xml_parms
                                      )
-        throws java.io.IOException
+           throws                     java.io.IOException
     {        
         this.r                = r;
         this.sub_matrix       = sub_matrix;
