@@ -32,12 +32,12 @@ public     void     write_headers()
            throws   IOException
 {
            get_Rpt() . write( fmt_headers_01() );
+           get_Rpt() . write( fmt_headers_02() );
 }
 protected  String   fmt_headers_01()
 {
            Formatter  line  = new Formatter();
-                      line  . format( "    %10s  %4s"
-                                    , ""
+                      line  . format( "%9s"
                                     , ""
                                     );
            for  ( int   ic  = 0
@@ -45,8 +45,28 @@ protected  String   fmt_headers_01()
                 ;     ++ic
                 )
                 {
-                  line . format( "%15s"
+                  line . format( "%13s"
                                , get_Sub_Matrix().get_name_security(ic)
+                               );
+                }
+                  line . format( "%n");
+              
+return            line . toString();	
+	
+}
+protected  String   fmt_headers_02()
+{
+           Formatter  line  = new Formatter();
+                      line  . format( "%9s"
+                                    , ""
+                                    );
+           for  ( int   ic  = 0
+                ;       ic  < get_Regression().get_YX_max_cols()
+                ;     ++ic
+                )
+                {
+                  line . format( "%13s"
+                               , get_Sub_Matrix().get_name_lag(ic)
                                );
                 }
                   line . format( "%n");
@@ -82,8 +102,10 @@ protected  String   fmt_line_01()
 	 line . format("%5.2f,"
 	              , get_Regression().get_Pct_Error_Explained()
 	              );
+/**************************************************************************	 
 	 int   ir;
 	 int   ic;
+	 
 	 
 	 for ( ir    = 0
 	     ; ir    < get_Regression().get_p_XX_dev_adjusted_rows()
@@ -100,6 +122,7 @@ protected  String   fmt_line_01()
 	                          );
 	           }
 	      }  
+**************************************************************************/	      
 	 line . format ( "%n" );	
 return     line . toString();	 
 }
