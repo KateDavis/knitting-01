@@ -30,6 +30,11 @@ public      void     write_details()
             loop_thru_rows();
 
 }
+@Override
+public     void    write_headers()
+           throws  IOException
+                ,  not_estimated
+                {;}
 public      String   fmt_line_01(){
 Formatter   line =   new Formatter();
 	 

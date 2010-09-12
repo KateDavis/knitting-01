@@ -18,10 +18,14 @@ public           Report_Significant_Analysis_2 ( Regression r
       	       , Rpt_Detail
       	       );	
 }
-
 @Override
-public void    write_details() 
-       throws  IOException
+public     void    write_headers()
+           throws  IOException
+                ,  not_estimated
+                {;}
+@Override
+public    void     write_details() 
+          throws   IOException
 {
 Formatter    line_1  = new Formatter();
 	  try   {

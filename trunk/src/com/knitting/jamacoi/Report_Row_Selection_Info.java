@@ -1,6 +1,7 @@
 package com.knitting.jamacoi;
 
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Formatter;
 
 public   class       Report_Row_Selection_Info
@@ -25,6 +26,11 @@ public   void        write_details()
 	     get_Rpt_Detail().write( fmt_line_02() );
 	     get_Rpt_Detail().write( fmt_line_03() );
 }
+@Override
+public     void    write_headers()
+           throws  IOException
+                ,  not_estimated
+                {;}
 protected  String  fmt_line_01(){
 Formatter  line =  new Formatter();
            line .  format( "%n%s%n"

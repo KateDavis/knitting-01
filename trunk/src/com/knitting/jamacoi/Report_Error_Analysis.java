@@ -39,6 +39,11 @@ public     void    write_details()
 	       get_Rpt_Detail().write( fmt_line_08() );
 	       get_Rpt_Detail().write( fmt_line_09() );
 }
+@Override
+public     void    write_headers()
+           throws  IOException
+                ,  not_estimated
+                {;}
 protected  String fmt_line_01(){
 Formatter  line = new Formatter();
 	       line . format( "%n%n%s%n"
