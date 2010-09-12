@@ -400,38 +400,11 @@ new Build_Directory_Structure	  ( ws1.get_Workspace()
                     xml_in.write_to_disk ( url_xml
                     		             , my_parms_02
                     		             );
-/******************************/                       
-                    
- //       initialize_to_empty_file  ( my_parms_02.getURL_NAME_OUT_FILE_DETAILS() );
-                    
- //URL    d              = new URL  ( my_parms_02.getURL_NAME_OUT_FILE_DETAILS() );
- //File   Delete_Detail  = new File ( d . getFile() );
-                                            
- //if   ( Delete_Detail  . isFile() ) { Delete_Detail.delete(); }             
- //       Delete_Detail  = null;
-
- URL    s              = new URL  ( my_parms_02.getURL_NAME_OUT_FILE_SUMMARY() );
- File   Delete_Summary = new File ( s . getFile() );
- 
- if   ( Delete_Summary . isFile() ) { Delete_Summary.delete(); }             
-        Delete_Summary = null;
-/*****************************/  
         
-          initialize_to_empty_file    ( my_parms_02.getURL_REL_RPT_DETAILS() );
+        initialize_to_empty_file             ( my_parms_02.getURL_REL_RPT_DETAILS() );
+        initialize_to_empty_file             ( my_parms_02.getURL_REL_RPT_SUMMARY() );
         
- //URL    rpt_d          = new URL    ( my_parms_02.getURL_REL_RPT_DETAILS() );
- //File   rpt_d_f        = new File   ( rpt_d      .getFile() );
-                                                   
- //if   ( rpt_d_f        . isFile() ) { rpt_d_f.delete(); }             
- //       rpt_d_f        = null;
-
- URL    rpt_s          = new URL    ( my_parms_02.getURL_REL_RPT_SUMMARY() );
- File   rpt_s_f        = new File   ( rpt_s      .getFile() );
-                                                          
- if   ( rpt_s_f        . isFile() ) { rpt_s_f.delete(); }             
-        rpt_s_f        = null;
-        
-    	       Workspace  ws       =   new  Workspace();
+    	Workspace                  ws  = new   Workspace();
     	
     	Build_Directory_Structure  bds = new
     	Build_Directory_Structure            ( ws.get_Workspace() 
