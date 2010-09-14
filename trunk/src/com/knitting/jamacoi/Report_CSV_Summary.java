@@ -34,14 +34,18 @@ public     void     write_headers()
            get_Rpt() . write( fmt_headers_01() );
            get_Rpt() . write( fmt_headers_02() );
            get_Rpt() . write( fmt_headers_03() );
+           get_Rpt() . write( fmt_headers_04() );
+           get_Rpt() . write( fmt_headers_05() );
 }
 protected  String   fmt_headers_01()
 {
            Formatter  line  = new Formatter();
-                      line  . format( "%9s"
+                      line  . format( "%13s%10s %13s"
+                                    , ""
+                                    , ""
                                     , ""
                                     );
-           for  ( int   ic  = 0
+           for  ( int   ic  = 1
                 ;       ic  < get_Regression().get_YX_max_cols()
                 ;     ++ic
                 )
@@ -58,10 +62,12 @@ return            line . toString();
 protected  String   fmt_headers_02()
 {
            Formatter  line  = new Formatter();
-                      line  . format( "%9s"
+                      line  . format( "%13s%10s %13s"
+                                    , ""
+                                    , ""
                                     , ""
                                     );
-           for  ( int   ic  = 0
+           for  ( int   ic  = 1
                 ;       ic  < get_Regression().get_YX_max_cols()
                 ;     ++ic
                 )
@@ -75,11 +81,58 @@ protected  String   fmt_headers_02()
 return            line . toString();	
 	
 }
-protected  String  fmt_headers_03(){
+protected  String   fmt_headers_03()
+{
+           Formatter  line  = new Formatter();
+                      line  . format( "%13s%10s %13s"
+                                    , ""
+                                    , ""
+                                    , ""
+                                    );
+           for  ( int   ic  = 1
+                ;       ic  < get_Regression().get_YX_max_cols()
+                ;     ++ic
+                )
+                {
+                  line . format( "%13s"
+                               , "Coefficient"
+                               );
+                }
+                  line . format( "%n");
+              
+return            line . toString();	
+	
+}
+protected  String   fmt_headers_04()
+{
+           Formatter  line  = new Formatter();
+                      line  . format( "%6s %6s %10s%13s"
+                                    , "Start"
+                                    , "End"
+                                    , "Percent"
+                                    , ""
+                                    );
+           for  ( int   ic  = 1
+                ;       ic  < get_Regression().get_YX_max_cols()
+                ;     ++ic
+                )
+                {
+                  line . format( "%13s"
+                               , "for"
+                               );
+                }
+                  line . format( "%n");
+              
+return            line . toString();	
+	
+}
+protected  String  fmt_headers_05(){
 	Formatter  line = new Formatter();
 
-		       line . format( "%9s%13s"
-		                    , ""
+		       line . format( "%6s %6s %10s%13s"
+		    		        , "row"
+		    		        , "row"
+		                    , "Explained"
 		                    , "Intercept"
 		                    );
 
@@ -102,12 +155,13 @@ protected  String   fmt_line_01()
 	 Formatter line      = new Formatter();
      
 	 ArrayList<Double> c =     get_Regression().get_Estimated_Coefficients();  
-	 line . format("%4d,%4d,"
+	 line . format("%6d,%6d,%10.2f"
 	              , get_Sub_Matrix().get_row_source_first()
 	              , get_Sub_Matrix().get_row_source_last ()
+	              , get_Regression().get_Pct_Error_Explained()
 	              );       
 	   
-	 line . format("%12.5E,"
+	 line . format(",%12.5E"
 	              , get_Regression().get_Estimated_Intercept()
 	              );       
 	 int  ix;
@@ -117,36 +171,15 @@ protected  String   fmt_line_01()
 	     ;ix++
 	     )
 	     {
-	                 line . format("%12.5E,"
+	                 line . format(",%12.5E"
 	                              ,c.get(ix)
 	                              );   
 	     }  
-	 line . format("%5.2f,"
-	              , get_Regression().get_Pct_Error_Explained()
-	              );
-/**************************************************************************	 
-	 int   ir;
-	 int   ic;
-	 
-	 
-	 for ( ir    = 0
-	     ; ir    < get_Regression().get_p_XX_dev_adjusted_rows()
-	     ; ir++
-	     )
-	     {
-	       for ( ic   = ir
-	           ; ic   < get_Regression().get_p_XX_dev_adjusted_cols()
-	           ; ic++
-	           )
-	           {
-	             line . format( "%12.5E,"
-	                          , get_Regression().get_p_XX_dev_adjusted_cell(ir, ic)
-	                          );
-	           }
-	      }  
-**************************************************************************/	      
-	 line . format ( "%n" );	
-return     line . toString();	 
+
+	           
+      
+	                 line . format ( "%n" );	
+return               line . toString();	 
 }
 
 }
