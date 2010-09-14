@@ -33,6 +33,7 @@ public     void     write_headers()
 {
            get_Rpt() . write( fmt_headers_01() );
            get_Rpt() . write( fmt_headers_02() );
+           get_Rpt() . write( fmt_headers_03() );
 }
 protected  String   fmt_headers_01()
 {
@@ -74,6 +75,27 @@ protected  String   fmt_headers_02()
 return            line . toString();	
 	
 }
+protected  String  fmt_headers_03(){
+	Formatter  line = new Formatter();
+
+		       line . format( "%9s%13s"
+		                    , ""
+		                    , "Intercept"
+		                    );
+
+	for  (int   ic  = 0
+		 ;      ic  < ( get_Regression().get_YX_max_cols() - 1 )
+		 ;    ++ic
+		 )
+		 {
+		    line . format( "%11s%02d"
+		                 , "X"
+		                 , (ic + 1)
+		                 );
+		 }
+		    line . format( "%n");
+	return  line . toString();	
+	}
 protected  String   fmt_line_01()
            throws   not_estimated
 {
