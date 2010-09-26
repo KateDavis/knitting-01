@@ -1,6 +1,7 @@
 package com.knitting.jamacoi;
-import  java.util.*;
-import  Jama.*;
+import java.util.ArrayList;
+
+import Jama.Matrix;
 
 /**
  * This class implements the standard least squares analysis
@@ -45,6 +46,7 @@ public class Regression
 	private Matrix  est_Y_residual;   // a [N,2] matrix:
 	                                  //         1st column: estimated Y
 	                                  //         2nd column: residual = (Y - est_Y)
+	private Matrix  auto_correlation; // a [N,1] matrix: needs est_Y_residual as input
 
 	private Matrix  Estimated_Coefficients;   // a matrix [cols x 1] 
 	private double  Estimated_Intercept;      // a scalar 
@@ -90,8 +92,8 @@ public class Regression
 	 * Symbolically the rectangular input matrix is: YX
 	 * 
 	 */ 
-	public Regression ( Sub_Matrix sub_matrix )                      
-	throws not_enough_rows        
+	public Regression  ( Sub_Matrix sub_matrix )                      
+	       throws        not_enough_rows        
 	{
 	    YX             = new Matrix          ( sub_matrix.get_Data()
 	                                         );
@@ -152,7 +154,8 @@ public class Regression
 	  catch ( not_significant e ) {}
 	  catch ( not_invertable  e ) {} ;
 
-	  est_Y_residual = calc_estimated_y_and_residuals();
+	  est_Y_residual   = calc_estimated_y_and_residuals();
+	  auto_correlation = calc_auto_correlations        ();
 	  
 	}
 	private void       enough_rows ( final int rows
@@ -212,7 +215,97 @@ public class Regression
 	      }
 	 return est_Y_and_residuals;
 	}
+	private Matrix  calc_auto_correlations(){
+            int     max_count            =  est_Y_residual.getRowDimension() / 4;
+	        Matrix  auto_correlation     =  new Matrix ( max_count  // # of rows
+			                                           , 5          // # of cols
+			                                           );
+	
+	        double  ave_residual         =  get_ave_residual();
+	        double  sum_sqt_residuals    =  get_sum_sqt_residuals            ( ave_residual );
+	        double  sample_variance      =  sum_sqt_residuals                / est_Y_residual.getRowDimension();
 
+	        int     row_0                =  0;
+	        int     col_0                =  0;
+	        int     col_1                =  1;
+	        int     col_2                =  2;
+	        int     col_3                =  3;
+	        int     col_4                =  4;
+	                auto_correlation.set (  row_0,  col_0,  (double) 0                 );  
+	                auto_correlation.set (  row_0,  col_1,           1.0               );  // by definition 
+	                auto_correlation.set (  row_0,  col_2,           ave_residual      ); 
+	                auto_correlation.set (  row_0,  col_3,           sample_variance   );
+	                auto_correlation.set (  row_0,  col_4,           sum_sqt_residuals );
+	                
+	        
+	        for    ( int    row_ix  =  1
+	        	   ;        row_ix  <  max_count
+	        	   ;      ++row_ix
+	        	   )
+	               {
+  		             
+	        	     auto_correlation.set ( row_ix,  col_1,  get_sample_auto_correlation( row_ix
+	        	    		            		                                        , ave_residual
+	        	    		            		                                        , sum_sqt_residuals
+	        	    		            		                                        )
+	        	    		              );       
+	        	     auto_correlation.set ( row_ix,  col_0,  (double) row_ix            );
+	        	     auto_correlation.set ( row_ix,  col_2,           ave_residual      );
+	        	     auto_correlation.set ( row_ix,  col_3,           sample_variance   );
+	        	     auto_correlation.set ( row_ix,  col_4,           sum_sqt_residuals );
+          
+	               }
+	return          auto_correlation;
+	}
+	private  double  get_ave_residual() {
+		     int     col_residual = 1;
+		     double  ave_residual = 0;
+		             for  ( int   row_ix  = 0
+			   	          ;       row_ix  < est_Y_residual.getRowDimension()
+				          ;     ++row_ix
+		                  )
+		                  {
+		    	            ave_residual += est_Y_residual.get( row_ix,  col_residual );
+		                  }
+    return                  ave_residual  / (double)est_Y_residual.getRowDimension();		             
+	}
+	private  double  get_sum_sqt_residuals( double  ave_residual ) {
+	         int     col_residual         = 1;
+	         double  sum_sqt_residuals    = 0;
+	                 for  ( int   row_ix  = 0
+		   	              ;       row_ix  < est_Y_residual.getRowDimension()
+			              ;     ++row_ix
+	                      )
+	                      {
+	    	                sum_sqt_residuals  += (  est_Y_residual.get( row_ix,  col_residual )
+	    	            	  	                  *  est_Y_residual.get( row_ix,  col_residual )
+	    	            		                  );
+	                      }
+    return                  sum_sqt_residuals;		             
+    }
+	private  double  get_sample_auto_correlation ( int     lag
+			                                     , double  ave_residual
+			                                     , double  sum_sqt_residual
+			                                     )
+	{
+		     int     col_residual             =  1;
+		     double  sample_auto_correlation  =  0.0;
+		     
+		             for  (  int   row_ix =  ( lag + 1 )
+		            	  ;        row_ix <  est_Y_residual.getRowDimension()
+		            	  ;      ++row_ix
+		            	  )
+		                  {
+		            	     int    row_lagged         =       row_ix - lag - 1;
+		            	     sample_auto_correlation  +=  (  
+		            	    		                         ( est_Y_residual.get( row_ix,      col_residual )  -  ave_residual  )
+		            	    		                         *
+		            	    		                         ( est_Y_residual.get( row_lagged,  col_residual )  -  ave_residual  )
+		            	    		                      );   
+		                  }
+		           
+	return                   sample_auto_correlation;
+	}
 	public double get_est_Y_residual ( int ir
 	                                 , int ic
 	                                 )
@@ -531,7 +624,7 @@ public class Regression
 	       return  p_XX_dev.getColumnDimension();
 	}
 	public int     get_p_XX_dev_rows(){
-	       return   p_XX_dev.getRowDimension();
+	       return  p_XX_dev.getRowDimension();
 	}
 
 	public double  get_p_XX_dev_adjusted_cell(int row, int col){
@@ -547,9 +640,15 @@ public class Regression
 	       double  d=YX.get(row, col);
 	       return  d;
 	}
-	public int      get_YX_max_cols   (){ return  YX.getColumnDimension();  }
-	public int      get_YX_max_rows   (){ return  YX.getRowDimension   ();  }       
- 
+	public int      get_YX_max_cols        (){ return  YX              .getColumnDimension();  }
+	public int      get_YX_max_rows        (){ return  YX              .getRowDimension   ();  }       
+	
+	public int      get_Auto_Corr_max_cols (){ return  auto_correlation.getColumnDimension();  }
+	public int      get_Auto_Corr_max_rows (){ return  auto_correlation.getRowDimension   ();  }       
+	public double   get_Auto_Corr_cell     ( int  row
+			                               , int  col
+			                               ) { return  auto_correlation.get(row,col)        ;  }       
+	 
 
 	public  void   print_est_coefficients()
 	        throws not_estimated

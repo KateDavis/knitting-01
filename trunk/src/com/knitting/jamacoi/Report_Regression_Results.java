@@ -30,6 +30,7 @@ public class Report_Regression_Results
     private Report_Abstract rpt_sig_analysis;    
     private Report_Abstract rpt_cov_matrix;
     private Report_Abstract rpt_cov_adjusted;
+    private Report_Abstract rpt_auto_correlations;
     
     private URL             residuals;
 /**
@@ -92,6 +93,10 @@ public Report_Regression_Results (final Regression     r
                                                                , sub_matrix
                                                                , Rpt_Detail
                                                                );    
+         rpt_auto_correlations = new Report_Auto_Correlations  ( r
+                                                               , sub_matrix
+                                                               , Rpt_Detail
+                                                               );    
 } 
 public  void   report_All()
         throws not_estimated
@@ -99,14 +104,15 @@ public  void   report_All()
              , not_significant
              , java.io.IOException
 { 
-	    rpt_row_info     . write_details  ();
-        rpt_yx           . write_details  ();  
-        rpt_YYX          . write_details  ();
-        rpt_est_func     . write_details  ();
-        rpt_err_analysis . write_details  ();
-        rpt_sig_analysis . write_details  ();
-        rpt_cov_matrix   . write_details  ();
-        rpt_cov_adjusted . write_details  ();
+	    rpt_row_info          . write_details  ();
+        rpt_yx                . write_details  ();  
+        rpt_YYX               . write_details  ();
+        rpt_est_func          . write_details  ();
+        rpt_err_analysis      . write_details  ();
+        rpt_sig_analysis      . write_details  ();
+        rpt_cov_matrix        . write_details  ();
+        rpt_cov_adjusted      . write_details  ();
+        rpt_auto_correlations . write_details  ();
        
         Rpt_Detail .close();
 }
