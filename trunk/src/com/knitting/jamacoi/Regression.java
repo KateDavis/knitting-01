@@ -5,7 +5,7 @@ import Jama.Matrix;
 
 /**
  * This class implements the standard least squares analysis
- * on the supplied retangular data matrix. This class provides the algebraic
+ * on the supplied rectangular data matrix. This class provides the algebraic
  * muscle to calculate:
  * <br>
  * <br>
