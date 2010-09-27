@@ -20,7 +20,7 @@ public           Auto_Correlation_1 ( final  Matrix  est_Y_residual
                             		        );
                                                      residual  =  est_Y_residual;
                                     }
-public   void    load_matrix        ( final  Matrix  est_Y_residual  )
+public   void    load_matrix        ()
 {
 
                  set_residual_ave   ();
@@ -41,7 +41,7 @@ public   void    load_matrix        ( final  Matrix  est_Y_residual  )
             
     
     for    ( int    row_ix  =  1
-    	   ;        row_ix  <  residual.getRowDimension()
+    	   ;        row_ix  <  super.getRowDimension()
     	   ;      ++row_ix
     	   )
            {

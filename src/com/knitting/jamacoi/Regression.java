@@ -47,6 +47,7 @@ public class Regression
 	                                  //         1st column: estimated Y
 	                                  //         2nd column: residual = (Y - est_Y)
 	private Matrix  auto_correlation; // a [N,1] matrix: needs est_Y_residual as input
+	private Auto_Correlation_1  ac1;  //
 
 	private Matrix  Estimated_Coefficients;   // a matrix [cols x 1] 
 	private double  Estimated_Intercept;      // a scalar 
@@ -156,6 +157,9 @@ public class Regression
 
 	  est_Y_residual   = calc_estimated_y_and_residuals();
 	  auto_correlation = calc_auto_correlations        ();
+	  
+	  ac1              = new Auto_Correlation_1( est_Y_residual );
+	  ac1.load_matrix();
 	  
 	}
 	private void       enough_rows ( final int rows
