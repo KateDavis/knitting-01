@@ -651,7 +651,9 @@ public class Regression
 	public int      get_Auto_Corr_max_rows (){ return  auto_correlation.getRowDimension   ();  }       
 	public double   get_Auto_Corr_cell     ( int  row
 			                               , int  col
-			                               ) { return  auto_correlation.get(row,col)        ;  }       
+			                               ) { return  auto_correlation.get(row,col)        ;  }    
+	
+	public Auto_Correlation_1  get_Auto_Correlation_1() { return  ac1;}
 	 
 
 	public  void   print_est_coefficients()
