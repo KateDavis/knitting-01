@@ -29,6 +29,9 @@ public     void     write_details()
                 ,   not_estimated 
 { 
            get_Rpt_Detail().write( fmt_line_01() ); 
+           get_Rpt_Detail().write( fmt_line_02() ); 
+           get_Rpt_Detail().write( fmt_line_03() );
+           get_Rpt_Detail().write( fmt_line_04() );
            loop_thru_rows();
 }
 protected  String   fmt_line_01(){
@@ -36,6 +39,42 @@ Formatter  line =   new Formatter();
 		   line .   format("%n%n%s%n"
 		                  ,"7_2.01) Sample Auto-Correlations values ==========================="
 		                  ); 
+return     line .   toString();	
+}
+protected  String   fmt_line_02(){
+Formatter  line =   new Formatter();
+		   line .   format("%4s%15s%15s%15s%15s%15s%n"
+			              ,""
+			              ,"auto"
+			              ,"stardard"
+			              ,""
+			              ,""
+			              ,""
+			              ); 
+return     line .   toString();	
+}
+protected  String   fmt_line_03(){
+Formatter  line =   new Formatter();
+		   line .   format("%4s%15s%15s%15s%15s%15s%n"
+				          ,"lag"
+				          ,"correlation"
+				          ,"deviation"
+				          ,"numerator"
+				          ,"demoninator"
+				          ,"variance"
+			              ); 
+return     line .   toString();	
+}
+protected  String   fmt_line_04(){
+Formatter  line =   new Formatter();
+		   line .   format("%4s%15s%15s%15s%15s%15s%n"
+					      ,"===="
+					      ,"============"
+					      ,"============"
+					      ,"============"
+					      ,"============"
+					      ,"============"
+					      ); 
 return     line .   toString();	
 }
 protected  void   loop_thru_rows()
@@ -63,7 +102,7 @@ protected  void   loop_thru_rows()
 protected  String  fmt_line_06_cells(int  ir){
 Formatter  line =  new Formatter();
 
-           for (int   ic   =    1
+           for (int   ic   =    0
                ;      ic   <    get_Regression()
                                .get_Auto_Correlation_2()
                                .getColumnDimension()
