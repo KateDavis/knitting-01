@@ -34,16 +34,17 @@ public   void    load_matrix        ()
     	   ;      ++row_ix
     	   )
            {
-  	         double residual_sq_sum         =  get_residual_sq_sum            ( row_ix )  ;
-	         double sample_variance         =      residual_sq_sum / (double) ( super.getRowDimension() - row_ix );
-	         double correlation             =  get_sample_auto_correlation    ( row_ix )  ;
-	         double auto_correlation        =  correlation
-	                                        /  residual_sq_sum ;
+  	         double demoninator             =  get_residual_sq_sum            ( row_ix )  ;
+	         double sample_variance         =  demoninator / (double) ( super.getRowDimension() - row_ix );
+	         double numerator               =  get_sample_auto_correlation    ( row_ix )  ;
+	         double auto_correlation        =  numerator
+	                                        /  demoninator ;
+	         double std_dev                 =  get_std_deviation              ( row_ix )   ;
 	     
-    	     super.set ( row_ix,  col_0,  (double) row_ix           );	             
-    	     super.set ( row_ix,  col_1,           correlation      );
-    	     super.set ( row_ix,  col_2,           auto_correlation );
-    	     super.set ( row_ix,  col_3,           residual_sq_sum  );
+    	     super.set ( row_ix,  col_0,           auto_correlation );
+    	     super.set ( row_ix,  col_1,           std_dev * 2      );
+    	     super.set ( row_ix,  col_2,           numerator        );
+    	     super.set ( row_ix,  col_3,           demoninator      );
     	     super.set ( row_ix,  col_4,           sample_variance  );
   
            }
@@ -67,6 +68,31 @@ private  double  get_sample_auto_correlation ( final  int  lag )
               }
           
 return           sample_auto_correlation;	
+}
+private  double  get_std_deviation  ( final  int  lag )
+{
+	     if ( lag == 0 ) { return 0.0; }
+	     if ( lag == 1 ) { return (double) residual.getRowDimension(); }
+	     
+	     int            col_0    =  0;
+         double         var      =  0.0;
+         
+         for    ( int     row    =  (lag - 1)
+                ;         row    <  (lag - 1)
+                ;       ++row
+        		)
+                {
+        	      double    r    =  super.get( row,  col_0 );
+        	                r    =  r * r;
+        	              var   += (2 * r);
+        	                
+        	              
+                }
+                          var   +=  1;
+                          
+                          var    =  var / (double) ( residual.getRowDimension() - lag);
+         
+return         Math.sqrt( var );
 }
 private  void    set_residual_ave()
 {
