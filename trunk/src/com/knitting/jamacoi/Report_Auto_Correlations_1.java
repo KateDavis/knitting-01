@@ -42,41 +42,41 @@ return     line .   toString();
 protected  void   loop_thru_rows()
            throws java.io.IOException
 {	
-           for  (int  ir   = 0
-                ;     ir   < get_Regression()
-                            .get_Auto_Correlation_1()
-                            .getRowDimension() 
-                ;   ++ir
-                )
-                {
-                  Formatter line = new Formatter();
-                            line .  format("%4d"
-         		                          , ir
-         		                          );
-	                        line . format("%s%n" 
-	     		                         , fmt_line_06_cells(ir)
-	     		                         );
-	                        get_Rpt_Detail().write( line.toString() );
-	     
-	                        line = null;
-                }
+//           for  (int  ir   = 0
+//                ;     ir   < get_Regression()
+//                            .get_Auto_Correlation_1()
+//                            .getRowDimension() 
+//                ;   ++ir
+//                )
+//                {
+//                  Formatter line = new Formatter();
+//                            line .  format("%4d"
+//         		                          , ir
+//         		                          );
+//	                        line . format("%s%n" 
+//	     		                         , fmt_line_06_cells(ir)
+//	     		                         );
+//	                        get_Rpt_Detail().write( line.toString() );
+//	     
+//	                        line = null;
+//                }
 }
 protected  String  fmt_line_06_cells(int  ir){
 Formatter  line =  new Formatter();
 
-           for (int   ic   =    1
-               ;      ic   <    get_Regression()
-                               .get_Auto_Correlation_1()
-                               .getColumnDimension()
-               ;    ++ic
-               )
-               {
-                 line . format( "%15.5E"
-	                          ,  get_Regression()
-	                            .get_Auto_Correlation_1()
-	                            .get(ir, ic)
-	                          );
-               }
+//           for (int   ic   =    1
+//               ;      ic   <    get_Regression()
+//                               .get_Auto_Correlation_1()
+//                               .getColumnDimension()
+//               ;    ++ic
+//               )
+//               {
+//                 line . format( "%15.5E"
+//	                          ,  get_Regression()
+//	                            .get_Auto_Correlation_1()
+//	                            .get(ir, ic)
+//	                          );
+//               }
 return           line . toString();	
 }
 

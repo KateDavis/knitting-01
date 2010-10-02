@@ -29,46 +29,63 @@ public     void     write_details()
                 ,   not_estimated 
 { 
            get_Rpt_Detail().write( fmt_line_01() ); 
-           get_Rpt_Detail().write( fmt_line_02() ); 
-           get_Rpt_Detail().write( fmt_line_03() );
+           get_Rpt_Detail().write( fmt_line_03() ); 
            get_Rpt_Detail().write( fmt_line_04() );
+           get_Rpt_Detail().write( fmt_line_05() );
+           get_Rpt_Detail().write( fmt_line_06() );
            loop_thru_rows();
 }
 protected  String   fmt_line_01(){
 Formatter  line =   new Formatter();
 		   line .   format("%n%n%s%n"
-		                  ,"7_2.01) Sample Auto-Correlations values ==========================="
+		                  ,"7_2) Sample Auto-Correlations values ==========================="
 		                  ); 
 return     line .   toString();	
 }
-protected  String   fmt_line_02(){
+protected  String   fmt_line_03(){
 Formatter  line =   new Formatter();
-		   line .   format("%4s%15s%15s%15s%15s%15s%n"
+		   line .   format("%4s%15s%15s%15s%15s%15s%15s%n"
+				          ,""
+				          ,""
+				          ,"2 times"
+				          ,""
+				          ,""
+				          ,""
+				          ,""
+				          ); 
+return     line .   toString();	
+	}
+protected  String   fmt_line_04(){
+Formatter  line =   new Formatter();
+		   line .   format("%4s%15s%15s%15s%15s%15s%15s%n"
 			              ,""
 			              ,"auto"
-			              ,"stardard"
+			              ,"standard"
+			              ,""
 			              ,""
 			              ,""
 			              ,""
 			              ); 
 return     line .   toString();	
 }
-protected  String   fmt_line_03(){
+protected  String   fmt_line_05(){
 Formatter  line =   new Formatter();
-		   line .   format("%4s%15s%15s%15s%15s%15s%n"
+		   line .   format("%4s%15s%15s%15s%15s%15s%15s%n"
 				          ,"lag"
 				          ,"correlation"
 				          ,"deviation"
+				          ,""
 				          ,"numerator"
 				          ,"demoninator"
 				          ,"variance"
 			              ); 
 return     line .   toString();	
 }
-protected  String   fmt_line_04(){
+protected  String   fmt_line_06(){
 Formatter  line =   new Formatter();
-		   line .   format("%4s%15s%15s%15s%15s%15s%n"
+		   line .   format("%4s%15s%15s%15s%15s%15s%15s%n"
 					      ,"===="
+					      ,"============"
 					      ,"============"
 					      ,"============"
 					      ,"============"
@@ -92,14 +109,14 @@ protected  void   loop_thru_rows()
          		                          , ir
          		                          );
 	                        line . format("%s%n" 
-	     		                         , fmt_line_06_cells(ir)
+	     		                         , fmt_line_07_cells(ir)
 	     		                         );
 	                        get_Rpt_Detail().write( line.toString() );
 	     
 	                        line = null;
                 }
 }
-protected  String  fmt_line_06_cells(int  ir){
+protected  String  fmt_line_07_cells(int  ir){
 Formatter  line =  new Formatter();
 
            for (int   ic   =    0
@@ -114,6 +131,14 @@ Formatter  line =  new Formatter();
 	                            .get_Auto_Correlation_2()
 	                            .get(ir, ic)
 	                          );
+                 if ( ic == 1 )
+                    {
+                	      line . format( "%15s"
+	                                   ,  get_Regression()
+	                                   .  get_Auto_Correlation_2()
+	                                   .  get_significance      (ir)
+	                                   );
+                    }
                }
 return           line . toString();	
 }
