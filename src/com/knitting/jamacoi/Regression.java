@@ -652,11 +652,11 @@ public class Regression
 	
 	public int      get_Auto_Corr_max_cols (){ return  auto_correlation.getColumnDimension();  }
 	public int      get_Auto_Corr_max_rows (){ return  auto_correlation.getRowDimension   ();  }       
-	public double   get_Auto_Corr_cell     ( int  row
-			                               , int  col
-			                               ) { return  auto_correlation.get(row,col)        ;  }    
+//	public double   get_Auto_Corr_cell     ( int  row
+//			                               , int  col
+//			                               ) { return  auto_correlation.get(row,col)        ;  }    
 	
-	public Auto_Correlation_1  get_Auto_Correlation_1() { return  ac1;}
+//	public Auto_Correlation_1  get_Auto_Correlation_1() { return  ac1;}
 	public Auto_Correlation_2  get_Auto_Correlation_2() { return  ac2;}
 	 
 

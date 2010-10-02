@@ -30,8 +30,8 @@ public class Report_Regression_Results
     private Report_Abstract rpt_sig_analysis;    
     private Report_Abstract rpt_cov_matrix;
     private Report_Abstract rpt_cov_adjusted;
-    private Report_Abstract rpt_auto_correlations;
-    private Report_Abstract rpt_auto_correlation_1;
+//  private Report_Abstract rpt_auto_correlations;
+//  private Report_Abstract rpt_auto_correlation_1;
     private Report_Abstract rpt_auto_correlation_2;
     
     private URL             residuals;
@@ -95,14 +95,14 @@ public Report_Regression_Results (final Regression     r
                                                                , sub_matrix
                                                                , Rpt_Detail
                                                                );    
-         rpt_auto_correlations  = new Report_Auto_Correlations   ( r
-                                                                 , sub_matrix
-                                                                 , Rpt_Detail
-                                                                 );    
-         rpt_auto_correlation_1 = new Report_Auto_Correlations_1 ( r
-                                                                 , sub_matrix
-                                                                 , Rpt_Detail
-                                                                 );    
+//       rpt_auto_correlations  = new Report_Auto_Correlations   ( r
+//                                                               , sub_matrix
+//                                                               , Rpt_Detail
+//                                                               );    
+//       rpt_auto_correlation_1 = new Report_Auto_Correlations_1 ( r
+//                                                               , sub_matrix
+//                                                               , Rpt_Detail
+//                                                               );    
          rpt_auto_correlation_2 = new Report_Auto_Correlations_2 ( r
                                                                  , sub_matrix
                                                                  , Rpt_Detail
@@ -122,8 +122,8 @@ public  void   report_All()
         rpt_sig_analysis      . write_details  ();
         rpt_cov_matrix        . write_details  ();
         rpt_cov_adjusted      . write_details  ();
-        rpt_auto_correlations . write_details  ();
-        rpt_auto_correlation_1. write_details  ();
+//      rpt_auto_correlations . write_details  ();
+//      rpt_auto_correlation_1. write_details  ();
         rpt_auto_correlation_2. write_details  ();
        
         Rpt_Detail .close();

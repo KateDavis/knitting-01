@@ -67,7 +67,7 @@ Formatter  line =  new Formatter();
                )
                {
                  line . format("%15.5E"
-	                          , get_Regression().get_Auto_Corr_cell(ir, ic)
+//	                          , get_Regression().get_Auto_Corr_cell(ir, ic)
 	                          );
                }
 return           line . toString();	

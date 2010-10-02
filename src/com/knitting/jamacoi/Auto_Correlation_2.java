@@ -122,6 +122,18 @@ private  double  get_residual_sq_sum( int  lag )
                }
 return                    residual_sq_sum;
 }
+public  String  get_significance( int  row ){ 
+	    int    col_0 = 0;
+	    int    col_1 = 1;
+	    if   ( Math.abs(super.get( row, col_0)) > super.get( row, col_1) )
+	         {
+	    	   return "Significant";
+	         }
+	    else
+	         {
+               return "not sig";	    	
+	         }
+}
 
 //public   double  get_sample_variance (int lag )  { return  (            residual_sq_sum
 //		                                                   / (double) ( residual.getRowDimension() - lag )
