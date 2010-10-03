@@ -16,7 +16,7 @@ public           Auto_Correlation_3 ( final  Matrix  est_Y_residual
                                                      
                                     { 
                                       super (      ( est_Y_residual.getRowDimension() / 4)
-                                 		    ,      ( 5                                   )
+                                 		    ,      ( 6                                   )
                             		        );
                                                      residual  =  est_Y_residual;
                                     }
@@ -27,6 +27,7 @@ public   void    load_matrix        ()
 	     int     col_2      =  2;
 	     int     col_3      =  3;
 	     int     col_4      =  4;
+	     int     col_5      =  5;
 	     
                  set_residual_ave   ();
                  
@@ -67,9 +68,10 @@ public   void    load_matrix        ()
     	    		                                                 ,   row_ix
     	    		                                                 );
     	     
-    	     double ac                      =  get_auto_correlation  (    x_y_products_summed
-    	    		                                                 ,    x_subset_std_dev
-    	    		                                                 ,    y_subset_std_dev
+    	     double ac                      =  get_auto_correlation  (    usable
+    	    		                                                 ,    x_y_products_summed  // Note: produces values outside of range of
+    	    		                                                 ,    x_subset_std_dev     //       -1.0 thru 1.0?  Why?  
+    	    		                                                 ,    y_subset_std_dev     // Note: Maybe not rescaling correctly?
     	    		                                                 );
     	     
     	     double ac_variance             =  get_ac_variance       (   usable
@@ -79,11 +81,12 @@ public   void    load_matrix        ()
     	     double ac_std_dev              =  Math.sqrt             (   ac_variance );
     	     double ac_95_percent           =  ac_std_dev * 2;
     	     
-    	     super.set ( row_ix,  col_0,           ac               );
-    	     super.set ( row_ix,  col_1,           ac_95_percent    );
-    	     super.set ( row_ix,  col_2,           1.0              );  // a place holder for now
-    	     super.set ( row_ix,  col_3,           2.0              );  // a place holder for now
-    	     super.set ( row_ix,  col_4,           ac_variance      );
+    	     super.set ( row_ix,  col_0,           ac                  );
+    	     super.set ( row_ix,  col_1,           ac_95_percent       );
+    	     super.set ( row_ix,  col_2,           x_subset_std_dev    );  // a place holder for now
+    	     super.set ( row_ix,  col_3,           y_subset_std_dev    );  // a place holder for now
+    	     super.set ( row_ix,  col_4,           x_y_products_summed );  // a place holder for now
+    	     super.set ( row_ix,  col_5,           ac_variance         );
   
            }
 }
@@ -104,7 +107,9 @@ private  double  get_standard_deviation( final  int  usable
 	    	        		 );
 	           }
 	     
-return   Math.sqrt( sum );	     
+return     Math.sqrt(          sum
+		            / (double) usable
+		            );	     
 }
 private  double  get_products_summed( final  int  usable
 		                            , final  int  lag
@@ -126,15 +131,14 @@ private  double  get_products_summed( final  int  usable
 		     
 return             sum;
 }
-private  double  get_auto_correlation ( final  double  x_y_products_summed
+private  double  get_auto_correlation ( final  int     usable
+		                              , final  double  x_y_products_summed
 		                              , final  double  x_subset_std_dev
 		                              , final  double  y_subset_std_dev
 		                              )
 {
-return    ( Math.sqrt( x_y_products_summed ) )
-        / ( x_subset_std_dev
-          * y_subset_std_dev		
-          );
+return    ( x_y_products_summed  / (double) usable           )
+        / ( x_subset_std_dev     *          y_subset_std_dev );		
 }
 private  double  get_ac_variance ( final  int  usable
 		                         , final  int  row

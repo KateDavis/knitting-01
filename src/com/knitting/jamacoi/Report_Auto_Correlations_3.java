@@ -41,10 +41,11 @@ public            Report_Auto_Correlations_3( Regression  r
 	}
 	protected  String   fmt_line_03(){
 	Formatter  line =   new Formatter();
-			   line .   format("%4s%15s%15s%15s%15s%15s%15s%n"
+			   line .   format("%4s%15s%15s%15s%15s%15s%15s%15s%n"
 					          ,""
 					          ,""
 					          ,"2 times"
+					          ,""
 					          ,""
 					          ,""
 					          ,""
@@ -54,10 +55,11 @@ public            Report_Auto_Correlations_3( Regression  r
 		}
 	protected  String   fmt_line_04(){
 	Formatter  line =   new Formatter();
-			   line .   format("%4s%15s%15s%15s%15s%15s%15s%n"
+			   line .   format("%4s%15s%15s%15s%15s%15s%15s%15s%n"
 				              ,""
 				              ,"auto"
 				              ,"standard"
+				              ,""
 				              ,""
 				              ,""
 				              ,""
@@ -67,21 +69,23 @@ public            Report_Auto_Correlations_3( Regression  r
 	}
 	protected  String   fmt_line_05(){
 	Formatter  line =   new Formatter();
-			   line .   format("%4s%15s%15s%15s%15s%15s%15s%n"
+			   line .   format("%4s%15s%15s%15s%15s%15s%15s%15s%n"
 					          ,"lag"
 					          ,"correlation"
 					          ,"deviation"
 					          ,""
-					          ,"numerator"
-					          ,"demoninator"
+					          ,"x std dev"
+					          ,"y std dev"
+					          ,""
 					          ,"variance"
 				              ); 
 	return     line .   toString();	
 	}
 	protected  String   fmt_line_06(){
 	Formatter  line =   new Formatter();
-			   line .   format("%4s%15s%15s%15s%15s%15s%15s%n"
+			   line .   format("%4s%15s%15s%15s%15s%15s%15s%15s%n"
 						      ,"===="
+						      ,"============"
 						      ,"============"
 						      ,"============"
 						      ,"============"
@@ -96,7 +100,7 @@ public            Report_Auto_Correlations_3( Regression  r
 	{	
 	           for  (int  ir   = 0
 	                ;     ir   < get_Regression()
-	                            .get_Auto_Correlation_2()
+	                            .get_Auto_Correlation_3()
 	                            .getRowDimension() 
 	                ;   ++ir
 	                )
