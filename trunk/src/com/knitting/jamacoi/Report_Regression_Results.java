@@ -33,6 +33,7 @@ public class Report_Regression_Results
 //  private Report_Abstract rpt_auto_correlations;
 //  private Report_Abstract rpt_auto_correlation_1;
     private Report_Abstract rpt_auto_correlation_2;
+    private Report_Abstract rpt_auto_correlation_3;
     
     private URL             residuals;
 /**
@@ -107,6 +108,10 @@ public Report_Regression_Results (final Regression     r
                                                                  , sub_matrix
                                                                  , Rpt_Detail
                                                                  );    
+         rpt_auto_correlation_3 = new Report_Auto_Correlations_3 ( r
+                                                                 , sub_matrix
+                                                                 , Rpt_Detail
+                                                                 );   
 } 
 public  void   report_All()
         throws not_estimated
@@ -125,6 +130,7 @@ public  void   report_All()
 //      rpt_auto_correlations . write_details  ();
 //      rpt_auto_correlation_1. write_details  ();
         rpt_auto_correlation_2. write_details  ();
+        rpt_auto_correlation_3. write_details  ();
        
         Rpt_Detail .close();
 }
