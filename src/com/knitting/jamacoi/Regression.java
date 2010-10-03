@@ -49,6 +49,7 @@ public class Regression
 	private Matrix  auto_correlation; // a [N,1] matrix: needs est_Y_residual as input
 	private Auto_Correlation_1  ac1;  //
 	private Auto_Correlation_2  ac2;  //
+	private Auto_Correlation_3  ac3;  //
 
 	private Matrix  Estimated_Coefficients;   // a matrix [cols x 1] 
 	private double  Estimated_Intercept;      // a scalar 
@@ -163,6 +164,8 @@ public class Regression
 	  ac1.load_matrix();
 	  ac2              = new Auto_Correlation_2( est_Y_residual );
 	  ac2.load_matrix();
+	  ac3              = new Auto_Correlation_3( est_Y_residual );
+	  ac3.load_matrix();
 	  
 	}
 	private void       enough_rows ( final int rows
@@ -658,6 +661,7 @@ public class Regression
 	
 //	public Auto_Correlation_1  get_Auto_Correlation_1() { return  ac1;}
 	public Auto_Correlation_2  get_Auto_Correlation_2() { return  ac2;}
+	public Auto_Correlation_3  get_Auto_Correlation_3() { return  ac3;}
 	 
 
 	public  void   print_est_coefficients()
