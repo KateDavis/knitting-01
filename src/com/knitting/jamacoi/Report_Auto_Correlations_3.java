@@ -41,10 +41,11 @@ public            Report_Auto_Correlations_3( Regression  r
 	}
 	protected  String   fmt_line_03(){
 	Formatter  line =   new Formatter();
-			   line .   format("%4s%15s%15s%15s%15s%15s%15s%15s%n"
+			   line .   format("%4s%15s%15s%15s%15s%15s%15s%15s%15s%n"
 					          ,""
-					          ,""
+					          ,"non-Ender"
 					          ,"2 times"
+					          ,""
 					          ,""
 					          ,""
 					          ,""
@@ -55,10 +56,11 @@ public            Report_Auto_Correlations_3( Regression  r
 		}
 	protected  String   fmt_line_04(){
 	Formatter  line =   new Formatter();
-			   line .   format("%4s%15s%15s%15s%15s%15s%15s%15s%n"
+			   line .   format("%4s%15s%15s%15s%15s%15s%15s%15s%15s%n"
 				              ,""
 				              ,"auto"
 				              ,"standard"
+				              ,""
 				              ,""
 				              ,""
 				              ,""
@@ -69,22 +71,24 @@ public            Report_Auto_Correlations_3( Regression  r
 	}
 	protected  String   fmt_line_05(){
 	Formatter  line =   new Formatter();
-			   line .   format("%4s%15s%15s%15s%15s%15s%15s%15s%n"
+			   line .   format("%4s%15s%15s%15s%15s%15s%15s%15s%15s%n"
 					          ,"lag"
 					          ,"correlation"
 					          ,"deviation"
 					          ,""
-					          ,"x std dev"
-					          ,"y std dev"
-					          ,""
+					          ,"Cov( x, y )"
+					          ,"Var( x )"
+					          ,"Var( y )"
 					          ,"variance"
+					          ,"R-Squared"
 				              ); 
 	return     line .   toString();	
 	}
 	protected  String   fmt_line_06(){
 	Formatter  line =   new Formatter();
-			   line .   format("%4s%15s%15s%15s%15s%15s%15s%15s%n"
+			   line .   format("%4s%15s%15s%15s%15s%15s%15s%15s%15s%n"
 						      ,"===="
+						      ,"============"
 						      ,"============"
 						      ,"============"
 						      ,"============"

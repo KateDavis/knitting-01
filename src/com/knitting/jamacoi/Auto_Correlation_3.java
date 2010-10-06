@@ -16,7 +16,7 @@ public           Auto_Correlation_3 ( final  Matrix  est_Y_residual
                                                      
                                     { 
                                       super (      ( est_Y_residual.getRowDimension() / 4)
-                                 		    ,      ( 6                                   )
+                                 		    ,      ( 7                                   )
                             		        );
                                                      residual  =  est_Y_residual;
                                     }
@@ -28,6 +28,7 @@ public   void    load_matrix        ()
 	     int     col_3      =  3;
 	     int     col_4      =  4;
 	     int     col_5      =  5;
+	     int     col_6      =  6;
 	     
                  set_residual_ave   ();
                  
@@ -55,44 +56,52 @@ public   void    load_matrix        ()
     	                                                                     //           199 = 200 -  1
     	                                                                     //           198 = 200 -  2
     	     
-    	     double y_subset_std_dev        =  get_standard_deviation(   usable
+    	     double variance_y              =  get_variance          (   usable
     	    		                                                 ,   row_ix 
     	    		                                                 );
     	     
-    	     double x_subset_std_dev        =  get_standard_deviation(   usable
+    	     double variance_x              =  get_variance          (   usable
     	    		                                                 , ( row_ix - lag )
     	    		                                                 );
     	     
-    	     double x_y_products_summed     =  get_products_summed   (   usable
+    	     double covariance_x_y          =  get_covariance        (   usable
     	    		                                                 ,   lag
     	    		                                                 ,   row_ix
     	    		                                                 );
     	     
-    	     double ac                      =  get_auto_correlation  (    usable
-    	    		                                                 ,    x_y_products_summed  // Note: produces values outside of range of
-    	    		                                                 ,    x_subset_std_dev     //       -1.0 thru 1.0?  Why?  
-    	    		                                                 ,    y_subset_std_dev     // Note: Maybe not rescaling correctly?
+    	     double cor                     =  get_correlation       (   covariance_x_y 
+    	    		                                                 ,     variance_x   
+    	    		                                                 ,     variance_y
     	    		                                                 );
     	     
+       	     double ac                      =  get_auto_correlation  (   covariance_x_y 
+                                                                     ,     variance_x   
+                                                                     ,     variance_y
+                                                                     );
+
     	     double ac_variance             =  get_ac_variance       (   usable
     	    		                                                 ,   row_ix
     	    		                                                 ,   lag
+    	    		                                                 ,   variance_y
     	    		                                                 );
     	     double ac_std_dev              =  Math.sqrt             (   ac_variance );
     	     double ac_95_percent           =  ac_std_dev * 2;
     	     
     	     super.set ( row_ix,  col_0,           ac                  );
     	     super.set ( row_ix,  col_1,           ac_95_percent       );
-    	     super.set ( row_ix,  col_2,           x_subset_std_dev    );  // a place holder for now
-    	     super.set ( row_ix,  col_3,           y_subset_std_dev    );  // a place holder for now
-    	     super.set ( row_ix,  col_4,           x_y_products_summed );  // a place holder for now
+    	     
+    	     super.set ( row_ix,  col_2,           covariance_x_y      ); 
+    	     super.set ( row_ix,  col_3,           variance_x          );  
+    	     super.set ( row_ix,  col_4,           variance_y          );  
+    	     
     	     super.set ( row_ix,  col_5,           ac_variance         );
+    	     super.set ( row_ix,  col_6,           cor                 );
   
            }
 }
-private  double  get_standard_deviation( final  int  usable
-		                               , final  int  row
-		                               )
+private  double  get_variance( final  int  usable
+		                     , final  int  row
+		                     )
 {
 	     int       col_1  =     1;
 	     double      sum  =   0.0;
@@ -107,16 +116,14 @@ private  double  get_standard_deviation( final  int  usable
 	    	        		 );
 	           }
 	     
-return     Math.sqrt(          sum
-		            / (double) usable
-		            );	     
+return               sum  /  (double) usable;    
 }
-private  double  get_products_summed( final  int  usable
-		                            , final  int  lag
-		                            , final  int  row
-		                            )
+private  double  get_covariance( final  int  usable   
+		                       , final  int  lag
+		                       , final  int  row
+		                       )
 {
-	     int       col_1  =   0;
+	     int       col_1  =   1;
          double      sum  = 0.0;
          
 	     for   ( int i    =   row
@@ -129,26 +136,32 @@ private  double  get_products_summed( final  int  usable
 		    	           );
 	           }
 		     
-return             sum;
+return             sum     /    (double) usable;
 }
-private  double  get_auto_correlation ( final  int     usable
-		                              , final  double  x_y_products_summed
-		                              , final  double  x_subset_std_dev
-		                              , final  double  y_subset_std_dev
+private  double  get_correlation      ( final  double  covariance_x_y   // Note: this is the ordinary definition of correlation (i.e R squared).
+		                              , final  double    variance_x
+		                              , final  double    variance_y
 		                              )
 {
-return    ( x_y_products_summed  / (double) usable           )
-        / ( x_subset_std_dev     *          y_subset_std_dev );		
+return    ( covariance_x_y   *   covariance_x_y )
+        / (   variance_x     *     variance_y   );		
 }
-private  double  get_ac_variance ( final  int  usable
-		                         , final  int  row
-		                         , final  int  lag
-		                         )
+private  double  get_auto_correlation ( final  double  covariance_x_y   // Note: similar to Walter Ender's deiinition
+                                      , final  double    variance_x
+                                      , final  double    variance_y
+                                      )
 {
-	     double  sum = 0.0;
-	     
-	     if ( lag == 0 )     { return sum;                   }
-	     if ( lag == 1 )     { return 1.0 / (double) usable; }
+return    ( covariance_x_y   )
+        / ( Math.sqrt(  variance_x     *     variance_y   ) );		
+}
+private  double  get_ac_variance ( final  int     usable
+		                         , final  int     row
+		                         , final  int     lag
+		                         , final  double  y_subset_std_dev
+		                         )
+{	     
+	     if ( lag == 0 )     { return ( y_subset_std_dev * y_subset_std_dev ); }
+	     if ( lag == 1 )     { return (        1.0       / (double) usable  ); }
 	     
 return   get_lagged_variance ( usable
 		                     , row
