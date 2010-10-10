@@ -65,7 +65,7 @@ public            Report_Auto_Correlations_3( Regression  r
 				              ,""
 				              ,""
 				              ,""
-				              ,""
+				              ,"usable"
 				              ); 
 	return     line .   toString();	
 	}
@@ -76,11 +76,11 @@ public            Report_Auto_Correlations_3( Regression  r
 					          ,"correlation"
 					          ,"deviation"
 					          ,""
+					          ,"variance"
 					          ,"Cov( x, y )"
 					          ,"Var( x )"
 					          ,"Var( y )"
-					          ,"variance"
-					          ,"R-Squared"
+					          ,"observations"
 				              ); 
 	return     line .   toString();	
 	}

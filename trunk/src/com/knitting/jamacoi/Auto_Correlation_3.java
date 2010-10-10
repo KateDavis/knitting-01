@@ -68,12 +68,7 @@ public   void    load_matrix        ()
     	    		                                                 ,   lag
     	    		                                                 ,   row_ix
     	    		                                                 );
-    	     
-    	     double cor                     =  get_correlation       (   covariance_x_y 
-    	    		                                                 ,     variance_x   
-    	    		                                                 ,     variance_y
-    	    		                                                 );
-    	     
+   	     
        	     double ac                      =  get_auto_correlation  (   covariance_x_y 
                                                                      ,     variance_x   
                                                                      ,     variance_y
@@ -82,20 +77,19 @@ public   void    load_matrix        ()
     	     double ac_variance             =  get_ac_variance       (   usable
     	    		                                                 ,   row_ix
     	    		                                                 ,   lag
-    	    		                                                 ,   variance_y
     	    		                                                 );
     	     double ac_std_dev              =  Math.sqrt             (   ac_variance );
     	     double ac_95_percent           =  ac_std_dev * 2;
     	     
-    	     super.set ( row_ix,  col_0,           ac                  );
-    	     super.set ( row_ix,  col_1,           ac_95_percent       );
+    	     super.set ( row_ix,  col_0,       ac                    );
+    	     super.set ( row_ix,  col_1,       ac_95_percent         );
     	     
-    	     super.set ( row_ix,  col_2,           covariance_x_y      ); 
-    	     super.set ( row_ix,  col_3,           variance_x          );  
-    	     super.set ( row_ix,  col_4,           variance_y          );  
+    	     super.set ( row_ix,  col_2,       ac_variance           );
+    	     super.set ( row_ix,  col_3,       covariance_x_y        ); 
+    	     super.set ( row_ix,  col_4,       variance_x            );  
+    	     super.set ( row_ix,  col_5,       variance_y            );  
     	     
-    	     super.set ( row_ix,  col_5,           ac_variance         );
-    	     super.set ( row_ix,  col_6,           cor                 );
+    	     super.set ( row_ix,  col_6, (double) usable             );
   
            }
 }
@@ -138,14 +132,6 @@ private  double  get_covariance( final  int  usable
 		     
 return             sum     /    (double) usable;
 }
-private  double  get_correlation      ( final  double  covariance_x_y   // Note: this is the ordinary definition of correlation (i.e R squared).
-		                              , final  double    variance_x
-		                              , final  double    variance_y
-		                              )
-{
-return    ( covariance_x_y   *   covariance_x_y )
-        / (   variance_x     *     variance_y   );		
-}
 private  double  get_auto_correlation ( final  double  covariance_x_y   // Note: similar to Walter Ender's deiinition
                                       , final  double    variance_x
                                       , final  double    variance_y
@@ -157,11 +143,10 @@ return    ( covariance_x_y   )
 private  double  get_ac_variance ( final  int     usable
 		                         , final  int     row
 		                         , final  int     lag
-		                         , final  double  y_subset_std_dev
 		                         )
 {	     
-	     if ( lag == 0 )     { return ( y_subset_std_dev * y_subset_std_dev ); }
-	     if ( lag == 1 )     { return (        1.0       / (double) usable  ); }
+	     if ( lag == 0 )     { return ( 0.0 )                  ; }
+	     if ( lag == 1 )     { return ( 1.0 / (double) usable ); }
 	     
 return   get_lagged_variance ( usable
 		                     , row
