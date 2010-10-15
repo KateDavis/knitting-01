@@ -1,61 +1,5 @@
 package com.knitting.jamacoi;
-//        Read_Me to understand calculations:
-//
-//        Partial
-//        Auto                           Auto
-//        Correlation                    Correlation
-//        (p)                            (a)
-//
-//         1  2  3  4  (index)            1   (index)
-// i  o    0  1  2  3  (offset)   i  o    0   (offset)
-// -  - +  -  -  -  -             -  - +  -
-// 1  0 |  1  x  x  x             1  0 |  a(0,0)
-// 2  1 |  3  2  x  x             2  1 |  a(1,0)
-// 3  2 |  6  5  4  x             3  2 |  a(2,0)    
-// 4  3 | 10  9  8  7             4  3 |  a(3,0)
-//
-//
-//   The numbers within the p matrix indicate the order in which the entries must be calculated.  The x's
-//   have the value 0 so they do not need to be calculated.
-//
-//   Note: the calculations listed below all use offsets NOT index values!
-//
-//   p(0,0)   =    a(0,0)
-//
-//   p(1,1)   =  [ a(1,0)  - B1    ]       /    [ 1.0    -  C1    ]
-//
-//   where B1 =  [ p(0,0) * a(0,0) ]       C1 = [ p(0,0) * a(0,0) ]
-//                     ^      ^                       ^      ^
-//                     |      |                       |      |
-//
-//   p(1,0)   =  [ a(0,0)  - (p(1,1) * p(0,0)) ]
-//
-//   p(2,2)   =  [ a(2,0) - B2     ]       /    [ 1.0    -  C2    ]     
-//
-//   where B2 =  [ p(1,0) * a(1,0) ]       C2 = [ p(1,0) * a(0,0) ]
-//            +  [ p(1,1) * a(0,0) ]          + [ p(1,1) * a(1,0) ]
-//                     ^      ^                       ^      ^
-//                     |      |                       |      |
-//
-//
-//   p(2,1)   =  [ p(1,1) - ( p(2,2) * p(1,0) ) ]
-//   p(2,0)   =  [ p(1,0) - ( p(2,2) * p(1,1) ) ]
-//                     ^                   ^
-//                     |                   |
-//
-//   p(3,3)   =  [ a(3,0) - B3     ]       /    [ 1.0    -  C3    ]     
-//
-//   where B3 =  [ p(2,0) * a(2,0) ]       C3 = [ p(2,0) * a(0,0) ]
-//            +  [ p(2,1) * a(1,0) ]          + [ p(2,1) * a(1,0) ]
-//            +  [ p(2,2) * a(0,0) ]          + [ p(2,2) * a(2,0) ]
-//                     ^      ^                       ^      ^
-//                     |      |                       |      |
-//
-//   p(3,2)   =  [ p(2,2) - ( p(3,3) * p(2,0) ) ]
-//   p(3,1)   =  [ p(2,1) - ( p(3,3) * p(2,1) ) ]
-//   p(3,0)   =  [ p(2,0) - ( p(3,3) * p(2,2) ) ]
-//                     ^                   ^
-//                     |                   |
+import java.util.Formatter;
 
 import Jama.Matrix;
 
@@ -79,9 +23,9 @@ public void load_matrix()
 		  ;      ++row
 		  )
 	      {
-		     for   (  int   col  =   0
-		    	   ;	    col  <  super.getColumnDimension()
-		    	   ;	  ++col
+		     for   (  int   col  =   row
+		    	   ;	    col >=   0
+		    	   ;	  --col
 		    	   )
 		           {
 		    	      super.set(  row
@@ -96,7 +40,11 @@ protected  double  calculate_partial_correlation( final  int  row
   		                                        )
 {
 double               pac =  0.0;
-
+System.out.println( "calculating row="
+                  +  row
+                  + ", col="
+                  +  col
+                  );
 if ( row  <  col ) { pac =  0.0                             ; }
 if ( row ==  col ) { pac =  set_partial_diagonal( row     ) ; }
 if ( row  >  col ) { pac =  set_partial_off_diag( row, col) ; }
@@ -119,37 +67,157 @@ final   int     col_0  =  0;
         double  c      =  set_c(row);
         double  pac    =  ( ac.get(row, col_0 )  -  b )
                        /  ( 1.0                  -  c );
+        
+        Formatter line = new Formatter();
+                  line . format( "%s%d%s%d%s%7.4f%s%7.4f%s%n"
+                		       , "p("
+                		       ,  row
+                		       , ","
+                		       ,  row
+                		       , ") = ("
+                		       ,   ac.get(row, col_0 )
+                		       , " - "
+                		       ,  b
+                		       , " )"
+                		       );
+                  line . format( "%s%7.4f%s%n"
+                		       , "       / ( 1.0    - "
+                		       ,  c
+                		       , " )"
+                		       );
+                  System.out.println( line );
 return  pac;
 }
-protected  double  set_b( final  int  row )
+//
+// p(1,1);
+//
+// where B1 =  [ p(0,0) * a(0,0) ]       C1 = [ p(0,0) * a(0,0) ]
+//                   ^      ^                       ^      ^
+//                   |      |                       |      |
+//
+//        ? =[(-0.8445) * (-0.8445)]      ?=[(-0.8445) * (-0.8445)]
+//
+//
+// p(2,2):
+//
+// where B2 =  [ p(1,0) * a(1,0) ]       C2 = [ p(1,0) * a(0,0) ]
+//          +  [ p(1,1) * a(0,0) ]          + [ p(1,1) * a(1,0) ]
+//                   ^      ^                       ^      ^
+//                   |      |                       |      |
+//
+//       ?  =  [(-1.204) * ( 0.591 )]     ? = [(-1.204) * (-0.8445)]
+//          +  [(-0.426) * (-0.8445)]       + [(-0.426) * ( 0.591 )]
+//
+// p(3,3):
+// 
+// where B3 =  [ p(2,0) * a(2,0) ]       C3 = [ p(2,0) * a(0,0) ]
+//          +  [ p(2,1) * a(1,0) ]          + [ p(2,1) * a(1,0) ]
+//          +  [ p(2,2) * a(0,0) ]          + [ p(2,2) * a(2,0) ]
+//                   ^      ^                       ^      ^
+//                   |      |                       |      |
+//
+protected  double  set_b( final  int  row )              // row = 1
 {
 final  int     col_0   =  0;	
-final  int     max     =  row - 1;
        double  b       =  0.0;
        
-       for   ( int   j =  0
-    		 ;       j <  max
-    		 ;     ++j
+       for   ( int   j = (row-1)                           // j   = 0
+    		 ;       j>=  0
+    		 ;     --j
     		 )
              {
-    	             b +=  ( super.get (  max   , j    ) )
-    	                *  ( ac   .get ( (row-j), col_0) );
+	           double p =    super.get ( (row-1)  , (row-j-1) )
+	                    *    ac   .get ( (j    )  , (col_0  ) );
+               //       *    ac   .get ( (row-j-1), (col_0  ) );
+	           
+    	       Formatter line = new Formatter();
+    	                 line . format ( "%s%d%s%d%s%d%s%7.4f%s%s%d%s%d%s%7.4f%s%7.4f%s"
+    	                		       , "for B row("
+    	                		       , row
+    	                		       , "): super("
+    	                		       ,  (row-1)
+    	                		       , ","
+    	                		       ,  (row-j-1)
+    	                		       , ") = >"
+    	                		       , super.get ( (row-1), (row-j-1) )
+    	                		       , "<   "
+    	                		       , "ac("
+    	                		       ,  j
+    	                		       , ","
+    	                		       , col_0
+    	                		       , ") = >"
+    	                		       , ac   .get (  j     , (col_0) )
+    	                		       , "<  product = >"
+    	                		       ,  p
+    	                		       , "<"
+    	                		       );
+    	        System.out.println( line );         
+
+    	        b  += p;
              }
-return               b;
+return          b;
 }
+//
+// p(1,1);
+//
+// where B1 =  [ p(0,0) * a(0,0) ]       C1 = [ p(0,0) * a(0,0) ]
+//                   ^      ^                       ^      ^
+//                   |      |                       |      |
+//
+//
+// p(2,2):
+//
+// where B2 =  [ p(1,0) * a(1,0) ]       C2 = [ p(1,0) * a(0,0) ]
+//          +  [ p(1,1) * a(0,0) ]          + [ p(1,1) * a(1,0) ]
+//                   ^      ^                       ^      ^
+//                   |      |                       |      |
+//
+//
+// p(3,3):
+//
+// where B3 =  [ p(2,0) * a(2,0) ]       C3 = [ p(2,0) * a(0,0) ]
+//          +  [ p(2,1) * a(1,0) ]          + [ p(2,1) * a(1,0) ]
+//          +  [ p(2,2) * a(0,0) ]          + [ p(2,2) * a(2,0) ]
+//                   ^      ^                       ^      ^
+//                   |      |                       |      |
+//
 protected  double  set_c( final  int  row )
 {
 final  int     col_0   =  0;	
-final  int     max     =  row - 1;
        double  c       =  0.0;
        
        for   ( int   j =  0
-    		 ;       j <  max
+    		 ;       j <  row
     		 ;     ++j
     		 )
              {
-    	             c +=  ( super.get ( max, j    ) )
-    	                *  ( ac   .get ( row, col_0) );
+ 	           double p  =  ( super.get ( (row-1), j    ) )
+                         *  ( ac   .get (  j     , col_0) );
+
+ 	           Formatter line = new Formatter();
+                         line . format ( "%s%d%s%d%s%d%s%7.4f%s%s%d%s%d%s%7.4f%s%7.4f%s"
+          		                       , "for C row("
+          		                       ,  row
+          		                       , "): super("
+          		                       ,  (row-1)
+          		                       , ","
+          		                       ,  j
+          		                       , ") = >"
+          		                       , super.get ( (row-1), j )
+          		                       , "<   "
+          		                       , "ac("
+          		                       , j
+          		                       , ","
+          		                       , col_0
+          		                       , ") = >"
+          		                       , ac   .get ( j, (col_0) )
+          		                       , "<  product = >"
+          		                       , p
+          		                       , "<"
+          		                       );
+              System.out.println( line ); 
+
+    	      c += p;
              }
 return               c;
 }
@@ -158,8 +226,62 @@ protected  double  set_partial_off_diag( final  int  row
                                        )
 {
 final   int     max  =    row - 1;	
+if ( row==1 && col==0 )
+   {
+	 System.out.println( "partial auto_correlation row="
+                       +  row
+                       + ", col="
+                       +  col
+                       );
+	 System.out.println( "partial auto_correlation p("
+                       +  max
+                       + ","
+                       +  col
+                       + ") = >"
+                       +  super.get(max, col)
+                       + "<"
+                       );
+	 System.out.println( "partial auto_correlation p("
+                       +  row
+                       + ","
+                       +  row
+                       + ") = >"
+                       +  super.get(row, row)
+                       + "<"
+                       ); 
+	 System.out.println( "partial auto_correlation p("
+                       +  max
+                       + ","
+                       + (row-col-1)
+                       + ") = >"
+                       +  super.get(max, (row-col-1))
+                       + "<"
+                       ); 
+	 System.out.println( " ");
+   }
+//      p(1,0)   =  [ p(0,0) - ( p(1,1) * p(0,0) ) ]
+//
+//      p(2,1)   =  [ p(1,1) - ( p(2,2) * p(1,0) ) ]
+//      p(2,0)   =  [ p(1,0) - ( p(2,2) * p(1,1) ) ]
+//                        ^                   ^
+//                        |                   |
+//
+//      p(3,2)   =  [ p(2,2) - ( p(3,3) * p(2,0) ) ]
+//      p(3,1)   =  [ p(2,1) - ( p(3,3) * p(2,1) ) ]
+//      p(3,0)   =  [ p(2,0) - ( p(3,3) * p(2,2) ) ]
+//                        ^                   ^
+//                        |                   |
         double  pac  =  ( super.get(max, col) )
-                     /  ( super.get(max ,max) * super.get(max,(row-col)) );  
+                     -  ( super.get(row ,row) * super.get(max,(row-col-1)) );  
+        
+        System.out.println( "partial auto_correlation p("
+ 		                  +  row
+ 		                  + ","
+ 		                  +  col
+ 		                  + ") = >"
+ 		                  +  pac
+ 		                  + "<"
+ 		                  );
 return          pac;
 }
 }
