@@ -1,4 +1,6 @@
 package com.knitting.jamacoi;
+import java.util.Formatter;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -35,11 +37,11 @@ public class Test_Partial_Auto_Correlation {
 	
 	ac_2  = new Matrix (6,1);
 	ac_2  . set(0, 0, -0.8445 );
-	ac_2  . set(1, 0,  0.7 * ac_2.get(0,0) ); //  0.5910 );
-	ac_2  . set(2, 0,  0.7 * ac_2.get(1,0) ); // -0.4140 );
-	ac_2  . set(3, 0,  0.7 * ac_2.get(2,0) ); //  0.2900 );
-	ac_2  . set(4, 0,  0.7 * ac_2.get(3,0) ); // -0.2030 );
-	ac_2  . set(5, 0,  0.7 * ac_2.get(4,0) ); //  0.1420 );
+	ac_2  . set(1, 0, -0.7 * ac_2.get(0,0) ); //  0.5910 );
+	ac_2  . set(2, 0, -0.7 * ac_2.get(1,0) ); // -0.4140 );
+	ac_2  . set(3, 0, -0.7 * ac_2.get(2,0) ); //  0.2900 );
+	ac_2  . set(4, 0, -0.7 * ac_2.get(3,0) ); // -0.2030 );
+	ac_2  . set(5, 0, -0.7 * ac_2.get(4,0) ); //  0.1420 );
 	
 	ac[0] = ac_1;
 	ac[1] = ac_2;
@@ -64,19 +66,28 @@ public class Test_Partial_Auto_Correlation {
 
 	@Test
 	public void testLoad_matrix() {
-	for ( int   i = 0
-		;       i < 2
-		;     ++i
+	for ( int   i =   1
+		;       i >  -1
+		;     --i
 		)
 	    {
-		 System.out.println("Processing a new auto correlation matrix:");
-		 System.out.println("");
-	   
-		  pac =  new Partial_Auto_Correlation_Detail_3 ( ac[i] );
+		  boolean  debug  =  true;
+		  System.out.println("Processing a new auto correlation matrix:");
+		  System.out.println("");
+		  
+          if ( debug )
+             {
+		       list( ac[i] );
+             }
+		     
+		  pac =  new Partial_Auto_Correlation_Detail_3 ( ac[i]
+		                                               , debug
+		                                               );
+
           pac .  load_matrix();
           System.out.println( " " );
           for (  int   row  =  0
-    	      ;	     row  < pac.getRowDimension()
+    	      ;	       row  < pac.getRowDimension()
     	      ;      ++row
     	      )
               {
@@ -94,4 +105,25 @@ public class Test_Partial_Auto_Correlation {
 		  System.out.println("");
 	    }
 	}
+private  void  list ( final  Matrix  ac)
+{
+Formatter    line  = new Formatter();
+             line  . format ("list of ac:%n");
+for  (  int  row   =   0
+	 ;	     row   <  ac.getRowDimension()
+	 ;     ++row
+	 )
+     {
+          line  . format( "%s%d%s%d%s%8.5f%n"
+        		        , "ac("
+        		        ,  row
+        		        , ","
+        		        ,  0
+        		        , ") = >"
+        		        ,  ac.get(row, 0)
+        		        , "<"
+        		        );
+     }
+System.out.println ( line );
+}
 }

@@ -7,6 +7,7 @@ public class Partial_Auto_Correlation_Detail_3 extends Matrix {
 	
 private  static  final   long                serialVersionUID = 1L;
 
+private          final   boolean  debug;
 private          final   Matrix   ac;
 
 public       Partial_Auto_Correlation_Detail_3( final  Matrix  ac)
@@ -15,6 +16,17 @@ public       Partial_Auto_Correlation_Detail_3( final  Matrix  ac)
 	        	      , ac.getRowDimension()
 	        	      );
 	         this.ac = ac;
+	         debug   = false;
+}
+public       Partial_Auto_Correlation_Detail_3( final  Matrix  ac
+		                                      , final  boolean debug
+		                                      )
+{
+	         super    ( ac.getRowDimension()
+	        	      , ac.getRowDimension()
+	        	      );
+	         this.ac     =  ac;
+	         this.debug  =  debug;
 }
 public void load_matrix()
 {
@@ -35,6 +47,8 @@ public void load_matrix()
 		           }
 	      }
 }
+private    boolean get_debug(){ return debug; }
+
 protected  double  calculate_partial_correlation( final  int  row
 		                                        , final  int  col
   		                                        )
@@ -68,24 +82,36 @@ final   int     col_0  =  0;
         double  pac    =  ( ac.get(row, col_0 )  -  b )
                        /  ( 1.0                  -  c );
         
-        Formatter line = new Formatter();
-                  line . format( "%s%d%s%d%s%7.4f%s%7.4f%s%n"
-                		       , "p("
-                		       ,  row
-                		       , ","
-                		       ,  row
-                		       , ") = ("
-                		       ,   ac.get(row, col_0 )
-                		       , " - "
-                		       ,  b
-                		       , " )"
-                		       );
-                  line . format( "%s%7.4f%s%n"
-                		       , "       / ( 1.0    - "
-                		       ,  c
-                		       , " )"
-                		       );
-                  System.out.println( line );
+        if ( get_debug() )
+           {
+            Formatter line = new Formatter();
+                      line . format( "%s%d%s%d%s%7.4f%s%7.4f%s%n"
+                     		       , "p("
+                	    	       ,  row
+                		           , ","
+                		           ,  row
+                		           , ") = ("
+                		           ,   ac.get(row, col_0 )
+                		           , " - "
+                		           ,  b
+                		           , " )"
+                		           );
+                      line . format( "%s%7.4f%s%n"
+                		           , "       / ( 1.0    - "
+                		           ,  c
+                		           , " )"
+                		           );
+                      line . format( "%s%d%s%d%s%7.4f%s%n"
+                		           , "p("
+           	    	               ,  row
+           		                   , ","
+           		                   ,  row
+           		                   , ") = >"
+           		                   ,  pac
+           		                   , "<"
+           		                   );
+                      System.out.println( line );
+           }           
 return  pac;
 }
 //
@@ -130,28 +156,31 @@ final  int     col_0   =  0;
 	                    *    ac   .get ( (j    )  , (col_0  ) );
                //       *    ac   .get ( (row-j-1), (col_0  ) );
 	           
-    	       Formatter line = new Formatter();
-    	                 line . format ( "%s%d%s%d%s%d%s%7.4f%s%s%d%s%d%s%7.4f%s%7.4f%s"
-    	                		       , "for B row("
-    	                		       , row
-    	                		       , "): super("
-    	                		       ,  (row-1)
-    	                		       , ","
-    	                		       ,  (row-j-1)
-    	                		       , ") = >"
-    	                		       , super.get ( (row-1), (row-j-1) )
-    	                		       , "<   "
-    	                		       , "ac("
-    	                		       ,  j
-    	                		       , ","
-    	                		       , col_0
-    	                		       , ") = >"
-    	                		       , ac   .get (  j     , (col_0) )
-    	                		       , "<  product = >"
-    	                		       ,  p
-    	                		       , "<"
-    	                		       );
-    	        System.out.println( line );         
+	           if ( get_debug() )
+	              {
+    	            Formatter line = new Formatter();
+    	                      line . format ( "%s%d%s%d%s%d%s%7.4f%s%s%d%s%d%s%7.4f%s%7.4f%s"
+    	                  		            , "for B row("
+    	                		            , row
+    	                		            , "): super("
+    	                		            ,  (row-1)
+    	                		            , ","
+    	                		            ,  (row-j-1)
+    	                		            , ") = >"
+    	                		            , super.get ( (row-1), (row-j-1) )
+    	                		            , "<   "
+    	                		            , "ac("
+    	                		            ,  j
+    	                		            , ","
+    	                		            , col_0
+    	                		            , ") = >"
+    	                		            , ac   .get (  j     , (col_0) )
+    	                		            , "<  product = >"
+    	                		            ,  p
+    	                		            , "<"
+    	                		            );
+    	            System.out.println( line );  
+	              }
 
     	        b  += p;
              }
@@ -194,28 +223,31 @@ final  int     col_0   =  0;
  	           double p  =  ( super.get ( (row-1), j    ) )
                          *  ( ac   .get (  j     , col_0) );
 
- 	           Formatter line = new Formatter();
-                         line . format ( "%s%d%s%d%s%d%s%7.4f%s%s%d%s%d%s%7.4f%s%7.4f%s"
-          		                       , "for C row("
-          		                       ,  row
-          		                       , "): super("
-          		                       ,  (row-1)
-          		                       , ","
-          		                       ,  j
-          		                       , ") = >"
-          		                       , super.get ( (row-1), j )
-          		                       , "<   "
-          		                       , "ac("
-          		                       , j
-          		                       , ","
-          		                       , col_0
-          		                       , ") = >"
-          		                       , ac   .get ( j, (col_0) )
-          		                       , "<  product = >"
-          		                       , p
-          		                       , "<"
-          		                       );
-              System.out.println( line ); 
+ 	           if ( get_debug() )
+ 	              {
+ 	                Formatter line = new Formatter();
+                              line . format ( "%s%d%s%d%s%d%s%7.4f%s%s%d%s%d%s%7.4f%s%7.4f%s"
+          		                            , "for C row("
+          		                            ,  row
+          		                            , "): super("
+          		                            ,  (row-1)
+          		                            , ","
+          		                            ,  j
+          		                            , ") = >"
+          		                            , super.get ( (row-1), j )
+          		                            , "<   "
+          		                            , "ac("
+          		                            , j
+          		                            , ","
+          		                            , col_0
+          		                            , ") = >"
+          		                            , ac   .get ( j, (col_0) )
+          		                            , "<  product = >"
+          		                            , p
+          		                            , "<"
+          		                            );
+                    System.out.println( line );
+ 	              }
 
     	      c += p;
              }
@@ -228,36 +260,39 @@ protected  double  set_partial_off_diag( final  int  row
 final   int     max  =    row - 1;	
 if ( row==1 && col==0 )
    {
-	 System.out.println( "partial auto_correlation row="
-                       +  row
-                       + ", col="
-                       +  col
-                       );
-	 System.out.println( "partial auto_correlation p("
-                       +  max
-                       + ","
-                       +  col
-                       + ") = >"
-                       +  super.get(max, col)
-                       + "<"
-                       );
-	 System.out.println( "partial auto_correlation p("
-                       +  row
-                       + ","
-                       +  row
-                       + ") = >"
-                       +  super.get(row, row)
-                       + "<"
-                       ); 
-	 System.out.println( "partial auto_correlation p("
-                       +  max
-                       + ","
-                       + (row-col-1)
-                       + ") = >"
-                       +  super.get(max, (row-col-1))
-                       + "<"
-                       ); 
-	 System.out.println( " ");
+	 if ( get_debug() )
+	    {
+	      System.out.println( "partial auto_correlation row="
+                            +  row
+                            + ", col="
+                            +  col
+                            );
+	      System.out.println( "partial auto_correlation p("
+                            +  max
+                            + ","
+                            +  col
+                            + ") = >"
+                            +  super.get(max, col)
+                            + "<"
+                            );
+	      System.out.println( "partial auto_correlation p("
+                            +  row
+                            + ","
+                            +  row
+                            + ") = >"
+                            +  super.get(row, row)
+                            + "<"
+                            ); 
+	      System.out.println( "partial auto_correlation p("
+                            +  max
+                            + ","
+                            + (row-col-1)
+                            + ") = >"
+                            +  super.get(max, (row-col-1))
+                            + "<"
+                            ); 
+	      System.out.println( " ");
+	    }
    }
 //      p(1,0)   =  [ p(0,0) - ( p(1,1) * p(0,0) ) ]
 //
@@ -274,14 +309,17 @@ if ( row==1 && col==0 )
         double  pac  =  ( super.get(max, col) )
                      -  ( super.get(row ,row) * super.get(max,(row-col-1)) );  
         
-        System.out.println( "partial auto_correlation p("
- 		                  +  row
- 		                  + ","
- 		                  +  col
- 		                  + ") = >"
- 		                  +  pac
- 		                  + "<"
- 		                  );
+        if ( get_debug() )
+           {
+             System.out.println( "partial auto_correlation p("
+ 		                       +  row
+ 		                       + ","
+ 		                       +  col
+ 		                       + ") = >"
+ 		                       +  pac
+ 		                       + "<"
+ 		                       );
+           }
 return          pac;
 }
 }
