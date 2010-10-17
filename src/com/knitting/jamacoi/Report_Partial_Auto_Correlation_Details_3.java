@@ -96,16 +96,14 @@ for  (     col  =  0
      ;     col +=  values_per_line_max
      )
      {
-	   int       col_line_max   =  row;
-
        Formatter line =  new Formatter();
                  line .  format("%4d"
-		                       , ( row + 1)
+		                       , ( row + 1 ) 
 		                       );
                  line .  format("%s%n" 
 		                       , fmt_line_07_cells(   row
 		                    		              ,   col
-		                    		              , ( col_line_max )
+		                    		              , ( col + values_per_line_max )
 		                    		              )
 		                       );
                  get_Rpt_Detail().write( line.toString() );
@@ -121,7 +119,7 @@ if ( col  < (  get_Regression()
    {
     Formatter line =  new Formatter();
               line .  format("%4d"
-                            , ( row )
+                            , ( row + 1 )
                             );
               line .  format("%s%n" 
                             , fmt_line_07_cells(   row
