@@ -50,6 +50,7 @@ public class Regression
 	private Auto_Correlation_1  ac1;  //
 	private Auto_Correlation_2  ac2;  //
 	private Auto_Correlation_3  ac3;  //
+	private Partial_Auto_Correlation_Detail_3    pac3;
 
 	private Matrix  Estimated_Coefficients;   // a matrix [cols x 1] 
 	private double  Estimated_Intercept;      // a scalar 
@@ -166,6 +167,19 @@ public class Regression
 	  ac2.load_matrix();
 	  ac3              = new Auto_Correlation_3( est_Y_residual );
 	  ac3.load_matrix();
+	  
+final int row_initial  =   0;
+final int row_final    = ( ac3.getRowDimension() -1 );
+final int col_initial  =   0;
+final int col_final    =   0;
+	  
+	  pac3             = new Partial_Auto_Correlation_Detail_3 ( ac3.getMatrix( row_initial
+			                                                                  , row_final
+			                                                                  , col_initial
+			                                                                  , col_final
+			                                                                  )
+			                                                   );
+	  pac3.load_matrix();
 	  
 	}
 	private void       enough_rows ( final int rows
