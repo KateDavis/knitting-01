@@ -86,21 +86,20 @@ protected  void   fmt_line_of_values( final  int  values_per_line_max
            throws java.io.IOException
 {	
       int  col;
-      int  col_max = Math.min(  row
-    		                 ,  (  get_Regression()
+      int  col_max =
+    		                    (  get_Regression()
     		                      .get_Partial_Auto_Correlation_Detail_3()
     		                      .getRowDimension()
     		                    - 1
-    		                    )
-    		                 );
+    		                    );
+    		                 
 for  (     col  =  0
      ;     col  <  col_max
      ;     col +=  values_per_line_max
      )
      {
-	   int       col_line_max   =  Math.min(  col_max
-			                               ,  values_per_line_max
-			                               );
+	   int       col_line_max   =  values_per_line_max;
+
        Formatter line =  new Formatter();
                  line .  format("%4d"
 		                       , ( row )
