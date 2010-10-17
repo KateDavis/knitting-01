@@ -34,6 +34,7 @@ public class Report_Regression_Results
 //  private Report_Abstract rpt_auto_correlation_1;
     private Report_Abstract rpt_auto_correlation_2;
     private Report_Abstract rpt_auto_correlation_3;
+    private Report_Abstract rpt_partial_auto_correlation_detail_3;
     
     private URL             residuals;
 /**
@@ -112,6 +113,10 @@ public Report_Regression_Results (final Regression     r
                                                                  , sub_matrix
                                                                  , Rpt_Detail
                                                                  );   
+         rpt_partial_auto_correlation_detail_3 = new Report_Partial_Auto_Correlation_Details_3 ( r
+                                                                                               , sub_matrix
+                                                                                               , Rpt_Detail
+                                                                                               );  
 } 
 public  void   report_All()
         throws not_estimated
@@ -119,18 +124,19 @@ public  void   report_All()
              , not_significant
              , java.io.IOException
 { 
-	    rpt_row_info          . write_details  ();
-        rpt_yx                . write_details  ();  
-        rpt_YYX               . write_details  ();
-        rpt_est_func          . write_details  ();
-        rpt_err_analysis      . write_details  ();
-        rpt_sig_analysis      . write_details  ();
-        rpt_cov_matrix        . write_details  ();
-        rpt_cov_adjusted      . write_details  ();
-//      rpt_auto_correlations . write_details  ();
-//      rpt_auto_correlation_1. write_details  ();
-        rpt_auto_correlation_2. write_details  ();
-        rpt_auto_correlation_3. write_details  ();
+	    rpt_row_info                          . write_details  ();
+        rpt_yx                                . write_details  ();  
+        rpt_YYX                               . write_details  ();
+        rpt_est_func                          . write_details  ();
+        rpt_err_analysis                      . write_details  ();
+        rpt_sig_analysis                      . write_details  ();
+        rpt_cov_matrix                        . write_details  ();
+        rpt_cov_adjusted                      . write_details  ();
+//      rpt_auto_correlations                 . write_details  ();
+//      rpt_auto_correlation_1                . write_details  ();
+        rpt_auto_correlation_2                . write_details  ();
+        rpt_auto_correlation_3                . write_details  ();
+        rpt_partial_auto_correlation_detail_3 . write_details  ();
        
         Rpt_Detail .close();
 }
