@@ -54,11 +54,6 @@ protected  double  calculate_partial_correlation( final  int  row
   		                                        )
 {
 double               pac =  0.0;
-System.out.println( "calculating row="
-                  +  row
-                  + ", col="
-                  +  col
-                  );
 if ( row  <  col ) { pac =  0.0                             ; }
 if ( row ==  col ) { pac =  set_partial_diagonal( row     ) ; }
 if ( row  >  col ) { pac =  set_partial_off_diag( row, col) ; }
