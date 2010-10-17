@@ -49,22 +49,20 @@ protected  void   loop_thru_rows()
            throws java.io.IOException
 {
 final int  values_per_line_max = 10;	
-for  (int  ir   = 0
-	 ;     ir   < (  get_Regression()
-                    .get_Partial_Auto_Correlation_Detail_3()
-                    .getRowDimension()
-                  -  1
-                  )
-     ;   ++ir
+final int  row_max             = (  get_Regression()
+                                   .get_Partial_Auto_Correlation_Detail_3()
+                                   .getRowDimension()
+                                 -  1
+                                 );
+for  (int  row  =  0
+	 ;     row  <  row_max
+     ;   ++row
 	 )
      { 
 	   fmt_line_of_values( values_per_line_max
-			             , ir 
+			             , row 
 			             );
-	   if ( values_per_line_max <  get_Regression()
-                                  .get_Partial_Auto_Correlation_Detail_3()
-                                  .getRowDimension()
-          )
+	   if ( values_per_line_max <  row_max )
 	      {
 		    blank_line();
 	      }
@@ -98,11 +96,11 @@ for  (     col  =  0
      ;     col +=  values_per_line_max
      )
      {
-	   int       col_line_max   =  values_per_line_max;
+	   int       col_line_max   =  row;
 
        Formatter line =  new Formatter();
                  line .  format("%4d"
-		                       , ( row )
+		                       , ( row + 1)
 		                       );
                  line .  format("%s%n" 
 		                       , fmt_line_07_cells(   row
