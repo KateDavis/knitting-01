@@ -168,17 +168,19 @@ public class Regression
 	  ac3              = new Auto_Correlation_3( est_Y_residual );
 	  ac3.load_matrix();
 	  
-final int row_initial  =   0;
-final int row_final    = ( ac3.getRowDimension() -1 );
-final int col_initial  =   0;
-final int col_final    =   0;
+final int     row_initial    =   1;  // skip row zero because it contains the value 1.0: The correlation of "y" with itself, and
+                                     // not an auto_correlation value!
+final int     row_final      = ( ac3.getRowDimension() - 1 );
+final int     col_initial    =   0;
+final int     col_final      =   0;
+
+      Matrix  just_col_0_ac  =  ac3.getMatrix(  row_initial
+                                             ,  row_final
+                                             ,  col_initial
+                                             ,  col_final
+                                             );
 	  
-	  pac3             = new Partial_Auto_Correlation_Detail_3 ( ac3.getMatrix( row_initial
-			                                                                  , row_final
-			                                                                  , col_initial
-			                                                                  , col_final
-			                                                                  )
-			                                                   );
+	  pac3                   =  new Partial_Auto_Correlation_Detail_3 ( just_col_0_ac );
 	  pac3.load_matrix();
 	  
 	}
@@ -673,9 +675,10 @@ final int col_final    =   0;
 //			                               , int  col
 //			                               ) { return  auto_correlation.get(row,col)        ;  }    
 	
-//	public Auto_Correlation_1  get_Auto_Correlation_1() { return  ac1;}
-	public Auto_Correlation_2  get_Auto_Correlation_2() { return  ac2;}
-	public Auto_Correlation_3  get_Auto_Correlation_3() { return  ac3;}
+//	public Auto_Correlation_1                 get_Auto_Correlation_1()                 { return  ac1; }
+	public Auto_Correlation_2                 get_Auto_Correlation_2()                 { return  ac2; }
+	public Auto_Correlation_3                 get_Auto_Correlation_3()                 { return  ac3; }
+	public Partial_Auto_Correlation_Detail_3  get_Partial_Auto_Correlation_Detail_3()  { return pac3; }
 	 
 
 	public  void   print_est_coefficients()
