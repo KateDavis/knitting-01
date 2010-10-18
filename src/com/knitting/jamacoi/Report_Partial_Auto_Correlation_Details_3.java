@@ -84,12 +84,11 @@ protected  void   fmt_line_of_values( final  int  values_per_line_max
            throws java.io.IOException
 {	
       int  col;
-      int  col_max =
-    		                    (  get_Regression()
-    		                      .get_Partial_Auto_Correlation_Detail_3()
-    		                      .getRowDimension()
-    		                    - 1
-    		                    );
+      int  col_max = (  get_Regression()
+    		           .get_Partial_Auto_Correlation_Detail_3()
+    		           .getRowDimension()
+    	             - 1
+                     );
     		                 
 for  (     col  =  0
      ;     col  <  col_max
@@ -101,12 +100,7 @@ for  (     col  =  0
 		             , col
 		             );                
      }
-if   ( col  < (  get_Regression()
-                .get_Partial_Auto_Correlation_Detail_3()
-                .getRowDimension()
-              -  1
-              )
-     )
+if   ( col  <  col_max )
      {
 	  fmt_line_short( values_per_line_max
 		  	        , row
