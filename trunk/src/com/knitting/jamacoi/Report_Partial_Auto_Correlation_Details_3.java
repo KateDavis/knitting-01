@@ -89,6 +89,16 @@ protected  void   fmt_line_of_values( final  int  values_per_line_max
     		           .getRowDimension()
     	             - 1
                      );
+           col_max = Math.min(col_max, row);
+           
+if   ( col_max < values_per_line_max )
+     {
+	   fmt_line_full ( ( row + 1 )
+  	                 ,   row
+	                 ,   0
+	                 );
+	   return;
+     }
     		                 
 for  (     col  =  0
      ;     col  <  col_max
