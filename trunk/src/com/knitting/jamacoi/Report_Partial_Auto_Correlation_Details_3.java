@@ -29,6 +29,7 @@ public     void     write_details()
                 ,   not_estimated 
 { 
            get_Rpt_Detail().write( fmt_line_01() );
+           get_Rpt_Detail().write( fmt_line_02() );
 /*** 
            get_Rpt_Detail().write( fmt_line_03() ); 
            get_Rpt_Detail().write( fmt_line_04() );
@@ -45,21 +46,37 @@ Formatter  line =   new Formatter();
 			              ); 
 return     line .   toString();	
 }
+protected  String   fmt_line_02()
+{
+Formatter  line =   new Formatter();
+	       line .   format( "%nRows = >%d<%nCols = >%d<%n%n"
+	    		   
+		                  ,  get_Regression()
+                            .get_Partial_Auto_Correlation_Detail_3()
+                            .getRowDimension()
+                            
+                          ,  get_Regression()
+                            .get_Partial_Auto_Correlation_Detail_3()
+                            .getColumnDimension()
+		                  );
+	       
+return     line .   toString();		
+}
 protected  void   loop_thru_rows()
            throws java.io.IOException
 {
 final int  values_per_line_max = 10;	
-final int  row_max             = (  get_Regression()
-                                   .get_Partial_Auto_Correlation_Detail_3()
-                                   .getRowDimension()
-                                 -  1
-                                 );
+final int  row_max             =  get_Regression()
+                                 .get_Partial_Auto_Correlation_Detail_3()
+                                 .getRowDimension();
+                                
 for  (int  row  =  0
 	 ;     row  <  row_max
      ;   ++row
 	 )
      { 
 	   fmt_line_of_values( values_per_line_max
+			             , row_max
 			             , row 
 			             );
 	   if ( values_per_line_max <  row_max )
@@ -79,17 +96,13 @@ protected  void   blank_line()
     line = null;	
 }
 protected  void   fmt_line_of_values( final  int  values_per_line_max 
+		                            , final  int  row_max
 		                            , final  int  row 
 		                            )
            throws java.io.IOException
 {	
-      int  col;
-      int  col_max = (  get_Regression()
-    		           .get_Partial_Auto_Correlation_Detail_3()
-    		           .getRowDimension()
-    	             - 1
-                     );
-           col_max = Math.min(col_max, row);
+      int  col;             
+      int  col_max = Math.min(row_max, row);
            
 if   ( col_max < values_per_line_max )
      {
@@ -110,11 +123,12 @@ for  (     col  =  0
 		             , col
 		             );                
      }
-if   ( col  <  col_max )
+if   ( col  <=  col_max )
      {
 	  fmt_line_short( values_per_line_max
+			        , col_max
 		  	        , row
-			        , col
+			        ,(col - 1)
 			        );
      }
 }
@@ -137,6 +151,7 @@ Formatter line =   new Formatter();
           get_Rpt_Detail().write( line.toString() );
 }
 protected  void     fmt_line_short( final  int  values_per_line_max 
+		                          , final  int  col_max
                                   , final  int  row 
                                   , final  int  col
                                   )
@@ -149,11 +164,7 @@ Formatter  line =   new Formatter();
            line .   format("%s%n" 
                           , fmt_line_07_cells( row
  		                                     , col
- 		                                     , ( get_Regression()
- 		                                       . get_Partial_Auto_Correlation_Detail_3()
- 		                                       . getRowDimension()
- 		                                       - 1
- 		                                       )
+ 		                                     , col_max 
  		                                     )
                           );
            get_Rpt_Detail().write( line.toString() );
