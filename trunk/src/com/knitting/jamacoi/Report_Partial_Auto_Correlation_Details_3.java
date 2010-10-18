@@ -117,24 +117,33 @@ if ( col  < (  get_Regression()
             )
    )
    {
-    Formatter line =  new Formatter();
-              line .  format("%4d"
-                            , ( row + 1 )
-                            );
-              line .  format("%s%n" 
-                            , fmt_line_07_cells(   row
-               		                           ,   col
-               		                           ,  (get_Regression()
-               		                              .get_Partial_Auto_Correlation_Detail_3()
-               		                              .getRowDimension()
-               		                              - 1
-               		                              )
-               		                           )
-                            );
-              get_Rpt_Detail().write( line.toString() );
-
-              line = null;
+	fmt_line_short( values_per_line_max
+			      , row
+			      , col
+			      );
    }
+}
+protected  void    fmt_line_short( final  int  values_per_line_max 
+                                 , final  int  row 
+                                 , final  int  col
+                                 )
+           throws  java.io.IOException
+{
+Formatter line =   new Formatter();
+          line .   format("%4d"
+                         , ( row + 1 )
+                         );
+          line .   format("%s%n" 
+                         , fmt_line_07_cells( row
+ 		                                    , col
+ 		                                    , ( get_Regression()
+ 		                                      . get_Partial_Auto_Correlation_Detail_3()
+ 		                                      . getRowDimension()
+ 		                                      - 1
+ 		                                      )
+ 		                                    )
+                         );
+          get_Rpt_Detail().write( line.toString() );
 }
 protected  String  fmt_line_07_cells( final  int  row
 		                            , final  int  col_start
