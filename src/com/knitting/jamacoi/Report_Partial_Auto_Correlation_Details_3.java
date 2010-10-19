@@ -138,6 +138,10 @@ protected  void    fmt_line_full ( final  int  values_per_line_max
                                  )
            throws  java.io.IOException
 {
+int   col_max  =   Math.min( ( col + values_per_line_max)
+		                   , ( row + 1                  )
+		                   );
+
 Formatter line =   new Formatter();
           line .   format("%4d"
                          , ( row + 1 ) 
@@ -145,7 +149,7 @@ Formatter line =   new Formatter();
           line .   format("%s%n" 
                          , fmt_line_07_cells(   row
                	  	                        ,   col
-               		                        , ( col + values_per_line_max )
+               		                        ,   col_max  //( col + values_per_line_max )
                		                        )
                          );
           get_Rpt_Detail().write( line.toString() );
