@@ -128,7 +128,7 @@ if   ( col  <=  col_max )
 	  fmt_line_short( values_per_line_max
 			        , col_max
 		  	        , row
-			        ,(col - 1)
+			        , col   // (col - 1)
 			        );
      }
 }
@@ -168,7 +168,7 @@ Formatter  line =   new Formatter();
            line .   format("%s%n" 
                           , fmt_line_07_cells( row
  		                                     , col
- 		                                     , col_max 
+ 		                                     ,(row + 1)
  		                                     )
                           );
            get_Rpt_Detail().write( line.toString() );
