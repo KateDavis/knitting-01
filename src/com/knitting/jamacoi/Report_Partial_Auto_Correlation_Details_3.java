@@ -95,6 +95,24 @@ protected  void   blank_line()
 
     line = null;	
 }
+protected  void   fmt_line_of_values_2( final  int  values_per_line_max
+		                              , final  int  row
+		                              )
+{
+	   int    col;
+final  int    col_max = ( row + 1 );
+       for  ( col     =   0
+	        ; col     <   col_max
+	        ; col    +=   values_per_line_max
+	        )
+            {
+    	   
+            }
+       if   ( col < col_max )
+            {
+	
+            }
+}
 protected  void   fmt_line_of_values( final  int  values_per_line_max 
 		                            , final  int  row_max
 		                            , final  int  row 
@@ -117,7 +135,7 @@ for  (     col  =  0
      ;     col  <  col_max
      ;     col +=  values_per_line_max
      )
-     {	
+     {	   
 	   fmt_line_full ( values_per_line_max
 		             , row
 		             , col
