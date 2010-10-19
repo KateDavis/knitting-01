@@ -185,10 +185,12 @@ Formatter  line =  new Formatter();
 	            ;    ++ic
 	            )
 	            {
+	    	    /******************
 	    	      if (  (row < 49)
 	    	    	    &&
 	    	    		(ic  < 49)
 	    	    	 )
+	    	    ******************/
 	    	         {
 	                    line . format( "%15.5E"
 		                             ,  get_Regression()
