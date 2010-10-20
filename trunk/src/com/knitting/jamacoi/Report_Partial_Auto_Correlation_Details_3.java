@@ -39,13 +39,13 @@ final  int row_max             =  get_Regression()
            get_Rpt_Detail().write( fmt_line_04() );
            get_Rpt_Detail().write( fmt_line_05() );
 ***/
-           loop_thru_heads(                     values_per_line_max   
-        		          ,                     row_max
-        		          );
+           loop_thru_headers(                     values_per_line_max   
+        		            ,                     row_max
+        		            );
            get_Rpt_Detail().write( fmt_line_06( values_per_line_max ) );
-           loop_thru_rows (                     values_per_line_max  
-        		          ,                     row_max
-        		          );
+           loop_thru_rows   (                     values_per_line_max  
+        		            ,                     row_max
+        		            );
 }
 protected  String   fmt_line_01()
 {
@@ -71,9 +71,10 @@ Formatter  line =   new Formatter();
 	       
 return     line .   toString();		
 }
-protected  void     loop_thru_heads( final  int  values_per_line_max 
-		                           , final  int  row_max
-		                           )
+protected  void     loop_thru_headers( final  int  values_per_line_max 
+		                             , final  int  row_max
+		                              )
+           throws   java.io.IOException
 {
 	   int    col;
 	   final  int    col_max = ( row_max + 1 );
@@ -103,8 +104,25 @@ protected  void     fmt_line_03    ( final  int  row_max
 		                           , final  int  col_start
 		                           , final  int  col_max
 		                           )
+           throws   java.io.IOException
 {
-	
+Formatter  line =   new Formatter();
+           line .   format("%4s"
+                          ,"Lag"
+                          );
+    
+           for ( int   col = col_start
+ 	           ;       col < col_max
+ 	           ;     ++col
+ 	           )
+               {
+                 line .   format("%15d" 
+                                , ( col + 1 )
+                                );
+               };
+                 line .   format("%n");
+
+          get_Rpt_Detail().write ( line.toString() );
 }
 protected  String   fmt_line_06    ( final  int  values_per_line_max )
 {
