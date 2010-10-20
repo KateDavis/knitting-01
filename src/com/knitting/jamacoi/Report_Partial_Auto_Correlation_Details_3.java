@@ -28,15 +28,24 @@ public     void     write_details()
            throws   IOException
                 ,   not_estimated 
 { 
+final  int values_per_line_max = 10;
+final  int row_max             =  get_Regression()
+                                 .get_Partial_Auto_Correlation_Detail_3()
+                                 .getRowDimension();
            get_Rpt_Detail().write( fmt_line_01() );
            get_Rpt_Detail().write( fmt_line_02() );
 /*** 
            get_Rpt_Detail().write( fmt_line_03() ); 
            get_Rpt_Detail().write( fmt_line_04() );
            get_Rpt_Detail().write( fmt_line_05() );
-           get_Rpt_Detail().write( fmt_line_06() );
 ***/
-           loop_thru_rows();
+           loop_thru_heads(                     values_per_line_max   
+        		          ,                     row_max
+        		          );
+           get_Rpt_Detail().write( fmt_line_06( values_per_line_max ) );
+           loop_thru_rows (                     values_per_line_max  
+        		          ,                     row_max
+        		          );
 }
 protected  String   fmt_line_01()
 {
@@ -62,23 +71,85 @@ Formatter  line =   new Formatter();
 	       
 return     line .   toString();		
 }
-protected  void   loop_thru_rows()
+protected  void     loop_thru_heads( final  int  values_per_line_max 
+		                           , final  int  row_max
+		                           )
+{
+	   int    col;
+	   final  int    col_max = ( row_max + 1 );
+	          for  ( col     =   0
+	   	           ; col     <   col_max
+	   	           ; col    +=   values_per_line_max
+	   	           )
+	               {
+	       	         int col_max_2 = Math.min( ( col + values_per_line_max )
+	       	    	   	                     ,   col_max
+	       	    		                     );
+	       	      
+	       	         fmt_line_03   ( row_max
+	                               , col
+	                               , col_max_2
+	                               );
+	               }
+	          if   ( col < col_max )
+	               {
+	       	         fmt_line_03( row_max
+	                            , col
+	                            , col_max
+	                            );
+	               }	
+}
+protected  void     fmt_line_03    ( final  int  row_max
+		                           , final  int  col_start
+		                           , final  int  col_max
+		                           )
+{
+	
+}
+protected  String   fmt_line_06    ( final  int  values_per_line_max )
+{
+Formatter  line =   new Formatter();
+           line .   format("%4s"
+                          ,"===="
+                          );
+           
+           for ( int   col = 0
+        	   ;       col < values_per_line_max
+        	   ;     ++col
+        	   )
+               {
+                 line .   format("%15s" 
+                                ,"==========="
+                                );
+               };
+           line .   format("%n");
+return     line .   toString();
+}
+protected  void   loop_thru_rows( final  int  values_per_line_max 
+		                        , final  int  row_max
+		                        )
            throws java.io.IOException
 {
-final int  values_per_line_max = 10;	
+/*****
 final int  row_max             =  get_Regression()
                                  .get_Partial_Auto_Correlation_Detail_3()
                                  .getRowDimension();
+*****/
                                 
 for  (int  row  =  0
 	 ;     row  <  row_max
      ;   ++row
 	 )
      { 
-	   fmt_line_of_values( values_per_line_max
-			             , row_max
-			             , row 
-			             );
+	   /*****
+	   fmt_line_of_values  ( values_per_line_max
+			               , row_max
+			               , row 
+			               );
+	   ******/
+	   fmt_line_of_values_2( values_per_line_max
+                           , row 
+                           );
 	   if ( values_per_line_max <  row_max )
 	      {
 		    blank_line();
@@ -98,6 +169,7 @@ protected  void   blank_line()
 protected  void   fmt_line_of_values_2( final  int  values_per_line_max
 		                              , final  int  row
 		                              )
+           throws java.io.IOException
 {
 	   int    col;
 final  int    col_max = ( row + 1 );
@@ -106,13 +178,42 @@ final  int    col_max = ( row + 1 );
 	        ; col    +=   values_per_line_max
 	        )
             {
-    	   
+    	      int col_max_2 = Math.min( ( col + values_per_line_max )
+    	    		                  ,   col_max
+    	    		                  );
+    	      
+    	      fmt_line_02( row
+                         , col
+                         , col_max_2
+                         );
             }
        if   ( col < col_max )
             {
-	
+    	      fmt_line_02( row
+                         , col
+                         , col_max
+                         );
             }
 }
+protected  void   fmt_line_02( final  int  row
+		                     , final  int  col_start
+		                     , final  int  col_max
+		                     )
+           throws java.io.IOException
+{
+Formatter  line =   new Formatter();
+           line .   format("%4d"
+                          , ( row + 1 )
+                          );
+           line .   format("%s%n" 
+                          , fmt_line_07_cells( row
+	                                         , col_start
+	                                         , col_max
+	                                         )
+                          );
+           get_Rpt_Detail().write( line.toString() );	
+}
+/******************************************
 protected  void   fmt_line_of_values( final  int  values_per_line_max 
 		                            , final  int  row_max
 		                            , final  int  row 
@@ -191,6 +292,8 @@ Formatter  line =   new Formatter();
                           );
            get_Rpt_Detail().write( line.toString() );
 }
+*********************************************************/
+
 protected  String  fmt_line_07_cells( final  int  row
 		                            , final  int  col_start
 		                            , final  int  col_max
