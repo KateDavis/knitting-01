@@ -29,9 +29,10 @@ public     void     write_details()
                 ,   not_estimated 
 { 
 final  int values_per_line_max = 10;
-final  int row_max             =  get_Regression()
+       int row_max             =  get_Regression()
                                  .get_Partial_Auto_Correlation_Detail_3()
                                  .getRowDimension();
+           row_max             = 40;  // a test value
 
            get_Rpt_Detail().write( fmt_line_01() );
            get_Rpt_Detail().write( fmt_line_02() );
@@ -88,13 +89,15 @@ protected  void     loop_thru_headers( final  int  values_per_line_max
 	                               , col_max_2
 	                               );
 	               }
+	          /****************************
 	          if   ( col < col_max )
 	               {
 	       	         fmt_line_03( row_max
 	                            , col
 	                            , col_max
 	                            );
-	               }	
+	               }
+	          ****************************/     	
 }
 protected  void     fmt_line_03    ( final  int  row_max
 		                           , final  int  col_start
@@ -118,7 +121,7 @@ Formatter  line =   new Formatter();
                };
                  line .   format("%n");
 
-          get_Rpt_Detail().write ( line.toString() );
+           get_Rpt_Detail().write  ( line.toString() );
 }
 protected  String   fmt_line_06    ( final  int  values_per_line_max )
 {
@@ -149,12 +152,6 @@ for  (int  row  =  0
      ;   ++row
 	 )
      { 
-	   /*****
-	   fmt_line_of_values  ( values_per_line_max
-			               , row_max
-			               , row 
-			               );
-	   ******/
 	   fmt_line_of_values_2( values_per_line_max
                            , row 
                            );
@@ -233,19 +230,11 @@ Formatter  line =  new Formatter();
 	            ;    ++ic
 	            )
 	            {
-	    	    /******************
-	    	      if (  (row < 49)
-	    	    	    &&
-	    	    		(ic  < 49)
-	    	    	 )
-	    	    ******************/
-	    	         {
-	                    line . format( "%15.5E"
-		                             ,  get_Regression()
-		                               .get_Partial_Auto_Correlation_Detail_3()
-		                               .get(row, ic)
-		                             );
-	    	         }
+	              line . format( "%15.5E"
+		                       ,  get_Regression()
+		                         .get_Partial_Auto_Correlation_Detail_3()
+		                         .get(row, ic)
+		                       );
 
 	            }
 return            line . toString();	
