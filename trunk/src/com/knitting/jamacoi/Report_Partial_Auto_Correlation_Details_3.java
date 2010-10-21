@@ -77,7 +77,8 @@ protected  void     loop_thru_headers( final  int  values_per_line_max
            throws   java.io.IOException
 {
 	   int    col;
-	   final  int    col_max = ( row_max + 1 );
+//	   final  int    col_max = ( row_max + 1 );
+	   final  int    col_max =   row_max;
 	          for  ( col     =   0
 	   	           ; col     <   col_max
 	   	           ; col    +=   values_per_line_max

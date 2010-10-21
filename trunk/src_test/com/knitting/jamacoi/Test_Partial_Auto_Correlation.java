@@ -60,7 +60,7 @@ public class Test_Partial_Auto_Correlation {
 		;     --i
 		)
 	    {
-		  boolean  debug  =  false;
+		  boolean  debug  =  true;
 
 		  
           if ( debug )
