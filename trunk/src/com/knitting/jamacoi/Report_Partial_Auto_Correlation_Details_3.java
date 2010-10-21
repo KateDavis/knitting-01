@@ -32,6 +32,7 @@ final  int values_per_line_max = 10;
 final  int row_max             =  get_Regression()
                                  .get_Partial_Auto_Correlation_Detail_3()
                                  .getRowDimension();
+
            get_Rpt_Detail().write( fmt_line_01() );
            get_Rpt_Detail().write( fmt_line_02() );
            loop_thru_headers(                     values_per_line_max   
