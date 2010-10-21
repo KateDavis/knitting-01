@@ -90,49 +90,7 @@ protected  void     loop_thru_headers( final  int  values_per_line_max
 	                               );
 	               }  	
 }
-protected  void     fmt_line_03    ( final  int  row_max
-		                           , final  int  col_start
-		                           , final  int  col_max
-		                           )
-           throws   java.io.IOException
-{
-Formatter  line =   new Formatter();
-           line .   format("%4s"
-                          ,"Lag"
-                          );
-    
-           for ( int   col = col_start
- 	           ;       col < col_max
- 	           ;     ++col
- 	           )
-               {
-                 line .   format("%15d" 
-                                , ( col + 1 )
-                                );
-               };
-                 line .   format("%n");
 
-           get_Rpt_Detail().write  ( line.toString() );
-}
-protected  String   fmt_line_06    ( final  int  values_per_line_max )
-{
-Formatter  line =   new Formatter();
-           line .   format("%4s"
-                          ,"===="
-                          );
-           
-           for ( int   col = 0
-        	   ;       col < values_per_line_max
-        	   ;     ++col
-        	   )
-               {
-                 line .   format("%15s" 
-                                ,"==========="
-                                );
-               };
-           line .   format("%n");
-return     line .   toString();
-}
 protected  void   loop_thru_rows( final  int  values_per_line_max 
 		                        , final  int  row_max
 		                        )
@@ -143,7 +101,7 @@ for  (int  row  =  0
      ;   ++row
 	 )
      { 
-	   fmt_line_of_values_2( values_per_line_max
+	   fmt_line_of_values  ( values_per_line_max
                            , row 
                            );
 	   if ( values_per_line_max <  row_max )
@@ -162,7 +120,7 @@ protected  void   blank_line()
 
     line = null;	
 }
-protected  void   fmt_line_of_values_2( final  int  values_per_line_max
+protected  void   fmt_line_of_values  ( final  int  values_per_line_max
 		                              , final  int  row
 		                              )
            throws java.io.IOException
@@ -208,6 +166,49 @@ Formatter  line =   new Formatter();
 	                                         )
                           );
            get_Rpt_Detail().write( line.toString() );	
+}
+protected  void     fmt_line_03    ( final  int  row_max
+        , final  int  col_start
+        , final  int  col_max
+        )
+throws   java.io.IOException
+{
+Formatter  line =   new Formatter();
+line .   format("%4s"
+,"Lag"
+);
+
+for ( int   col = col_start
+;       col < col_max
+;     ++col
+)
+{
+line .   format("%15d" 
+     , ( col + 1 )
+     );
+};
+line .   format("%n");
+
+get_Rpt_Detail().write  ( line.toString() );
+}
+protected  String   fmt_line_06    ( final  int  values_per_line_max )
+{
+Formatter  line =   new Formatter();
+           line .   format("%4s"
+                          ,"===="
+                          );
+           
+           for ( int   col = 0
+        	   ;       col < values_per_line_max
+        	   ;     ++col
+        	   )
+               {
+                 line .   format("%15s" 
+                                ,"==========="
+                                );
+               };
+           line .   format("%n");
+return     line .   toString();
 }
 protected  String  fmt_line_07_cells( final  int  row
 		                            , final  int  col_start
