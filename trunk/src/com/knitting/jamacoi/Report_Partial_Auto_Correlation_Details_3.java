@@ -88,16 +88,7 @@ protected  void     loop_thru_headers( final  int  values_per_line_max
 	                               , col
 	                               , col_max_2
 	                               );
-	               }
-	          /****************************
-	          if   ( col < col_max )
-	               {
-	       	         fmt_line_03( row_max
-	                            , col
-	                            , col_max
-	                            );
-	               }
-	          ****************************/     	
+	               }  	
 }
 protected  void     fmt_line_03    ( final  int  row_max
 		                           , final  int  col_start
