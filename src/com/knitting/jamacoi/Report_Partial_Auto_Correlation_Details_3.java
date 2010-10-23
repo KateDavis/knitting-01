@@ -32,7 +32,6 @@ final  int values_per_line_max = 10;
        int row_max             =  get_Regression()
                                  .get_Partial_Auto_Correlation_Detail_3()
                                  .getRowDimension();
-           row_max             = 40;  // a test value
 
            get_Rpt_Detail().write( fmt_line_01() );
            get_Rpt_Detail().write( fmt_line_02() );
@@ -119,6 +118,7 @@ final  int    col_max = ( row + 1 );
                          );
             }
        // ***************************** are these lines needed?
+       /*******************************
        if   ( col < col_max )
             {
     	      fmt_line_07( row
@@ -126,6 +126,7 @@ final  int    col_max = ( row + 1 );
                          , col_max
                          );
             }
+       *******************************/
        // ***************************** are these lines needed?
 }
 protected  String   fmt_line_01()
