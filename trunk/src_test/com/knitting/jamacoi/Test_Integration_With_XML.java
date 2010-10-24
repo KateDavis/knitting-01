@@ -455,18 +455,21 @@ new Build_Directory_Structure	  ( ws1.get_Workspace()
      //                                  );
            sub_matrix.Load_Data_Forwards ( ir_base
                                          , m
-                                         );
-           if  ( ir_base == my_parms_02.getROW_BASE() )
-               {
-         	     write_headers_for_summary_file( sub_matrix
-                                               , my_parms_02	        
-                                               );            
-               }
+                                         );  
            try
                {                            
                  Regression        r = new Regression ( sub_matrix ); 
 
-                 
+                 if  ( ir_base == my_parms_02.getROW_BASE() )
+                     {
+                        Report_Regression_Summary   rrs  =
+                   new  Report_Regression_Summary        ( r
+	                                                     , sub_matrix
+	                                                     , my_parms_02
+	                                                     );
+                                                    rrs  . report_headers();
+                     }                                  
+                                                   
                  Report_Regression_Results          rrr =
              new Report_Regression_Results              ( r
                                                         , sub_matrix
@@ -538,31 +541,5 @@ public void   initialize_to_empty_file ( String URL_name )
 	                                            
 	   if   ( f  . isFile() ) { f . delete(); }	
 }
-protected  void  write_headers_for_summary_file ( Sub_Matrix      sub_matrix
-                                               ,  Analysis_Parms  my_parms_02	        
-                                               )
-                 throws                           java.io.IOException
-{
-           try
-                   {                            
-                         Regression        r = new Regression ( sub_matrix ); 
-
-                                         
-                         Report_Regression_Summary          rrs =
-                    new  Report_Regression_Summary              ( r
- 		                                                        , sub_matrix
- 		                                                        , my_parms_02
- 		                                                        );
-                                                            rrs . report_headers();
-                                         
-
-                   }
-           catch   ( not_enough_rows e)               {}
-           catch   ( not_invertable  e)               {}
-           catch   ( not_significant e)               {}
-           catch   ( not_estimated   e)               {}
-           catch   ( java.io.FileNotFoundException e) {}
-}
-         
 
 }
