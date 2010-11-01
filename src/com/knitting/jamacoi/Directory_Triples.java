@@ -35,7 +35,7 @@ protected    String get_Key_Rel_Base_Dir ( final  String  Key )
 {
 return	                Key_Rel_Base_Dir;
 }
-public       boolean  Put        ( final  String  Key
+public       boolean  put        ( final  String  Key
 		                         , final  String  Parent
 		                         , final  String  Subdir
 		                         )
@@ -80,6 +80,16 @@ public ArrayList<String> list_Keys()
 	         }
 	   
 	   return            al;
+}
+public         LinkedHashMap<String, String>  get_Map_Key_Subdir()
+{
+	    final  LinkedHashMap<String, String>  ks  =  new  LinkedHashMap<String, String> ( Key_Subdir );
+	    return                                ks;
+}
+public         LinkedHashMap<String, String>  get_Map_Key_Parent()
+{
+	    final  LinkedHashMap<String, String>  kp  =  new  LinkedHashMap<String, String> ( Key_Parent );
+	    return                                kp;
 }
 
 
