@@ -33,36 +33,15 @@ private      Directory_Triples    ( LinkedHashMap<String,  String>  Key_Parent_O
 		                          , String                          Key_Rel_Base_Dir
 		                          )
 {
-	         Key_Parent  =  new     LinkedHashMap<String,  String>( Key_Parent_Old.size() );
-	         Key_Subdir  =  new     LinkedHashMap<String,  String>( Key_Subdir_Old.size() );
+//	         Key_Parent  =  new     LinkedHashMap<String,  String>( Key_Parent_Old.size() );
+//	         Key_Subdir  =  new     LinkedHashMap<String,  String>( Key_Subdir_Old.size() );
 	         
-	         Key_Parent.putAll( Key_Parent_Old );
-	         Key_Subdir.putAll( Key_Subdir_Old );
+	         Key_Parent  =         (LinkedHashMap<String,  String>) Key_Parent_Old.clone();
+	         Key_Subdir  =         (LinkedHashMap<String,  String>) Key_Subdir_Old.clone();
 	         
-//	         deep_copy ( Key_Parent, Key_Parent_Old );
-//	         deep_copy ( Key_Subdir, Key_Subdir_Old );
-	
+//	         Key_Parent.putAll( Key_Parent_Old );
+//	         Key_Subdir.putAll( Key_Subdir_Old );
 }
-/*****************************************************************************************
-protected    void  deep_copy( LinkedHashMap < String, String >  Key_Parent_New
-		                    , LinkedHashMap < String, String >  Key_Parent_Old
-		                    )
-{
-	         
-	         Set       <Entry<String, String>> es   = Key_Parent_Old.entrySet();
-	         Map.Entry       <String, String>  me;
-	         Iterator  <Entry<String, String>> iter = es.iterator();
-	         
-	         while ( iter.hasNext() )
-	               {
-	        	             me     =  iter . next    ();
-	        	     String  Key    =  me   . getKey  ();
-	        	     String  Value  =  me   . getValue();
-	        	     Key_Parent_New.put( Key, Value);
-	               }
-	
-}
-******************************************************************************************/
 public       Directory_Triples    clone( )
 {
 	         Directory_Triples    clone  =  new Directory_Triples( this.Key_Parent
