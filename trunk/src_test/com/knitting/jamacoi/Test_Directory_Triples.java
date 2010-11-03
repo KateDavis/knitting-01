@@ -212,6 +212,48 @@ public class Test_Directory_Triples {
 		   List_Subdirs  ( dt_clone );
 		   List_Parents  ( dt_clone );		   
 	}
+	@Test
+	public void Test_Remove_Bottom_Level_Subdir()
+	{
+		   String  Key    = "details";
+		   String  Parent = "Base_Dir";
+		   String  Subdir = "report_details";
+		   dt.put( Key,  Parent,  Subdir );
+		   
+		           Key    = "summary";
+		           Parent = "Base_Dir";
+		           Subdir = "report_summary";
+		   dt.put( Key,  Parent,  Subdir );
+		   
+                   Key    = "auto";
+                   Parent = "request";
+                   Subdir = "correlations_auto";
+           dt.put( Key,  Parent,  Subdir );
+           
+                   Key    = "partial";
+                   Parent = "request";
+                   Subdir = "correlations_partial";
+           dt.put( Key,  Parent,  Subdir );
+           
+           System.out.println ("");
+		   System.out.println ("Test_Remove_Bottom_Level_Subdir (before remove) -------------------------------");
+		   System.out.println ("");
+		   List_Keys     ( dt );
+		   List_Subdirs  ( dt );
+		   List_Parents  ( dt );
+		   
+		                 
+		                     Key = "auto";
+		   dt.remove_Subdir( Key );
+		   
+           
+           System.out.println ("");
+		   System.out.println ("Test_Remove_Bottom_Level_Subdir (after  remove) -------------------------------");
+		   System.out.println ("");
+		   List_Keys     ( dt );
+		   List_Subdirs  ( dt );
+		   List_Parents  ( dt );
+	}
 	public void List_Keys( final  Directory_Triples  dt )
 	{
 		ArrayList<String>  keys = dt.list_Keys();

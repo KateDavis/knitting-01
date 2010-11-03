@@ -144,6 +144,21 @@ public         LinkedHashMap<String, String>  get_Map_Key_Parent()
 	    final  LinkedHashMap<String, String>  kp  =  new  LinkedHashMap<String, String> ( Key_Parent );
 	    return                                kp;
 }
+public  boolean  remove_Subdir ( final String  Key )
+{
+	    if    ( Key_Subdir.containsKey( Key ) )
+	          { 
+	    	    Key_Subdir.remove( Key );
+	    	    Key_Parent.remove( Key );
+	    	    // need to remove all entries that have 'Key' as it's value!:
+	    	    return true;
+	          }
+	    else  {
+	    	    return false;
+	          }
+	    
+	     
+}
 
 
 }
