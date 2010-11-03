@@ -151,6 +151,67 @@ public class Test_Directory_Triples {
 		   List_Parents  ( dt_clone );
 		
 	}
+	@Test
+	public void Test_Clone_With_Different_Values()
+	{
+		   String  Key    = "details";
+		   String  Parent = "Base_Dir";
+		   String  Subdir = "report_details";
+		   dt.put( Key,  Parent,  Subdir );
+		   
+           
+           System.out.println ("");
+		   System.out.println ("Test_Clone_With_Different_Values dt's contents(0)--------------------");
+		   System.out.println ("");
+		   List_Subdirs  ( dt );
+		   List_Parents  ( dt );
+		   
+		   Directory_Triples dt_clone = dt.clone();
+
+           System.out.println ("");
+		   System.out.println ("Test_Clone_With_Differenrt_Values dt_clone's contents(0) ------------");
+		   System.out.println ("");
+		   List_Subdirs  ( dt_clone );
+		   List_Parents  ( dt_clone );
+		   
+		   Key    = "details";
+		   Subdir = "report_details_1";
+		   dt_clone.set_Subdir(Key, Subdir );
+		   
+		   System.out.println ("");
+		   System.out.println ("Test_Clone_With_Different_Values dt's contents(1)-------------------");
+		   System.out.println ("");
+		   List_Subdirs  ( dt );
+		   List_Parents  ( dt );
+		   
+	       System.out.println ("");
+		   System.out.println ("Test_Clone_With_Differenrt_Values dt_clone's contents(1) ------------");
+		   System.out.println ("");
+		   List_Subdirs  ( dt_clone );
+		   List_Parents  ( dt_clone );
+			   
+		   Key    = "auto";
+		   Parent = "details";
+		   Subdir = "corr_auto";
+		   dt.put(Key, Parent, Subdir);
+		   
+		   Key    = "partial";
+		   Parent = "details";
+		   Subdir = "corr_partial";
+		   dt.put(Key, Parent, Subdir);
+		   
+		   System.out.println ("");
+		   System.out.println ("Test_Clone_With_Different_Values dt's contents(2)-------------------");
+		   System.out.println ("");
+		   List_Subdirs  ( dt );
+		   List_Parents  ( dt );
+		   
+	       System.out.println ("");
+		   System.out.println ("Test_Clone_With_Differenrt_Values dt_clone's contents(2) ------------");
+		   System.out.println ("");
+		   List_Subdirs  ( dt_clone );
+		   List_Parents  ( dt_clone );		   
+	}
 	public void List_Keys( final  Directory_Triples  dt )
 	{
 		ArrayList<String>  keys = dt.list_Keys();
