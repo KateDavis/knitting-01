@@ -3,6 +3,7 @@ package com.knitting.jamacoi;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Set;
 
 public class Directory_Triples 
@@ -148,8 +149,9 @@ public  boolean  remove_Subdir ( final String  Key )
 {
 	    if    ( Key_Subdir.containsKey( Key ) )
 	          { 
-	    	    Key_Subdir.remove( Key );
-	    	    Key_Parent.remove( Key );
+	    	    rebuild_without  ( Key );
+	    	  //Key_Subdir.remove( Key );
+	    	  //Key_Parent.remove( Key );
 	    	    // need to remove all entries that have 'Key' as it's value!:
 	    	    return true;
 	          }
@@ -159,6 +161,46 @@ public  boolean  remove_Subdir ( final String  Key )
 	    
 	     
 }
+protected  void  rebuild_without ( final  String  Key_In )
+{
+	        LinkedHashMap <String, String>  Key_Parent_New  =  new  LinkedHashMap <String, String>( Key_Parent.size() );
+	        LinkedHashMap <String, String>  Key_Subdir_New  =  new  LinkedHashMap <String, String>( Key_Subdir.size() );
+	        LinkedHashMap <String, String>  Excluded_List   =  new  LinkedHashMap <String, String>( Key_Subdir.size() );
+	        
+	        Excluded_List.put( Key_In, "exclude");
+	        
+	        Iterator e_iter = Key_Subdir . entrySet() 
+	                                     . iterator();
+	        
+	        while  ( e_iter . hasNext() )
+	               {
+	        	     Map.Entry  entry  =  (Map.Entry) e_iter     . next  ();
+	        	     String     Key    =  (String   ) entry      . getKey();
+	        	     String     Parent =  (String   ) Key_Parent . get   (Key);
+	        	     
+	        	     if   ( Key_In == Key )
+	        	          {
+                          // do nothing, skip it	        	    	 
+	        	          }
+	        	     else
+	        	          {
+	        	    	     if   ( Excluded_List.containsKey(Parent) )
+	        	    	          {
+	        	    	    	    Excluded_List.put( Parent, "exclude" );
+	        	    	          }
+	        	    	     else
+	        	    	          {
+	        	    	            String  Value  =  (String ) entry.getValue();
+	        	    	            Key_Subdir_New .  put ( Key, Value );
+	        	    	            String  Parent1 =  Key_Parent.get(Key);
+	        	    	            Key_Parent_New.put(Key, Parent1);
+	        	    	          }
+	        	          }
+	               }
+	        Key_Parent = Key_Parent_New;
+	        Key_Subdir = Key_Subdir_New;
+}
+           
 
 
 }
