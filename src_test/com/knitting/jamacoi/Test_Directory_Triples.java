@@ -272,6 +272,9 @@ public class Test_Directory_Triples {
 	@Test
 	public void Test_Remove_Middle_Level_Subdir()
 	{
+		   dt = create_6a_level();
+		   
+    /******************************************************	   
 		   String  Key    = "family";
 		   String  Parent = "Base_Dir";
 		   String  Subdir = "appl_amzn_qcom";
@@ -301,8 +304,8 @@ public class Test_Directory_Triples {
                    Parent = "details";
                    Subdir = "correlations_partial";
            dt.put( Key,  Parent,  Subdir );
-           
-                   Key = "details";
+           *************************************************/
+           String Key = "details";
            System.out.println ("");
 		   System.out.println ("Test_Remove_Middle_Level_Subdir (before removal of Key = >"
 				              + Key
@@ -325,6 +328,42 @@ public class Test_Directory_Triples {
 		   List_Keys     ( dt );
 		   List_Subdirs  ( dt );
 		   List_Parents  ( dt );
+	}
+	protected Directory_Triples create_6a_level()
+	{
+	          Directory_Triples  d       =   new  Directory_Triples( "family" );
+	          
+			  String             Key     =  "family";
+			  String             Parent  =  "Base_Dir";
+			  String             Subdir  =  "appl_amzn_qcom";
+			                     dt      .   put( Key,  Parent,  Subdir );
+			   
+			                     Key     =  "request";
+			                     Parent  =  "family";
+			                     Subdir  =  "request_01";
+			                     d       .   put( Key,  Parent,  Subdir );
+			   
+			                     Key     =  "details";
+			                     Parent  =  "request";
+			                     Subdir  =  "report_details";
+			                     d       .   put( Key,  Parent,  Subdir );
+			   
+			                     Key     =  "summary";
+			                     Parent  =  "request";
+			                     Subdir  =  "report_summary";
+			                     d       .   put( Key,  Parent,  Subdir );
+			   
+	                             Key     =  "auto";
+	                             Parent  =  "details";
+	                             Subdir  =  "correlations_auto";
+	                             d       .   put( Key,  Parent,  Subdir );
+	           
+	                             Key     =  "partial";
+	                             Parent  =  "details";
+	                             Subdir  =  "correlations_partial";
+	                             d       .   put( Key,  Parent,  Subdir );
+	          
+	 return                      d;
 	}
 	public void List_Keys( final  Directory_Triples  dt )
 	{
