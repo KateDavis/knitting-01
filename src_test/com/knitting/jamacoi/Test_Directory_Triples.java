@@ -215,40 +215,112 @@ public class Test_Directory_Triples {
 	@Test
 	public void Test_Remove_Bottom_Level_Subdir()
 	{
-		   String  Key    = "details";
+		   String  Key    = "family";
 		   String  Parent = "Base_Dir";
-		   String  Subdir = "report_details";
+		   String  Subdir = "appl_amzn_qcom";
+		   dt.put( Key,  Parent,  Subdir );
+		   
+		           Key    = "request";
+		           Parent = "family";
+		           Subdir = "request_01";
+		   dt.put( Key,  Parent,  Subdir );
+		   
+		           Key    = "details";
+		           Parent = "request";
+		           Subdir = "report_details";
 		   dt.put( Key,  Parent,  Subdir );
 		   
 		           Key    = "summary";
-		           Parent = "Base_Dir";
+		           Parent = "request";
 		           Subdir = "report_summary";
 		   dt.put( Key,  Parent,  Subdir );
 		   
                    Key    = "auto";
-                   Parent = "request";
+                   Parent = "details";
                    Subdir = "correlations_auto";
            dt.put( Key,  Parent,  Subdir );
            
                    Key    = "partial";
-                   Parent = "request";
+                   Parent = "details";
                    Subdir = "correlations_partial";
            dt.put( Key,  Parent,  Subdir );
            
+                   Key = "auto";
            System.out.println ("");
-		   System.out.println ("Test_Remove_Bottom_Level_Subdir (before remove) -------------------------------");
+		   System.out.println ("Test_Remove_Middle_Level_Subdir (before removal of Key = >"
+				              + Key
+				              + "< ) -------------------------------");
 		   System.out.println ("");
 		   List_Keys     ( dt );
 		   List_Subdirs  ( dt );
 		   List_Parents  ( dt );
 		   
 		                 
-		                     Key = "auto";
+		                     
 		   dt.remove_Subdir( Key );
 		   
            
            System.out.println ("");
-		   System.out.println ("Test_Remove_Bottom_Level_Subdir (after  remove) -------------------------------");
+		   System.out.println ("Test_Remove_Middle_Level_Subdir (after  removal of Key = >"
+				              + Key
+				              + "< ) -------------------------------");
+		   System.out.println ("");
+		   List_Keys     ( dt );
+		   List_Subdirs  ( dt );
+		   List_Parents  ( dt );
+	}
+	@Test
+	public void Test_Remove_Middle_Level_Subdir()
+	{
+		   String  Key    = "family";
+		   String  Parent = "Base_Dir";
+		   String  Subdir = "appl_amzn_qcom";
+		   dt.put( Key,  Parent,  Subdir );
+		   
+		           Key    = "request";
+		           Parent = "family";
+		           Subdir = "request_01";
+		   dt.put( Key,  Parent,  Subdir );
+		   
+		           Key    = "details";
+		           Parent = "request";
+		           Subdir = "report_details";
+		   dt.put( Key,  Parent,  Subdir );
+		   
+		           Key    = "summary";
+		           Parent = "request";
+		           Subdir = "report_summary";
+		   dt.put( Key,  Parent,  Subdir );
+		   
+                   Key    = "auto";
+                   Parent = "details";
+                   Subdir = "correlations_auto";
+           dt.put( Key,  Parent,  Subdir );
+           
+                   Key    = "partial";
+                   Parent = "details";
+                   Subdir = "correlations_partial";
+           dt.put( Key,  Parent,  Subdir );
+           
+                   Key = "details";
+           System.out.println ("");
+		   System.out.println ("Test_Remove_Middle_Level_Subdir (before removal of Key = >"
+				              + Key
+				              + "< ) -------------------------------");
+		   System.out.println ("");
+		   List_Keys     ( dt );
+		   List_Subdirs  ( dt );
+		   List_Parents  ( dt );
+		   
+		                 
+		                     
+		   dt.remove_Subdir( Key );
+		   
+           
+           System.out.println ("");
+		   System.out.println ("Test_Remove_Middle_Level_Subdir (after  removal of Key = >"
+				              + Key
+				              + "< ) -------------------------------");
 		   System.out.println ("");
 		   List_Keys     ( dt );
 		   List_Subdirs  ( dt );
