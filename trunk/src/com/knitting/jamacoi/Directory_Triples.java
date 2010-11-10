@@ -33,15 +33,9 @@ private      Directory_Triples    ( LinkedHashMap<String,  String>  Key_Parent_O
 		                          , LinkedHashMap<String,  String>  Key_Subdir_Old
 		                          , String                          Key_Rel_Base_Dir
 		                          )
-{
-//	         Key_Parent  =  new     LinkedHashMap<String,  String>( Key_Parent_Old.size() );
-//	         Key_Subdir  =  new     LinkedHashMap<String,  String>( Key_Subdir_Old.size() );
-	         
+{	         
 	         Key_Parent  =         (LinkedHashMap<String,  String>) Key_Parent_Old.clone();
 	         Key_Subdir  =         (LinkedHashMap<String,  String>) Key_Subdir_Old.clone();
-	         
-//	         Key_Parent.putAll( Key_Parent_Old );
-//	         Key_Subdir.putAll( Key_Subdir_Old );
 }
 public       Directory_Triples    clone( )
 {
@@ -150,16 +144,11 @@ public  boolean  remove_Subdir ( final String  Key )
 	    if    ( Key_Subdir.containsKey( Key ) )
 	          { 
 	    	    rebuild_without  ( Key );
-	    	  //Key_Subdir.remove( Key );
-	    	  //Key_Parent.remove( Key );
-	    	    // need to remove all entries that have 'Key' as it's value!:
 	    	    return true;
 	          }
 	    else  {
 	    	    return false;
 	          }
-	    
-	     
 }
 protected  void  rebuild_without ( final  String  Key_In )
 {
@@ -190,8 +179,8 @@ protected  void  rebuild_without ( final  String  Key_In )
 	        	    	          }
 	        	    	     else
 	        	    	          {
-	        	    	            String  Value  =  (String ) entry.getValue();
-	        	    	            Key_Subdir_New .  put ( Key, Value );
+	        	    	            String  Value   =  (String ) entry.getValue();
+	        	    	            Key_Subdir_New  .  put ( Key, Value );
 	        	    	            String  Parent1 =  Key_Parent.get(Key);
 	        	    	            Key_Parent_New.put(Key, Parent1);
 	        	    	          }
@@ -200,7 +189,4 @@ protected  void  rebuild_without ( final  String  Key_In )
 	        Key_Parent = Key_Parent_New;
 	        Key_Subdir = Key_Subdir_New;
 }
-           
-
-
 }
