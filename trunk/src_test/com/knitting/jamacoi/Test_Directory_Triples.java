@@ -130,12 +130,8 @@ public class Test_Directory_Triples {
 	@Test
 	public void Test_Clone_Method()
 	{
-		   String  Key    = "details";
-		   String  Parent = "Base_Dir";
-		   String  Subdir = "report_details";
-		   dt.put( Key,  Parent,  Subdir );
-		   
-           
+		   dt = create_6a_level();
+		              
            System.out.println ("");
 		   System.out.println ("Test_Clone_Method dt's contents--------------------");
 		   System.out.println ("");
@@ -154,11 +150,7 @@ public class Test_Directory_Triples {
 	@Test
 	public void Test_Clone_With_Different_Values()
 	{
-		   String  Key    = "details";
-		   String  Parent = "Base_Dir";
-		   String  Subdir = "report_details";
-		   dt.put( Key,  Parent,  Subdir );
-		   
+		   dt = create_6a_level();
            
            System.out.println ("");
 		   System.out.println ("Test_Clone_With_Different_Values dt's contents(0)--------------------");
@@ -174,8 +166,8 @@ public class Test_Directory_Triples {
 		   List_Subdirs  ( dt_clone );
 		   List_Parents  ( dt_clone );
 		   
-		   Key    = "details";
-		   Subdir = "report_details_1";
+		   String  Key    = "details";
+		   String  Subdir = "report_details_1";
 		   dt_clone.set_Subdir(Key, Subdir );
 		   
 		   System.out.println ("");
@@ -190,9 +182,9 @@ public class Test_Directory_Triples {
 		   List_Subdirs  ( dt_clone );
 		   List_Parents  ( dt_clone );
 			   
-		   Key    = "auto";
-		   Parent = "details";
-		   Subdir = "corr_auto";
+		           Key    = "auto";
+		   String  Parent = "details";
+		           Subdir = "corr_auto";
 		   dt.put(Key, Parent, Subdir);
 		   
 		   Key    = "partial";
@@ -215,39 +207,11 @@ public class Test_Directory_Triples {
 	@Test
 	public void Test_Remove_Bottom_Level_Subdir()
 	{
-		   String  Key    = "family";
-		   String  Parent = "Base_Dir";
-		   String  Subdir = "appl_amzn_qcom";
-		   dt.put( Key,  Parent,  Subdir );
-		   
-		           Key    = "request";
-		           Parent = "family";
-		           Subdir = "request_01";
-		   dt.put( Key,  Parent,  Subdir );
-		   
-		           Key    = "details";
-		           Parent = "request";
-		           Subdir = "report_details";
-		   dt.put( Key,  Parent,  Subdir );
-		   
-		           Key    = "summary";
-		           Parent = "request";
-		           Subdir = "report_summary";
-		   dt.put( Key,  Parent,  Subdir );
-		   
-                   Key    = "auto";
-                   Parent = "details";
-                   Subdir = "correlations_auto";
-           dt.put( Key,  Parent,  Subdir );
+		   dt = create_6a_level();
            
-                   Key    = "partial";
-                   Parent = "details";
-                   Subdir = "correlations_partial";
-           dt.put( Key,  Parent,  Subdir );
-           
-                   Key = "auto";
+           String     Key = "auto";
            System.out.println ("");
-		   System.out.println ("Test_Remove_Middle_Level_Subdir (before removal of Key = >"
+		   System.out.println ("Test_Remove_Bottom_Level_Subdir (before removal of Key = >"
 				              + Key
 				              + "< ) -------------------------------");
 		   System.out.println ("");
@@ -261,7 +225,7 @@ public class Test_Directory_Triples {
 		   
            
            System.out.println ("");
-		   System.out.println ("Test_Remove_Middle_Level_Subdir (after  removal of Key = >"
+		   System.out.println ("Test_Remove_Bottom_Level_Subdir (after  removal of Key = >"
 				              + Key
 				              + "< ) -------------------------------");
 		   System.out.println ("");
@@ -274,37 +238,6 @@ public class Test_Directory_Triples {
 	{
 		   dt = create_6a_level();
 		   
-    /******************************************************	   
-		   String  Key    = "family";
-		   String  Parent = "Base_Dir";
-		   String  Subdir = "appl_amzn_qcom";
-		   dt.put( Key,  Parent,  Subdir );
-		   
-		           Key    = "request";
-		           Parent = "family";
-		           Subdir = "request_01";
-		   dt.put( Key,  Parent,  Subdir );
-		   
-		           Key    = "details";
-		           Parent = "request";
-		           Subdir = "report_details";
-		   dt.put( Key,  Parent,  Subdir );
-		   
-		           Key    = "summary";
-		           Parent = "request";
-		           Subdir = "report_summary";
-		   dt.put( Key,  Parent,  Subdir );
-		   
-                   Key    = "auto";
-                   Parent = "details";
-                   Subdir = "correlations_auto";
-           dt.put( Key,  Parent,  Subdir );
-           
-                   Key    = "partial";
-                   Parent = "details";
-                   Subdir = "correlations_partial";
-           dt.put( Key,  Parent,  Subdir );
-           *************************************************/
            String Key = "details";
            System.out.println ("");
 		   System.out.println ("Test_Remove_Middle_Level_Subdir (before removal of Key = >"
@@ -315,8 +248,7 @@ public class Test_Directory_Triples {
 		   List_Subdirs  ( dt );
 		   List_Parents  ( dt );
 		   
-		                 
-		                     
+		                                   
 		   dt.remove_Subdir( Key );
 		   
            
