@@ -167,7 +167,7 @@ protected  void  rebuild_without ( final  String  Key_In )
 	        	     String     Key    =  (String   ) entry      . getKey();
 	        	     String     Parent =  (String   ) Key_Parent . get   (Key);
 	        	     
-	        	     if   ( Key_In == Key )
+	        	     if   ( Key_In.equals( Key ) )
 	        	          {
                           // do nothing, skip it	        	    	 
 	        	          }
