@@ -1,5 +1,6 @@
 package com.knitting.util;
 
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -42,7 +43,7 @@ public  void     putAll( final  LHMSS  lhm_in )
 }
 public  LinkedHashMap<String, String>    get()
 {
-	    return    lhm;
+	    return    ( LinkedHashMap <String, String> ) Collections.unmodifiableMap(lhm);
 }
 public  String    get( final  String  Key )
 {
