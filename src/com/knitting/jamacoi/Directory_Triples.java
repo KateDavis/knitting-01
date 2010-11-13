@@ -6,15 +6,17 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
+import com.knitting.util.LHMSS;
+
 public class Directory_Triples 
              implements        Cloneable
 {
 final static String Rel_Base_Dir = "Rel_Base_Dir";	
 	
-private String                        Key_Rel_Base_Dir;
-private LinkedHashMap<String, String> Key_Parent;
-
-private LinkedHashMap<String, String> Key_Subdir;
+  private String                          Key_Rel_Base_Dir;
+//private LinkedHashMap<String, String>   Key_Parent;
+  private LHMSS                           Key_Parent;
+  private LinkedHashMap<String, String>   Key_Subdir;
 
 private      Directory_Triples(){;}    //      to prevent this constructor's use.
 public       Directory_Triples( final  String  Subdir
@@ -22,24 +24,27 @@ public       Directory_Triples( final  String  Subdir
 {
 final String     Base_Dir   =        "Base_Dir";
 
-	         Key_Parent = new     LinkedHashMap<String, String>();
+//	         Key_Parent = new     LinkedHashMap<String, String>();
+             Key_Parent = new     LHMSS();
 	         Key_Subdir = new     LinkedHashMap<String, String>();
 	         
 	         Key_Parent . put     ( Base_Dir,   Rel_Base_Dir  );
 	         Key_Subdir . put     ( Base_Dir,   Subdir        );
 	         set_Key_Rel_Base_Dir ( Base_Dir                  );
 }
-private      Directory_Triples    ( LinkedHashMap<String,  String>  Key_Parent_Old 
+//private    Directory_Triples    ( LinkedHashMap<String,  String>  Key_Parent_Old 
+  private    Directory_Triples    ( LHMSS                           Key_Parent_Old 
 		                          , LinkedHashMap<String,  String>  Key_Subdir_Old
 		                          , String                          Key_Rel_Base_Dir
 		                          )
 {	         
-	         Key_Parent  =         (LinkedHashMap<String,  String>) Key_Parent_Old.clone();
+//	         Key_Parent  =         (LinkedHashMap<String,  String>) Key_Parent_Old.clone();
+             Key_Parent  =         (LHMSS                         ) Key_Parent_Old.clone();
 	         Key_Subdir  =         (LinkedHashMap<String,  String>) Key_Subdir_Old.clone();
 }
 public       Directory_Triples    clone( )
 {
-	         Directory_Triples    clone  =  new Directory_Triples( this.Key_Parent
+	         Directory_Triples    clone  =  new Directory_Triples( this.Key_Parent     //test fails here!
 	        		                                             , this.Key_Subdir
 	        		                                             , "test"
 	        		                                             );
@@ -134,10 +139,17 @@ public         LinkedHashMap<String, String>  get_Map_Key_Subdir()
 	    final  LinkedHashMap<String, String>  ks  =  new  LinkedHashMap<String, String> ( Key_Subdir );
 	    return                                ks;
 }
-public         LinkedHashMap<String, String>  get_Map_Key_Parent()
+
+//public       LinkedHashMap<String, String>  get_Map_Key_Parent()
+//{
+// 	    final  LinkedHashMap<String, String>  kp  =  new  LinkedHashMap<String, String> ( Key_Parent );
+//	    return                                kp;
+//}
+
+
+public            LHMSS  get_Map_Key_Parent()
 {
-	    final  LinkedHashMap<String, String>  kp  =  new  LinkedHashMap<String, String> ( Key_Parent );
-	    return                                kp;
+	    return    Key_Parent;              
 }
 public  boolean  remove_Subdir ( final String  Key )
 {
@@ -152,7 +164,8 @@ public  boolean  remove_Subdir ( final String  Key )
 }
 protected  void  rebuild_without ( final  String  Key_In )
 {
-	        LinkedHashMap <String, String>  Key_Parent_New  =  new  LinkedHashMap <String, String>( Key_Parent.size() );
+//	        LinkedHashMap <String, String>  Key_Parent_New  =  new  LinkedHashMap <String, String>( Key_Parent.size() );
+            LHMSS                           Key_Parent_New  =  new  LHMSS                         ( Key_Parent.size() );
 	        LinkedHashMap <String, String>  Key_Subdir_New  =  new  LinkedHashMap <String, String>( Key_Subdir.size() );
 	        LinkedHashMap <String, String>  Excluded_List   =  new  LinkedHashMap <String, String>( Key_Subdir.size() );
 	        
