@@ -15,6 +15,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.knitting.util.LHMSS;
+
 public class Test_Directory_Triples {
 	Directory_Triples dt;
 
@@ -138,7 +140,7 @@ public class Test_Directory_Triples {
 		   List_Subdirs  ( dt );
 		   List_Parents  ( dt );
 		   
-		   Directory_Triples dt_clone = dt.clone();
+		   Directory_Triples dt_clone = dt.clone();  //test fails here! cannot cast to LHMSS
 
            System.out.println ("");
 		   System.out.println ("Test_Clone_Method dt_clone's contents -------------");
@@ -168,7 +170,7 @@ public class Test_Directory_Triples {
 		   
 		   String  Key    = "details";
 		   String  Subdir = "report_details_1";
-		   dt_clone.set_Subdir(Key, Subdir );
+		   dt_clone.set_Subdir(Key, Subdir );   // change the clone instance
 		   
 		   System.out.println ("");
 		   System.out.println ("Test_Clone_With_Different_Values dt's contents(1)-------------------");
@@ -182,15 +184,13 @@ public class Test_Directory_Triples {
 		   List_Subdirs  ( dt_clone );
 		   List_Parents  ( dt_clone );
 			   
-		           Key    = "auto";
-		   String  Parent = "details";
-		           Subdir = "corr_auto";
-		   dt.put(Key, Parent, Subdir);
+		   Key    = "auto";
+		   Subdir = "corr_auto";
+		   dt.set_Subdir(Key, Subdir);      // change the original instance
 		   
 		   Key    = "partial";
-		   Parent = "details";
-		   Subdir = "corr_partial";
-		   dt.put(Key, Parent, Subdir);
+		   Subdir = "corr_partial";      
+		   dt.set_Subdir(Key, Subdir);      // change the original instance
 		   
 		   System.out.println ("");
 		   System.out.println ("Test_Clone_With_Different_Values dt's contents(2)-------------------");
@@ -315,10 +315,14 @@ public class Test_Directory_Triples {
 	}
 	public void List_Parents( final  Directory_Triples  dt )
 	{
-		LinkedHashMap  <String, String>  lhm  =  dt  . get_Map_Key_Parent();
-		Set      <Entry<String, String>> es   =  lhm . entrySet();
-		Map.Entry      <String, String>  me;
-		Iterator <Entry<String, String>> iter =  es  . iterator();
+//----------------------------------------------------------------------------------------------------------------
+//		LinkedHashMap  <String, String>    lhm   =  dt   . get_Map_Key_Parent();  // this where cast error occurred
+//		Set      <Entry<String, String>>   es    =  lhm  . entrySet();
+//----------------------------------------------------------------------------------------------------------------		
+		LHMSS                              lhm   =  dt   . get_Map_Key_Parent();		
+		Set      <Entry<String, String>>   es    =  lhm  . entrySet();
+		Map.Entry      <String, String>    me;
+		Iterator <Entry<String, String>>   iter  =  es   . iterator();
 		
 		while ( iter.hasNext() )
 		      {
