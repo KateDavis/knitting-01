@@ -147,40 +147,40 @@ public  boolean  remove_Subdir ( final String  Key )
 }
 protected  void  rebuild_without ( final  String  Key_In )
 {
-            LHMSS                           Key_Parent_New  =  new  LHMSS                         ( Key_Parent.size() );
-	        LHMSS                           Key_Subdir_New  =  new  LHMSS                         ( Key_Subdir.size() );
-	        LHMSS                           Excluded_List   =  new  LHMSS                         ( Key_Subdir.size() );
+            LHMSS                           Key_Parent_New  =  new  LHMSS        ( Key_Parent.size() );
+	        LHMSS                           Key_Subdir_New  =  new  LHMSS        ( Key_Subdir.size() );
+	        LHMSS                           Excluded_List   =  new  LHMSS        ( Key_Subdir.size() );
 	        
 	        Excluded_List.put( Key_In, "exclude");
-	        
-	        Iterator < Map.Entry < String, String >> e_iter = Key_Subdir . entrySet() 
-	                                                                     . iterator();
-	        
-	        while  ( e_iter . hasNext() )
-	               {
-	        	     Map.Entry <String,String>  entry  =  ( Map.Entry <String,String> ) e_iter     . next  ();
-	        	     String                     Key    =  ( String                    ) entry      . getKey();
-	        	     String                     Parent =  ( String                    ) Key_Parent . get   (Key);
+
+	        for (  Iterator < Map.Entry < String, String >> e_iter = Key_Subdir  . entrySet() 
+                                                                                 . iterator();
+	                                                        e_iter               . hasNext ();
+	        	)
+	            {
+	        	    Map.Entry           < String, String >  entry  =  e_iter     . next  ();
+	        	    String                                  Key    =  entry      . getKey();
+	        	    String                                  Parent =  Key_Parent . get   (Key);
 	        	     
-	        	     if   ( Key_In.equals( Key ) )
-	        	          {
-                          // do nothing, skip it	        	    	 
-	        	          }
-	        	     else
-	        	          {
-	        	    	     if   ( Excluded_List.containsKey  (Parent)  )
-	        	    	          {
-	        	    	    	    Excluded_List.put( Parent, "exclude" );
-	        	    	          }
-	        	    	     else
-	        	    	          {
-	        	    	            String  Value   =  (String ) entry.getValue();
-	        	    	            Key_Subdir_New  .  put ( Key, Value );
-	        	    	            String  Parent1 =  Key_Parent.get(Key);
-	        	    	            Key_Parent_New.put(Key, Parent1);
-	        	    	          }
-	        	          }
-	               }
+	        	    if   ( Key_In.equals( Key ) )
+	        	         {
+                         // do nothing, skip it	        	    	 
+	        	         }
+	                else
+	        	         {
+	        	    	    if   ( Excluded_List.containsKey  (Parent)  )
+	        	    	         {
+	        	        	       Excluded_List.put( Parent, "exclude" );
+	        	    	         }
+	        	    	    else
+	        	    	         {
+	        	    	           String  Value   =  (String ) entry.getValue();
+	        	    	           Key_Subdir_New  .  put ( Key, Value );
+	        	    	           String  Parent1 =  Key_Parent.get(Key);
+	        	    	           Key_Parent_New.put(Key, Parent1);
+	        	    	         }
+	        	         }
+	             }
 	        Key_Parent = Key_Parent_New;
 	        Key_Subdir = Key_Subdir_New;
 }
