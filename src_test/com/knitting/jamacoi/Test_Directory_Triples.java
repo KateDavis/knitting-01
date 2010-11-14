@@ -314,20 +314,17 @@ public class Test_Directory_Triples {
 	}
 	public void List_Parents( final  Directory_Triples  dt )
 	{	
-		LHMSS                                    lhm   =  dt   . get_Map_Key_Parent();		
-		Set      <Entry<String, String>>         es    =  lhm  . entrySet();
-		Map.Entry      <String, String>          me;
-//		Iterator <Entry<String, String>>         iter  =  es   . iterator();	
-//		while ( iter.hasNext() )
-		for ( Iterator <Entry<String, String>>   iter  =  es   . iterator();
-			                                     iter  .  hasNext(); 	
+		LHMSS                                    lhm     =  dt   . get_Map_Key_Parent();		
+		for ( Iterator <Entry<String, String>>   iter    =  lhm  . entrySet ()
+				                                                 . iterator ();
+			                                     iter            . hasNext  (); 	
 			)		
 		    {
-			              me       =  iter.next();
-		        String    Key      =  me  .getKey();
-		        String    Subdir   =  me  .getValue();
-		        Formatter line     =  new Formatter();
-		        line .format       ( "key = %-15s  Parent=>%s<"
+			   Map.Entry  <String, String>       me      =  iter . next     ();
+		       String                            Key     =  me   . getKey   ();
+		       String                            Subdir  =  me   . getValue ();
+		       Formatter                         line    =  new    Formatter();
+		       line .format        ( "key = %-15s  Parent=>%s<"
 		        		           ,  ">" + Key + "<"
 		        		           ,  Subdir
 		        		           );
