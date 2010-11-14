@@ -313,11 +313,7 @@ public class Test_Directory_Triples {
 		        System.out.println( "");
 	}
 	public void List_Parents( final  Directory_Triples  dt )
-	{
-//----------------------------------------------------------------------------------------------------------------
-//		LinkedHashMap  <String, String>    lhm   =  dt   . get_Map_Key_Parent();  // this where cast error occurred
-//		Set      <Entry<String, String>>   es    =  lhm  . entrySet();
-//----------------------------------------------------------------------------------------------------------------		
+	{	
 		LHMSS                              lhm   =  dt   . get_Map_Key_Parent();		
 		Set      <Entry<String, String>>   es    =  lhm  . entrySet();
 		Map.Entry      <String, String>    me;
@@ -341,10 +337,6 @@ public class Test_Directory_Triples {
 	}	
 	public void List_Subdirs( final Directory_Triples  dt)
 	{
-//-------------------------------------------------------------------------------------------------------------------		
-//		LinkedHashMap  <String, String>  lhm  =  dt  . get_Map_Key_Subdir();
-//		Set      <Entry<String, String>> es   =  lhm . entrySet();
-//-------------------------------------------------------------------------------------------------------------------
 		LHMSS                            lhm  =  dt  . get_Map_Key_Subdir();
 		Set      <Entry<String, String>> es   =  lhm . entrySet();
 		Map.Entry      <String, String>  me;

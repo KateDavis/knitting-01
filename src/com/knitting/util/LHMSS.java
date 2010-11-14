@@ -49,10 +49,15 @@ public  boolean          containsValue( final  String  Value )
 {
 	    return     ( lhm.containsValue               ( Value ) );
 }
+
+/****************************************************************************************
 public  void             putAll( final  LHMSS  lhm_in )
 {
+	    LHMSS        lhm_new  = new LHMSS( lhm_in.size() ); 
 	                 lhm.putAll( (Map<? extends String, ? extends String>) lhm_in );
+	                 lhm.putAll( (LinkedHashMap<String, String>>)          lhm_in );
 }
+****************************************************************************************/
 
 public  Set <String>     keySet()
 {
