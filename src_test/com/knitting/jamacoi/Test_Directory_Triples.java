@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 import java.util.Map.Entry;
 
 import org.junit.After;
@@ -312,9 +311,15 @@ public class Test_Directory_Triples {
 		      }
 		        System.out.println( "");
 	}
-	public void List_Parents( final  Directory_Triples  dt )
+	public  void  List_Parents( final  Directory_Triples  dt )
 	{	
-		LHMSS                                    lhm     =  dt   . get_Map_Key_Parent();		
+		    LHMSS             lhm    =  dt   . get_Map_Key_Parent();		
+		    list_Values     ( lhm,  "Parent" );
+	}
+	private void list_Values( final  LHMSS   lhm
+			                , final  String  title
+			                )
+	{
 		for ( Iterator <Entry<String, String>>   iter    =  lhm  . entrySet ()
 				                                                 . iterator ();
 			                                     iter            . hasNext  (); 	
@@ -322,26 +327,26 @@ public class Test_Directory_Triples {
 		    {
 			   Map.Entry  <String, String>       me      =  iter . next     ();
 		       String                            Key     =  me   . getKey   ();
-		       String                            Subdir  =  me   . getValue ();
+		       String                            Value   =  me   . getValue ();
 		       Formatter                         line    =  new    Formatter();
-		       line .format        ( "key = %-15s  Parent=>%s<"
-		        		           ,  ">" + Key + "<"
-		        		           ,  Subdir
-		        		           );
-		        System.out.println ( line );
+		       line .format       ( "key = %-15s  %s=>%s<"
+		        		          ,  ">" + Key + "<"
+		        		          ,  title
+		        		          ,  Value
+		        		          );
+		       System.out.println ( line );
 		    }
-		        System.out.println ("");
+		       System.out.println ("");
 	}	
 	public void List_Subdirs( final Directory_Triples  dt)
 	{
 		LHMSS                            lhm  =  dt  . get_Map_Key_Subdir();
-		Set      <Entry<String, String>> es   =  lhm . entrySet();
-		Map.Entry      <String, String>  me;
-		Iterator <Entry<String, String>> iter =  es  . iterator();
-		
-		while ( iter.hasNext() )
+		for ( Iterator <Entry<String, String>>   iter    =  lhm  . entrySet ()
+                                                                 . iterator ();
+                                                 iter            . hasNext  (); 	
+            )
 		      {
-			            me      =  iter.next();
+			    Map.Entry  <String, String>        me      =  iter.next();
 		        String  Key     =  me  .getKey();
 		        String  Subdir  =  me  .getValue();
 		        
