@@ -4,7 +4,6 @@ package com.knitting.jamacoi;
 import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
@@ -342,7 +341,11 @@ public class Test_Directory_Triples {
 	}	
 	public void List_Subdirs( final Directory_Triples  dt)
 	{
-		LinkedHashMap  <String, String>  lhm  =  dt  . get_Map_Key_Subdir();
+//-------------------------------------------------------------------------------------------------------------------		
+//		LinkedHashMap  <String, String>  lhm  =  dt  . get_Map_Key_Subdir();
+//		Set      <Entry<String, String>> es   =  lhm . entrySet();
+//-------------------------------------------------------------------------------------------------------------------
+		LHMSS                            lhm  =  dt  . get_Map_Key_Subdir();
 		Set      <Entry<String, String>> es   =  lhm . entrySet();
 		Map.Entry      <String, String>  me;
 		Iterator <Entry<String, String>> iter =  es  . iterator();
