@@ -35,25 +35,33 @@ public  LHMSS   clone()
 	          }
         return                              new_lhm;
 }
-public  String  put( final  String  Key
-		           , final  String  Value
-		           )
+public  String           put( final  String  Key
+		                    , final  String  Value
+		                    )
 {
         return     ( lhm.put( Key, Value ) );
 }
-public  boolean  containsKey( final  String  Key )
+public  boolean          containsKey(   final  String  Key )
 {
-	    return     ( lhm.containsKey       ( Key ) );
+	    return     ( lhm.containsKey                 ( Key ) );
 }
-public  boolean  containsValue( final  String  Value )
+public  boolean          containsValue( final  String  Value )
 {
-	    return     ( lhm.containsValue       ( Value ) );
+	    return     ( lhm.containsValue               ( Value ) );
 }
-public  void     putAll( final  LHMSS  lhm_in )
+public  void             putAll( final  LHMSS  lhm_in )
 {
-	             lhm.putAll( (Map<? extends String, ? extends String>) lhm_in );
+	                 lhm.putAll( (Map<? extends String, ? extends String>) lhm_in );
 }
 
+public  Set <String>     keySet()
+{
+	    return     ( lhm.keySet() );
+}
+public  Iterator< String> iterator_key_string()
+{
+	    return       lhm.keySet().iterator();
+}
 public   LinkedHashMap<String, String>  get()
 {
 return  (LinkedHashMap<String, String>) Collections.unmodifiableMap(lhm); 

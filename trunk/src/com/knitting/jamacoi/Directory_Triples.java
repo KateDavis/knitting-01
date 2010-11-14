@@ -2,7 +2,6 @@ package com.knitting.jamacoi;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -16,7 +15,8 @@ final static String Rel_Base_Dir = "Rel_Base_Dir";
   private String                          Key_Rel_Base_Dir;
 //private LinkedHashMap<String, String>   Key_Parent;
   private LHMSS                           Key_Parent;
-  private LinkedHashMap<String, String>   Key_Subdir;
+//private LinkedHashMap<String, String>   Key_Subdir;
+  private LHMSS                           Key_Subdir;
 
 private      Directory_Triples(){;}    //      to prevent this constructor's use.
 public       Directory_Triples( final  String  Subdir
@@ -26,25 +26,28 @@ final String     Base_Dir   =        "Base_Dir";
 
 //	         Key_Parent = new     LinkedHashMap<String, String>();
              Key_Parent = new     LHMSS();
-	         Key_Subdir = new     LinkedHashMap<String, String>();
+//	         Key_Subdir = new     LinkedHashMap<String, String>();
+	         Key_Subdir = new     LHMSS();
 	         
 	         Key_Parent . put     ( Base_Dir,   Rel_Base_Dir  );
 	         Key_Subdir . put     ( Base_Dir,   Subdir        );
 	         set_Key_Rel_Base_Dir ( Base_Dir                  );
 }
 //private    Directory_Triples    ( LinkedHashMap<String,  String>  Key_Parent_Old 
+//		                          , LinkedHashMap<String,  String>  Key_Subdir_Old
   private    Directory_Triples    ( LHMSS                           Key_Parent_Old 
-		                          , LinkedHashMap<String,  String>  Key_Subdir_Old
+		                          , LHMSS                           Key_Subdir_Old
 		                          , String                          Key_Rel_Base_Dir
 		                          )
 {	         
 //	         Key_Parent  =         (LinkedHashMap<String,  String>) Key_Parent_Old.clone();
              Key_Parent  =         (LHMSS                         ) Key_Parent_Old.clone();
-	         Key_Subdir  =         (LinkedHashMap<String,  String>) Key_Subdir_Old.clone();
+//	         Key_Subdir  =         (LinkedHashMap<String,  String>) Key_Subdir_Old.clone();
+	         Key_Subdir  =         (LHMSS                         ) Key_Subdir_Old.clone();
 }
 public       Directory_Triples    clone( )
 {
-	         Directory_Triples    clone  =  new Directory_Triples( this.Key_Parent     //test fails here!
+	         Directory_Triples    clone  =  new Directory_Triples( this.Key_Parent
 	        		                                             , this.Key_Subdir
 	        		                                             , "test"
 	        		                                             );
@@ -105,7 +108,8 @@ public  boolean contains_Key( final  String  Key)
 	    	   return false;
 	         }
 }
-protected  LinkedHashMap< String,  String > get_Key_Subdir()
+//protected  LinkedHashMap< String,  String > get_Key_Subdir()
+  protected  LHMSS get_Key_Subdir()
 {
 return                                          Key_Subdir;
 }
@@ -134,10 +138,14 @@ public ArrayList<String> list_Keys()
 	   
 	   return            al;
 }
-public         LinkedHashMap<String, String>  get_Map_Key_Subdir()
+//public       LinkedHashMap<String, String>  get_Map_Key_Subdir()
+//{
+//	    final  LinkedHashMap<String, String>  ks  =  new  LinkedHashMap<String, String> ( Key_Subdir );
+//	    return                                ks;
+//}
+public            LHMSS  get_Map_Key_Subdir()
 {
-	    final  LinkedHashMap<String, String>  ks  =  new  LinkedHashMap<String, String> ( Key_Subdir );
-	    return                                ks;
+	    return    Key_Subdir;              
 }
 
 //public       LinkedHashMap<String, String>  get_Map_Key_Parent()
@@ -166,19 +174,21 @@ protected  void  rebuild_without ( final  String  Key_In )
 {
 //	        LinkedHashMap <String, String>  Key_Parent_New  =  new  LinkedHashMap <String, String>( Key_Parent.size() );
             LHMSS                           Key_Parent_New  =  new  LHMSS                         ( Key_Parent.size() );
-	        LinkedHashMap <String, String>  Key_Subdir_New  =  new  LinkedHashMap <String, String>( Key_Subdir.size() );
-	        LinkedHashMap <String, String>  Excluded_List   =  new  LinkedHashMap <String, String>( Key_Subdir.size() );
+//	        LinkedHashMap <String, String>  Key_Subdir_New  =  new  LinkedHashMap <String, String>( Key_Subdir.size() );
+	        LHMSS                           Key_Subdir_New  =  new  LHMSS                         ( Key_Subdir.size() );
+//	        LinkedHashMap <String, String>  Excluded_List   =  new  LinkedHashMap <String, String>( Key_Subdir.size() );
+	        LHMSS                           Excluded_List   =  new  LHMSS                         ( Key_Subdir.size() );
 	        
 	        Excluded_List.put( Key_In, "exclude");
 	        
-	        Iterator e_iter = Key_Subdir . entrySet() 
-	                                     . iterator();
+	        Iterator < Map.Entry < String, String >> e_iter = Key_Subdir . entrySet() 
+	                                                                     . iterator();
 	        
 	        while  ( e_iter . hasNext() )
 	               {
-	        	     Map.Entry  entry  =  (Map.Entry) e_iter     . next  ();
-	        	     String     Key    =  (String   ) entry      . getKey();
-	        	     String     Parent =  (String   ) Key_Parent . get   (Key);
+	        	     Map.Entry <String,String>  entry  =  ( Map.Entry <String,String> ) e_iter     . next  ();
+	        	     String                     Key    =  ( String                    ) entry      . getKey();
+	        	     String                     Parent =  ( String                    ) Key_Parent . get   (Key);
 	        	     
 	        	     if   ( Key_In.equals( Key ) )
 	        	          {
@@ -186,7 +196,7 @@ protected  void  rebuild_without ( final  String  Key_In )
 	        	          }
 	        	     else
 	        	          {
-	        	    	     if   ( Excluded_List.containsKey(Parent) )
+	        	    	     if   ( Excluded_List.containsKey  (Parent)  )
 	        	    	          {
 	        	    	    	    Excluded_List.put( Parent, "exclude" );
 	        	    	          }
