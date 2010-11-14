@@ -3,7 +3,6 @@ package com.knitting.jamacoi;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 
 import com.knitting.util.LHMSS;
 
@@ -117,15 +116,15 @@ public boolean  containsParent ( final  String  Parent )
 }
 public  ArrayList<String> list_Keys()
 {
-	    ArrayList<String>  al   = new ArrayList<String>    ( Key_Subdir . size    () );
-	    Set      <String>  es   =                            Key_Subdir . keySet  (); 
-	    Iterator <String>  iter =                            es         . iterator();
-	   
-	    while ( iter.hasNext() )
-	          {
-		        al.add( (String) iter.next() );
-	          }
-	    return            al;
+	    ArrayList        <String>  al   = new ArrayList<String> ( Key_Subdir . size    () );
+	    for (   Iterator <String>  iter =                         Key_Subdir . keySet  () 
+	    		                                                             . iterator();
+	                               iter . hasNext();
+	    	)
+	        {
+		        al.add( (String)   iter . next   () );
+	        }
+	    return  al;
 }
 public            LHMSS  get_Map_Key_Subdir()
 {
