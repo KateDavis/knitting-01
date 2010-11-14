@@ -23,9 +23,14 @@ public  LHMSS(  final  int  size )
 public  LHMSS   clone()
 {
 	    LHMSS                               new_lhm  =  new    LHMSS   ( lhm.size() );
-	    Iterator <Entry <String, String >>  iter     =  lhm  . entrySet()
-	                                                         . iterator();
-	    while ( iter.hasNext() )
+//	    Iterator <Entry <String, String >>  iter     =  lhm  . entrySet()
+//	                                                         . iterator();
+//	    while ( iter.hasNext() )
+	    for ( Iterator <Entry <String, String >>  iter     =  lhm  . entrySet()
+                                                                   . iterator();
+	                                              iter             . hasNext ();
+	    	)
+	    	
 	          {
                Map.Entry<String, String>    me       =  iter . next();	
                
