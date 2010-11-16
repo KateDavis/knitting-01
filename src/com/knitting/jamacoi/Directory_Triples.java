@@ -97,19 +97,6 @@ public boolean  set_Subdir( final  String  Key
 		      return false;
 	        }
 }
-/***********************************************
-public  boolean x( final  String  Key)
-{
-	    if   ( get_Key_Subdir().containsKey( Key ) )
-	         {
-	    	   return true;
-	         }
-	    else
-	         {
-	    	   return false;
-	         }
-}
-************************************************/
 protected  LHMSS get_Key_Subdir()
 {
 return               Key_Subdir;
