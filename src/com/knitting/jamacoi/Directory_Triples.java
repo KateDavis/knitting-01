@@ -6,34 +6,45 @@ import java.util.Map;
 
 import com.knitting.util.LHMSS;
 
-public class Directory_Triples 
-             implements        Cloneable
+public   class  Directory_Triples 
+                implements         Cloneable
 {
-final static String Rel_Base_Dir = "Rel_Base_Dir";	
+private  final  static  String     Rel_Base_Dir    =  "Rel_Base_Dir";	
+private  final  static  String     Parent_default  =  "-1";
 	
-  private String                          Key_Rel_Base_Dir;
-  private LHMSS                           Key_Parent;
-  private LHMSS                           Key_Subdir;
+private  String                    Key_Rel_Base_Dir;
+private  LHMSS                     Key_Parent;
+private  LHMSS                     Key_Subdir;
 
-private       Directory_Triples(){;}    //      to prevent this constructor's use.
-public        Directory_Triples( final  String  Subdir
-		                       )
+private       Directory_Triples    (){;}    //   to prevent this constructor's use.
+public        Directory_Triples    ( final       String  Subdir
+		                           )
 {
-final String  Base_Dir   =        "Base_Dir";
               Key_Parent = new     LHMSS();
 	          Key_Subdir = new     LHMSS();
 	         
-	          Key_Parent . put     ( Base_Dir,   Rel_Base_Dir  );
-	          Key_Subdir . put     ( Base_Dir,   Subdir        );
-	          set_Key_Rel_Base_Dir ( Base_Dir                  );
+	          Key_Parent . put     ( Rel_Base_Dir,   Parent_default);
+	          Key_Subdir . put     ( Rel_Base_Dir,   Subdir        );
+	          set_Key_Rel_Base_Dir ( Rel_Base_Dir                  );
 }
-  private     Directory_Triples    ( LHMSS                           Key_Parent_Old 
-		                           , LHMSS                           Key_Subdir_Old
-		                           , String                          Key_Rel_Base_Dir
+public        Directory_Triples    ( final           String  Key
+		                           , final           String  Subdir
+                                   )
+{
+	          Key_Parent = new     LHMSS();
+              Key_Subdir = new     LHMSS();
+              
+              Key_Parent . put     ( Key,            Parent_default);
+              Key_Subdir . put     ( Key,            Subdir        );
+              set_Key_Rel_Base_Dir (                 Key           );
+}
+  private     Directory_Triples    ( LHMSS                       Key_Parent_Old 
+		                           , LHMSS                       Key_Subdir_Old
+		                           , String                      Key_Rel_Base_Dir
 		                           )
 {	         
-              Key_Parent  =         (LHMSS                         ) Key_Parent_Old.clone();
-	          Key_Subdir  =         (LHMSS                         ) Key_Subdir_Old.clone();
+              Key_Parent  =         (LHMSS                     ) Key_Parent_Old.clone();
+	          Key_Subdir  =         (LHMSS                     ) Key_Subdir_Old.clone();
 }
 public        Directory_Triples    clone( )
 {
@@ -43,7 +54,6 @@ public        Directory_Triples    clone( )
 	        		                                              );
 	          return               clone;
 }
-
 protected    void   set_Key_Rel_Base_Dir ( final  String  Key )
 {
 	                    Key_Rel_Base_Dir = Key;
@@ -102,9 +112,9 @@ protected  LHMSS get_Key_Subdir()
 {
 return               Key_Subdir;
 }
-public boolean  containsKey( final  String  Key )
+public boolean  containsKey    ( final  String  Key )
 {
-	   return   Key_Subdir . containsKey (  Key );
+	   return   Key_Subdir     . containsKey (  Key );
 }
 public boolean  containsParent ( final  String  Parent )
 {
