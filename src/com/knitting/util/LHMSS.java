@@ -23,12 +23,17 @@ public  LHMSS(  final  int  size )
 public  LHMSS   clone()
 {
 	    LHMSS                                     new_lhm  =  new    LHMSS   ( lhm.size() );
+/********************************************************************************************	    
 	    for ( Iterator <Entry <String, String >>  iter     =  lhm  . entrySet()
                                                                    . iterator();
 	                                              iter             . hasNext ();
 	    	)
+********************************************************************************************/
+	    for ( Map.Entry <String, String>           me 
+	    	: lhm      . entrySet()
+	    	)
 	        {
-              Map.Entry<String, String>           me       =  iter . next();	
+//            Map.Entry<String, String>           me       =  iter . next();	
                
                                                   new_lhm  .  put  ( me.getKey()
                                             		               , me.getValue()
