@@ -1,7 +1,6 @@
 package com.knitting.jamacoi;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Map;
 
 import com.knitting.util.LHMSS;
@@ -116,12 +115,18 @@ public boolean  containsParent ( final  String  Parent )
 public  ArrayList<String> list_Keys()
 {
 	    ArrayList        <String>  al   = new ArrayList<String> ( Key_Subdir . size    () );
+/*******************************************************************************************	    
 	    for (   Iterator <String>  iter =                         Key_Subdir . keySet  () 
 	    		                                                             . iterator();
 	                               iter . hasNext();
 	    	)
+*******************************************************************************************/
+	    for (   String       key
+	    	:   Key_Subdir . keySet  () 	
+	    	)
 	        {
-		        al.add( (String)   iter . next   () );
+		    //  al.add( (String)   iter . next   () );
+	    	    al.add     ( key );
 	        }
 	    return  al;
 }
@@ -151,13 +156,17 @@ protected  void  rebuild_without ( final  String  Key_In )
 	        LHMSS                           Excluded_List   =  new  LHMSS        ( Key_Subdir.size() );
 	        
 	        Excluded_List.put( Key_In, "exclude");
-
+/*******************************************************************************************************
 	        for (  Iterator < Map.Entry < String, String >> e_iter = Key_Subdir  . entrySet() 
                                                                                  . iterator();
 	                                                        e_iter               . hasNext ();
 	        	)
+*******************************************************************************************************/
+	        for (  Map.Entry   < String, String>  entry
+	        	:  Key_Subdir  . entrySet()	
+	        	)
 	            {
-	        	    Map.Entry           < String, String >  entry  =  e_iter     . next  ();
+//	        	    Map.Entry           < String, String >  entry  =  e_iter     . next  ();
 	        	    String                                  Key    =  entry      . getKey();
 	        	    String                                  Parent =  Key_Parent . get   (Key);
 	        	     
