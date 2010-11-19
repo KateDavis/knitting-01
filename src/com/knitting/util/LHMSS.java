@@ -29,7 +29,7 @@ public  LHMSS   clone()
 	                                              iter             . hasNext ();
 	    	)
 ********************************************************************************************/
-	    for ( Map.Entry <String, String>           me 
+	    for ( Map.Entry <String, String>          me 
 	    	: lhm      . entrySet()
 	    	)
 	        {
