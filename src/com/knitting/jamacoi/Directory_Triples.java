@@ -57,31 +57,66 @@ protected     void   set_Key_Rel_Base_Dir ( final  String  Key )
 {
  	                     Key_Rel_Base_Dir = Key;
 }
-protected     String get_Key_Rel_Base_Dir ( final  String  Key )
+protected     String get_Key_Rel_Base_Dir () // final  String  Key )
 {
 return	                 Key_Rel_Base_Dir;
 }
-public        boolean  put        ( final  String  Key
+public        void   put          ( final  String  Key
 		                          , final  String  Parent
 		                          , final  String  Subdir
 		                          )
 {
-if  (   
-	  (	Key_Subdir.containsKey( Key ) )
-	  ||
-	  ( Key == Rel_Base_Dir           )
-	)
+if  (        Key_Subdir . containsKey   ( Parent ) )
     {
-	  throw  new  IllegalArgumentException( "Parent does NOT exist");
+	  if   ( Key_Subdir . containsValue ( Subdir ) )
+	       {
+		     check_for_duplicate_directory ( Key,  Parent,  Subdir );
+	       }
+	  else
+	       {
+	         addEntry  ( Key, Parent, Subdir );
+           }
     }
 else
     {
-	  Key_Parent . put ( Key,  Parent );
-	  Key_Subdir . put ( Key,  Subdir );
-	
-      return true;
+	  throw  new  IllegalArgumentException( "Parent does NOT exist");
     }
 }
+private  void  addEntry  ( final  String  Key
+		                 , final  String  Parent
+		                 , final  String  Subdir
+		                 )
+{
+              Key_Parent . put  ( Key,    Parent  );
+              Key_Subdir . put  ( Key,    Subdir  );
+}
+private  void  check_for_duplicate_directory ( final  String  Key
+                                             , final  String  Parent
+                                             , final  String  Subdir
+		                                     )
+{
+         for ( Map.Entry <String, String>  entry
+             : Key_Subdir.entrySet()
+             )
+             {
+        	   if ( entry.getValue()  ==   Subdir )
+        	      {
+        		    matchingParent(Parent, entry);
+        	      }
+             }
+}
+private  void  matchingParent( final            String          Parent
+		                     , final  Map.Entry<String, String> entry
+		                     ) 
+{
+         String               existing_key   =  entry.getKey();
+	
+         if ( Key_Parent.get( existing_key ) == Parent )
+            {
+              throw  new  IllegalArgumentException( "Duplicate Sub-directory for Parent" );
+            }
+}
+
 public boolean  set_Subdir( final  String  Key
 		                  , final  String  Value
 		                  )
@@ -144,7 +179,7 @@ public  boolean  remove_Subdir ( final String  Key )
 }
 protected  void  rebuild_without ( final  String  Key_In )
 {
-            LHMESS                          Key_Parent_New  =  new  LHMESS       (); // Key_Parent.size() );
+            LHMESS                          Key_Parent_New  =  new  LHMESS       (); // ( Key_Parent.size() );
 	        LHMESS                          Key_Subdir_New  =  new  LHMESS       (); // ( Key_Subdir.size() );
 	        LHMESS                          Excluded_List   =  new  LHMESS       (); // ( Key_Subdir.size() );
 	        

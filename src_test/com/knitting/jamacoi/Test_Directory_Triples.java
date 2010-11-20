@@ -56,7 +56,7 @@ public class Test_Directory_Triples {
 	public void Test_Add_Subdir_1()
 	{
 		   String  Key    = "request";
-		   String  Parent = "Base_Dir";
+		   String  Parent =  dt.get_Key_Rel_Base_Dir(); 
 		   String  Subdir = "appl_amzn_qcom";
 		   dt.put( Key,  Parent,  Subdir );
 		   
@@ -71,23 +71,28 @@ public class Test_Directory_Triples {
 	@Test
 	public void Test_Add_Subdir_2()
 	{
-		   String  Key    = "details";
-		   String  Parent = "Base_Dir";
-		   String  Subdir = "report_details";
+		   String  Key    = "reports";
+		   String  Parent =  dt.get_Key_Rel_Base_Dir(); 
+		   String  Subdir = "report_dir";
 		   dt.put( Key,  Parent,  Subdir );
 		   
 		           Key    = "summary";
-		           Parent = "Base_Dir";
+		           Parent = "reports";
 		           Subdir = "report_summary";
 		   dt.put( Key,  Parent,  Subdir );
 		   
+                   Key    = "detail";
+                   Parent = "reports";
+                   Subdir = "report_detail";
+           dt.put( Key,  Parent,  Subdir );
+		   
                    Key    = "auto";
-                   Parent = "request";
+                   Parent = "detail";
                    Subdir = "correlations_auto";
            dt.put( Key,  Parent,  Subdir );
            
                    Key    = "partial";
-                   Parent = "request";
+                   Parent = "detail";
                    Subdir = "correlations_partial";
            dt.put( Key,  Parent,  Subdir );
            
@@ -103,16 +108,16 @@ public class Test_Directory_Triples {
 	public void Test_Chg_Subdir_1()
 	{
 		   String  Key    = "details";
-		   String  Parent = "Base_Dir";
+		   String  Parent =  dt.get_Key_Rel_Base_Dir();
 		   String  Subdir = "report_details";
 		   dt.put( Key,  Parent,  Subdir );
 		   
            
-           System.out.println ("");
-		   System.out.println ("Test_Chg_Subdir_1 before Change --------------------");
-		   System.out.println ("");
-		   List_Subdirs  ( dt );
-		   List_Parents  ( dt );
+           System.out.println ( "" );
+		   System.out.println ( "Test_Chg_Subdir_1 before Change --------------------");
+		   System.out.println ( "" );
+		   List_Subdirs       ( dt );
+		   List_Parents       ( dt );
 		   
 		           Key    = "details";
 		           Subdir = "report_details_new";
@@ -259,18 +264,110 @@ public class Test_Directory_Triples {
 		   List_Subdirs  ( dt );
 		   List_Parents  ( dt );
 	}
+	@Test
+	public void Test_No_Parent_Add_Attempt()
+	{
+		   dt = create_6a_level();
+		   
+		   String  Key    = "orphan";
+		   String  Parent = "parent_1";
+		   String  Subdir = "annie";
+         
+           System.out.println ("");
+		   System.out.println ("Test_No_Parent_Add_Attempt (before attempted add of Key = >"
+				              + Key
+				              + "< ) -------------------------------");
+		   System.out.println ("");
+		   List_Keys     ( dt );
+		   List_Subdirs  ( dt );
+		   List_Parents  ( dt );
+		   
+           
+		   try      {dt.put( Key,  Parent,  Subdir );
+		            }
+		   catch    (IllegalArgumentException  e   )
+		            {
+			         System.out.println ( "put of >"
+			        		            +  Key
+			        		            + "< failed because: >"
+			        		            +  e.getMessage()
+			        		            + "<"
+			        		            );
+		            }
+
+           System.out.println ("");
+		   System.out.println ("Test_No_Parent_Add_Attempt (after  attempted add of Key = >"
+				              + Key
+				              + "< ) -------------------------------");
+		   System.out.println ("");
+		   List_Keys     ( dt );
+		   List_Subdirs  ( dt );
+		   List_Parents  ( dt );
+	}
+	@Test
+	public void Test_Duplicate_Sub_Directory_For_Parent_Add_Attempt()
+	{
+		   dt = create_6a_level();
+		   
+		   String  Key    = "duplicate";
+		   String  Parent = "family";
+		   String  Subdir = "request_01";
+         
+           System.out.println ("");
+		   System.out.println ("Test_Duplicate_Sub_Directory_For_Parent_Add_Attempt (before attempted add of Key = >"
+				              + Key
+				              + "< ) -------------------------------");
+		   System.out.println ("");
+		   List_Keys     ( dt );
+		   List_Subdirs  ( dt );
+		   List_Parents  ( dt );
+		   
+           
+		   try      { dt.put( Key,  Parent,  Subdir );
+		            }
+		   catch    ( IllegalArgumentException  e   )
+		            {
+			          System.out.println ( "put of >"
+                                         +  Key
+			        		             + "< failed because: >"
+			        		             +  e.getMessage()
+			        		             + "<"
+			        		             );
+		            }
+
+           System.out.println ("");
+		   System.out.println ("Test_Duplicate_Sub_Directory_For_Parent_Add_Attempt (after  attempted add of Key = >"
+				              + Key
+				              + "< ) -------------------------------");
+		   System.out.println ("");
+		   List_Keys     ( dt );
+		   List_Subdirs  ( dt );
+		   List_Parents  ( dt );
+	}
 	protected Directory_Triples create_6a_level()
 	{
-	          Directory_Triples  d       =   new  Directory_Triples( "family" );
+	          Directory_Triples  d       =   new  Directory_Triples( "family" 
+	        		                                               , "appl_amzn_qcom"
+	        		                                               );
 	          
-			  String             Key     =  "family";
-			  String             Parent  =  "Base_Dir";
-			  String             Subdir  =  "appl_amzn_qcom";
-			                     dt      .   put( Key,  Parent,  Subdir );
+//	          String  Default_Parent     =   d.get_Key_Rel_Base_Dir();
+//	          
+//	          System.out.println ( "" );
+//	          System.out.println ( "Default_Parent = >"
+//	        		             +  Default_Parent
+//	        		             + "<"
+//	        		             );
+//	          System.out.println ( "" );
+//	          
+//			  System.out.println ( "" );
+//			  List_Keys          ( dt );
+//			  List_Subdirs       ( dt );
+//			  List_Parents       ( dt );
+
 			   
-			                     Key     =  "request";
-			                     Parent  =  "family";
-			                     Subdir  =  "request_01";
+			  String             Key     =  "request";
+			  String             Parent  =  "family";
+			  String             Subdir  =  "request_01";
 			                     d       .   put( Key,  Parent,  Subdir );
 			   
 			                     Key     =  "details";
