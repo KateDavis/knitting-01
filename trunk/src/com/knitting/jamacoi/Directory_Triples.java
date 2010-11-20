@@ -72,7 +72,7 @@ if  (
 	  ( Key == Rel_Base_Dir           )
 	)
     {
-	  return false;
+	  throw  new  IllegalArgumentException( "Parent does NOT exist");
     }
 else
     {
