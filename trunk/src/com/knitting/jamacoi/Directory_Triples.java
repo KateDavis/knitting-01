@@ -168,10 +168,10 @@ protected  void  rebuild_without ( final  String  Key_In )
 	        	    	         }
 	        	    	    else
 	        	    	         {
-	        	    	           String  Value   =  (String ) entry.getValue();
-	        	    	           Key_Subdir_New  .  put ( Key, Value );
+	        	    	           String  Value   =  entry.getValue();
+	        	    	           Key_Subdir_New  .  put ( Key, Value  );
 	        	    	           String  Parent1 =  Key_Parent.get(Key);
-	        	    	           Key_Parent_New.put(Key, Parent1);
+	        	    	           Key_Parent_New  .  put ( Key, Parent1);
 	        	    	         }
 	        	         }
 	             }
