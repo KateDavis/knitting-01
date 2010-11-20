@@ -61,10 +61,11 @@ protected     String get_Key_Rel_Base_Dir () // final  String  Key )
 {
 return	                 Key_Rel_Base_Dir;
 }
-public        void   put          ( final  String  Key
+public        void    put         ( final  String  Key
 		                          , final  String  Parent
 		                          , final  String  Subdir
 		                          )
+              throws  IllegalArgumentException
 {
 if  (        Key_Subdir . containsKey      ( Parent ) )
     {
@@ -90,10 +91,11 @@ private  void  addEntry  ( final  String  Key
               Key_Parent . put  ( Key,    Parent  );
               Key_Subdir . put  ( Key,    Subdir  );
 }
-private  void  check_for_duplicate_directory ( final  String  Key
-                                             , final  String  Parent
-                                             , final  String  Subdir
-		                                     )
+private  void    check_for_duplicate_directory ( final  String  Key
+                                               , final  String  Parent
+                                               , final  String  Subdir
+		                                       )
+         throws  IllegalArgumentException
 {
          for ( Map.Entry <String, String>  entry
              : Key_Subdir.entrySet()
@@ -105,9 +107,10 @@ private  void  check_for_duplicate_directory ( final  String  Key
         	      }
              }
 }
-private  void  matchingParent( final            String          Parent
-		                     , final  Map.Entry<String, String> entry
-		                     ) 
+private  void    matchingParent( final            String          Parent
+		                       , final  Map.Entry<String, String> entry
+		                       ) 
+         throws  IllegalArgumentException
 {
          String               existing_key   =  entry.getKey();
 	
