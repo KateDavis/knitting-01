@@ -3,6 +3,7 @@ package com.knitting.jamacoi;
 import java.util.ArrayList;
 import java.util.Map;
 
+import com.knitting.util.LHMESS;
 import com.knitting.util.LHMSS;
 
 public   class  Directory_Triples 
@@ -12,15 +13,15 @@ private  final  static  String     Rel_Base_Dir    =  "Rel_Base_Dir";
 private  final  static  String     Parent_default  =  "-1";
 	
 private  String                    Key_Rel_Base_Dir;
-private  LHMSS                     Key_Parent;
-private  LHMSS                     Key_Subdir;
+private  LHMESS                    Key_Parent;
+private  LHMESS                    Key_Subdir;
 
 private       Directory_Triples    (){;}    //   to prevent this constructor's use.
 public        Directory_Triples    ( final       String  Subdir
 		                           )
 {
-              Key_Parent = new     LHMSS();
-	          Key_Subdir = new     LHMSS();
+              Key_Parent = new     LHMESS();
+	          Key_Subdir = new     LHMESS();
 	         
 	          Key_Parent . put     ( Rel_Base_Dir,   Parent_default);
 	          Key_Subdir . put     ( Rel_Base_Dir,   Subdir        );
@@ -30,20 +31,20 @@ public        Directory_Triples    ( final           String  Key
 		                           , final           String  Subdir
                                    )
 {
-	          Key_Parent = new     LHMSS();
-              Key_Subdir = new     LHMSS();
+	          Key_Parent = new     LHMESS();
+              Key_Subdir = new     LHMESS();
               
               Key_Parent . put     ( Key,            Parent_default);
               Key_Subdir . put     ( Key,            Subdir        );
               set_Key_Rel_Base_Dir (                 Key           );
 }
-  private     Directory_Triples    ( LHMSS                       Key_Parent_Old 
-		                           , LHMSS                       Key_Subdir_Old
+  private     Directory_Triples    ( LHMESS                      Key_Parent_Old 
+		                           , LHMESS                      Key_Subdir_Old
 		                           , String                      Key_Rel_Base_Dir
 		                           )
 {	         
-              Key_Parent  =         (LHMSS                     ) Key_Parent_Old.clone();
-	          Key_Subdir  =         (LHMSS                     ) Key_Subdir_Old.clone();
+              Key_Parent  =         (LHMESS                    ) Key_Parent_Old.clone();
+	          Key_Subdir  =         (LHMESS                    ) Key_Subdir_Old.clone();
 }
 public        Directory_Triples    clone( )
 {
@@ -96,7 +97,7 @@ public boolean  set_Subdir( final  String  Key
 		      return false;
 	        }
 }
-protected  LHMSS get_Key_Subdir()
+protected  LHMESS get_Key_Subdir()
 {
 return               Key_Subdir;
 }
@@ -130,11 +131,11 @@ public  ArrayList<String> list_Keys()
 	        }
 	    return  al;
 }
-public            LHMSS  get_Map_Key_Subdir()
+public            LHMESS  get_Map_Key_Subdir()
 {
 	    return    Key_Subdir;              
 }
-public            LHMSS  get_Map_Key_Parent()
+public            LHMESS  get_Map_Key_Parent()
 {
 	    return    Key_Parent;              
 }
@@ -151,8 +152,8 @@ public  boolean  remove_Subdir ( final String  Key )
 }
 protected  void  rebuild_without ( final  String  Key_In )
 {
-            LHMSS                           Key_Parent_New  =  new  LHMSS        ( Key_Parent.size() );
-	        LHMSS                           Key_Subdir_New  =  new  LHMSS        ( Key_Subdir.size() );
+            LHMESS                          Key_Parent_New  =  new  LHMESS       (); // Key_Parent.size() );
+	        LHMESS                          Key_Subdir_New  =  new  LHMESS       (); // ( Key_Subdir.size() );
 	        LHMSS                           Excluded_List   =  new  LHMSS        ( Key_Subdir.size() );
 	        
 	        Excluded_List.put( Key_In, "exclude");
