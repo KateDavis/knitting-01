@@ -344,6 +344,46 @@ public class Test_Directory_Triples {
 		   List_Subdirs  ( dt );
 		   List_Parents  ( dt );
 	}
+	@Test
+	public void Test_Duplicate_Sub_Directory_For_Non_Parent_Add_Attempt()
+	{
+		   dt = create_6a_level();
+		   
+		   String  Key    = "test";
+		   String  Parent = "family";
+		   String  Subdir = "report_summary";
+         
+           System.out.println ("");
+		   System.out.println ("Test_Duplicate_Sub_Directory_For_Non_Parent_Add_Attempt (before attempted add of Key = >"
+				              + Key
+				              + "< ) -------------------------------");
+		   System.out.println ("");
+		   List_Keys     ( dt );
+		   List_Subdirs  ( dt );
+		   List_Parents  ( dt );
+		   
+           
+		   try      { dt.put( Key,  Parent,  Subdir );
+		            }
+		   catch    ( IllegalArgumentException  e   )
+		            {
+			          System.out.println ( "put of >"
+                                         +  Key
+			        		             + "< failed because: >"
+			        		             +  e.getMessage()
+			        		             + "<"
+			        		             );
+		            }
+
+           System.out.println ("");
+		   System.out.println ("Test_Duplicate_Sub_Directory_For_Non_Parent_Add_Attempt (after  attempted add of Key = >"
+				              + Key
+				              + "< ) -------------------------------");
+		   System.out.println ("");
+		   List_Keys     ( dt );
+		   List_Subdirs  ( dt );
+		   List_Parents  ( dt );
+	}
 	protected Directory_Triples create_6a_level()
 	{
 	          Directory_Triples  d       =   new  Directory_Triples( "family" 
