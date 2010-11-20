@@ -66,20 +66,20 @@ public        void   put          ( final  String  Key
 		                          , final  String  Subdir
 		                          )
 {
-if  (        Key_Subdir . containsKey   ( Parent ) )
+if  (        Key_Subdir . containsKey      ( Parent ) )
     {
-	  if   ( Key_Subdir . containsValue ( Subdir ) )
+	  if   ( Key_Subdir . containsValue    ( Subdir ) )
 	       {
 		     check_for_duplicate_directory ( Key,  Parent,  Subdir );
 	       }
-	  else
-	       {
-	         addEntry  ( Key, Parent, Subdir );
-           }
+	  addEntry  ( Key, Parent, Subdir );
     }
 else
     {
-	  throw  new  IllegalArgumentException( "Parent does NOT exist");
+	  throw  new  IllegalArgumentException( "Parent:("
+			                              +  Parent
+			                              + ") does NOT exist"
+			                              );
     }
 }
 private  void  addEntry  ( final  String  Key
@@ -113,7 +113,12 @@ private  void  matchingParent( final            String          Parent
 	
          if ( Key_Parent.get( existing_key ) == Parent )
             {
-              throw  new  IllegalArgumentException( "Duplicate Sub-directory for Parent" );
+              throw  new  IllegalArgumentException( "Duplicate Sub-directory:("
+            		                              +  entry.getValue()
+            		                              + ") for Parent:("
+            		                              +  Parent
+            		                              + ")"
+            		                              );
             }
 }
 
