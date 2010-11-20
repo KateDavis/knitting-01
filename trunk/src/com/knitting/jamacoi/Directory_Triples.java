@@ -11,12 +11,12 @@ public   class  Directory_Triples
 private  final  static  String     Rel_Base_Dir    =  "Rel_Base_Dir";	
 private  final  static  String     Parent_default  =  "-1";
 	
-private  String                    Key_Rel_Base_Dir;
-private  LHMESS                    Key_Parent;
-private  LHMESS                    Key_Subdir;
+private                 String     Key_Rel_Base_Dir;
+private                 LHMESS     Key_Parent;
+private                 LHMESS     Key_Subdir;
 
-private       Directory_Triples    (){;}    //   to prevent this constructor's use.
-public        Directory_Triples    ( final       String  Subdir
+private       Directory_Triples    (){;}        //   to prevent this constructor's use.
+public        Directory_Triples    ( final           String  Subdir
 		                           )
 {
               Key_Parent = new     LHMESS();
@@ -37,34 +37,34 @@ public        Directory_Triples    ( final           String  Key
               Key_Subdir . put     ( Key,            Subdir        );
               set_Key_Rel_Base_Dir (                 Key           );
 }
-  private     Directory_Triples    ( LHMESS                      Key_Parent_Old 
-		                           , LHMESS                      Key_Subdir_Old
-		                           , String                      Key_Rel_Base_Dir
+  private     Directory_Triples    ( LHMESS          Key_Parent_Old 
+		                           , LHMESS          Key_Subdir_Old
+		                           , String          Key_Rel_Base_Dir
 		                           )
 {	         
-              Key_Parent  =         (LHMESS                    ) Key_Parent_Old.clone();
-	          Key_Subdir  =         (LHMESS                    ) Key_Subdir_Old.clone();
+              Key_Parent  =        ( LHMESS )        Key_Parent_Old.clone();
+	          Key_Subdir  =        ( LHMESS )        Key_Subdir_Old.clone();
 }
-public        Directory_Triples    clone( )
+public        Directory_Triples    clone()
 {
-	          Directory_Triples    clone  =  new Directory_Triples( this.Key_Parent
-	        	  	                                              , this.Key_Subdir
+	          Directory_Triples    clone  =  new Directory_Triples(  this.Key_Parent
+	        	  	                                              ,  this.Key_Subdir
 	        		                                              , "test"
 	        		                                              );
 	          return               clone;
 }
-protected    void   set_Key_Rel_Base_Dir ( final  String  Key )
+protected     void   set_Key_Rel_Base_Dir ( final  String  Key )
 {
-	                    Key_Rel_Base_Dir = Key;
+ 	                     Key_Rel_Base_Dir = Key;
 }
-protected    String get_Key_Rel_Base_Dir ( final  String  Key )
+protected     String get_Key_Rel_Base_Dir ( final  String  Key )
 {
-return	                Key_Rel_Base_Dir;
+return	                 Key_Rel_Base_Dir;
 }
-public       boolean  put        ( final  String  Key
-		                         , final  String  Parent
-		                         , final  String  Subdir
-		                         )
+public        boolean  put        ( final  String  Key
+		                          , final  String  Parent
+		                          , final  String  Subdir
+		                          )
 {
 if  (   
 	  (	Key_Subdir.containsKey( Key ) )
@@ -98,7 +98,7 @@ public boolean  set_Subdir( final  String  Key
 }
 protected  LHMESS get_Key_Subdir()
 {
-return               Key_Subdir;
+return                Key_Subdir;
 }
 public boolean  containsKey    ( final  String  Key )
 {
