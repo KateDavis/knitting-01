@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import com.knitting.util.LHMESS;
-import com.knitting.util.LHMSS;
 
 public   class  Directory_Triples 
                 implements         Cloneable
@@ -116,17 +115,10 @@ public boolean  containsParent ( final  String  Parent )
 public  ArrayList<String> list_Keys()
 {
 	    ArrayList        <String>  al   = new ArrayList<String> ( Key_Subdir . size    () );
-/*******************************************************************************************	    
-	    for (   Iterator <String>  iter =                         Key_Subdir . keySet  () 
-	    		                                                             . iterator();
-	                               iter . hasNext();
-	    	)
-*******************************************************************************************/
 	    for (   String       key
 	    	:   Key_Subdir . keySet  () 	
 	    	)
 	        {
-		    //  al.add( (String)   iter . next   () );
 	    	    al.add     ( key );
 	        }
 	    return  al;
@@ -154,20 +146,13 @@ protected  void  rebuild_without ( final  String  Key_In )
 {
             LHMESS                          Key_Parent_New  =  new  LHMESS       (); // Key_Parent.size() );
 	        LHMESS                          Key_Subdir_New  =  new  LHMESS       (); // ( Key_Subdir.size() );
-	        LHMSS                           Excluded_List   =  new  LHMSS        ( Key_Subdir.size() );
+	        LHMESS                          Excluded_List   =  new  LHMESS       (); // ( Key_Subdir.size() );
 	        
-	        Excluded_List.put( Key_In, "exclude");
-/*******************************************************************************************************
-	        for (  Iterator < Map.Entry < String, String >> e_iter = Key_Subdir  . entrySet() 
-                                                                                 . iterator();
-	                                                        e_iter               . hasNext ();
-	        	)
-*******************************************************************************************************/
+	        Excluded_List.put  ( Key_In, "exclude");
 	        for (  Map.Entry   < String, String>  entry
 	        	:  Key_Subdir  . entrySet()	
 	        	)
 	            {
-//	        	    Map.Entry           < String, String >  entry  =  e_iter     . next  ();
 	        	    String                                  Key    =  entry      . getKey();
 	        	    String                                  Parent =  Key_Parent . get   (Key);
 	        	     
