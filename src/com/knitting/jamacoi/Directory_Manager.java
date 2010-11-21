@@ -1,0 +1,84 @@
+package com.knitting.jamacoi;
+
+import java.net.URL;
+import java.util.Map;
+
+public class Directory_Manager {
+	
+private      LHMESURL  dirs;	
+	
+public       Directory_Manager ( Directory_Triples  dir_t )	
+             throws    java.net.MalformedURLException
+{
+	         dirs     =    new  LHMESURL ();
+URL          url_ws   =   (new  Workspace() ) . get_Workspace();  
+URL          url_new;
+
+for  ( Map.Entry<String, String>    entry
+     : dir_t.get_Map_Key_Subdir() . entrySet()
+     )
+     {
+	   print_Intial_Data      (  url_ws, entry          );
+	   url_new =  getNewURL   (  dir_t,  url_ws,  entry );
+	   print_New_URL          (  url_new                );
+       dirs.put(  entry.getKey(),      url_new          );
+     }
+}
+
+private void print_Intial_Data( final  URL                        url_ws
+		                      , final  Map.Entry<String, String>  entry
+		                      ) 
+{
+	   System.out.println     ( "Key ... = >"
+			                  +  entry.getKey()
+			                  + "<"
+			                  );
+	   System.out.println     ( "Value . = >"
+	                          +  entry.getKey()
+	                          + "<"
+	                          );
+	   System.out.println     ( "url_ws  = >"
+                              +  url_ws  . toExternalForm()
+                              + "<"
+                              );
+}
+
+private URL getNewURL ( final  Directory_Triples             dir_t
+		              , final  URL                           url_ws
+		              , final  Map.Entry < String, String >  entry
+		              ) 
+            throws      java.net.MalformedURLException 
+{
+	    URL      url_new;
+	    
+	    if    (  entry.getValue(). equals ( dir_t.get_Key_Rel_Base_Dir() )
+              )	                           
+              {
+		                url_new     =  new   URL ( url_ws
+                                                 , entry.getValue()
+                                                 );
+              }
+	    else  {
+		         String     parent  =  dir_t.get_Map_Key_Parent()
+		                                    .get ( entry.getKey() );
+		        
+		         URL    url_parent  =  dirs .get (     parent );
+		                url_new     =  new   URL ( url_parent
+		         		                         , entry.getValue()
+                                                 );
+              }
+return  url_new;
+}
+private  void  print_New_URL    ( final  URL   url_new ) 
+{
+	     System.out.println     ( "url_new = >"
+                                +  url_new . toExternalForm()
+                                + "<"
+                                );
+	     System.out.println     ( "---------------------------------------------------------" );
+}
+public  LHMESURL  get_Map_URL()
+{
+return            dirs;	
+}
+}

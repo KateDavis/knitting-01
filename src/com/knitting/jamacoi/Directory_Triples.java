@@ -37,7 +37,7 @@ public        Directory_Triples    ( final           String  Key
               Key_Subdir . put     ( Key,            Subdir        );
               set_Key_Rel_Base_Dir (                 Key           );
 }
-  private     Directory_Triples    ( LHMESS          Key_Parent_Old 
+ private      Directory_Triples    ( LHMESS          Key_Parent_Old 
 		                           , LHMESS          Key_Subdir_Old
 		                           , String          Key_Rel_Base_Dir
 		                           )
@@ -57,7 +57,7 @@ protected     void   set_Key_Rel_Base_Dir ( final  String  Key )
 {
  	                     Key_Rel_Base_Dir = Key;
 }
-protected     String get_Key_Rel_Base_Dir () // final  String  Key )
+public        String get_Key_Rel_Base_Dir () 
 {
 return	                 Key_Rel_Base_Dir;
 }
