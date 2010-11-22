@@ -19,8 +19,8 @@ private       Directory_Triples    (){;}        //   to prevent this constructor
 public        Directory_Triples    ( final           String  Subdir
 		                           )
 {
-              Key_Parent = new     LHMESS();
-	          Key_Subdir = new     LHMESS();
+              Key_Parent = new       LHMESS();
+	          Key_Subdir = new       LHMESS();
 	         
 	          Key_Parent . put     ( Rel_Base_Dir,   Parent_default);
 	          Key_Subdir . put     ( Rel_Base_Dir,   Subdir        );
@@ -30,14 +30,14 @@ public        Directory_Triples    ( final           String  Key
 		                           , final           String  Subdir
                                    )
 {
-	          Key_Parent = new     LHMESS();
-              Key_Subdir = new     LHMESS();
+	          Key_Parent = new       LHMESS();
+              Key_Subdir = new       LHMESS();
               
               Key_Parent . put     ( Key,            Parent_default);
               Key_Subdir . put     ( Key,            Subdir        );
               set_Key_Rel_Base_Dir (                 Key           );
 }
- private      Directory_Triples    ( LHMESS          Key_Parent_Old 
+private       Directory_Triples    ( LHMESS          Key_Parent_Old 
 		                           , LHMESS          Key_Subdir_Old
 		                           , String          Key_Rel_Base_Dir
 		                           )

@@ -29,16 +29,16 @@ private void print_Intial_Data( final  URL                        url_ws
 		                      , final  Map.Entry<String, String>  entry
 		                      ) 
 {
-	   System.out.println     ( "Key ... = >"
+	   System.out.println     ( "Key ........ = >"
 			                  +  entry.getKey()
 			                  + "<"
 			                  );
-	   System.out.println     ( "Value . = >"
-	                          +  entry.getKey()
+	   System.out.println     ( "Value ...... = >"
+	                          +  entry.getValue()
 	                          + "<"
 	                          );
-	   System.out.println     ( "url_ws  = >"
-                              +  url_ws  . toExternalForm()
+	   System.out.println     ( "url_ws ..... = >"
+                              +  url_ws       . toExternalForm()
                               + "<"
                               );
 }
@@ -51,7 +51,14 @@ private URL getNewURL ( final  Directory_Triples             dir_t
 {
 	    URL      url_new;
 	    
-	    if    (  entry.getValue(). equals ( dir_t.get_Key_Rel_Base_Dir() )
+	    String   Rel_Base_Dir       =       dir_t.get_Key_Rel_Base_Dir() ;
+	    
+	    System.out.println ( "Rel_Base_Dir = >"
+	    		           +  Rel_Base_Dir
+	    		           + "<"
+	    		           );
+	    
+	    if    (  entry.getKey()     . equals     ( dir_t.get_Key_Rel_Base_Dir() )
               )	                           
               {
 		                url_new     =  new   URL ( url_ws
@@ -59,20 +66,39 @@ private URL getNewURL ( final  Directory_Triples             dir_t
                                                  );
               }
 	    else  {
-		         String     parent  =  dir_t.get_Map_Key_Parent()
+		         String     parent  =  dir_t.get_Map_Key_Parent()      //
 		                                    .get ( entry.getKey() );
+		         String     p_value =  dir_t.get_Map_Key_Subdir()
+                                            .get(parent);
+		         String     value   =              entry.getValue();
 		        
+		         System.out.println ( "    p_value  = >"
+     		                        +      p_value
+     		                        + "<"
+     		                        );
+		         System.out.println ( "    value    = >"
+                                    +      value
+                                    + "<"
+                                    );
 		         URL    url_parent  =  dirs .get (     parent );
+		         String url_p       =              url_parent.toExternalForm();
+		         String sub_dir     =  p_value
+		                            + "/"
+		                            +  value;
+		         System.out.println ( "url_parent   = >"
+		        		            +  url_p
+		        		            + "<"
+		        		            );
 		                url_new     =  new   URL ( url_parent
-		         		                         , entry.getValue()
+		         		                         , sub_dir    //  entry.getValue()
                                                  );
               }
 return  url_new;
 }
 private  void  print_New_URL    ( final  URL   url_new ) 
 {
-	     System.out.println     ( "url_new = >"
-                                +  url_new . toExternalForm()
+	     System.out.println     ( "url_new      = >"
+                                +  url_new      . toExternalForm()
                                 + "<"
                                 );
 	     System.out.println     ( "---------------------------------------------------------" );
