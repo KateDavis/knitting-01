@@ -18,13 +18,13 @@ for  ( Map.Entry<String, String>    entry
      : dir_t.get_Map_Key_Subdir() . entrySet()
      )
      {
-	   print_Intial_Data      (  url_ws, entry          );
+//	   print_Intial_Data      (  url_ws, entry          );
 	   url_new =  getNewURL   (  dir_t,  url_ws,  entry );
-	   print_New_URL          (  url_new                );
+//	   print_New_URL          (  url_new                );
        dirs.put(  entry.getKey(),      url_new          );
      }
 }
-
+/*****************************************************************************
 private void print_Intial_Data( final  URL                        url_ws
 		                      , final  Map.Entry<String, String>  entry
 		                      ) 
@@ -42,7 +42,7 @@ private void print_Intial_Data( final  URL                        url_ws
                               + "<"
                               );
 }
-
+*****************************************************************************/
 private URL getNewURL ( final  Directory_Triples             dir_t
 		              , final  URL                           url_ws
 		              , final  Map.Entry < String, String >  entry
@@ -51,12 +51,13 @@ private URL getNewURL ( final  Directory_Triples             dir_t
 {
 	    URL      url_new;
 	    
+	    /************************************************************************	    
 	    String   Rel_Base_Dir       =       dir_t.get_Key_Rel_Base_Dir() ;
-	    
 	    System.out.println ( "Rel_Base_Dir = >"
 	    		           +  Rel_Base_Dir
 	    		           + "<"
 	    		           );
+	    ************************************************************************/		           
 	    
 	    if    (  entry.getKey()     . equals     ( dir_t.get_Key_Rel_Base_Dir() )
               )	                           
@@ -72,6 +73,7 @@ private URL getNewURL ( final  Directory_Triples             dir_t
                                             .get(parent);
 		         String     value   =              entry.getValue();
 		        
+		 	    /************************************************************************
 		         System.out.println ( "    p_value  = >"
      		                        +      p_value
      		                        + "<"
@@ -80,15 +82,20 @@ private URL getNewURL ( final  Directory_Triples             dir_t
                                     +      value
                                     + "<"
                                     );
+                ************************************************************************/                    
 		         URL    url_parent  =  dirs .get (     parent );
-		         String url_p       =              url_parent.toExternalForm();
+		         
+//		         String url_p       =              url_parent.toExternalForm();
+		       
 		         String sub_dir     =  p_value
 		                            + "/"
 		                            +  value;
+		         /************************************************************************
 		         System.out.println ( "url_parent   = >"
 		        		            +  url_p
 		        		            + "<"
 		        		            );
+		        ************************************************************************/ 		            
 		                url_new     =  new   URL ( url_parent
 		         		                         , sub_dir    //  entry.getValue()
                                                  );

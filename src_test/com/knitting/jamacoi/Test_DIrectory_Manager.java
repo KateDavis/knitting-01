@@ -1,6 +1,9 @@
 package com.knitting.jamacoi;
 
 import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Formatter;
+import java.util.Map;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -59,12 +62,28 @@ public class Test_DIrectory_Manager {
 	public void testGet_Map_URL() 
 	{
 	       try   {
-		           Directory_Manager dm = new Directory_Manager ( dir_t );
+		           Directory_Manager    dm =  new  Directory_Manager ( dir_t );
+		           list_Keys_and_URLs ( dm );
 	             } 
            catch ( MalformedURLException e) 
 	             {
 	               e.printStackTrace();
 	             }	
 	}
+private  void  list_Keys_and_URLs ( Directory_Manager  dm )
+{
+for   ( Map.Entry < String,  URL >  entry
+      : dm .get_Map_URL()        .  entrySet()
+      )
+      {
+      ;	Formatter fmt  =  new Formatter();
+                  fmt  .  format ( "Key   =>%s<%nValue =>%s<%n"
+                		         ,  entry.getKey  ()
+                		         ,  entry.getValue().toExternalForm()
+        		                 );
+        System.out.println       (  fmt  .toString() );          
+      }
+	
+}
 
 }
