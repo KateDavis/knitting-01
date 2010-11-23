@@ -32,12 +32,28 @@ public class Test_DIrectory_Manager {
 	       throws Exception 
 	{
 		   dir_t  =  new  Directory_Triples ( "family"
-				                            , "appl_amzn_qcom"
+				                            , "ibm_hp_att"
 				                            );
 		   dir_t  .  put  ( "request"
 				          , "family"
 				          , "request_dir"
 				          );
+		   dir_t  .  put  ( "reports"
+				          , "request"
+				          , "report_group"
+				          );
+		   dir_t  .  put  ( "details"
+				          , "reports"
+				          , "report_detailed"
+				          );
+		   dir_t  .  put  ( "details"
+			              , "reports"
+			              , "report_summary"
+			              );
+		   dir_t  .  put  ( "strategy"
+			              , "request"
+			              , "strategy_01"
+			              );
 	}
 
 	@After
@@ -70,6 +86,30 @@ public class Test_DIrectory_Manager {
 	               e.printStackTrace();
 	             }	
 	}
+	@Test
+	public void testCheck_URLs() 
+	{
+	       try   {
+		           Directory_Manager    dm =  new  Directory_Manager ( dir_t );
+		                                dm .  check_urls();
+	             } 
+           catch ( MalformedURLException e) 
+	             {
+	               e.printStackTrace();
+	             }	
+	}	
+	@Test
+	public void testCreate_Directories() 
+	{
+	       try   {
+		           Directory_Manager    dm =  new  Directory_Manager ( dir_t );
+		                                dm .  create_Directories();
+	             } 
+           catch ( MalformedURLException e) 
+	             {
+	               e.printStackTrace();
+	             }	
+	}	
 private  void  list_Keys_and_URLs ( Directory_Manager  dm )
 {
 for   ( Map.Entry < String,  URL >  entry

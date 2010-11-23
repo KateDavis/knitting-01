@@ -1,5 +1,6 @@
 package com.knitting.jamacoi;
 
+import java.io.File;
 import java.net.URL;
 import java.util.Map;
 
@@ -113,5 +114,78 @@ private  void  print_New_URL    ( final  URL   url_new )
 public  LHMESURL  get_Map_URL()
 {
 return            dirs;	
+}
+public  void      check_urls()
+{
+	    for ( Map.Entry < String, URL >  entry
+	        : dirs                    .  entrySet()
+	        )
+	        {
+	    	  check_url ( entry.getValue() );
+	        }
+}
+private void      check_url( URL u)
+{
+	final String s	      =     u.getFile();       
+	final File   d        = new File ( s );
+	                if   (  d.exists() )
+	                     {
+	                       System.out.println( "File does     exist   =>" + s + "<" ); 
+	                       if   ( d.isDirectory() )
+	                            {
+	                    	      System.out.println( "File is    directory  =>" + s + "<" );
+	                            }
+	                       else
+	                            {
+	                    	      System.out.println( "File is NOT directory =>" + s + "<" );
+	                            }
+	                     }
+	                else
+	                     {
+	                	   System.out.println( "File does NOT exist   =>" + s + "<" );
+	                     }
+}
+public  void  create_Directories()
+{
+    for ( Map.Entry < String, URL >  entry
+	    : dirs                    .  entrySet()
+	    )
+	    {
+	      create_Directory ( entry.getValue() );
+	    }	
+}
+private  void  create_Directory( URL  u )
+{
+	final String s	         =     u.getFile();       
+	final File   d           = new File ( s );
+		                if   (  d.exists() )
+		                	 {
+		                	    if ( d.isDirectory() )
+		                	       {
+		                	    	   System.out.println( "directory exists      =>" + s + "<" );
+		                	       }
+		                	    else
+		                	         {
+		                	    	   mkdir ( s, d );
+		                	         }
+		                     }
+		                else
+		                     {
+		                	           mkdir ( s, d );
+		                     }	
+			
+}
+private  void      mkdir ( String  s
+                         , File    d
+                         )
+{
+  if    ( d.mkdir() )
+        {
+          System.out.println( "directory     created =>" + s + "<" );
+        }
+  else
+        {
+          System.out.println( "directory NOT created =>" + s + "<" );
+        }
 }
 }
