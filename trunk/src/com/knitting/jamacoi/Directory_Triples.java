@@ -35,7 +35,7 @@ public        Directory_Triples    ( final           String  Key
               
               Key_Parent . put     ( Key,            Parent_default);
               Key_Subdir . put     ( Key,            Subdir        );
-              set_Key_Rel_Base_Dir (                 Key           );
+              set_Key_Rel_Base_Dir ( Key                           );
 }
 private       Directory_Triples    ( LHMESS          Key_Parent_Old 
 		                           , LHMESS          Key_Subdir_Old

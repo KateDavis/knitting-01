@@ -11,8 +11,8 @@ private      LHMESURL  dirs;
 public       Directory_Manager ( Directory_Triples  dir_t )	
              throws    java.net.MalformedURLException
 {
-	         dirs     =    new  LHMESURL ();
-URL          url_ws   =   (new  Workspace() ) . get_Workspace();  
+	         dirs     =    new  LHMESURL    ();
+URL          url_ws   =    get_URL_Workspace();   
 URL          url_new;
 
 for  ( Map.Entry<String, String>    entry
@@ -91,6 +91,10 @@ private URL getNewURL ( final  Directory_Triples             dir_t
 		         String sub_dir     =  p_value
 		                            + "/"
 		                            +  value;
+		         
+		                sub_dir     =  get_Last_Subdirectory( p_value )
+		                            + "/"
+		                            +  value;
 		         /************************************************************************
 		         System.out.println ( "url_parent   = >"
 		        		            +  url_p
@@ -103,6 +107,16 @@ private URL getNewURL ( final  Directory_Triples             dir_t
               }
 return  url_new;
 }
+private  URL     get_URL_Workspace()
+         throws  java.net.MalformedURLException 
+{
+return  (new  Workspace() ) . get_Workspace();
+}
+public   String  get_URL_Workspace_as_String()
+         throws  java.net.MalformedURLException 
+{
+return   get_URL_Workspace().toExternalForm();	
+}
 private  void  print_New_URL    ( final  URL   url_new ) 
 {
 	     System.out.println     ( "url_new      = >"
@@ -114,6 +128,11 @@ private  void  print_New_URL    ( final  URL   url_new )
 public  LHMESURL  get_Map_URL()
 {
 return            dirs;	
+}
+public  String    get_Last_Subdirectory( final  String  url_str )
+{
+	    String    token[]  = url_str.split("/");
+return            token[ token.length - 1 ]; 
 }
 public  void      check_urls()
 {
