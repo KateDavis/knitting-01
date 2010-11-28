@@ -45,12 +45,12 @@ public class Test_Directory_Triples {
 	@Test
 	public void Test_List_Subdirs()
 	{
-		             List_Subdirs ( dt );
+		          dt.List_Subdirs();
 	}
 	@Test
 	public void Test_List_Parents()
 	{
-		             List_Parents ( dt );
+		          dt.List_Parents();
 	}	
 	@Test
 	public void Test_Add_Subdir_1()
@@ -64,8 +64,8 @@ public class Test_Directory_Triples {
 		   System.out.println ("Test_Add_Subdir_1 -------------------------------");
 		   System.out.println ("");
 		   List_Keys     ( dt );
-		   List_Subdirs  ( dt );
-		   List_Parents  ( dt );
+		   dt.List_Subdirs();
+		   dt.List_Parents();
 		
 	}
 	@Test
@@ -100,8 +100,8 @@ public class Test_Directory_Triples {
 		   System.out.println ("Test_Add_Subdir_2 -------------------------------");
 		   System.out.println ("");
 		   List_Keys     ( dt );
-		   List_Subdirs  ( dt );
-		   List_Parents  ( dt );
+		   dt.List_Subdirs();
+		   dt.List_Parents();
 		
 	}
 	@Test
@@ -116,8 +116,8 @@ public class Test_Directory_Triples {
            System.out.println ( "" );
 		   System.out.println ( "Test_Chg_Subdir_1 before Change --------------------");
 		   System.out.println ( "" );
-		   List_Subdirs       ( dt );
-		   List_Parents       ( dt );
+		   dt.List_Subdirs();
+		   dt.List_Parents();
 		   
 		           Key    = "details";
 		           Subdir = "report_details_new";
@@ -128,8 +128,8 @@ public class Test_Directory_Triples {
            System.out.println ("");
 		   System.out.println ("Test_Chg_Subdir_1 after Change ---------------------");
 		   System.out.println ("");
-		   List_Subdirs  ( dt );
-		   List_Parents  ( dt );
+		   dt.List_Subdirs();
+		   dt.List_Parents();
 		
 	}
 	@Test
@@ -140,16 +140,16 @@ public class Test_Directory_Triples {
            System.out.println ("");
 		   System.out.println ("Test_Clone_Method dt's contents--------------------");
 		   System.out.println ("");
-		   List_Subdirs  ( dt );
-		   List_Parents  ( dt );
+		   dt.List_Subdirs();
+		   dt.List_Parents();
 		   
 		   Directory_Triples dt_clone = dt.clone();  //test fails here! cannot cast to LHMSS
 
            System.out.println ("");
 		   System.out.println ("Test_Clone_Method dt_clone's contents -------------");
 		   System.out.println ("");
-		   List_Subdirs  ( dt_clone );
-		   List_Parents  ( dt_clone );
+		   dt.List_Subdirs();
+		   dt.List_Parents();
 		
 	}
 	@Test
@@ -160,16 +160,16 @@ public class Test_Directory_Triples {
            System.out.println ("");
 		   System.out.println ("Test_Clone_With_Different_Values dt's contents(0)--------------------");
 		   System.out.println ("");
-		   List_Subdirs  ( dt );
-		   List_Parents  ( dt );
+		   dt.List_Subdirs();
+		   dt.List_Parents();
 		   
 		   Directory_Triples dt_clone = dt.clone();
 
            System.out.println ("");
 		   System.out.println ("Test_Clone_With_Differenrt_Values dt_clone's contents(0) ------------");
 		   System.out.println ("");
-		   List_Subdirs  ( dt_clone );
-		   List_Parents  ( dt_clone );
+		   dt.List_Subdirs();
+		   dt.List_Parents();
 		   
 		   String  Key    = "details";
 		   String  Subdir = "report_details_1";
@@ -178,14 +178,14 @@ public class Test_Directory_Triples {
 		   System.out.println ("");
 		   System.out.println ("Test_Clone_With_Different_Values dt's contents(1)-------------------");
 		   System.out.println ("");
-		   List_Subdirs  ( dt );
-		   List_Parents  ( dt );
+		   dt.List_Subdirs();
+		   dt.List_Parents();
 		   
 	       System.out.println ("");
 		   System.out.println ("Test_Clone_With_Differenrt_Values dt_clone's contents(1) ------------");
 		   System.out.println ("");
-		   List_Subdirs  ( dt_clone );
-		   List_Parents  ( dt_clone );
+		   dt.List_Subdirs();
+		   dt.List_Parents();
 			   
 		   Key    = "auto";
 		   Subdir = "corr_auto";
@@ -198,14 +198,14 @@ public class Test_Directory_Triples {
 		   System.out.println ("");
 		   System.out.println ("Test_Clone_With_Different_Values dt's contents(2)-------------------");
 		   System.out.println ("");
-		   List_Subdirs  ( dt );
-		   List_Parents  ( dt );
+		   dt.List_Subdirs();
+		   dt.List_Parents();
 		   
 	       System.out.println ("");
 		   System.out.println ("Test_Clone_With_Differenrt_Values dt_clone's contents(2) ------------");
 		   System.out.println ("");
-		   List_Subdirs  ( dt_clone );
-		   List_Parents  ( dt_clone );		   
+		   dt.List_Subdirs();
+		   dt.List_Parents();		   
 	}
 	@Test
 	public void Test_Remove_Bottom_Level_Subdir()
@@ -219,8 +219,8 @@ public class Test_Directory_Triples {
 				              + "< ) -------------------------------");
 		   System.out.println ("");
 		   List_Keys     ( dt );
-		   List_Subdirs  ( dt );
-		   List_Parents  ( dt );
+		   dt.List_Subdirs();
+		   dt.List_Parents();
 		   
 		                 
 		                     
@@ -233,8 +233,8 @@ public class Test_Directory_Triples {
 				              + "< ) -------------------------------");
 		   System.out.println ("");
 		   List_Keys     ( dt );
-		   List_Subdirs  ( dt );
-		   List_Parents  ( dt );
+		   dt.List_Subdirs();
+		   dt.List_Parents();
 	}
 	@Test
 	public void Test_Remove_Middle_Level_Subdir()
@@ -248,8 +248,8 @@ public class Test_Directory_Triples {
 				              + "< ) -------------------------------");
 		   System.out.println ("");
 		   List_Keys     ( dt );
-		   List_Subdirs  ( dt );
-		   List_Parents  ( dt );
+		   dt.List_Subdirs();
+		   dt.List_Parents();
 		   
 		                                   
 		   dt.remove_Subdir( Key );
@@ -261,8 +261,8 @@ public class Test_Directory_Triples {
 				              + "< ) -------------------------------");
 		   System.out.println ("");
 		   List_Keys     ( dt );
-		   List_Subdirs  ( dt );
-		   List_Parents  ( dt );
+		   dt.List_Subdirs();
+		   dt.List_Parents();
 	}
 	@Test
 	public void Test_No_Parent_Add_Attempt()
@@ -279,8 +279,8 @@ public class Test_Directory_Triples {
 				              + "< ) -------------------------------");
 		   System.out.println ("");
 		   List_Keys     ( dt );
-		   List_Subdirs  ( dt );
-		   List_Parents  ( dt );
+		   dt.List_Subdirs();
+		   dt.List_Parents();
 		   
            
 		   try      {dt.put( Key,  Parent,  Subdir );
@@ -301,8 +301,8 @@ public class Test_Directory_Triples {
 				              + "< ) -------------------------------");
 		   System.out.println ("");
 		   List_Keys     ( dt );
-		   List_Subdirs  ( dt );
-		   List_Parents  ( dt );
+		   dt.List_Subdirs();
+		   dt.List_Parents();
 	}
 	@Test
 	public void Test_Duplicate_Sub_Directory_For_Parent_Add_Attempt()
@@ -319,8 +319,8 @@ public class Test_Directory_Triples {
 				              + "< ) -------------------------------");
 		   System.out.println ("");
 		   List_Keys     ( dt );
-		   List_Subdirs  ( dt );
-		   List_Parents  ( dt );
+		   dt.List_Subdirs();
+		   dt.List_Parents();
 		   
            
 		   try      { dt.put( Key,  Parent,  Subdir );
@@ -341,8 +341,8 @@ public class Test_Directory_Triples {
 				              + "< ) -------------------------------");
 		   System.out.println ("");
 		   List_Keys     ( dt );
-		   List_Subdirs  ( dt );
-		   List_Parents  ( dt );
+		   dt.List_Subdirs();
+		   dt.List_Parents();
 	}
 	@Test
 	public void Test_Duplicate_Sub_Directory_For_Non_Parent_Add_Attempt()
@@ -359,8 +359,8 @@ public class Test_Directory_Triples {
 				              + "< ) -------------------------------");
 		   System.out.println ("");
 		   List_Keys     ( dt );
-		   List_Subdirs  ( dt );
-		   List_Parents  ( dt );
+		   dt.List_Subdirs();
+		   dt.List_Parents();
 		   
            
 		   try      { dt.put( Key,  Parent,  Subdir );
@@ -381,8 +381,8 @@ public class Test_Directory_Triples {
 				              + "< ) -------------------------------");
 		   System.out.println ("");
 		   List_Keys     ( dt );
-		   List_Subdirs  ( dt );
-		   List_Parents  ( dt );
+		   dt.List_Subdirs();
+		   dt.List_Parents();
 	}
 	protected Directory_Triples create_6a_level()
 	{
@@ -448,6 +448,7 @@ public class Test_Directory_Triples {
 		      }
 		        System.out.println( "");
 	}
+/****************************************************************************	
 	public  void  List_Parents( final  Directory_Triples  dt )
 	{	
 		    LHMESS              lhm    =  dt   . get_Map_Key_Parent();		
@@ -458,6 +459,7 @@ public class Test_Directory_Triples {
 		    LHMESS              lhm    =  dt   . get_Map_Key_Subdir();		
 		    list_Values       ( lhm,  "Subdir" );
 	}
+***************************************************************************/	
 	private void list_Values  ( final  LHMESS  lhm
 			                  , final  String  title
 			                  )
