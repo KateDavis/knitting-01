@@ -243,15 +243,13 @@ protected  void  rebuild_without ( final  String  Key_In )
 	        Key_Parent = Key_Parent_New;
 	        Key_Subdir = Key_Subdir_New;
 }
-public   void  List_Parents( final  Directory_Triples  dt )
-{	
-         LHMESS              lhm    =  dt   . get_Map_Key_Parent();		
-         list_Values       ( lhm,  "Parent" );
+public   void  List_Parents()
+{			
+               list_Values  ( get_Map_Key_Parent(),  "Parent" );
 }
-public   void  List_Subdirs( final  Directory_Triples  dt )
-{	
-         LHMESS              lhm    =  dt   . get_Map_Key_Subdir();		
-         list_Values       ( lhm,  "Subdir" );
+public   void  List_Subdirs()
+{		
+               list_Values  ( get_Map_Key_Subdir(),  "Subdir" );
 }
 private  void  list_Values  ( final  LHMESS  lhm
                             , final  String  title
