@@ -10,7 +10,8 @@ public   class  Directory_Triples
 {
 private  final  static  String     Rel_Base_Dir    =  "Rel_Base_Dir";	
 private  final  static  String     Parent_default  =  "-1";
-	
+
+private                 int        Max_Key_Length;	
 private                 String     Key_Rel_Base_Dir;
 private                 LHMESS     Key_Parent;
 private                 LHMESS     Key_Subdir;
@@ -25,6 +26,7 @@ public        Directory_Triples    ( final           String  Subdir
 	          Key_Parent . put     ( Rel_Base_Dir,   Parent_default);
 	          Key_Subdir . put     ( Rel_Base_Dir,   Subdir        );
 	          set_Key_Rel_Base_Dir ( Rel_Base_Dir                  );
+	          set_Max_Key_Length   ( Rel_Base_Dir.length()         );
 }
 public        Directory_Triples    ( final           String  Key
 		                           , final           String  Subdir
@@ -36,26 +38,40 @@ public        Directory_Triples    ( final           String  Key
               Key_Parent . put     ( Key,            Parent_default);
               Key_Subdir . put     ( Key,            Subdir        );
               set_Key_Rel_Base_Dir ( Key                           );
+              set_Max_Key_Length   ( Key.length()                  );
 }
-private       Directory_Triples    ( LHMESS          Key_Parent_Old 
-		                           , LHMESS          Key_Subdir_Old
-		                           , String          Key_Rel_Base_Dir
+private       Directory_Triples    ( final  LHMESS   Old_Key_Parent 
+		                           , final  LHMESS   Old_Key_Subdir
+		                           , final  String   Old_Key_Rel_Base_Dir
+		                           , final  int      Old_Max_Key_Length
 		                           )
 {	         
-              Key_Parent  =        ( LHMESS )        Key_Parent_Old.clone();
-	          Key_Subdir  =        ( LHMESS )        Key_Subdir_Old.clone();
+              Key_Parent        =  ( LHMESS )        Old_Key_Parent.clone();
+	          Key_Subdir        =  ( LHMESS )        Old_Key_Subdir.clone();
+	          Key_Rel_Base_Dir  =                    Old_Key_Rel_Base_Dir;
+	          Max_Key_Length    =                    Old_Max_Key_Length;
+	          
 }
 public        Directory_Triples    clone()
 {
 	          Directory_Triples    clone  =  new Directory_Triples(  this.Key_Parent
 	        	  	                                              ,  this.Key_Subdir
-	        		                                              , "test"
+	        		                                              ,  this.get_Key_Rel_Base_Dir()
+	        		                                              ,  this.get_Mqx_Key_Length()
 	        		                                              );
 	          return               clone;
 }
+public        int    get_Mqx_Key_Length()
+{
+return                   Max_Key_Length;	
+}
+public        void   set_Max_Key_Length ( final  int  len )
+{
+	                     Max_Key_Length =             len;
+}
 protected     void   set_Key_Rel_Base_Dir ( final  String  Key )
 {
- 	                     Key_Rel_Base_Dir = Key;
+ 	                     Key_Rel_Base_Dir =                Key;
 }
 public        String get_Key_Rel_Base_Dir () 
 {
@@ -90,6 +106,9 @@ private  void  addEntry  ( final  String  Key
 {
               Key_Parent . put  ( Key,    Parent  );
               Key_Subdir . put  ( Key,    Subdir  );
+              Max_Key_Length    = Math.min        ( get_Mqx_Key_Length()
+            		                              , Key.length()
+            		                              );
 }
 private  void    check_for_duplicate_directory ( final  String  Key
                                                , final  String  Parent
