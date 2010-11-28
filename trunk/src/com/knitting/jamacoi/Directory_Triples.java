@@ -1,7 +1,10 @@
 package com.knitting.jamacoi;
 
 import java.util.ArrayList;
+import java.util.Formatter;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import com.knitting.util.LHMESS;
 
@@ -240,4 +243,34 @@ protected  void  rebuild_without ( final  String  Key_In )
 	        Key_Parent = Key_Parent_New;
 	        Key_Subdir = Key_Subdir_New;
 }
+public   void  List_Parents( final  Directory_Triples  dt )
+{	
+         LHMESS              lhm    =  dt   . get_Map_Key_Parent();		
+         list_Values       ( lhm,  "Parent" );
+}
+public   void  List_Subdirs( final  Directory_Triples  dt )
+{	
+         LHMESS              lhm    =  dt   . get_Map_Key_Subdir();		
+         list_Values       ( lhm,  "Subdir" );
+}
+private  void  list_Values  ( final  LHMESS  lhm
+                            , final  String  title
+                            )
+{
+for ( Iterator <Entry<String, String>>   iter    =  lhm  . entrySet ()
+                                                         . iterator ();
+                                         iter            . hasNext  (); 	
+    )		
+    {
+      Map.Entry  <String, String>        me      =  iter . next     ();
+      Formatter                          line    =  new    Formatter();
+      line .format       ( "key = %-15s  %s=>%s<"
+	                     ,  ">" + me.getKey() + "<"
+	                     ,        title
+	                     ,        me.getValue()
+	                     );
+      System.out.println ( line );
+    }
+System.out.println ("");
+}		
 }
