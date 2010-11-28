@@ -262,7 +262,7 @@ for ( Iterator <Entry<String, String>>   iter    =  lhm  . entrySet ()
     {
       Map.Entry  <String, String>        me      =  iter . next     ();
       Formatter                          line    =  new    Formatter();
-      line .format       ( "key = %-15s  %s=>%s<"
+      line .format       ( "key = %-20s  %s=>%s<"
 	                     ,  ">" + me.getKey() + "<"
 	                     ,        title
 	                     ,        me.getValue()

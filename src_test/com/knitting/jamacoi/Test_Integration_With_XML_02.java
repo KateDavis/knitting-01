@@ -1,18 +1,11 @@
 package com.knitting.jamacoi;
 
 
-import java.util.Formatter;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import com.knitting.util.LHMESS;
 
 public class Test_Integration_With_XML_02 {
 	
@@ -57,12 +50,12 @@ public class Test_Integration_With_XML_02 {
 	@Test
 	public  void    test_List_Parents()
 	{
-		    List_Parents( dir_t01 );
+		         dir_t01.List_Parents();
 	}
 	@Test
 	public  void    test_List_Subdirs()
 	{
-		    List_Subdirs( dir_t01 );
+		         dir_t01.List_Subdirs();
 	}
 	@Test
 	public  void    test_workspace()
@@ -89,38 +82,5 @@ public class Test_Integration_With_XML_02 {
 	public  void  test_out_directories()
 	{
 		    dir_m01.check_urls();
-	}
-	
-	public  void  List_Parents( final  Directory_Triples  dt )
-	{	
-		    LHMESS              lhm    =  dt   . get_Map_Key_Parent();		
-		    list_Values       ( lhm,  "Parent" );
-	}
-	public  void  List_Subdirs( final  Directory_Triples  dt )
-	{	
-		    LHMESS              lhm    =  dt   . get_Map_Key_Subdir();		
-		    list_Values       ( lhm,  "Subdir" );
-	}
-	private void list_Values  ( final  LHMESS  lhm
-			                  , final  String  title
-			                  )
-	{
-		for ( Iterator <Entry<String, String>>   iter    =  lhm  . entrySet ()
-				                                                 . iterator ();
-			                                     iter            . hasNext  (); 	
-			)		
-		    {
-			   Map.Entry  <String, String>       me      =  iter . next     ();
-		       String                            Key     =  me   . getKey   ();
-		       String                            Value   =  me   . getValue ();
-		       Formatter                         line    =  new    Formatter();
-		       line .format       ( "key = %-15s  %s=>%s<"
-		        		          ,  ">" + Key + "<"
-		        		          ,  title
-		        		          ,  Value
-		        		          );
-		       System.out.println ( line );
-		    }
-		       System.out.println ("");
 	}	
 }
