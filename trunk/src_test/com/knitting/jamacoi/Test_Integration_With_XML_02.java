@@ -13,8 +13,14 @@ public class Test_Integration_With_XML_02 {
 	static String  Dir__Out_Family       =  "aapl_amzn_qcom";
 	static String  Dir__Out_Request      =  "request_001";
 	
+	static String  Dir__Exp_Act          =  "knitting-01/src_test/com/knitting/jamacoi";
+	static String  Dir__Exp              =  "expected";
+	static String  Dir__Act              =  "actual";
+	
 	Directory_Triples  dir_t01;
+	Directory_Triples  dir_t02;
 	Directory_Manager  dir_m01;
+	Directory_Manager  dir_m02;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -41,6 +47,23 @@ public class Test_Integration_With_XML_02 {
                 );
     
     dir_m01     =  new  Directory_Manager ( dir_t01 );
+    
+    dir_t02     =  new  Directory_Triples ( "Dir__Exp_Act"
+    		                              ,  Dir__Exp_Act
+    		                              );
+    
+    dir_t02.put ( "Dir__Exp"
+    		    , "Dir__Exp_Act"
+    		    ,  Dir__Exp
+    		    );
+    
+    dir_t02.put ( "Dir__Act"
+    		    , "Dir__Exp_Act" 
+    		    ,  Dir__Act
+    		    );
+    
+    dir_m02     =  new  Directory_Manager ( dir_t02 );
+    
     
 	}
 
@@ -82,5 +105,12 @@ public class Test_Integration_With_XML_02 {
 	public  void  test_out_directories()
 	{
 		    dir_m01.check_urls();
+	        System.out.println("");
 	}	
+	@Test
+	public  void  test_expected_actual_directories()
+	{
+		    dir_m02.check_urls();
+	        System.out.println("");
+	}
 }
