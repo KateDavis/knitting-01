@@ -11,11 +11,6 @@ import org.junit.Test;
 
 public class Test_Integration_With_XML_02 {
 	
-	
-	Directory_Triples  dir_t02;
-	Directory_Triples  dir_t03;
-	
-	;
 	Directory_Manager  dir_m01_investment_family;
 	Directory_Manager  dir_m02_exp_act;
 	Directory_Manager  dir_m03_resources;
