@@ -16,7 +16,7 @@ public class Test_Integration_With_XML_02 {
 	Directory_Triples  dir_t03;
 	
 	;
-	Directory_Manager  dir_m01;
+	Directory_Manager  dir_m01_investment_family;
 	Directory_Manager  dir_m02_exp_act;
 	Directory_Manager  dir_m03_resources;
 	Directory_Manager  dir_m04_data_sources;
@@ -33,12 +33,12 @@ public class Test_Integration_With_XML_02 {
 	public   void        setUp() 
 	         throws      Exception 
 	{	
-             dir_m01  =  create_dir_m01();
-             dir_m02_exp_act       =  create_dir_m02_exp_act();
-             dir_m03_resources     =  create_dir_m03_resources();
-             dir_m04_data_sources  =  create_dir_m04_data_sources();
+             dir_m01_investment_family  =  create_dir_m01_investment_family();
+             dir_m02_exp_act            =  create_dir_m02_exp_act();
+             dir_m03_resources          =  create_dir_m03_resources();
+             dir_m04_data_sources       =  create_dir_m04_data_sources();
 	}
-	private  Directory_Manager     create_dir_m01() 
+	private  Directory_Manager     create_dir_m01_investment_family() 
              throws                MalformedURLException 
     {
              String                Dir__Out_Base         =  "knitting-01/src_test/com/knitting/out_base";
@@ -125,7 +125,7 @@ public class Test_Integration_With_XML_02 {
 	        throws  java.net.MalformedURLException 
 	{
 	        System.out.println( "WorkSpace = >"
-		                      +  dir_m01.get_URL_Workspace_as_String()
+		                      +  dir_m01_investment_family.get_URL_Workspace_as_String()
 		                      + "<"
 		                      );
 	        System.out.println("");
@@ -135,8 +135,10 @@ public class Test_Integration_With_XML_02 {
 	        throws  java.net.MalformedURLException
     {
 	        System.out.println( "Last Subdirectory =>"
-	        		          + dir_m01.get_Last_Subdirectory( dir_m01.get_URL_Workspace_as_String()
-	        		        		                         )
+	        		          + dir_m01_investment_family
+	        		          . get_Last_Subdirectory     ( dir_m01_investment_family
+	        		        		                      . get_URL_Workspace_as_String()
+	        		        	                          )
 	        		          + "<"          
 	        		          );
 	        System.out.println("");
@@ -144,7 +146,7 @@ public class Test_Integration_With_XML_02 {
 	@Test
 	public  void  test_out_directories()
 	{
-		    dir_m01.check_urls();
+		    dir_m01_investment_family.check_urls();
 	        System.out.println("");
 	}	
 	@Test
