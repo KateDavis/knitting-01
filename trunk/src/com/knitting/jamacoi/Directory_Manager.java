@@ -2,12 +2,7 @@ package com.knitting.jamacoi;
 
 import java.io.File;
 import java.net.URL;
-import java.util.Formatter;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Map.Entry;
-
-import com.knitting.util.LHMESS;
 
 public class Directory_Manager {
 	
@@ -45,10 +40,10 @@ private URL getNewURL ( final  Directory_Triples             dir_t
                                                  );
               }
 	    else  {
-		         String     parent  =  dir_t.get_Map_Key_Parent()      //
+		         String     parent  =  dir_t.get_Map_Key_Parent()     
 		                                    .get ( entry.getKey() );
 		         String     p_value =  dir_t.get_Map_Key_Subdir()
-                                            .get(parent);
+                                            .get ( parent );
 		         String     value   =              entry.getValue();
 		                          
 		         URL    url_parent  =  dirs .get (     parent );
@@ -91,38 +86,6 @@ public   String  get_URL_Workspace_as_String()
          throws  java.net.MalformedURLException 
 {
 return   get_URL_Workspace().toExternalForm();	
-}
-/**************************************
-public  void    List_Parents()
-{	
-        dir_t01.List_Parents();
-}
-public  void    List_Subdirs()
-{	
-        dir_t01.List_Subdirs();
-}
-************************************/
-private void list_Values  ( final  LHMESS  lhm   // why is this unreferenced?
-		                  , final  String  title
-		                  )
-{
-	for ( Iterator <Entry<String, String>>   iter    =  lhm  . entrySet ()
-			                                                 . iterator ();
-		                                     iter            . hasNext  (); 	
-		)		
-	    {
-		   Map.Entry  <String, String>       me      =  iter . next     ();
-	       String                            Key     =  me   . getKey   ();
-	       String                            Value   =  me   . getValue ();
-	       Formatter                         line    =  new    Formatter();
-	       line .format       ( "key = %-15s  %s=>%s<"
-	        		          ,  ">" + Key + "<"
-	        		          ,  title
-	        		          ,  Value
-	        		          );
-	       System.out.println ( line );
-	    }
-	       System.out.println ("");
 }
 public  LHMESURL  get_Map_URL()
 {
