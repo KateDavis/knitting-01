@@ -25,7 +25,7 @@ for  ( Map.Entry<String, String>    entry
      )
      {
 	   url_new =  getNewURL   (  dir_t,  url_ws,  entry );
-       dirs.put(  entry.getKey(),      url_new          );
+       dirs.put(  entry.getKey(),        url_new        );
      }
 }
 
@@ -102,7 +102,7 @@ public  void    List_Subdirs()
         dir_t01.List_Subdirs();
 }
 ************************************/
-private void list_Values  ( final  LHMESS  lhm
+private void list_Values  ( final  LHMESS  lhm   // why is this unreferenced?
 		                  , final  String  title
 		                  )
 {
