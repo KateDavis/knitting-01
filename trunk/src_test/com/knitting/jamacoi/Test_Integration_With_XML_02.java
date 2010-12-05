@@ -40,17 +40,17 @@ public class Test_Integration_With_XML_02 {
              String                Dir__Out_Family       =  "aapl_amzn_qcom";
              String                Dir__Out_Request      =  "request_001";	
 
-             Directory_Triples     dt     =  new Directory_Triples ( "Dir__Out_Base"
-                                                                   ,  Dir__Out_Base
+             Directory_Triples     dt     =  new Directory_Triples (  Dir__Out_Base
+                                                                   , "Dir__Out_Base"
                                                                    );	
-                                   dt.put ( "Dir__Out_Family"
+                                   dt.put (  Dir__Out_Family
+                                		  , "Dir__Out_Family"
                                           , "Dir__Out_Base"
-                                          ,  Dir__Out_Family
                                           );
 
-                                   dt.put ( "Dir__Out_Request"
+                                   dt.put (  Dir__Out_Request
+                                		  , "Dir__Out_Request"
                                           , "Dir__Out_Family"
-                                          ,  Dir__Out_Request
                                           );
 
              return                new    Directory_Manager ( dt );
@@ -62,17 +62,17 @@ public class Test_Integration_With_XML_02 {
              String                Dir__Exp              =  "expected";
              String                Dir__Act              =  "actual";
 
-             Directory_Triples     dt     =  new  Directory_Triples ( "Dir__Exp_Act"
-                                                                    ,  Dir__Exp_Act
+             Directory_Triples     dt     =  new  Directory_Triples (  Dir__Exp_Act
+                                                                    , "Dir__Exp_Act"
                                                                     );
-                                   dt.put ( "Dir__Exp"
+                                   dt.put (  Dir__Exp
+                                		  , "Dir__Exp"
                                           , "Dir__Exp_Act"
-                                          ,  Dir__Exp
                                           );
 
-                                   dt.put ( "Dir__Act"
+                                   dt.put (  Dir__Act
+                                		  , "Dir__Act"
 	                                      , "Dir__Exp_Act" 
-                                          ,  Dir__Act
                                           );
 
              return                new    Directory_Manager ( dt );
@@ -84,17 +84,17 @@ public class Test_Integration_With_XML_02 {
              String                Dir__Resources        = "com/knitting/resources";
              String                Dir__Config           = "configuration";
 
-             Directory_Triples     dt     =  new Directory_Triples  ( "Dir__Src_Res"
-                                                                    ,  Dir__Src_Res
+             Directory_Triples     dt     =  new Directory_Triples  (  Dir__Src_Res 
+                                                                    , "Dir__Src_Res"
                                                                     );	
-                                   dt.put ( "Dir__Resources"
+                                   dt.put (  Dir__Resources
+                                		  , "Dir__Resources"
                                           , "Dir__Src_Res"
-                                          ,  Dir__Resources
                                           );
 
-                                   dt.put ( "Dir__Config"
+                                   dt.put (  Dir__Config
+                                		  , "Dir__Config"
                                           , "Dir__Resources"
-                                          ,  Dir__Config
                                           );
                                    
              return                new    Directory_Manager ( dt );
@@ -104,8 +104,8 @@ public class Test_Integration_With_XML_02 {
     {
              String                Dir__Prefix_In        = "knitting-01/src_test/com/knitting/datasource";
 
-             Directory_Triples     dt     =  new Directory_Triples  ( "Dir__Prefix_In"
-                                                                    ,  Dir__Prefix_In
+             Directory_Triples     dt     =  new Directory_Triples  (  Dir__Prefix_In
+                                                                    , "Dir__Prefix_In"
                                                                     );	
 
              return                new    Directory_Manager ( dt );
