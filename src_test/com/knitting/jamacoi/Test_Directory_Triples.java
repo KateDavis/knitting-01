@@ -46,14 +46,25 @@ public class Test_Directory_Triples {
 	public void Test_List_Parents()
 	{
 		          dt.List_Parents();
-	}	
+	}
+	@Test
+	public void Test_Get_Key_Rel_Base_Dir()
+	{
+		   String  Parent =  dt.get_Key_Rel_Base_Dir();
+		   
+		   System.out.println ( "Key = >"
+				              +  Parent
+				              + "< of the top Sub-Directory"
+				              );
+	}
 	@Test
 	public void Test_Add_Subdir_1()
 	{
+		   String  Subdir = "appl_amzn_qcom";
 		   String  Key    = "request";
 		   String  Parent =  dt.get_Key_Rel_Base_Dir(); 
-		   String  Subdir = "appl_amzn_qcom";
-		   dt.put( Key,  Parent,  Subdir );
+
+		   dt.put( Subdir,  Key,  Parent );
 		   
 		   System.out.println ("");
 		   System.out.println ("Test_Add_Subdir_1 -------------------------------");
@@ -61,35 +72,34 @@ public class Test_Directory_Triples {
 		   List_Keys     ( dt );
 		   dt.List_Subdirs();
 		   dt.List_Parents();
-		
 	}
 	@Test
 	public void Test_Add_Subdir_2()
 	{
+		   String  Subdir = "report_dir";
 		   String  Key    = "reports";
 		   String  Parent =  dt.get_Key_Rel_Base_Dir(); 
-		   String  Subdir = "report_dir";
-		   dt.put( Key,  Parent,  Subdir );
+		   dt.put( Subdir,   Key,  Parent );
 		   
+                   Subdir = "report_summary";   
 		           Key    = "summary";
 		           Parent = "reports";
-		           Subdir = "report_summary";
-		   dt.put( Key,  Parent,  Subdir );
+		   dt.put( Subdir,  Key,  Parent );
 		   
+                   Subdir = "report_detail";
                    Key    = "detail";
                    Parent = "reports";
-                   Subdir = "report_detail";
-           dt.put( Key,  Parent,  Subdir );
+           dt.put( Subdir,  Key,  Parent );
 		   
+                   Subdir = "correlations_auto";
                    Key    = "auto";
                    Parent = "detail";
-                   Subdir = "correlations_auto";
-           dt.put( Key,  Parent,  Subdir );
+           dt.put( Subdir,  Key,  Parent );
            
+                   Subdir = "correlations_partial";
                    Key    = "partial";
                    Parent = "detail";
-                   Subdir = "correlations_partial";
-           dt.put( Key,  Parent,  Subdir );
+           dt.put( Subdir,  Key,  Parent );
            
            System.out.println ("");
 		   System.out.println ("Test_Add_Subdir_2 -------------------------------");
@@ -102,10 +112,10 @@ public class Test_Directory_Triples {
 	@Test
 	public void Test_Chg_Subdir_1()
 	{
+		   String  Subdir = "report_details";
 		   String  Key    = "details";
 		   String  Parent =  dt.get_Key_Rel_Base_Dir();
-		   String  Subdir = "report_details";
-		   dt.put( Key,  Parent,  Subdir );
+		   dt.put( Subdir,  Key,  Parent );
 		   
            
            System.out.println ( "" );
@@ -114,9 +124,9 @@ public class Test_Directory_Triples {
 		   dt.List_Subdirs();
 		   dt.List_Parents();
 		   
-		           Key    = "details";
-		           Subdir = "report_details_new";
-		   dt.set_Subdir(Key, Subdir );
+           Subdir = "report_details_new";
+           Key    = "details";
+		   dt.set_Subdir( Subdir,  Key);
 		   
 
            
@@ -182,13 +192,13 @@ public class Test_Directory_Triples {
 		   dt.List_Subdirs();
 		   dt.List_Parents();
 			   
-		   Key    = "auto";
 		   Subdir = "corr_auto";
-		   dt.set_Subdir(Key, Subdir);      // change the original instance
+		   Key    = "auto";
+		   dt.set_Subdir(Subdir, Key);      // change the original instance
 		   
+		   Subdir = "corr_partial";  
 		   Key    = "partial";
-		   Subdir = "corr_partial";      
-		   dt.set_Subdir(Key, Subdir);      // change the original instance
+		   dt.set_Subdir(Subdir, Key);      // change the original instance
 		   
 		   System.out.println ("");
 		   System.out.println ("Test_Clone_With_Different_Values dt's contents(2)-------------------");
@@ -264,9 +274,9 @@ public class Test_Directory_Triples {
 	{
 		   dt = create_6a_level();
 		   
+		   String  Subdir = "annie";
 		   String  Key    = "orphan";
 		   String  Parent = "parent_1";
-		   String  Subdir = "annie";
          
            System.out.println ("");
 		   System.out.println ("Test_No_Parent_Add_Attempt (before attempted add of Key = >"
@@ -278,7 +288,7 @@ public class Test_Directory_Triples {
 		   dt.List_Parents();
 		   
            
-		   try      {dt.put( Key,  Parent,  Subdir );
+		   try      {dt.put( Subdir,  Key,  Parent );
 		            }
 		   catch    (IllegalArgumentException  e   )
 		            {
@@ -304,9 +314,9 @@ public class Test_Directory_Triples {
 	{
 		   dt = create_6a_level();
 		   
+		   String  Subdir = "request_01";
 		   String  Key    = "duplicate";
 		   String  Parent = "family";
-		   String  Subdir = "request_01";
          
            System.out.println ("");
 		   System.out.println ("Test_Duplicate_Sub_Directory_For_Parent_Add_Attempt (before attempted add of Key = >"
@@ -318,7 +328,7 @@ public class Test_Directory_Triples {
 		   dt.List_Parents();
 		   
            
-		   try      { dt.put( Key,  Parent,  Subdir );
+		   try      { dt.put(  Subdir,  Key,  Parent );
 		            }
 		   catch    ( IllegalArgumentException  e   )
 		            {
@@ -344,9 +354,9 @@ public class Test_Directory_Triples {
 	{
 		   dt = create_6a_level();
 		   
+		   String  Subdir = "report_summary";
 		   String  Key    = "test";
 		   String  Parent = "family";
-		   String  Subdir = "report_summary";
          
            System.out.println ("");
 		   System.out.println ("Test_Duplicate_Sub_Directory_For_Non_Parent_Add_Attempt (before attempted add of Key = >"
@@ -358,7 +368,7 @@ public class Test_Directory_Triples {
 		   dt.List_Parents();
 		   
            
-		   try      { dt.put( Key,  Parent,  Subdir );
+		   try      { dt.put( Subdir,  Key,  Parent );
 		            }
 		   catch    ( IllegalArgumentException  e   )
 		            {
@@ -381,49 +391,34 @@ public class Test_Directory_Triples {
 	}
 	protected Directory_Triples create_6a_level()
 	{
-	          Directory_Triples  d       =   new  Directory_Triples( "family" 
-	        		                                               , "appl_amzn_qcom"
+	          Directory_Triples  d       =   new  Directory_Triples( "appl_amzn_qcom"
+	        		                                               , "family" 
 	        		                                               );
-	          
-//	          String  Default_Parent     =   d.get_Key_Rel_Base_Dir();
-//	          
-//	          System.out.println ( "" );
-//	          System.out.println ( "Default_Parent = >"
-//	        		             +  Default_Parent
-//	        		             + "<"
-//	        		             );
-//	          System.out.println ( "" );
-//	          
-//			  System.out.println ( "" );
-//			  List_Keys          ( dt );
-//			  List_Subdirs       ( dt );
-//			  List_Parents       ( dt );
-
 			   
+			  String             Subdir  =  "request_01";
 			  String             Key     =  "request";
 			  String             Parent  =  "family";
-			  String             Subdir  =  "request_01";
-			                     d       .   put( Key,  Parent,  Subdir );
+			                     d       .   put( Subdir,  Key,  Parent );
 			   
+			                     Subdir  =  "report_details";
 			                     Key     =  "details";
 			                     Parent  =  "request";
-			                     Subdir  =  "report_details";
-			                     d       .   put( Key,  Parent,  Subdir );
+			                     d       .   put( Subdir,  Key,  Parent );
 			   
+			                     Subdir  =  "report_summary";
 			                     Key     =  "summary";
 			                     Parent  =  "request";
-			                     Subdir  =  "report_summary";
-			                     d       .   put( Key,  Parent,  Subdir );
+			                     d       .   put( Subdir,  Key,  Parent );
 			   
-	                             Key     =  "auto";
+		                         Subdir  =  "correlations_auto";
+		                         Key     =  "auto";
 	                             Parent  =  "details";
-	                             Subdir  =  "correlations_auto";
-	                             d       .   put( Key,  Parent,  Subdir );
+	                             d       .   put( Subdir,  Key,  Parent );
 	           
+	                             Subdir  =  "correlations_partial";
 	                             Key     =  "partial";
 	                             Parent  =  "details";
-	                             Subdir  =  "correlations_partial";
-	                             d       .   put( Key,  Parent,  Subdir );
+	                             d       .   put( Subdir,  Key,  Parent );
 	          
 	 return                      d;
 	}

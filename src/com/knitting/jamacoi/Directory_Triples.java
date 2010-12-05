@@ -31,8 +31,8 @@ public        Directory_Triples    ( final           String  Subdir
 	          set_Key_Rel_Base_Dir ( Rel_Base_Dir                  );
 	          set_Max_Key_Length   ( Rel_Base_Dir.length()         );
 }
-public        Directory_Triples    ( final           String  Key
-		                           , final           String  Subdir
+public        Directory_Triples    ( final           String  Subdir
+		                           , final           String  Key
                                    )
 {
 	          Key_Parent = new       LHMESS();
@@ -80,9 +80,13 @@ public        String get_Key_Rel_Base_Dir ()
 {
 return	                 Key_Rel_Base_Dir;
 }
-public        void    put         ( final  String  Key
+public        String get_Subdir_of_Rel_Base_Dir()
+{
+return               Key_Subdir.get( get_Key_Rel_Base_Dir() );
+}
+public        void    put         ( final  String  Subdir
+		                          , final  String  Key
 		                          , final  String  Parent
-		                          , final  String  Subdir
 		                          )
               throws  IllegalArgumentException
 {
@@ -92,7 +96,7 @@ if  (        Key_Subdir . containsKey      ( Parent ) )
 	       {
 		     check_for_duplicate_directory ( Key,  Parent,  Subdir );
 	       }
-	  addEntry  ( Key, Parent, Subdir );
+	  addEntry  ( Subdir,  Key, Parent );
     }
 else
     {
@@ -102,9 +106,9 @@ else
 			                              );
     }
 }
-private  void  addEntry  ( final  String  Key
+private  void  addEntry  ( final  String  Subdir
+		                 , final  String  Key
 		                 , final  String  Parent
-		                 , final  String  Subdir
 		                 )
 {
               Key_Parent . put  ( Key,    Parent  );
@@ -147,8 +151,8 @@ private  void    matchingParent( final            String          Parent
             }
 }
 
-public boolean  set_Subdir( final  String  Key
-		                  , final  String  Value
+public boolean  set_Subdir( final  String  Value
+		                  , final  String  Key
 		                  )
 {
 	   if   ( get_Key_Subdir().containsKey( Key ) )
