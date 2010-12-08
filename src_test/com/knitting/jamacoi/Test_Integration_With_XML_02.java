@@ -2,6 +2,7 @@ package com.knitting.jamacoi;
 
 
 import java.net.MalformedURLException;
+import java.net.URL;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -9,12 +10,15 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.knitting.util.K_Calendar;
+
 public class Test_Integration_With_XML_02 {
 	
 	Directory_Manager  dir_m01_investment_family;
 	Directory_Manager  dir_m02_exp_act;
 	Directory_Manager  dir_m03_resources;
 	Directory_Manager  dir_m04_data_sources;
+    K_Calendar         kcal                       = new  K_Calendar();
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -160,6 +164,17 @@ public class Test_Integration_With_XML_02 {
 	public  void  test_resources_data()
 	{
 		    dir_m04_data_sources.check_urls();
+	        System.out.println("");
+	}
+	@Test
+	public  void  test_url_aapl()
+	{
+		    URL    url          =  dir_m04_data_sources
+		                        .  get_URL_by_Key("Dir__Prefix_In");
+		    
+		    String last_sub_dir =  dir_m04_data_sources
+		                        .  get_Last_Subdirectory (  url.toExternalForm() );
+
 	        System.out.println("");
 	}
 }
