@@ -24,15 +24,13 @@ public class ODTJournalReader implements JournalReader {
 		this.file = file;
 	}
 
-	public ValidationResults getValidationResults() {
-		return results;
-	}
 
-	public void load() {
+	public ValidationResults load() {
 		SpreadSheet ss = safeLoadFile();
 		if (ss != null) {
 			loadTransactions(ss);
 		}
+		return results;
 	}
 
 	private void loadTransactions(SpreadSheet ss) {
