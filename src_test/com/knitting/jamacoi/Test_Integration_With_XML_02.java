@@ -167,14 +167,21 @@ public class Test_Integration_With_XML_02 {
 	        System.out.println("");
 	}
 	@Test
-	public  void  test_url_aapl()
-	{
-		    URL    url          =  dir_m04_data_sources
-		                        .  get_URL_by_Key("Dir__Prefix_In");
+	public  void    test_url_appl_within_dir() 
+	        throws  MalformedURLException
+	{	
+	final	String  Key         = "Dir__Prefix_In";
+	final	String  File_Name   = "AAPL.txt";
 		    
-		    String last_sub_dir =  dir_m04_data_sources
-		                        .  get_Last_Subdirectory (  url.toExternalForm() );
+	final	URL     url_aapl    =  dir_m04_data_sources
+		                        .  get_URL_for_file_within_dir (  Key
+		                        		                       ,  File_Name
+		                        		                       );
+		    System.out.println  ( "url_aapl ............ =>"
+		                        +  url_aapl.toExternalForm()
+		                        + "<"
+		                        );
 
-	        System.out.println("");
+            System.out.println("");
 	}
 }

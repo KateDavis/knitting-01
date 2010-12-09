@@ -1,6 +1,7 @@
 package com.knitting.jamacoi;
 
 import java.io.File;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
 
@@ -76,6 +77,19 @@ else
 	                                      + "<"
 	                                      );
     }
+}
+public   URL     get_URL_for_file_within_dir ( final  String  Key
+		                                     , final  String  short_file_name
+		                                     )
+         throws  IllegalArgumentException
+               , MalformedURLException
+{
+	     URL     url_dir       =  get_URL_by_Key        ( Key );
+	     String  last_sub_dir  =  get_Last_Subdirectory ( url_dir.toExternalForm() );
+	     String  rel_file      =  last_sub_dir
+	                           + "/"
+	                           +  short_file_name;
+	     return  new              URL ( url_dir, rel_file );
 }
 private  URL     get_URL_Workspace()
          throws  java.net.MalformedURLException 

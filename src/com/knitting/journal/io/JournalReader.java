@@ -6,8 +6,8 @@ package com.knitting.journal.io;
  */
 public interface JournalReader {
 
-	void load();
+	ValidationResults load();
 
-	ValidationResults getValidationResults();
+//	ValidationResults getValidationResults();
 
 }

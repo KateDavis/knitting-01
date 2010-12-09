@@ -24,8 +24,7 @@ public class JournalReaderTest {
 		System.err.println(file.getAbsolutePath());
 		
 		JournalReader reader = new ODTJournalReader(file);
-		reader.load();
-		ValidationResults results = reader.getValidationResults();
+		ValidationResults results = reader.load();
 		assertEquals(results.toString(), results.errorCount(), 0);
 		
 		List<Transaction> transactions = results.getTransactions();
