@@ -127,7 +127,7 @@ private  void    check_for_duplicate_directory ( final  String  Key
              : Key_Subdir.entrySet()
              )
              {
-        	   if ( entry.getValue()  ==   Subdir )
+        	   if ( entry.getValue().equals( Subdir )  )
         	      {
         		    matchingParent(Parent, entry);
         	      }
@@ -140,7 +140,7 @@ private  void    matchingParent( final            String          Parent
 {
          String               existing_key   =  entry.getKey();
 	
-         if ( Key_Parent.get( existing_key ) == Parent )
+         if ( Key_Parent.get( existing_key ).equals( Parent ) )
             {
               throw  new  IllegalArgumentException( "Duplicate Sub-directory:("
             		                              +  entry.getValue()
