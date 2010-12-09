@@ -64,6 +64,14 @@ public        Directory_Triples    clone()
 	        		                                              );
 	          return               clone;
 }
+public        int    get_Size_Key_Parent()
+{
+return                        Key_Parent.size();	                
+}
+public        int    get_Size_Key_Subdir()
+{
+return                        Key_Subdir.size();	
+}
 public        int    get_Mqx_Key_Length()
 {
 return                   Max_Key_Length;	

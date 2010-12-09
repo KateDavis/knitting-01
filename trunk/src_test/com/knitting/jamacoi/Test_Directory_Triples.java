@@ -11,7 +11,10 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class Test_Directory_Triples {
-	Directory_Triples dt;
+	        Directory_Triples   dt;
+	final   String              default_key     =  "Rel_Base_Dir";
+	final   String              default_parent  =  "-1";
+	final   String              family          =  "family";
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -24,7 +27,7 @@ public class Test_Directory_Triples {
 	@Before
 	public void setUp() throws Exception {
 		
-	dt = new Directory_Triples ( "family" );
+	dt = new Directory_Triples ( family );
 	
 	}
 
