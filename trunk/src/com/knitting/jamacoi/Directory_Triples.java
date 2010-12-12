@@ -190,22 +190,6 @@ public String  set_Subdir( final  String  Value
                                                   );
             }	
 }
-/****************************************************************
-public boolean  set_Subdir( final  String  Value
-		                  , final  String  Key
-		                  )
-{
-	   if   ( get_Key_Subdir().containsKey( Key ) )
-	        {
-		      Key_Subdir.put( Key, Value);
-		      return true;
-	        }
-	   else
-	        {
-		      return false;
-	        }
-}
-****************************************************************/
 protected  LHMESS get_Key_Subdir()
 {
 return                Key_Subdir;
