@@ -88,6 +88,21 @@ public        String get_Key_Rel_Base_Dir ()
 {
 return	                 Key_Rel_Base_Dir;
 }
+public        String get_Subdir ( final String  Key )
+              throws IllegalArgumentException
+{
+	          if   ( containsKey ( Key ) )
+	               {
+	        	     return Key_Subdir.get(Key);
+	               }
+	          else
+	               {
+	        	     throw  new IllegalArgumentException( "key =>"
+	        	                                        +  Key
+	        	                                        + "< does not exist."
+	        	                                        );
+	               }
+}
 public        String get_Subdir_of_Rel_Base_Dir()
 {
 return               Key_Subdir.get( get_Key_Rel_Base_Dir() );
@@ -158,7 +173,24 @@ private  void    matchingParent( final            String          Parent
             		                              );
             }
 }
-
+public String  set_Subdir( final  String  Value
+                         , final  String  Key
+                         )
+       throws IllegalArgumentException
+{
+	   if   ( get_Key_Subdir()  . containsKey( Key ) )
+            {
+	          return Key_Subdir . put        ( Key, Value);
+            }
+       else
+            {
+              throw  new  IllegalArgumentException( "No entry with Key = >"
+                                                  +  Key
+                                                  + "<"
+                                                  );
+            }	
+}
+/****************************************************************
 public boolean  set_Subdir( final  String  Value
 		                  , final  String  Key
 		                  )
@@ -173,6 +205,7 @@ public boolean  set_Subdir( final  String  Value
 		      return false;
 	        }
 }
+****************************************************************/
 protected  LHMESS get_Key_Subdir()
 {
 return                Key_Subdir;
