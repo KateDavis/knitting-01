@@ -1,6 +1,8 @@
 package com.knitting.jamacoi;
 
 
+import static org.junit.Assert.assertTrue;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -38,7 +40,11 @@ public class Test_Directory_Triples {
 	@Test
 	public void Test_List_Keys()
 	{
-		             List_Keys    ( dt );
+		             List_Keys  ( dt );
+		             assertTrue ( dt.get_Size_Key_Parent() == 1 );
+		             assertTrue ( dt.get_Size_Key_Subdir() == 1 );
+		             assertTrue ( dt.containsKey    ( default_key    )  );
+		             assertTrue ( dt.get_Subdir     ( default_key    ).equals(family)  );
 	}
 	@Test
 	public void Test_List_Subdirs()
@@ -75,6 +81,11 @@ public class Test_Directory_Triples {
 		   List_Keys     ( dt );
 		   dt.List_Subdirs();
 		   dt.List_Parents();
+           assertTrue ( dt.get_Size_Key_Parent() == 2 );
+           assertTrue ( dt.get_Size_Key_Subdir() == 2 );
+           assertTrue ( dt.containsKey    ( Key  )  );
+           assertTrue ( dt.containsParent (Parent)  );
+           assertTrue ( dt.get_Subdir     ( Key  )  . equals(Subdir)  );
 	}
 	@Test
 	public void Test_Add_Subdir_2()
@@ -110,6 +121,8 @@ public class Test_Directory_Triples {
 		   List_Keys     ( dt );
 		   dt.List_Subdirs();
 		   dt.List_Parents();
+		   assertTrue ( dt.get_Size_Key_Parent() == 6 );
+           assertTrue ( dt.get_Size_Key_Subdir() == 6 );
 		
 	}
 	@Test
@@ -126,6 +139,11 @@ public class Test_Directory_Triples {
 		   System.out.println ( "" );
 		   dt.List_Subdirs();
 		   dt.List_Parents();
+		   assertTrue ( dt.get_Size_Key_Parent() == 2 );
+           assertTrue ( dt.get_Size_Key_Subdir() == 2 );
+           assertTrue ( dt.containsKey    ( Key  )  );
+           assertTrue ( dt.containsParent (Parent)  );
+           assertTrue ( dt.get_Subdir     ( Key  )  . equals(Subdir)  );
 		   
            Subdir = "report_details_new";
            Key    = "details";
@@ -138,6 +156,11 @@ public class Test_Directory_Triples {
 		   System.out.println ("");
 		   dt.List_Subdirs();
 		   dt.List_Parents();
+		   assertTrue ( dt.get_Size_Key_Parent() == 2 );
+           assertTrue ( dt.get_Size_Key_Subdir() == 2 );
+           assertTrue ( dt.containsKey    ( Key  )  );
+           assertTrue ( dt.containsParent (Parent)  );
+           assertTrue ( dt.get_Subdir     ( Key  )  . equals(Subdir)  );
 		
 	}
 	@Test
@@ -156,8 +179,8 @@ public class Test_Directory_Triples {
            System.out.println ("");
 		   System.out.println ("Test_Clone_Method dt_clone's contents -------------");
 		   System.out.println ("");
-		   dt.List_Subdirs();
-		   dt.List_Parents();
+		   dt_clone.List_Subdirs();
+		   dt_clone.List_Parents();
 		
 	}
 	@Test
@@ -170,30 +193,45 @@ public class Test_Directory_Triples {
 		   System.out.println ("");
 		   dt.List_Subdirs();
 		   dt.List_Parents();
+		   assertTrue ( dt.get_Size_Key_Parent() == 6 );
+           assertTrue ( dt.get_Size_Key_Subdir() == 6 );
 		   
 		   Directory_Triples dt_clone = dt.clone();
 
            System.out.println ("");
 		   System.out.println ("Test_Clone_With_Differenrt_Values dt_clone's contents(0) ------------");
 		   System.out.println ("");
-		   dt.List_Subdirs();
-		   dt.List_Parents();
+		   dt_clone.List_Subdirs();
+		   dt_clone.List_Parents();
+		   assertTrue ( dt_clone.get_Size_Key_Parent() == 6 );
+           assertTrue ( dt_clone.get_Size_Key_Subdir() == 6 );
 		   
+		   String  Subdir = "report_details_11111";
 		   String  Key    = "details";
-		   String  Subdir = "report_details_1";
-		   dt_clone.set_Subdir(Key, Subdir );   // change the clone instance
+		   String  Subdir_Old = dt_clone.set_Subdir(Subdir, Key );   // change the clone instance
 		   
 		   System.out.println ("");
 		   System.out.println ("Test_Clone_With_Different_Values dt's contents(1)-------------------");
 		   System.out.println ("");
 		   dt.List_Subdirs();
 		   dt.List_Parents();
+		   assertTrue ( dt.get_Size_Key_Parent() == 6 );
+           assertTrue ( dt.get_Size_Key_Subdir() == 6 );
+           assertTrue ( dt_clone.containsKey    ( Key  )  );
+           assertTrue ( dt_clone.get_Subdir     ( Key  )  . equals( Subdir )  );
 		   
 	       System.out.println ("");
 		   System.out.println ("Test_Clone_With_Differenrt_Values dt_clone's contents(1) ------------");
 		   System.out.println ("");
-		   dt.List_Subdirs();
-		   dt.List_Parents();
+		   System.out.println ("For key = >" + Key + "<  Subdir_Old = >" + Subdir_Old + "<" );
+		   System.out.println ("For key = >" + Key + "<  Subdir New = >" + Subdir     + "<" );
+		   System.out.println ("");
+		   dt_clone.List_Subdirs();
+		   dt_clone.List_Parents();
+		   assertTrue ( dt_clone.get_Size_Key_Parent() == 6 );
+           assertTrue ( dt_clone.get_Size_Key_Subdir() == 6 );
+           assertTrue ( dt_clone.containsKey    ( Key  )  );
+           assertTrue ( dt_clone.get_Subdir     ( Key  )  . equals(Subdir)  );
 			   
 		   Subdir = "corr_auto";
 		   Key    = "auto";
@@ -212,8 +250,8 @@ public class Test_Directory_Triples {
 	       System.out.println ("");
 		   System.out.println ("Test_Clone_With_Differenrt_Values dt_clone's contents(2) ------------");
 		   System.out.println ("");
-		   dt.List_Subdirs();
-		   dt.List_Parents();		   
+		   dt_clone.List_Subdirs();
+		   dt_clone.List_Parents();		   
 	}
 	@Test
 	public void Test_Remove_Bottom_Level_Subdir()
