@@ -460,6 +460,8 @@ public class Test_Directory_Triples {
 	                             Key     =  "partial";
 	                             Parent  =  "details";
 	                             d       .   put( Subdir,  Key,  Parent );
+	                             
+	          check_6a_level   ( d );
 	          
 	 return                      d;
 	}
@@ -479,4 +481,29 @@ public class Test_Directory_Triples {
 		      }
 		        System.out.println( "");
 	}	
+	void check_6a_level( final  Directory_Triples  d )
+	{
+		   assertTrue ( d.get_Size_Key_Parent() == 6 );
+           assertTrue ( d.get_Size_Key_Subdir() == 6 );
+	       
+	       check_for_Key_Subdir ( "appl_amzn_qcom"        ,"family"   ,d );
+	       check_for_Key_Subdir ( "request_01"            ,"requestx" ,d );
+	       check_for_Key_Subdir ( "report_details"        ,"details"  ,d );
+	       check_for_Key_Subdir ( "report_summary"        ,"summary"  ,d );
+	       check_for_Key_Subdir ( "correlations_auto"     ,"auto"     ,d );
+	       check_for_Key_Subdir ( "correlations_partial"  ,"partial"  ,d );
+	}
+	void check_for_Key_Subdir ( final  String             Subdir
+			                  , final  String             Key
+			                  , final  Directory_Triples  d
+			                  )
+	{
+		   String     msg = "does NOT contain key = >"
+			              +  Key
+			              + "<";
+	       assert       d.containsKey    ( Key  )  : msg;
+	    		     
+	       assertTrue ( d.get_Subdir     ( Key  )  . equals( Subdir )  );
+	}
+	
 }
