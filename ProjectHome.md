@@ -1,0 +1,1 @@
+Exploring knot theory through the mathematical treatment of knitting.
